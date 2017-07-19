@@ -45,5 +45,9 @@
         <a class="list-group-item more-themes" href="http://www.strapui.com/" >
             {{ 'moretheme' | translate }}
         </a>
+
+        <a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'user' | translate }}
+        </a>
     </ul>
 </nav>
