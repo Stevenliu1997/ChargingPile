@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {DatagridComponent} from './datagrid/datagrid.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {DatagridComponent} from './datagrid/datagrid.component';
         DatagridComponent
     ],
     exports: [
-        DatagridComponent
+        DatagridComponent,
+        HttpClientModule
     ]
 })
 export class WidgetModule {
