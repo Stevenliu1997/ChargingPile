@@ -6,8 +6,8 @@
 
             <form role="form">
                 <fieldset class="form-group">
-                    <label>Text Input{{name}}</label>
-                    <input class="form-control">
+                    <label>姓名</label>
+                    <input class="form-control" [(ngModel)]="formObj.name" name="formObj.name">
                     <p class="help-block">Example block-level help text here.</p>
                 </fieldset>
 
@@ -117,7 +117,7 @@
                     </select>
                 </fieldset>
 
-                <button type="submit" class="btn btn-secondary">Submit Button</button>
+                <button type="submit" class="btn btn-secondary" (click)="submit()">Submit Button</button>
                 <button type="reset" class="btn btn-secondary">Reset Button</button>
 
             </form>
