@@ -13,7 +13,9 @@ export class RoleComponent implements OnInit {
     config: object = {
         url: '/Role/Find',
         column: [
-            {name: 'role'}
+            {name: '角色名称', key: 'name'},
+            {name: '角色权限', key: 'auth'},
+            {name: '角色描述', key: 'desc'}
         ]
     };
 

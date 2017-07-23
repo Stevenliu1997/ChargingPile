@@ -11,9 +11,8 @@ export class DatagridComponent implements OnInit {
 
     @Input()
     config: any;
-    displayData: User = new User();
 
-    fetchedData: any;
+    fetchedData: any = {};
 
     constructor(private httpClient: HttpClient) {
 
@@ -27,13 +26,9 @@ export class DatagridComponent implements OnInit {
     public loadData(): void{
         this.httpClient.get('./assets/demo'+this.config.url+'.json',{
             params: new HttpParams().set('name', '1')
-        }).subscribe(value => {
-            console.log(value);
-            this.displayData.name = 'test';
-            console.log(this.displayData.name);
-
-            this.fetchedData = value;
-            this.fetchedData.message = 'this is ok';
+        }).subscribe((result: any) => {
+            if(result.result == 'OK')
+                this.fetchedData = result.data;
         })
     }
 
