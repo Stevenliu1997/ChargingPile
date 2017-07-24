@@ -2,20 +2,20 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {DatagridComponent} from './datagrid/datagrid.component';
-import {HttpClientModule} from "@angular/common/http";
+import {ToolModule} from "../../services/tool.module";
 
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        ToolModule,
     ],
     declarations: [
         DatagridComponent
     ],
     exports: [
-        DatagridComponent,
-        HttpClientModule
+        DatagridComponent
     ]
 })
 export class WidgetModule {

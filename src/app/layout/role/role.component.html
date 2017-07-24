@@ -1,21 +1,21 @@
 <div [@routerTransition] content="main-section">
-    <app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'角色管理'" [icon]="'fa-table'"></app-page-header>
 
     <div content="main-content container">
-        <div class="query-section row breadcrumb">
+        <div class="query-section row breadcrumb no-gutters">
             <div class="col-3">
-                <div class="form-group row">
+                <div class="row">
                     <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
                     <div class="col-8">
-                        <input class="form-control" type="text" value="角色名称" id="example-text-input">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
                     </div>
                 </div>
             </div>
 
             <div class="col-3">
-                <div class="form-group row">
+                <div class="row">
                     <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">查询</button>
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
                     </div>
                 </div>
             </div>
