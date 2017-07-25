@@ -7,6 +7,14 @@ const routes: Routes = [
         path: '', component: LayoutComponent,
         children: [
             { path: 'role', loadChildren: './role/role.module#RoleModule' },
+            { path: 'user', loadChildren: './user/user.module#UserModule' },
+
+            //基础数据管理---
+            //充电桩程序库
+            { path: 'recharge-program', loadChildren: './recharge-program/recharge-program.module#RechargeProgramModule' },
+            //汽车品牌管理
+            { path: 'car-brand', loadChildren: './car-brand/car-brand.module#CarBrandModule' },
+
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
@@ -14,8 +22,7 @@ const routes: Routes = [
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            { path: 'user', loadChildren: './user/user.module#UserModule' }
+            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
         ]
     }
 ];

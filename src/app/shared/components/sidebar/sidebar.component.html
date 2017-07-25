@@ -1,8 +1,49 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
     <ul class="list-group">
-        <a routerLink="/role" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ '角色管理' | translate }}
-        </a>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('system')">
+                <span><i class="fa fa-plus"></i>&nbsp;{{ '系统管理' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'system'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/role" href="javascript:void(0)">
+                            <span>{{ '角色管理' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/user" href="javascript:void(0)">
+                            <span>{{ '用户管理' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('basic')">
+                <span><i class="fa fa-plus"></i>&nbsp;{{ '基础数据管理' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'basic'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/recharge-program" href="javascript:void(0)">
+                            <span>{{ '充电桩程序库' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/car-brand" href="javascript:void(0)">
+                            <span>{{ '汽车品牌管理' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+
+        <!--<a routerLink="/role" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+            <!--<i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ '角色管理' | translate }}-->
+        <!--</a>-->
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'dashboard' | translate }}
         </a>
@@ -49,8 +90,8 @@
             {{ 'moretheme' | translate }}
         </a>
 
-        <a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'user' | translate }}
-        </a>
+        <!--<a [routerLink]="['/user']" [routerLinkActive]="['router-link-active']" class="list-group-item">-->
+            <!--<i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'user' | translate }}-->
+        <!--</a>-->
     </ul>
 </nav>
