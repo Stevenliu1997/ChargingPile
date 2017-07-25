@@ -5,6 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { PageHeaderModule } from './../../shared';
 import {FormsModule} from "@angular/forms";
+import {WidgetModule} from "../../shared/components/widget/widget.module";
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {FormsModule} from "@angular/forms";
         FormsModule,
         UserRoutingModule,
         PageHeaderModule,
+        WidgetModule
     ],
     declarations: [UserComponent]
 })
