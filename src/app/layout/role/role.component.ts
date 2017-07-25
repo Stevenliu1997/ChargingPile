@@ -27,7 +27,21 @@ export class RoleComponent implements OnInit {
             return function () {
                 return thisObj.queryModel;
             }
-        })(this)
+        })(this),
+        rowActions: [
+            {
+                type: 'delete',
+                action: function (item) {
+                    console.log(item);
+                }
+            },
+            {
+                type: 'edit',
+                action: function (item) {
+                    console.log(item);
+                }
+            }
+        ]
     };
 
     constructor() {
