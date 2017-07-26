@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {CustomInterceptor} from "./shared/intercetor/CustomInterceptor";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
     // for development
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: Http) {
         FormsModule,
         HttpModule,
         AppRoutingModule,
+        NgbModule.forRoot(),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

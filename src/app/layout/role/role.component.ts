@@ -1,6 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
+import {RoleEditComponent} from "./role-edit.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 
 @Component({
     selector: 'app-tables',
@@ -23,11 +26,9 @@ export class RoleComponent implements OnInit {
             {name: '角色权限', key: 'auth'},
             {name: '角色描述', key: 'desc'}
         ],
-        params: (function (thisObj) {
-            return function () {
-                return thisObj.queryModel;
-            }
-        })(this),
+        params: function () {
+            return this.queryModel;
+        }.bind(this),
         rowActions: [
             {
                 type: 'delete',
@@ -38,19 +39,31 @@ export class RoleComponent implements OnInit {
             {
                 type: 'edit',
                 action: function (item) {
-                    console.log(item);
-                }
+                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.editModel = Object.assign({},item);
+                    modalRef.result.then(result => {
+                        this.updateRole(result);
+                    })
+                }.bind(this)
             }
         ]
     };
 
-    constructor() {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
     ngOnInit() {
     }
 
     refreshGrid(){
+        console.log(this.config);
         this.datagridComponent.refreshGrid();
+    }
+
+    updateRole(role: object){
+        this.customHttpClient.post('Role/Update', role).subscribe(result => {
+
+        })
     }
 }

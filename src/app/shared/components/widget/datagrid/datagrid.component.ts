@@ -34,6 +34,10 @@ export class DatagridComponent implements OnInit {
     fetchedData: any = [];
 
     constructor(private httpClient: CustomHttpClient) {
+
+    }
+
+    ngOnInit() {
         //默认配置
         this.defaultConfig = {
             topActions: [],
@@ -50,9 +54,6 @@ export class DatagridComponent implements OnInit {
             pageSize: this.config.pageSize
         };
 
-    }
-
-    ngOnInit() {
         this.loadData(this.config.url, this.config.params());
     }
 
