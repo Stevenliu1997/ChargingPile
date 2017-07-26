@@ -29,6 +29,26 @@ export class RoleComponent implements OnInit {
         params: function () {
             return this.queryModel;
         }.bind(this),
+        topActions: [
+            {
+                type: 'add',
+                name: '添加',
+                action: function (ids) {
+                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    modalRef.componentInstance.actionTitle = '添加';
+                    modalRef.result.then(result => {
+                        this.updateRole(result);
+                    })
+                }.bind(this)
+            },
+            {
+                type: 'delete',
+                name: '删除',
+                action: function (ids) {
+                    console.log(ids);
+                }.bind(this)
+            }
+        ],
         rowActions: [
             {
                 type: 'delete',

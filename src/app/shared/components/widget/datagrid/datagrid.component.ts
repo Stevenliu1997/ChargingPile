@@ -73,4 +73,9 @@ export class DatagridComponent implements OnInit {
         act.action(item);
     }
 
+    topAction (act: any) {
+        //TODO 传入checkBox选中数据
+        act.action()
+    }
+
 }
