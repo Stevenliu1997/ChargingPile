@@ -68,7 +68,7 @@ export class DatagridComponent implements OnInit {
         this.loadData(this.config.url, this.config.params());
     }
 
-    rowAction (act: any, item: object){
+    rowAction (act: any, item: object) {
         act.action(item);
     }
 

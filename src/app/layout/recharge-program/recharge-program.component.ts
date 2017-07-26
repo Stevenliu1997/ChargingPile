@@ -15,17 +15,38 @@ export class RechargeProgramComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: 'recharge-program/Find',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '程序版本号', key: 'version'},
+            {name: '程序名称', key: 'name'},
+            {name: '程序所在路径', key: 'path'}
         ],
+        // 与后端交互，queryModel.name
         params: (function (thisObj) {
             return function () {
                 return thisObj.queryModel;
             }
-        })(this)
+        })(this),
+        rowActions: [
+            {
+                type: `upload`,
+                action: function(item) {
+                    console.log(item);
+                }
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                    console.log(item);
+                }
+            },
+            {
+                type: 'edit',
+                action: function (item) {
+                    console.log(item);
+                }
+            }
+        ]
     };
 
     constructor() {
@@ -34,7 +55,7 @@ export class RechargeProgramComponent implements OnInit {
     ngOnInit() {
     }
 
-    refreshGrid(){
+    refreshGrid() {
         this.datagridComponent.refreshGrid();
     }
 }

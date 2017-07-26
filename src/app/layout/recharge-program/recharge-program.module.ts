@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { RechargeProgramComponent } from './recharge-program.component';
 import { PageHeaderModule } from './../../shared';
-import {FormsModule} from "@angular/forms";
-import {RechargeProgramRoutingModule} from "./recharge-program-routing.module";
-import {WidgetModule} from "../../shared/components/widget/widget.module";
+import {FormsModule} from '@angular/forms';
+import {RechargeProgramRoutingModule} from './recharge-program-routing.module';
+import {WidgetModule} from '../../shared/components/widget/widget.module';
 
 
 @NgModule({
@@ -16,7 +16,9 @@ import {WidgetModule} from "../../shared/components/widget/widget.module";
         PageHeaderModule,
         WidgetModule
     ],
-    declarations: [RechargeProgramComponent]
+    declarations: [
+        RechargeProgramComponent
+    ]
 })
 export class RechargeProgramModule {
 }

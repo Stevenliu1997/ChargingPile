@@ -14,7 +14,8 @@
             <td><input type="checkbox"></td>
             <td *ngFor="let col of config.column">{{data[col.key]}}</td>
             <td>
-                <i [ngClass]="{'fa-trash-o': rowAct.type === 'delete', 'fa-pencil-square-o': rowAct.type==='edit'}" class="fa mr-2" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
+                <i [ngClass]="{'fa-upload': rowAct.type === 'upload','fa-trash-o': rowAct.type === 'delete', 'fa-pencil-square-o': rowAct.type==='edit'}"
+                   class="fa mr-2" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
             </td>
         </tr>
 

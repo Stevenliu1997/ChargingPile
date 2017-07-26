@@ -1,0 +1,16 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "version": "6.11.8",
+            "name": "node.js",
+            "path": "c:/"
+        },
+        {
+            "version": "2017.2",
+            "name": "webstorm",
+            "path": "c:/"
+        }
+
+    ]
+}
