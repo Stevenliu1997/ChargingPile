@@ -45,14 +45,23 @@ export class RechargeProgramComponent implements OnInit {
         rowActions: [
             {
                 type: `upload`,
-                action: function(item) {
-                    console.log(item);
-                }
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
+                    modalRef.componentInstance.actionTitle = '上传';
+                    modalRef.componentInstance.editModel = Object.assign({},item);
+                    modalRef.result.then(result => {
+                        this.updateProgram(result);
+                    })
+                }.bind(this)
             },
             {
                 type: 'delete',
-                action: function (item) {
-                    console.log(item);
+                name: '删除',
+                action: function (ids) {
+                    console.log(ids);
+                }.bind(this),
+                autoConfig: {
+                    url:'Role/delete'
                 }
             },
             {
