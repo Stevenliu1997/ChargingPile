@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// import { FileUploadModule } from 'ng2-file-upload';
 
 import { RechargeProgramComponent } from './recharge-program.component';
 import { PageHeaderModule } from './../../shared';
@@ -8,8 +9,8 @@ import {RechargeProgramRoutingModule} from './recharge-program-routing.module';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {RechargeProgramAddComponent} from "./recharge-program-add.component";
 import {RechargeProgramEditComponent} from "./recharge-program-edit.component";
+//import {HomeFileComponent} from "./upload-file.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-
 
 @NgModule({
     imports: [
@@ -17,12 +18,14 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         FormsModule,
         RechargeProgramRoutingModule,
         PageHeaderModule,
-        WidgetModule
+        WidgetModule,
+        // FileUploadModule
     ],
     declarations: [
         RechargeProgramComponent,
         RechargeProgramAddComponent,
-        RechargeProgramEditComponent
+        RechargeProgramEditComponent,
+        // HomeFileComponent
     ],
     entryComponents: [
         RechargeProgramEditComponent,
