@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FileUploadModule } from 'ng2-file-upload';
+// import { FileUploadModule } from 'ng2-file-upload';
 
 import { RechargeProgramComponent } from './recharge-program.component';
 import { PageHeaderModule } from './../../shared';
@@ -19,13 +19,13 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         RechargeProgramRoutingModule,
         PageHeaderModule,
         WidgetModule,
-        FileUploadModule
+        // FileUploadModule
     ],
     declarations: [
         RechargeProgramComponent,
         RechargeProgramAddComponent,
         RechargeProgramEditComponent,
-        HomeFileComponent
+        // HomeFileComponent
     ],
     entryComponents: [
         RechargeProgramEditComponent,
