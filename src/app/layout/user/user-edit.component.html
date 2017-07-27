@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{actionTitle}}角色</h4>
+    <h4 class="modal-title">{{actionTitle}}用户</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -48,7 +48,7 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">关闭</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
     <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
 </div>
 

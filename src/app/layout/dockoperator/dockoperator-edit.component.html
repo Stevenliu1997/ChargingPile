@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}角色</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <!--<div class="form-group">-->
+            <!--<label for="editModel.name">角色名称</label>-->
+            <!--<input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="email" class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="editModel.desc">角色描述</label>-->
+            <!--<textarea [(ngModel)] = 'editModel.desc' id="editModel.desc" name="editModel.desc" class="form-control">-->
+            <!--</textarea>-->
+        <!--</div>-->
+        <div class="form-group row">
+            <label class="col-2 col-form-label">角色名称</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.name' name="editModel.name" type="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">角色描述</label>
+            <div class="col-10">
+                <textarea [(ngModel)] = 'editModel.desc' name="editModel.desc" class="form-control">
+                </textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>
