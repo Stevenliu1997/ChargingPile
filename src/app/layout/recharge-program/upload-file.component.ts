@@ -6,7 +6,7 @@ import {FileUploader} from "ng2-file-upload";
     selector: "my-file",
     templateUrl: "./upload-file.component.html"
 })
-export class HomeFileComponent implements OnInit {
+export class UploadFileComponent implements OnInit {
     ngOnInit(): void {
     }
     // B: 初始化定义uploader变量,用来配置input中的uploader属性

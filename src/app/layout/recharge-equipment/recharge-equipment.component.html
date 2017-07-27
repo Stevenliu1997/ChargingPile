@@ -1,0 +1,95 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'充电桩硬件设备库'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="query-section row breadcrumb mx-0">
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>

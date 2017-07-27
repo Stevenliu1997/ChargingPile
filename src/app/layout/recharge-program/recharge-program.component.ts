@@ -51,7 +51,7 @@ export class RechargeProgramComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateProgram(result);
-                    })
+                    },error => {})
                 }.bind(this)
             },
             {

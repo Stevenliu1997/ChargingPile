@@ -9,7 +9,7 @@ import {RechargeProgramRoutingModule} from './recharge-program-routing.module';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {RechargeProgramAddComponent} from "./recharge-program-add.component";
 import {RechargeProgramEditComponent} from "./recharge-program-edit.component";
-import {HomeFileComponent} from "./upload-file.component";
+import {UploadFileComponent} from "./upload-file.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
@@ -25,7 +25,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         RechargeProgramComponent,
         RechargeProgramAddComponent,
         RechargeProgramEditComponent,
-        HomeFileComponent
+        UploadFileComponent
     ],
     entryComponents: [
         RechargeProgramEditComponent,
