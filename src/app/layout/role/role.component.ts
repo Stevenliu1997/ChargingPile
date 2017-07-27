@@ -46,14 +46,19 @@ export class RoleComponent implements OnInit {
                 name: '删除',
                 action: function (ids) {
                     console.log(ids);
-                }.bind(this)
+                }.bind(this),
+                autoConfig: {
+                    url:'Role/delete'
+                }
             }
         ],
         rowActions: [
             {
                 type: 'delete',
                 action: function (item) {
-                    console.log(item);
+                },
+                autoConfig: {
+                    url:'Role/Find'
                 }
             },
             {
@@ -77,7 +82,6 @@ export class RoleComponent implements OnInit {
     }
 
     refreshGrid(){
-        console.log(this.config);
         this.datagridComponent.refreshGrid();
     }
 
