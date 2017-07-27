@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {};
+    queryModel: any = {status: ''};
     // datagrid 配置
     config: object = {
         url: 'User/test',
@@ -44,7 +44,7 @@ export class UserComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.updateUser(result);
-                    },error =>{})
+                    },error => {})
                 }.bind(this)
             },
             {
@@ -77,7 +77,7 @@ export class UserComponent implements OnInit {
                         this.updateUser(result);
                     })
                 }.bind(this)
-            }
+            },
         ]
     };
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
