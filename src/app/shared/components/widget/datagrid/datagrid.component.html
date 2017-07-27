@@ -7,7 +7,7 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
-                    <th><input type="checkbox" [(ngModel)]="allChecked" (click)="checkAll(allChecked)"></th>
+                    <th><input type="checkbox" [(ngModel)]="allChecked" (change)="checkAll(allChecked)"></th>
                     <th>序号</th>
                     <th *ngFor="let col of config.column" >
                         {{col.name}}

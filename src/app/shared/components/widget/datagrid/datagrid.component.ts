@@ -118,9 +118,13 @@ export class DatagridComponent implements OnInit {
         }.bind(this));
     }
 
+    /**
+     * 全选
+     * @param checked
+     */
     checkAll(checked: boolean) {
         for(let i in this.fetchedData){
-            this.fetchedData.checked = checked;
+            this.fetchedData[i].checked = checked;
         }
     }
 
