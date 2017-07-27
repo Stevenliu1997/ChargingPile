@@ -6,13 +6,17 @@
 </div>
 <div class="modal-body">
     <form>
-        <div class="form-group">
-            <label for="editModel.name">程序名称</label>
-            <input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" class="form-control">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">程序名称</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.name' name="editModel.name" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.version">版本号</label>
-            <input [(ngModel)] = 'editModel.version' id="editModel.version" name="editModel.version" class="form-control">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">版本号</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control">
+            </div>
         </div>
         <!--<div class="form-group">-->
         <!--<label for="exampleSelect1">Example select</label>-->
