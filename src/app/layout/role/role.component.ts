@@ -47,6 +47,7 @@ export class RoleComponent implements OnInit {
                 action: function (ids) {
                     console.log(ids);
                 }.bind(this)
+
             }
         ],
         rowActions: [
