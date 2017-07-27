@@ -10,12 +10,12 @@ export class CustomHttpClient extends HttpClient{
 
     environment: any = environment;
 
-    post(url: string, body: any | any, options?): Observable<any> {
+    post(url: string, body?: any | any, options?): Observable<any> {
         url = this.modifyUrl(url);
         options = this.convertUrlParams(options);
         //模拟数据post会报404，暂时时候get
-        if(this.environment.developMode === 'demo')
-            return super.get(url, options);
+        // if(this.environment.developMode === 'demo')
+        //     return super.get(url, options);
         return super.post(url, body, options);
     }
 

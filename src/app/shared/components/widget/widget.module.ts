@@ -9,7 +9,7 @@ import {ToolModule} from "../../services/tool.module";
     imports: [
         CommonModule,
         FormsModule,
-        ToolModule,
+        ToolModule
     ],
     declarations: [
         DatagridComponent

@@ -1,24 +1,31 @@
 <div class="table-responsive">
-    <table class="table table-hover table-striped">
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th *ngFor="let col of config.column" >
-                {{col.name}}
-            </th>
-            <th class="">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let data of fetchedData">
-            <td><input type="checkbox"></td>
-            <td *ngFor="let col of config.column">{{data[col.key]}}</td>
-            <td>
-                <i [ngClass]="{'fa-upload': rowAct.type === 'upload','fa-trash-o': rowAct.type === 'delete', 'fa-pencil-square-o': rowAct.type==='edit'}"
-                   class="fa mr-2" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
-            </td>
-        </tr>
+    <div class="card">
+        <div class="card-header" style="background-color: transparent" *ngIf="config.topActions && config.topActions.length>0">
+            <button type="button" class="btn btn-primary mr-2" *ngFor="let topBtn of config.topActions" (click)="topAction(topBtn)">{{topBtn.name}}</button>
+        </div>
+        <div>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th *ngFor="let col of config.column" >
+                        {{col.name}}
+                    </th>
+                    <th class="">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of fetchedData">
+                    <td><input type="checkbox"></td>
+                    <td *ngFor="let col of config.column">{{data[col.key]}}</td>
+                    <td>
+                        <i [ngClass]="{'fa-trash-o': rowAct.type === 'delete', 'fa-pencil-square-o': rowAct.type==='edit'}" class="fa mr-2" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
+                    </td>
+                </tr>
 
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
