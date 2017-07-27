@@ -1,17 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {RoleEditComponent} from "./role-edit.component";
+import {DockoperatorEditComponent} from "./dockoperator-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 
 @Component({
     selector: 'app-tables',
-    templateUrl: './role.component.html',
-    styleUrls: ['./role.component.scss'],
+    templateUrl: './dockoperator.component.html',
+    styleUrls: ['./dockoperator.component.scss'],
     animations: [routerTransition()]
 })
-export class RoleComponent implements OnInit {
+export class DockoperatorComponent implements OnInit {
     name: String = 'name';
 
     @ViewChild(DatagridComponent)
@@ -34,7 +34,7 @@ export class RoleComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.updateRole(result);
@@ -65,7 +65,7 @@ export class RoleComponent implements OnInit {
             {
                 type: 'edit',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {

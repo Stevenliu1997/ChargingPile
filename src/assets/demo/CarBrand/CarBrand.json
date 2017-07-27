@@ -6,14 +6,14 @@
             "brandName": "奔驰",
             "carModel": "玩具车",
             "introduction": "hhh",
-            "image": ""
+            "image": "http://localhost:4200/assets/demo/CarBrand/BenzLogo.jpg"
         },
         {
             "brandId": "2015220503002",
             "brandName": "宝马",
             "carModel": "遥控车",
             "introduction": "ddd",
-            "image": ""
+            "image": "http://localhost:4200/assets/demo/CarBrand/BMWLogo.jpg"
         }
 
     ]

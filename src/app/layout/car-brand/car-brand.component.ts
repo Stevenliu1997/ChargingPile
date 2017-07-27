@@ -51,7 +51,7 @@ export class CarBrandComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'Role/delete'
+                    url: 'CarBrand/delete'
                 }
             }
         ],
