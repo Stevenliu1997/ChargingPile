@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}角色</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="editModel.userid">用户ID</label>
+            <input [(ngModel)] = 'editModel.userid' id="editModel.userid" name="editModel.userid" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.name">用户名</label>
+            <input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.rolename">角色名</label>
+            <select class="form-control" [(ngModel)]="editModel.rolename" id="editModel.rolename">
+                <option>超级管理员</option>
+                <option>用户管理员</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="editModel.pwd">密码</label>
+            <input [(ngModel)] = 'editModel.pwd' id="editModel.pwd" name="editModel.pwd" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.serverid">运营商ID</label>
+            <input [(ngModel)] = 'editModel.serverid' id="editModel.serverid" name="editModel.sercerid" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.phonenumber">手机号</label>
+            <input [(ngModel)] = 'editModel.phonenumber' id="editModel.phonenumber" name="editModel.phonrnumber" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.qq">QQ</label>
+            <input [(ngModel)] = 'editModel.qq' id="editModel.qq" name="editModel.qq" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.wechat">微信</label>
+            <input [(ngModel)] = 'editModel.wewchat' id="editModel.wechat" name="editModel.wechat" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.email">email</label>
+            <input [(ngModel)] = 'editModel.email' id="editModel.email" name="editModel.email" type="email" class="form-control">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>
+

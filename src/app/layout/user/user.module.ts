@@ -6,6 +6,10 @@ import { UserComponent } from './user.component';
 import { PageHeaderModule } from './../../shared';
 import {FormsModule} from "@angular/forms";
 import {WidgetModule} from "../../shared/components/widget/widget.module";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {UserEditComponent} from "./user-edit.component";
+import {User} from "../../shared/models/User";
+import {UserRecordComponent} from "./user-record.component";
 
 
 @NgModule({
@@ -14,9 +18,11 @@ import {WidgetModule} from "../../shared/components/widget/widget.module";
         FormsModule,
         UserRoutingModule,
         PageHeaderModule,
-        WidgetModule
+        WidgetModule,
+        NgbModule
     ],
-    declarations: [UserComponent]
+    declarations: [UserComponent, UserEditComponent,UserRecordComponent],
+    entryComponents: [UserEditComponent,UserRecordComponent]
 })
 export class UserModule {
 }
