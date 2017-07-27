@@ -24,7 +24,7 @@
                         <i [ngClass]="{'fa-trash-o': rowAct.type === 'delete',
                                        'fa-pencil-square-o': rowAct.type==='edit',
                                        'fa-file-o': rowAct.type==='detail',
-                                       'fa-upload': rowAct.type==='upload',
+                                       'fa-upload': rowAct.type==='upload'
                                        }"
                            class="fa mr-2" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
                     </td>
