@@ -1,0 +1,20 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "brandId": "2015220503001",
+            "brandName": "奔驰",
+            "carModel": "玩具车",
+            "introduction": "hhh",
+            "image": ""
+        },
+        {
+            "brandId": "2015220503002",
+            "brandName": "宝马",
+            "carModel": "遥控车",
+            "introduction": "ddd",
+            "image": ""
+        }
+
+    ]
+}
