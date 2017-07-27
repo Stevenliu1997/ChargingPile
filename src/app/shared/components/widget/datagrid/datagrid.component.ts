@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {User} from "../../../models/User";
 import {CustomHttpClient} from "../../../services/custom-http-client/CustomHttpClient";
+import {CRUDService} from "../../../services/crud-service/crud.service";
 
 @Component({
     selector: 'app-datagrid',
@@ -30,16 +31,20 @@ export class DatagridComponent implements OnInit {
     defaultConfig: object;
     //翻页对象
     page: any = {};
+    key: string;
+    //全选标记
+    allChecked: boolean = false;
 
     fetchedData: any = [];
 
-    constructor(private httpClient: CustomHttpClient) {
+    constructor(private httpClient: CustomHttpClient, private crudService: CRUDService) {
 
     }
 
     ngOnInit() {
         //默认配置
         this.defaultConfig = {
+            key: 'id',
             topActions: [],
             rowActions: [],
             pageSize: 20,
@@ -53,6 +58,7 @@ export class DatagridComponent implements OnInit {
             pageNumber: 1,
             pageSize: this.config.pageSize
         };
+        this.key = this.config.key;
 
         this.loadData(this.config.url, this.config.params());
     }
@@ -71,11 +77,51 @@ export class DatagridComponent implements OnInit {
 
     rowAction (act: any, item: object) {
         act.action(item);
+        if(act.autoConfig){
+            switch (act.type){
+                case 'delete':
+                    this.autoDelete(act.autoConfig, item[this.key]);
+                    break;
+            }
+        }
     }
 
     topAction (act: any) {
         //TODO 传入checkBox选中数据
-        act.action()
+        act.action();
+        if(act.autoConfig){
+            switch (act.type){
+                case 'delete':
+                    this.autoDelete(act.autoConfig, this.getSelectedIds());
+                    break;
+            }
+        }
+
+
+    }
+
+    autoDelete(autoConfig: any, ids: string | string[]){
+        this.crudService.delete(autoConfig.url, ids, function () {
+            this.refreshGrid()
+        }.bind(this))
+    }
+
+    /**
+     * 获取选择的ids
+     * @returns {Array}
+     */
+    getSelectedIds(): string[]{
+        return this.fetchedData.filter(function (filItem) {
+            return filItem.checked;
+        }).map(function (mapItem) {
+            return mapItem[this.key];
+        }.bind(this));
+    }
+
+    checkAll(checked: boolean) {
+        for(let i in this.fetchedData){
+            this.fetchedData.checked = checked;
+        }
     }
 
 }

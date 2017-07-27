@@ -2,11 +2,13 @@
     "result": "OK",
     "data": [
         {
+            "id": "1",
             "name": "超级管理员",
             "auth": "超级管理员",
             "desc": "系统管理员"
         },
         {
+            "id": "2",
             "name": "guest",
             "auth": "平台一般用户",
             "desc": ""

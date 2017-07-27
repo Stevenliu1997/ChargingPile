@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">提示</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    {{confirmMsg}}
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close()">确认</button>
+</div>
