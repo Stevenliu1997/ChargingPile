@@ -1,25 +1,48 @@
 <div [@routerTransition] content="main-section">
-    <app-page-header [heading]="'汽车品牌管理'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'角色管理'" [icon]="'fa-table'"></app-page-header>
 
     <div content="main-content container">
-        <div class="query-section row breadcrumb no-gutters">
-            <div class="col-3">
-                <div class="row">
-                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="brandId-text-input" class="col-4 col-form-label">品牌ID</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="brandId-text-input" [(ngModel)]="queryModel.brandId" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="brandName-text-input" class="col-4 col-form-label">品牌名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="brandName-text-input" [(ngModel)]="queryModel.brandName" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="carModel-text-input" class="col-4 col-form-label">车型</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="carModel-text-input" [(ngModel)]="queryModel.carModel" name="queryModel.name">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
+
             <div class="col-3">
                 <div class="row">
-                    <div class="offset-sm-2 col-sm-10">
+                    <div class="col-4">
                         <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
                     </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         <app-datagrid [config]="config"></app-datagrid>
