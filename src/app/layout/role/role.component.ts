@@ -38,7 +38,8 @@ export class RoleComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.updateRole(result);
-                    })
+                    },
+                    error => {})
                 }.bind(this)
             },
             {
@@ -69,6 +70,8 @@ export class RoleComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateRole(result);
+                    },
+                    error => {
                     })
                 }.bind(this)
             }
