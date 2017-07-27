@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
+import {RechargeProgramAddComponent} from './recharge-program-add.component';
+import {RechargeProgramEditComponent} from './recharge-program-edit.component';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 
 @Component({
     selector: 'app-form',
@@ -15,26 +19,70 @@ export class RechargeProgramComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: 'recharge-program/Find',    //和后端交互URL
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '程序版本号', key: 'version'},
+            {name: '程序名称', key: 'name'},
+            {name: '程序所在路径', key: 'path'}
         ],
-        params: (function (thisObj) {
-            return function () {
-                return thisObj.queryModel;
+        // 与后端交互，queryModel.name
+        params: function () {
+            return this.queryModel;
+        }.bind(this),
+        topActions: [
+            {
+                type: 'add',
+                name: '添加',
+                action: function (ids) {
+                    const modalRef = this.ngbModal.open(RechargeProgramAddComponent);
+                    modalRef.componentInstance.actionTitle = '添加';
+                    modalRef.result.then(result => {
+                        this.updateProgram(result);
+                    })
+                }.bind(this)
             }
-        })(this)
+        ],
+        rowActions: [
+            {
+                type: `upload`,
+                action: function(item) {
+                    console.log(item);
+                }
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                    console.log(item);
+                }
+            },
+            {
+                type: 'edit',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
+                    modalRef.componentInstance.actionTitle = '更新';
+                    modalRef.componentInstance.editModel = Object.assign({},item);
+                    modalRef.result.then(result => {
+                        this.updateProgram(result);
+                    })
+                }.bind(this)
+            }
+        ]
     };
 
-    constructor() {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
+
 
     ngOnInit() {
     }
-
-    refreshGrid(){
+    //查
+    refreshGrid() {
         this.datagridComponent.refreshGrid();
+    }
+    //改
+    updateProgram(program: object){
+        this.customHttpClient.post('recharge-program/Update', program).subscribe(result => {
+
+        })
     }
 }

@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { RechargeProgramComponent } from './recharge-program.component';
 import { PageHeaderModule } from './../../shared';
-import {FormsModule} from "@angular/forms";
-import {RechargeProgramRoutingModule} from "./recharge-program-routing.module";
-import {WidgetModule} from "../../shared/components/widget/widget.module";
-
+import {FormsModule} from '@angular/forms';
+import {RechargeProgramRoutingModule} from './recharge-program-routing.module';
+import {WidgetModule} from '../../shared/components/widget/widget.module';
+import {RechargeProgramAddComponent} from "./recharge-program-add.component";
+import {RechargeProgramEditComponent} from "./recharge-program-edit.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     imports: [
@@ -16,7 +18,15 @@ import {WidgetModule} from "../../shared/components/widget/widget.module";
         PageHeaderModule,
         WidgetModule
     ],
-    declarations: [RechargeProgramComponent]
+    declarations: [
+        RechargeProgramComponent,
+        RechargeProgramAddComponent,
+        RechargeProgramEditComponent
+    ],
+    entryComponents: [
+        RechargeProgramEditComponent,
+        RechargeProgramAddComponent
+    ]
 })
 export class RechargeProgramModule {
 }
