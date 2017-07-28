@@ -1,0 +1,20 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "siteID": "001",
+            "siteName": "中国石油",
+            "siteLocation": "四川省成都市",
+            "siteStatus": "正常",
+            "isReasonable": "不合理"
+        },
+        {
+            "siteID": "002",
+            "siteName": "中国石化",
+            "siteLocation": "四川省成都市",
+            "siteStatus": "锁定",
+            "isReasonable": "很不合理"
+        }
+
+    ]
+}

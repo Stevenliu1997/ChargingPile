@@ -14,6 +14,8 @@ const routes: Routes = [
             { path: 'recharge-program', loadChildren: './recharge-program/recharge-program.module#RechargeProgramModule' },
             //汽车品牌管理
             { path: 'car-brand', loadChildren: './car-brand/car-brand.module#CarBrandModule' },
+            //站点管理
+            { path: 'site-management', loadChildren: './site-management/site-management.module#SiteManagementModule'},
 
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

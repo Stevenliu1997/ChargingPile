@@ -1,0 +1,73 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'站点管理'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="siteID-text-input" class="col-4 col-form-label">站点ID</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="siteID-text-input" [(ngModel)]="queryModel.siteID" name="queryModel.siteID">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="siteName-text-input" class="col-4 col-form-label">站点名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="siteName-text-input" [(ngModel)]="queryModel.siteName" name="queryModel.siteName">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="siteLocation-province-select-input" class="col-4 col-form-label">站点省市</label>
+                            <select id="siteLocation-province-select-input" [(ngModel)]="queryModel.siteLocationProvince" name="queryModel.siteLocationProvince">
+                                <option value="Default">请选择</option>
+                                <option value="w">w</option>
+                                <option value="e">e</option>
+                            </select>
+                            <select id="siteLocation-city-select-input" [(ngModel)]="queryModel.siteLocationCity" name="queryModel.siteLocationCity">
+                                <option value="Default">请选择</option>
+                                <option value="t">t</option>
+                                <option value="j">j</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="siteStatus-text-input" class="col-4 col-form-label">站点状态</label>
+                            <select id="siteStatus-text-input" [(ngModel)]="queryModel.siteStatus" name="queryModel.siteStatus">
+                                <option value="Default">请选择</option>
+                                <option value="Normal">正常</option>
+                                <option value="locked">锁定</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>

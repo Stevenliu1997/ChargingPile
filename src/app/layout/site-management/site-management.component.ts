@@ -1,35 +1,41 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
-import {CarBrandEditComponent} from './car-brand-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
-import {CarBrandDetailComponent} from './car-brand-detail.component';
+import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
+import {SiteDataComponent} from './ModalPage/site-data.component';
+import {SiteInformationComponent} from './ModalPage/site-information.component';
+import {SiteDeleteComponent} from './ModalPage/site-delete.component';
 
 @Component({
-    selector: 'app-tables',
-    templateUrl: './car-brand.component.html',
-    styleUrls: ['./car-brand.component.scss'],
+    selector: 'site-management',
+    templateUrl: './site-management.component.html',
+    styleUrls: ['./site-management.component.scss'],
     animations: [routerTransition()]
 })
-export class CarBrandComponent implements OnInit {
+export class SiteManagementComponent implements OnInit {
     name: String = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
     queryModel: any = {
-        brandId: '',
-        brandName: '',
-        carModel: ''
+        siteID: '',
+        siteName: '',
+        siteLocationProvince: 'Default',
+        siteLocationCity: 'Default',
+        siteStatus: 'Default'
     };
     // datagrid 配置
     config: object = {
-        url: 'CarBrand/CarBrand',
+        url: 'SiteManagement/site-management',
         column: [
-            {name: '品牌ID', key: 'brandId'},
-            {name: '品牌名称', key: 'brandName'},
-            {name: '车型', key: 'carModel'}
+            {name: '站点ID', key: 'siteID'},
+            {name: '站点名称', key: 'siteName'},
+            {name: '站点省市', key: 'siteLocation'},
+            {name: '站点状态', key: 'siteStatus'},
+            {name: '收费是否合理', key: 'isReasonable'}
         ],
         params: (function (thisObj) {
             return function () {
@@ -41,7 +47,7 @@ export class CarBrandComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(CarBrandEditComponent);
+                    const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.updateCar(result);
@@ -63,7 +69,7 @@ export class CarBrandComponent implements OnInit {
             {
                 type: 'edit',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(CarBrandEditComponent);
+                    const modalRef = this.ngbModal.open(SiteDataComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
@@ -74,14 +80,36 @@ export class CarBrandComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(CarBrandDetailComponent);
+                    const modalRef = this.ngbModal.open(SiteInformationComponent);
                     modalRef.componentInstance.actionTitle = '查看';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.updateCar(result);
                     }, error => {})
                 }.bind(this)
-            }
+            },
+            {
+                type: 'edit',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
+                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.result.then(result => {
+                        this.updateCar(result);
+                    }, error => {})
+                }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(SiteDeleteComponent);
+                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.result.then(result => {
+                        this.updateCar(result);
+                    }, error => {})
+                }.bind(this)
+            },
         ]
     };
 
@@ -96,13 +124,15 @@ export class CarBrandComponent implements OnInit {
     }
 
     updateCar(role: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
+        this.customHttpClient.post('SiteManagement/site-management', role).subscribe(result => {
 
         })
     }
     clear(): void {
-        this.queryModel.brandId = '';
-        this.queryModel.brandName = '';
-        this.queryModel.carModel = '';
+        this.queryModel.siteID = '';
+        this.queryModel.siteName = '';
+        this.queryModel.siteLocationProvince = 'Default';
+        this.queryModel.siteLocationCity = 'Default';
+        this.queryModel.siteStatus = 'Default';
     }
 }
