@@ -4,6 +4,7 @@ import {DatagridComponent} from "../../shared/components/widget/datagrid/datagri
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {UserEditComponent} from "./user-edit.component";
+import {UserRecordComponent} from "./user-record.component";
 
 @Component({
     selector: 'app-form',
@@ -78,6 +79,13 @@ export class UserComponent implements OnInit {
                     })
                 }.bind(this)
             },
+            {
+                type: 'detail',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(UserRecordComponent, {size: "lg"});
+                    modalRef.componentInstance.userId = item.id;
+                }.bind(this)
+            }
         ]
     };
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
