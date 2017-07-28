@@ -7,6 +7,7 @@ import {SiteModifyInformationComponent} from './ModalPage/site-modify-informatio
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
 import {SiteDeleteComponent} from './ModalPage/site-delete.component';
+import {SiteCreateComponent} from "./ModalPage/site-create.component";
 
 @Component({
     selector: 'site-management',
@@ -47,8 +48,8 @@ export class SiteManagementComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
-                    modalRef.componentInstance.actionTitle = '添加';
+                    const modalRef = this.ngbModal.open(SiteCreateComponent);
+                    modalRef.componentInstance.actionTitle = '新建';
                     modalRef.result.then(result => {
                         this.updateCar(result);
                     })
@@ -70,7 +71,7 @@ export class SiteManagementComponent implements OnInit {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteDataComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.updateCar(result);
@@ -92,7 +93,7 @@ export class SiteManagementComponent implements OnInit {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.updateCar(result);
@@ -103,7 +104,7 @@ export class SiteManagementComponent implements OnInit {
                 type: 'delete',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteDeleteComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.updateCar(result);

@@ -1,0 +1,34 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'注册有礼管理'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="Status-text-input" class="col-4 col-form-label">注册有礼状态</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="Status-text-input" [(ngModel)]="queryModel.Status" name="queryModel.Status">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="open()">开启</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="close()">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

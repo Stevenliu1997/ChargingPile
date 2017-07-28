@@ -27,18 +27,28 @@
             <li class="nested" [class.expand]="showMenu === 'basic'">
                 <ul class="submenu">
                     <li>
+                        <a routerLink="/system-setting" href="javascript:void(0)">
+                            <span>{{ '系统设置' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
                         <a routerLink="/recharge-program" href="javascript:void(0)">
                             <span>{{ '充电桩程序库' | translate }}</span>
                         </a>
                     </li>
                     <li>
-                        <a routerLink="/car-brand" href="javascript:void(0)">
-                            <span>{{ '汽车品牌管理' | translate }}</span>
+                        <a routerLink="/dockoperator" href="javascript:void(0)">
+                            <span>{{ '对接运营商管理' | translate }}</span>
                         </a>
                     </li>
                     <li>
                         <a routerLink="/site-management" href="javascript:void(0)">
                             <span>{{ '站点管理' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/car-brand" href="javascript:void(0)">
+                            <span>{{ '汽车品牌管理' | translate }}</span>
                         </a>
                     </li>
                 </ul>

@@ -10,6 +10,7 @@ import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
 import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
 import {SiteDeleteComponent} from './ModalPage/site-delete.component';
+import {SiteCreateComponent} from './ModalPage/site-create.component';
 
 @NgModule({
     imports: [
@@ -25,12 +26,14 @@ import {SiteDeleteComponent} from './ModalPage/site-delete.component';
         SiteInformationComponent,
         SiteModifyInformationComponent,
         SiteDeleteComponent,
+        SiteCreateComponent,
     ],
     entryComponents: [
         SiteDataComponent,
         SiteInformationComponent,
         SiteModifyInformationComponent,
         SiteDeleteComponent,
+        SiteCreateComponent,
     ]
 })
 export class SiteManagementModule { }

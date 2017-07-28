@@ -1,36 +1,28 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
-import {CarBrandEditComponent} from './car-brand-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
-import {CarBrandDetailComponent} from './car-brand-detail.component';
 
 @Component({
-    selector: 'app-tables',
-    templateUrl: './car-brand.component.html',
-    styleUrls: ['./car-brand.component.scss'],
+    selector: 'system-setting',
+    templateUrl: './system-setting.component.html',
+    styleUrls: ['./system-setting.component.scss'],
     animations: [routerTransition()]
 })
-export class CarBrandComponent implements OnInit {
+export class SystemSettingComponent implements OnInit {
     name: String = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
     queryModel: any = {
-        brandId: '',
-        brandName: '',
-        carModel: ''
+        Status: '开启'
     };
     // datagrid 配置
     config: object = {
         url: 'CarBrand/CarBrand',
-        column: [
-            {name: '品牌ID', key: 'brandid'},
-            {name: '品牌名称', key: 'brandname'},
-            {name: '车型', key: 'cartyper'}
-        ],
+        column: [],
         params: (function (thisObj) {
             return function () {
                 return thisObj.queryModel;
@@ -41,7 +33,7 @@ export class CarBrandComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(CarBrandEditComponent);
+                    const modalRef = this.ngbModal.open();
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.updateCar(result);
@@ -59,30 +51,7 @@ export class CarBrandComponent implements OnInit {
                 }
             }
         ],
-        rowActions: [
-            {
-                type: 'edit',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(CarBrandEditComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.updateCar(result);
-                    }, error => {})
-                }.bind(this)
-            },
-            {
-                type: 'detail',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(CarBrandDetailComponent);
-                    modalRef.componentInstance.actionTitle = '车辆';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.updateCar(result);
-                    }, error => {})
-                }.bind(this)
-            }
-        ]
+        rowActions: []
     };
 
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
@@ -100,9 +69,10 @@ export class CarBrandComponent implements OnInit {
 
         })
     }
-    clear(): void {
-        this.queryModel.brandId = '';
-        this.queryModel.brandName = '';
-        this.queryModel.carModel = '';
+    open(): void {
+        this.queryModel.Status = '开启';
+    }
+    close(): void {
+        this.queryModel.Status = '关闭';
     }
 }

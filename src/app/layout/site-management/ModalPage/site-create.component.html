@@ -1,0 +1,100 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}角色</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="query-section row breadcrumb mx-0">
+            <div class="col-3">
+                <div class="row">
+                    <label for="name-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="name-text-input" [(ngModel)]="editModel.name" name="editModel.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="provincecity-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="provincecity-text-input" [(ngModel)]="editModel.provincecity" name="editModel.provincecity">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="query-section row breadcrumb mx-0">
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="query-section row breadcrumb mx-0">
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>
