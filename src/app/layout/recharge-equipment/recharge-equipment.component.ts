@@ -12,19 +12,30 @@ import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomH
     animations: [routerTransition()]
 })
 export class RechargeEquipmentComponent implements OnInit {
-    name: String = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {};
+    queryModel: any = {
+        status: '',
+        equipmentId: '',
+        name: '',
+        siteId: '',
+        factoryId: ''
+    };
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: '/Pile/Find',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '设备ID', key: 'pileid'},
+            {name: '设备名称', key: 'pilename'},
+            {name: '设备型号', key: 'type'},
+            {name: '厂商ID', key: 'factoryid'},
+            {name: '站点ID', key: 'siteid'},
+            {name: '是否故障', key: 'state'},
+            {name: '工作状态', key: 'workstation'},
+            {name: '位置信息', key: 'position'},
+            {name: '设备备注', key: 'remarks'}
         ],
         params: function () {
             return this.queryModel;
@@ -35,7 +46,7 @@ export class RechargeEquipmentComponent implements OnInit {
                 name: '添加',
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
-                    modalRef.componentInstance.actionTitle = '添加';
+                    modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
                         this.updateRole(result);
                     })
@@ -48,29 +59,41 @@ export class RechargeEquipmentComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Role/delete'
+                    url:'/Pile/Delete'
                 }
             }
         ],
         rowActions: [
             {
-                type: 'delete',
+                //todo oninit 表内数据
+                type: 'detail',
                 action: function (item) {
-                },
-                autoConfig: {
-                    url:'Role/Find'
-                }
+                    const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
+                    modalRef.componentInstance.actionTitle = '详细信息';
+                    modalRef.componentInstance.editModel = Object.assign({},item);
+                    modalRef.result.then(result => {
+                        this.updateEquipment(result);
+                    })
+                }.bind(this)
             },
             {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
+                    modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.updateProgram(result);
                     })
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                },
+                autoConfig: {
+                    url:''
+                }
             }
         ]
     };
@@ -85,9 +108,16 @@ export class RechargeEquipmentComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateRole(role: object){
-        this.customHttpClient.post('', role).subscribe(result => {
+    updateEquipment(Equipment: object){
+        this.customHttpClient.post('/Pile/Update', Equipment).subscribe(result => {
 
         })
+    }
+    clear(){
+        this.queryModel.state= '';
+        this.queryModel.pileid= '';
+        this.queryModel.factoryid= '';
+        this.queryModel.pilename= '';
+        this.queryModel.siteid= '';
     }
 }

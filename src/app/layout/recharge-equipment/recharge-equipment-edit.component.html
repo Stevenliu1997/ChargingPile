@@ -1,5 +1,6 @@
+<script src="recharge-equipment-routing.module.ts"></script>
 <div class="modal-header">
-    <h4 class="modal-title">{{actionTitle}}角色</h4>
+    <h4 class="modal-title">{{actionTitle}}设备</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -16,18 +17,80 @@
             </textarea>
         </div>-->
         <div class="form-group row">
-            <label class="col-2 col-form-label">角色名称</label>
-            <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' name="editModel.name" type="email" class="form-control">
+            <label class="col-2 col-form-label" for="editModel.pilename">设备名称</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.pilename' name="editModel.pilename"  class="form-control" id="editModel.pilename">
+            </div>
+            <label class="col-2 col-form-label" for="editModel.type">设备型号</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.type' name="editModel.type"  class="form-control" id="editModel.type">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">角色描述</label>
+            <label class="col-2 col-form-label" for="editModel.siteid">站点ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.siteid' name="editModel.siteid"  class="form-control" id="editModel.siteid">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.powertype">电源类型</label>
+            <div class="col-4">
+                <!--TODO ngfor生成类型-->
+                <select class="form-control" [(ngModel)] = 'editModel.powertype' name="editModel.powertype" id="editModel.powertype"> <!--*ngFor=""-->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+            <label class="col-2 col-form-label" for="editModel.v">电压</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.v' name="editModel.v"  class="form-control" id="editModel.v">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.i">电流</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.i' name="editModel.i"  class="form-control" id="editModel.i">
+            </div>
+            <label class="col-2 col-form-label" for="editModel.p">功率</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.p' name="editModel.p"  class="form-control" id="editModel.p">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.interfacetype">接口类型</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.interfacetype' name="editModel.interfacetype"  class="form-control" id="editModel.interfacetype">
+            </div>
+            <label class="col-2 col-form-label" for="editModel.interfacestatard">接口标准</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.interfacestatard' name="editModel.interfacestatard"  class="form-control" id="editModel.interfacestatard">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.programid">程序ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.programid' name="editModel.programid"  class="form-control" id="editModel.programid">
+            </div>
+            <label class="col-2 col-form-label" for="editModel.factoryid">厂商ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.factoryid' name="editModel.factoryid"  class="form-control" id="editModel.factoryid">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.remarks">设备备注</label>
             <div class="col-10">
-                <textarea [(ngModel)] = 'editModel.desc' name="editModel.desc" class="form-control">
+                <textarea [(ngModel)] = 'editModel.remarks' name="editModel.remarks"  class="form-control" id="editModel.remarks">
                 </textarea>
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.position">地址信息</label>
+            <div class="col-10">
+                <textarea [(ngModel)] = 'editModel.position' name="editModel.position"  class="form-control" id="editModel.position">
+                </textarea>
+            </div>
+        </div>
+
     </form>
 </div>
 <div class="modal-footer">

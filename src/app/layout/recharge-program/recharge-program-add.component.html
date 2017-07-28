@@ -7,15 +7,15 @@
 <div class="modal-body">
     <form>
         <div class="form-group row">
-            <label class="col-2 col-form-label">程序名称</label>
+            <label class="col-2 col-form-label" for="programname">程序名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' name="editModel.name" class="form-control">
+                <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">版本号</label>
+            <label class="col-2 col-form-label" for="version">版本号</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control">
+                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control" id="version">
             </div>
         </div>
         <!--<div class="form-group">-->
