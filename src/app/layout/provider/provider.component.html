@@ -1,0 +1,133 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'硬件提供商管理'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="contact" class="col-4 col-form-label">联系人名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="contact" [(ngModel)]="queryModel.contact" name="queryModel.contact">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="phonenumber" class="col-4 col-form-label">联系人电话</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="phonenumber" [(ngModel)]="queryModel.phonenumber" name="queryModel.phonenumber">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="name" class="col-4 col-form-label">厂商名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="name" [(ngModel)]="queryModel.name" name="queryModel.name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="id" class="col-4 col-form-label">厂商ID</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="id" [(ngModel)]="queryModel.id" name="queryModel.id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="address" class="col-4 col-form-label">厂商地址</label>
+                            <div class="col-8">
+                                <input class="form-control" id="address" [(ngModel)]="queryModel.address" name="queryModel.address">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="province" class="col-4 col-form-label">省</label>
+                            <div class="col-8">
+                                <select class="form-control" id="province" [(ngModel)]="queryModel.province" name="queryModel.province">
+                                    <option value="">请选择</option>
+                                    <option value="">阿尔及利亚</option>
+                                    <option value="">阿尔巴尼亚</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="city" class="col-4 col-form-label">市</label>
+                            <div class="col-8">
+                                <select class="form-control" id="city" [(ngModel)]="queryModel.city" name="queryModel.city">
+                                    <option value="">请选择</option>
+                                    <option value="">阿塞拜疆</option>
+                                    <option value="">阿布扎比</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="area" class="col-4 col-form-label">区</label>
+                            <div class="col-8">
+                                <select class="form-control" id="area" [(ngModel)]="queryModel.area" name="queryModel.area">
+                                    <option value="">请选择</option>
+                                    <option value="">阿联酋</option>
+                                    <option value="">阿富汗</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="initquery()">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+       <!-- <div class="query-section row breadcrumb mx-0">
+            <div class="col-3">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>

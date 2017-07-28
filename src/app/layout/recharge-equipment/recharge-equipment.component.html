@@ -1,0 +1,76 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'充电桩硬件设备库'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="pileid" class="col-4 col-form-label">设备ID</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="pileid" [(ngModel)]="queryModel.pileid" name="queryModel.pileid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="pilename" class="col-4 col-form-label">设备名称</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="pilename" [(ngModel)]="queryModel.pilename" name="queryModel.pilename">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="siteid" class="col-4 col-form-label">站点ID</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="siteid" [(ngModel)]="queryModel.siteid" name="queryModel.siteid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="factoryid" class="col-4 col-form-label">厂商ID</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="factoryid" [(ngModel)]="queryModel.factoryid" name="queryModel.factoryid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="state" class="col-4 col-form-label">设备故障状态</label>
+                            <div class="col-8">
+                                <select class="form-control" type="text" id="state" [(ngModel)]="queryModel.state" name="queryModel.state">
+                                    <option value="">请选择</option>
+                                    <option value="1">是</option>
+                                    <option value="2">否</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>

@@ -9,8 +9,8 @@ const routes: Routes = [
             { path: 'role', loadChildren: './role/role.module#RoleModule' },
             { path: 'user', loadChildren: './user/user.module#UserModule' },
 
-            //基础数据管理---
-            //充电桩程序库
+            /*基础数据管理*/
+            /*充电桩程序库*/
             { path: 'recharge-program', loadChildren: './recharge-program/recharge-program.module#RechargeProgramModule' },
             //汽车品牌管理
             { path: 'car-brand', loadChildren: './car-brand/car-brand.module#CarBrandModule' },
@@ -18,6 +18,8 @@ const routes: Routes = [
             { path: 'site-management', loadChildren: './site-management/site-management.module#SiteManagementModule'},
             /*系统设置*/
             { path: 'system-setting', loadChildren: './system-setting/system-setting.module#SystemSettingModule'},
+            //充电桩硬件设备库
+            { path: 'recharge-equipment', loadChildren: './recharge-equipment/recharge-equipment.module#RechargeEquipmentModule' },
 
 
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
@@ -28,7 +30,8 @@ const routes: Routes = [
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            {path: 'dockoperator', loadChildren: './dockoperator/dockoperator.module#DockoperatorModule'}
+            {path: 'dockoperator', loadChildren: './dockoperator/dockoperator.module#DockoperatorModule'},
+            {path: 'provider', loadChildren: './provider/provider.module#ProviderModule'}
         ]
     }
 ];

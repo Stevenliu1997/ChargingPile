@@ -9,7 +9,7 @@ import {RechargeProgramRoutingModule} from './recharge-program-routing.module';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {RechargeProgramAddComponent} from "./recharge-program-add.component";
 import {RechargeProgramEditComponent} from "./recharge-program-edit.component";
-import {HomeFileComponent} from "./upload-file.component";
+//import {HomeFileComponent} from "./upload-file.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({

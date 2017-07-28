@@ -1,0 +1,16 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "pileid": "1",
+            "pilename": "1231321",
+            "type": "12313",
+            "factoryid": "123",
+            "siteid": "12313213",
+            "state": "!23132",
+            "workstation": "qweq",
+            "position": "121312",
+            "remarks": "asda"
+        }
+    ]
+}

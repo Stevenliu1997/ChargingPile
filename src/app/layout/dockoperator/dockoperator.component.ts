@@ -20,11 +20,14 @@ export class DockoperatorComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: '',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '运营商ID', key: 'ID'},
+            {name: '运营商名称', key: 'name'},
+            {name: '联系人', key: 'contact'},
+            {name: '手机号', key: 'phonenumber'},
+            {name: '备注信息', key :'desc'},
+            {name: '微信', key: 'wechat'}
         ],
         params: function () {
             return this.queryModel;
@@ -55,14 +58,6 @@ export class DockoperatorComponent implements OnInit {
         ],
         rowActions: [
             {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'Role/Find'
-                }
-            },
-            {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(DockoperatorEditComponent);
@@ -89,7 +84,7 @@ export class DockoperatorComponent implements OnInit {
     }
 
     updateRole(role: object){
-        this.customHttpClient.post('Role/Update', role).subscribe(result => {
+        this.customHttpClient.post('', role).subscribe(result => {
 
         })
     }
