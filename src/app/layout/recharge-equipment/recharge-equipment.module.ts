@@ -7,6 +7,7 @@ import { PageHeaderModule } from './../../shared';
 import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {RechargeEquipmentEditComponent} from "./recharge-equipment-edit.component";
+import {RechargeEquipmentRecordComponent} from './recharge-equipment-record.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
@@ -15,9 +16,17 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         FormsModule,
         RechargeEquipmentRoutingModule,
         PageHeaderModule,
-        WidgetModule
+        WidgetModule,
+        NgbModule
     ],
-    declarations: [RechargeEquipmentComponent, RechargeEquipmentEditComponent],
-    entryComponents: [RechargeEquipmentEditComponent]
+    declarations: [
+        RechargeEquipmentComponent,
+        RechargeEquipmentEditComponent,
+        RechargeEquipmentRecordComponent
+    ],
+    entryComponents: [
+        RechargeEquipmentEditComponent,
+        RechargeEquipmentRecordComponent
+    ]
 })
 export class RechargeEquipmentModule{ }

@@ -19,7 +19,7 @@ export class RechargeProgramComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: '/Program/Find',    //和后端交互URL
+        url: 'recharge-program/Find' /*'Program/Find'*/,    //和后端交互URL
         column: [
             {name: '程序版本号', key: 'version'},
             {name: '程序名称', key: 'programname'}
@@ -54,16 +54,6 @@ export class RechargeProgramComponent implements OnInit {
                 }.bind(this)
             },
             {
-                type: 'delete',
-                name: '删除',
-                action: function (ids) {
-                    console.log(ids);
-                }.bind(this),
-                autoConfig: {
-                    url:'/Program/Delete'
-                }
-            },
-            {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
@@ -73,6 +63,16 @@ export class RechargeProgramComponent implements OnInit {
                         this.updateProgram(result);
                     })
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                name: '删除',
+                action: function (ids) {
+                    console.log(ids);
+                }.bind(this),
+                autoConfig: {
+                    url:'Program/Delete'
+                }
             }
         ]
     };
@@ -89,7 +89,7 @@ export class RechargeProgramComponent implements OnInit {
     }
     //改
     updateProgram(program: object){
-        this.customHttpClient.post('/Program/Add', program).subscribe(result => {
+        this.customHttpClient.post('Program/Add', program).subscribe(result => {
 
         })
     }

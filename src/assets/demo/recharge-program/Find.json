@@ -3,13 +3,11 @@
     "data": [
         {
             "version": "6.11.8",
-            "name": "node.js",
-            "path": "c:/"
+            "programname": "node.js"
         },
         {
             "version": "2017.2",
-            "name": "webstorm",
-            "path": "c:/"
+            "programname": "webstorm"
         }
 
     ]
