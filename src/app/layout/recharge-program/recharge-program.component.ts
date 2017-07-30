@@ -19,7 +19,7 @@ export class RechargeProgramComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'recharge-program/Find' /*'Program/Find'*/,    //和后端交互URL
+        url: 'Program/Find',    //和后端交互URL
         column: [
             {name: '程序版本号', key: 'version'},
             {name: '程序名称', key: 'programname'}

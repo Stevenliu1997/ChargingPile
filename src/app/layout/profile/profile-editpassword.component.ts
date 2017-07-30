@@ -18,12 +18,7 @@ export class ProfileEditpasswordComponent {
 
 
     confirm() {
-        if ("true") {
-
-        }
-        else {
-            this.activeModal.close(this.editModel);
-        }
+        this.activeModal.close(this.editModel);
     }
     value= '';
     pwd= false;

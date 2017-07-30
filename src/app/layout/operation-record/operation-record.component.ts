@@ -23,7 +23,7 @@ export class OperationRecordComponent {
     userId: string;
 
     siteLogConfig: object = {
-        url: /*'Record/Site',*/ 'Record/test',
+        url: 'Record/Site',
         column: [
             {name: '记录ID', key: 'recordid'},
             {name: '操作品牌', key: 'operatersite'},
@@ -37,7 +37,7 @@ export class OperationRecordComponent {
     };
 
     loginOutLogConfig: object = {
-        url: /*'Record/LoginOut',*/ 'Record/test',
+        url: 'Record/LoginOut',
         column: [
             {name: '记录ID', key: 'recordid'},
             {name: '操作类型', key: 'type'},
@@ -49,7 +49,7 @@ export class OperationRecordComponent {
         }.bind(this)
     };
     rechargeLogConfig: object = {
-        url: /*'Record/Pile',*/ 'Record/test',
+        url: 'Record/Pile',
         column: [
             {name: '记录ID', key: 'recordid'},
             {name: '操作充电桩', key: 'operatepile'},

@@ -26,7 +26,7 @@ export class RechargeEquipmentComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
-        url: 'recharge-equipment/find',//'Pile/Find',
+        url: 'Pile/Find',
         column: [
             {name: '设备ID', key: 'pileid'},
             {name: '设备名称', key: 'pilename'},

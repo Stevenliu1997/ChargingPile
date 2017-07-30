@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'recharge-program/Find' /*'Program/Find'*/,    //和后端交互URL
+        url: 'Userinfo', //和后端交互URL
         column: [
             {name: '用户ID', key: 'account'},
             {name: '用户名', key: 'name'},
