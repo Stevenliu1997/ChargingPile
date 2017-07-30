@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-    pro: 'demo',
+    developMode: 'pro',
     host: 'localhost:8080'
 };
 
