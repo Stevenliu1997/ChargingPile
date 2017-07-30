@@ -10,58 +10,45 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 export class UserRecordComponent {
 
     @Input()
-    userId: string;
+    account: string;
 
     operationLogConfig: object = {
-        url: 'User/test',
+        url: 'Record/Site',
         column: [
-            {name: '用户ID', key: 'userid'},
-            {name: '用户名', key: 'name'},
-            {name: '角色名', key: 'rolename'},
-            {name: 'Email', key: 'email'},
-            {name: '手机号', key: 'phonenumber'},
-            {name: 'QQ', key: 'qq'},
-            {name: '微信', key: 'wechat'},
-            {name: '锁定状态', key: 'status'},
-            {name: '运营商ID', key: 'serverid'}
+            {name: '记录ID', key: 'useraccount'},
+            {name: '操作品牌', key: 'operatesite'},
+            {name: '操作类型', key: 'type'},
+            {name: '操作用户', key: 'operater'},
+            {name: '时间', key: 'operatetime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            return {account: this.account};
         }.bind(this)
     };
 
     loginLogConfig: object = {
-        url: 'User/test',
+        url: 'Record/LoginOut',
         column: [
-            {name: '用户ID', key: 'userid'},
-            {name: '用户名', key: 'name'},
-            {name: '角色名', key: 'rolename'},
-            {name: 'Email', key: 'email'},
-            {name: '手机号', key: 'phonenumber'},
-            {name: 'QQ', key: 'qq'},
-            {name: '微信', key: 'wechat'},
-            {name: '锁定状态', key: 'status'},
-            {name: '运营商ID', key: 'serverid'}
+            {name: '用户账户', key: 'account'},
+            {name: '记录ID', key: 'recordid'},
+            {name: '操作类型', key: 'rtype'},
+            {name: '时间', key: 'operatetime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            return {account: this.account};
         }.bind(this)
     };
     rechargeLogConfig: object = {
-        url: 'User/test',
+        url: 'ManageUser/Find',
         column: [
-            {name: '用户ID', key: 'userid'},
-            {name: '用户名', key: 'name'},
-            {name: '角色名', key: 'rolename'},
-            {name: 'Email', key: 'email'},
-            {name: '手机号', key: 'phonenumber'},
-            {name: 'QQ', key: 'qq'},
-            {name: '微信', key: 'wechat'},
-            {name: '锁定状态', key: 'status'},
-            {name: '运营商ID', key: 'serverid'}
+            {name: '记录ID', key: 'recordid'},
+            {name: '操作充电桩', key: 'operatepile'},
+            {name: '操作类型', key: 'type'},
+            {name: '操作用户', key: 'useraccount'},
+            {name: '时间', key: 'operatetime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            return {account: this.account};
         }.bind(this)
     };
 

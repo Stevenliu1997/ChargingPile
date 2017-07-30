@@ -18,31 +18,31 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">运营商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.id' name="editModel.id" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorid' name="editModel.operatorid" type="text" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">运营商名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' name="editModel.name" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorname' name="editModel.operatorname" type="text" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">联系人</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.contact' name="editModel.contact" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.contactor' name="editModel.contactor" type="text" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">手机号</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.phonenumber' name="editModel.phonenumber" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.phone' name="editModel.phone" type="text" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">锁定状态</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.status' name="editModel.status" class="form-control">
+                <select [(ngModel)] = 'editModel.state' name="editModel.state" class="form-control">
                     <option value="">请选择</option>
                     <option value="1">正常</option>
                     <option value="2">锁定</option>
@@ -52,7 +52,7 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">备注信息</label>
             <div class="col-10">
-                <textarea [(ngModel)] = 'editModel.desc' name="editModel.desc" class="form-control">
+                <textarea [(ngModel)] = 'editModel.remark' name="editModel.remark" class="form-control">
                 </textarea>
             </div>
         </div>

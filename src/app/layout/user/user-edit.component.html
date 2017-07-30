@@ -6,53 +6,73 @@
 </div>
 <div class="modal-body">
     <form>
-        <div class="form-group">
-            <label for="editModel.userid">用户ID</label>
-            <input [(ngModel)] = 'editModel.userid' id="editModel.userid" name="editModel.userid" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.account" class="col-2 col-form-label">用户ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.account' id="editModel.account" name="editModel.account" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.name">用户名</label>
-            <input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.name"class="col-2 col-form-label">用户名</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.rolename">角色名</label>
-            <select class="form-control" [(ngModel)]="editModel.rolename" id="editModel.rolename">
-                <option value="">请选择</option>
-                <option value="">超级管理员</option>
-                <option value="">用户管理员</option>
-            </select>
+        <div class="form-group row">
+            <label for="editModel.rolename" class="col-2 col-form-label">角色名</label>
+            <div class="col-10">
+                <select class="form-control" [(ngModel)]="editModel.rolename" id="editModel.rolename">
+                    <option value="">请选择</option>
+                    <option value="1">超级管理员</option>
+                    <option value="2">用户管理员</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.pwd">密码</label>
-            <input [(ngModel)] = 'editModel.pwd' id="editModel.pwd" name="editModel.pwd" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.pwd" class="col-2 col-form-label">密码</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.pwd' id="editModel.pwd" name="editModel.pwd" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.serverid">运营商ID</label>
-            <input [(ngModel)] = 'editModel.serverid' id="editModel.serverid" name="editModel.sercerid" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.operatorInformation_operatorid" class="col-2 col-form-label">运营商ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="editModel.operatorInformation_operatorid" name="editModel.operatorInformation_operatorid" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.phonenumber">手机号</label>
-            <input [(ngModel)] = 'editModel.phonenumber' id="editModel.phonenumber" name="editModel.phonrnumber" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.phone" class="col-2 col-form-label">手机号</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.phone' id="editModel.phone" name="editModel.phone" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.qq">QQ</label>
-            <input [(ngModel)] = 'editModel.qq' id="editModel.qq" name="editModel.qq" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.qq" class="col-2 col-form-label">QQ</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.qq' id="editModel.qq" name="editModel.qq" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.wechat">微信</label>
-            <input [(ngModel)] = 'editModel.wewchat' id="editModel.wechat" name="editModel.wechat" type="text" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.weixin" class="col-2 col-form-label">微信</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.weixin' id="editModel.weixin" name="editModel.weixin" type="text" class="form-control">
+            </div>
         </div>
-        <div class="form-control">
-            <label for="editModel.status">锁定状态</label>
-            <select [(ngModel)]='editModel.status' id="editModel.status" name="editModel.status" class="form-control">
-                <option value="">请选择</option>
-                <option value="1">正常</option>
-                <option value="2">锁定</option>
-            </select>
+        <div class="form-group row">
+            <label for="editModel.lockstate" class="col-2 col-form-label">锁定状态</label>
+            <div class="col-10">
+                <select [(ngModel)]='editModel.lockstate' id="editModel.lockstate" name="editModel.lockstate" class="form-control">
+                    <option value="">请选择</option>
+                    <option value= true>正常</option>
+                    <option value= false>锁定</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.email">email</label>
-            <input [(ngModel)] = 'editModel.email' id="editModel.email" name="editModel.email" type="email" class="form-control">
+        <div class="form-group row">
+            <label for="editModel.email" class="col-2 col-form-label">email</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.email' id="editModel.email" name="editModel.email" type="email" class="form-control">
+            </div>
         </div>
     </form>
 </div>

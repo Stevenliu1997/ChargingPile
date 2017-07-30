@@ -18,20 +18,20 @@ export class UserComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {status: ''};
+    queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'User/test',
+        url: 'ManageUser/Find',
         column: [
-            {name: '用户ID', key: 'userid'},
+            {name: '用户ID', key: 'account'},
             {name: '用户名', key: 'name'},
             {name: '角色名', key: 'rolename'},
             {name: 'Email', key: 'email'},
-            {name: '手机号', key: 'phonenumber'},
+            {name: '手机号', key: 'phone'},
             {name: 'QQ', key: 'qq'},
-            {name: '微信', key: 'wechat'},
-            {name: '锁定状态', key: 'status'},
-            {name: '运营商ID', key: 'serverid'}
+            {name: '微信', key: 'weixin'},
+            {name: '锁定状态', key: 'lockstate'},
+            {name: '运营商ID', key: 'operatorInformation_operatorid'}
         ],
         params: function () {
             return this.queryModel;
@@ -44,7 +44,7 @@ export class UserComponent implements OnInit {
                     const modalRef = this.ngbModal.open(UserEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateUser(result);
+                        this.addUser(result);
                     },error => {})
                 }.bind(this)
             },
@@ -55,19 +55,11 @@ export class UserComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'Role/delete'
+                    url: 'ManageUser/delete'
                 }
             }
         ],
         rowActions: [
-            {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'Role/Find'
-                }
-            },
             {
                 type: 'edit',
                 action: function (item) {
@@ -83,7 +75,7 @@ export class UserComponent implements OnInit {
                 type: 'detail',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(UserRecordComponent, {size: "lg"});
-                    modalRef.componentInstance.userId = item.id;
+                    modalRef.componentInstance.account = item.account;
                 }.bind(this)
             }
         ]
@@ -100,8 +92,22 @@ export class UserComponent implements OnInit {
     }
 
     updateUser(user: object){
-        this.customHttpClient.post('User/test', user).subscribe(result => {
+        this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
 
         })
+    }
+
+    addUser(user: object){
+        this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
+
+        })
+    }
+
+    blankGrid(){
+        this.queryModel.account ='';
+        this.queryModel.name ='';
+        this.queryModel.realname ='';
+        this.queryModel.phone ='';
+        this.queryModel.lockstate ='';
     }
 }
