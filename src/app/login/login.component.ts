@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
-import {LoginService} from "./login.service";
-import {HttpClient} from "@angular/common/http";
+import {LoginService} from './login.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-login',

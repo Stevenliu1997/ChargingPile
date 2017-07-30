@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
-    developMode: 'demo',
-    host: './assets/demo/'
+    pro: 'demo',
+    host: 'localhost:8080'
 };
+
+
