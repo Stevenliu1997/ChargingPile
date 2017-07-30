@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">用户操作记录查询</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ngb-tabset [destroyOnHide]="false">
+        <ngb-tab title="厂商信息表">
+            <ng-template ngbTabContent>
+                <div class="mt-2">
+                    <app-datagrid [config]="operationLogConfig"></app-datagrid>
+                </div>
+            </ng-template>
+        </ngb-tab>
+
+    </ngb-tabset>
+</div>

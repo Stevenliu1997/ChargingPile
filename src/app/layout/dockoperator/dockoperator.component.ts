@@ -20,14 +20,13 @@ export class DockoperatorComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: '',
+        url: '/Operator/Find',
         column: [
-            {name: '运营商ID', key: 'ID'},
-            {name: '运营商名称', key: 'name'},
-            {name: '联系人', key: 'contact'},
-            {name: '手机号', key: 'phonenumber'},
-            {name: '备注信息', key :'desc'},
-            {name: '微信', key: 'wechat'}
+            {name: '运营商ID', key: 'operatorid'},
+            {name: '运营商名称', key: 'operatorname'},
+            {name: '联系人', key: 'contactor'},
+            {name: '手机号', key: 'phone'},
+            {name: '备注信息', key :'remark'}
         ],
         params: function () {
             return this.queryModel;
@@ -40,7 +39,7 @@ export class DockoperatorComponent implements OnInit {
                     const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.addOperator(result);
                     },
                     error => {})
                 }.bind(this)
@@ -52,7 +51,7 @@ export class DockoperatorComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Role/delete'
+                    url:'/Operator/Delete'
                 }
             }
         ],
@@ -64,7 +63,7 @@ export class DockoperatorComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.updateOperator(result);
                     },
                     error => {
                     })
@@ -83,9 +82,24 @@ export class DockoperatorComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateRole(role: object){
-        this.customHttpClient.post('', role).subscribe(result => {
+    updateOperator(operator: object){
+        this.customHttpClient.post('/Operator/Update', operator).subscribe(result => {
 
         })
+    }
+
+    addOperator(operator: object){
+        this.customHttpClient.post('/Operator/Add', operator).subscribe(result => {
+
+        })
+    }
+
+    blankGrid(){
+        this.queryModel.operatorid ='';
+        this.queryModel.operatorname ='';
+        this.queryModel.phone ='';
+        this.queryModel.remark ='';
+        this.queryModel.contactor ='';
+        this.queryModel.state ='';
     }
 }

@@ -4,6 +4,7 @@ import {DatagridComponent} from "../../shared/components/widget/datagrid/datagri
 import {RechargeEquipmentEditComponent} from "./recharge-equipment-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {RechargeEquipmentRecordComponent} from "./recharge-equipment-record.component";
 
 @Component({
     selector: 'app-tables',
@@ -25,7 +26,7 @@ export class RechargeEquipmentComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
-        url: '/Pile/Find',
+        url: 'recharge-equipment/find',//'Pile/Find',
         column: [
             {name: '设备ID', key: 'pileid'},
             {name: '设备名称', key: 'pilename'},
@@ -59,21 +60,16 @@ export class RechargeEquipmentComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'/Pile/Delete'
+                    url:'Pile/Delete'
                 }
             }
         ],
         rowActions: [
             {
-                //todo oninit 表内数据
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
-                    modalRef.componentInstance.actionTitle = '详细信息';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.updateEquipment(result);
-                    })
+                    const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent, {size: "lg"});
+                    modalRef.componentInstance.userId = item.id;
                 }.bind(this)
             },
             {
@@ -92,7 +88,7 @@ export class RechargeEquipmentComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:''
+                    url:'Pile/Delete'
                 }
             }
         ]
@@ -109,7 +105,7 @@ export class RechargeEquipmentComponent implements OnInit {
     }
 
     updateEquipment(Equipment: object){
-        this.customHttpClient.post('/Pile/Update', Equipment).subscribe(result => {
+        this.customHttpClient.post('Pile/Update', Equipment).subscribe(result => {
 
         })
     }

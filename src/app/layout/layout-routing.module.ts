@@ -20,8 +20,10 @@ const routes: Routes = [
             { path: 'system-setting', loadChildren: './system-setting/system-setting.module#SystemSettingModule'},
             //充电桩硬件设备库
             { path: 'recharge-equipment', loadChildren: './recharge-equipment/recharge-equipment.module#RechargeEquipmentModule' },
-
-
+            /*操作记录*/
+            { path: 'operation-record', loadChildren: './operation-record/operation-record.module#OperationRecordModule' },
+            /*个人信息*/
+            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },

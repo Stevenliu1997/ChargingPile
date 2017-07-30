@@ -9,7 +9,7 @@
                         <div class="row">
                             <label for="operator-id" class="col-4 col-form-label">运营商ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="operator-id" [(ngModel)]="queryModel.id" name="queryModel.id">
+                                <input class="form-control" type="text" id="operator-id" [(ngModel)]="queryModel.operatorid" name="queryModel.operatorid">
                             </div>
                         </div>
                     </div>
@@ -17,15 +17,15 @@
                         <div class="row">
                             <label for="operator-name" class="col-4 col-form-label">运营商名称</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="operator-name" [(ngModel)]="queryModel.name" name="queryModel.name">
+                                <input class="form-control" type="text" id="operator-name" [(ngModel)]="queryModel.operatorname" name="queryModel.operatorname">
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="contact" class="col-4 col-form-label">联系人</label>
+                            <label for="contactor" class="col-4 col-form-label">联系人</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="contact" [(ngModel)]="queryModel.contact" name="queryModel.contact">
+                                <input class="form-control" type="text" id="contactor" [(ngModel)]="queryModel.contactor" name="queryModel.contactor">
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="row">
                             <label for="desc" class="col-4 col-form-label">备注信息</label>
                             <div class="col-8">
-                                <textarea class="form-control" type="text" id="desc" [(ngModel)]="queryModel.desc" name="queryModel.desc"></textarea>
+                                <textarea class="form-control" type="text" id="desc" [(ngModel)]="queryModel.remark" name="queryModel.remark"></textarea>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="row">
                             <label for="status" class="col-4 col-form-label">锁定状态</label>
                             <div class="col-8">
-                                <select class="form-control" type="text" id="status" [(ngModel)]="queryModel.status" name="queryModel.status">
+                                <select class="form-control" type="text" id="status" [(ngModel)]="queryModel.state" name="queryModel.state">
                                     <option value="">请选择</option>
                                     <option value="1">正常</option>
                                     <option value="2">锁定</option>
@@ -69,7 +69,7 @@
                         <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
                     </div>
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
+                        <button type="submit" class="btn btn-primary" (click)="blankGrid()">清空</button>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,10 @@
-import {Component, OnInit, Provider, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
 import {ProviderEditComponent} from "./provider-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {ProviderRecordComponent} from './provider-record.component';
 
 @Component({
     selector: 'app-tables',
@@ -16,17 +17,19 @@ export class ProviderComponent implements OnInit {
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
-    province: Array<string> = ['四川省','','','','',''];
 
     //查询对象
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: 'Factory/Find',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '厂商ID', key: 'factoryid'},
+            {name: '厂商名称', key: 'name'},
+            {name: '厂商详细地址', key: 'position'},
+            {name: '厂商省市', key: 'provincecity'},
+            {name: '联系人姓名', key: 'contactor'},
+            {name: '联系人电话', key: 'phone'}
         ],
         params: function () {
             return this.queryModel;
@@ -39,7 +42,7 @@ export class ProviderComponent implements OnInit {
                     const modalRef = this.ngbModal.open(ProviderEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.addProvider(result);
                     },
                     error => {})
                 }.bind(this)
@@ -51,7 +54,7 @@ export class ProviderComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Role/delete'
+                    url:'Provider/delete'
                 }
             }
         ],
@@ -61,7 +64,7 @@ export class ProviderComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Role/Find'
+                    url:'Provider/Find'
                 }
             },
             {
@@ -71,7 +74,7 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.updateProvider(result);
                     },
                     error => {
                     })
@@ -79,7 +82,10 @@ export class ProviderComponent implements OnInit {
             },
             {
                 type: 'detail',
-
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(ProviderRecordComponent, {size: "lg"});
+                    modalRef.componentInstance.factoryid = item.factoryid;
+                }.bind(this)
             }
         ]
     };
@@ -93,16 +99,27 @@ export class ProviderComponent implements OnInit {
     refreshGrid(){
         this.datagridComponent.refreshGrid();
     }
+
     initquery(){
-        this.queryModel.contact = '';
-        this.queryModel.id = '';
-        this.queryModel.address = '';
-        this.queryModel.name = '';
-        this.queryModel.phonenumber = '';
+        this.queryModel.factoryid = '';
+        this.queryModel.name= '';
+        this.queryModel.position = '';
+        this.queryModel.province = '';
+        this.queryModel.city='';
+        this.queryModel.area='';
+        this.queryModel.phone = '';
+        this.queryModel.contactor = '';
 
     }
-    updateRole(role: object){
-        this.customHttpClient.post('Role/Update', role).subscribe(result => {
+
+    updateProvider(provider: object){
+        this.customHttpClient.post('/Factory/Update', provider).subscribe(result => {
+
+        })
+    }
+
+    addProvider(provider: object){
+        this.customHttpClient.post('/Factory/Add', provider).subscribe(result => {
 
         })
     }

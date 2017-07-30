@@ -1,0 +1,106 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'操作记录'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="modal-body">
+            <ngb-tabset [destroyOnHide]="false">
+                <ngb-tab title="用户充电桩记录表">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="operatersite1" class="col-4 col-form-label">操作品牌</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="operatersite1" [(ngModel)]="queryModel.operatersite" name="queryModel.operatersite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="operatetime1" class="col-4 col-form-label">时间</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="operatetime1" [(ngModel)]="queryModel.operatetime" name="queryModel.operatetime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <app-datagrid [config]="siteLogConfig"></app-datagrid>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="登入登出记录表">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="type1" class="col-4 col-form-label">操作类型</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="type1" [(ngModel)]="queryModel.type" name="queryModel.type">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="operatetime2" class="col-4 col-form-label">时间</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="operatetime2" [(ngModel)]="queryModel.operatetime" name="queryModel.operatetime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <app-datagrid [config]="loginOutLogConfig"></app-datagrid>
+                        </div>
+
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="用户站点操作记录表">
+                    <ng-template ngbTabContent>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="operatersite" class="col-4 col-form-label">操作品牌</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="operatersite" [(ngModel)]="queryModel.operatersite" name="queryModel.operatersite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="type" class="col-4 col-form-label">操作类型</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="type" [(ngModel)]="queryModel.type" name="queryModel.type">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <label for="operatetime" class="col-4 col-form-label">时间</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="text" id="operatetime" [(ngModel)]="queryModel.operatetime" name="queryModel.operatetime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <app-datagrid [config]="rechargeLogConfig"></app-datagrid>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>

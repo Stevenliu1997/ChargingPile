@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title"></h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ngb-tabset [destroyOnHide]="false">
+        <ngb-tab title="详细信息">
+            <ng-template ngbTabContent>
+                <div class="mt-2">
+                    <app-datagrid [config]="rechargeDetail"></app-datagrid>
+                </div>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>
+
