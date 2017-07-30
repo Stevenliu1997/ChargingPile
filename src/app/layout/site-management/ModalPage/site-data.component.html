@@ -5,34 +5,39 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
-        <div class="form-group">
-            <label for="editModel.brandId">品牌ID</label>
-            <input [(ngModel)] = 'editModel.brandId' id="editModel.brandId" name="editModel.brandId" class="form-control">
+    <form class="form-group">
+        <div class="form-group row">
+            <label for="time-text-input" class="col-2 col-form-label">充电次数</label>
+            <div class="col-10">
+                <div class="form-control" value="Artisanal kale" id="time-text-input">n次</div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.brandName">品牌名称</label>
-            <textarea [(ngModel)] = 'editModel.brandName' id="editModel.brandName" name="editModel.brandName" class="form-control">
-            </textarea>
+        <div class="form-group row">
+            <label for="number-text-input" class="col-2 col-form-label">充电量</label>
+            <div class="col-10">
+                <div class="form-control" value="Artisanal kale" id="number-text-input">nkwh</div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.carModel">车型</label>
-            <textarea [(ngModel)] = 'editModel.carModel' id="editModel.carModel" name="editModel.carModel" class="form-control">
-            </textarea>
+        <div class="form-group row">
+            <label for="trouble-text-input" class="col-2 col-form-label">故障数</label>
+            <div class="col-10">
+                <div class="form-control" value="Artisanal kale" id="trouble-text-input">n个</div>
+            </div>
         </div>
-        <!--<div class="form-group">-->
-        <!--<label for="exampleSelect1">Example select</label>-->
-        <!--<select class="form-control" id="exampleSelect1">-->
-        <!--<option>1</option>-->
-        <!--<option>2</option>-->
-        <!--<option>3</option>-->
-        <!--<option>4</option>-->
-        <!--<option>5</option>-->
-        <!--</select>-->
-        <!--</div>-->
+        <div class="form-group row">
+            <label for="user-text-input" class="col-2 col-form-label">用户数</label>
+            <div class="col-10">
+                <div class="form-control" value="Artisanal kale" id="user-text-input">n个</div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="date-text-input" class="col-2 col-form-label">运行时间</label>
+            <div class="col-10">
+                <div class="form-control" value="Artisanal kale" id="date-text-input">*天*时*分*秒</div>
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click')">确认</button>
 </div>

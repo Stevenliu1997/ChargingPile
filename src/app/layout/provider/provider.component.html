@@ -9,7 +9,7 @@
                         <div class="row">
                             <label for="contact" class="col-4 col-form-label">联系人名称</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="contact" [(ngModel)]="queryModel.contact" name="queryModel.contact">
+                                <input class="form-control" type="text" id="contact" [(ngModel)]="queryModel.contactor" name="queryModel.contactor">
                             </div>
                         </div>
                     </div>
@@ -17,13 +17,13 @@
                         <div class="row">
                             <label for="phonenumber" class="col-4 col-form-label">联系人电话</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="phonenumber" [(ngModel)]="queryModel.phonenumber" name="queryModel.phonenumber">
+                                <input class="form-control" type="text" id="phonenumber" [(ngModel)]="queryModel.phone" name="queryModel.phone">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
                             <label for="name" class="col-4 col-form-label">厂商名称</label>
@@ -36,7 +36,7 @@
                         <div class="row">
                             <label for="id" class="col-4 col-form-label">厂商ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="id" [(ngModel)]="queryModel.id" name="queryModel.id">
+                                <input class="form-control" type="text" id="id" [(ngModel)]="queryModel.factoryid" name="queryModel.factoryid">
                             </div>
                         </div>
                     </div>
@@ -44,13 +44,13 @@
                         <div class="row">
                             <label for="address" class="col-4 col-form-label">厂商地址</label>
                             <div class="col-8">
-                                <input class="form-control" id="address" [(ngModel)]="queryModel.address" name="queryModel.address">
+                                <input class="form-control" id="address" [(ngModel)]="queryModel.position" name="queryModel.position">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
                             <label for="province" class="col-4 col-form-label">省</label>
@@ -71,18 +71,6 @@
                                     <option value="">请选择</option>
                                     <option value="">阿塞拜疆</option>
                                     <option value="">阿布扎比</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="area" class="col-4 col-form-label">区</label>
-                            <div class="col-8">
-                                <select class="form-control" id="area" [(ngModel)]="queryModel.area" name="queryModel.area">
-                                    <option value="">请选择</option>
-                                    <option value="">阿联酋</option>
-                                    <option value="">阿富汗</option>
                                 </select>
                             </div>
                         </div>

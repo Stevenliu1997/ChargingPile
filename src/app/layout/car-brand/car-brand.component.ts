@@ -44,7 +44,7 @@ export class CarBrandComponent implements OnInit {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     })
                 }.bind(this)
             },
@@ -55,7 +55,7 @@ export class CarBrandComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'CarBrand/delete'
+                    url: 'CarBrand/Delete'
                 }
             }
         ],
@@ -67,7 +67,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -78,7 +78,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             }
@@ -95,14 +95,14 @@ export class CarBrandComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateCar(role: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
+    update(role: object) {
+        this.customHttpClient.post('CarBrand/Add', role).subscribe(result => {
 
         })
     }
     clear(): void {
-        this.queryModel.brandId = '';
-        this.queryModel.brandName = '';
-        this.queryModel.carModel = '';
+        this.queryModel.brandid = '';
+        this.queryModel.brandname = '';
+        this.queryModel.cartyper = '';
     }
 }

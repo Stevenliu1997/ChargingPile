@@ -16,9 +16,9 @@ export class LoginService {
 
     }
     login(user: any): Observable<Response> {
-        // return this.httpClient.post(loginUrl, user);
+        /*return this.httpClient.post(loginUrl, user);*/
         let params: HttpParams = new HttpParams();
-        for(let i in user){
+        for(let i in user) {
             params.set(i, user);
         }
         return this.httpClient.get(loginUrl, {

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     onLoggedin() {
         console.log(this.user);
         this.loginService.login(this.user).subscribe(response => {
-            if(response.result == 'OK'){
+            if (response.result === 'OK') {
                 localStorage.setItem('isLoggedin', 'true');
                 this.router.navigateByUrl('/dashboard');
             }else {

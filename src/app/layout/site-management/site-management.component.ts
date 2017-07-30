@@ -32,11 +32,11 @@ export class SiteManagementComponent implements OnInit {
     config: object = {
         url: 'SiteManagement/site-management',
         column: [
-            {name: '站点ID', key: 'siteID'},
-            {name: '站点名称', key: 'siteName'},
-            {name: '站点省市', key: 'siteLocation'},
-            {name: '站点状态', key: 'siteStatus'},
-            {name: '收费是否合理', key: 'isReasonable'}
+            {name: '站点ID', key: 'siteid'},
+            {name: '站点名称', key: 'sitename'},
+            {name: '站点省市', key: 'provincecity'},
+            {name: '站点状态', key: 'state'},
+            {name: '收费是否合理', key: 'isreasonable'}
         ],
         params: (function (thisObj) {
             return function () {
@@ -51,7 +51,7 @@ export class SiteManagementComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteCreateComponent);
                     modalRef.componentInstance.actionTitle = '新建';
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     })
                 }.bind(this)
             },
@@ -74,7 +74,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -85,7 +85,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '查看';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -96,7 +96,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -104,10 +104,10 @@ export class SiteManagementComponent implements OnInit {
                 type: 'delete',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteDeleteComponent);
-                    modalRef.componentInstance.actionTitle = '';
+                    modalRef.componentInstance.actionTitle = '删除';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -124,16 +124,15 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateCar(role: object) {
+    update(role: object) {
         this.customHttpClient.post('SiteManagement/site-management', role).subscribe(result => {
 
         })
     }
     clear(): void {
-        this.queryModel.siteID = '';
-        this.queryModel.siteName = '';
-        this.queryModel.siteLocationProvince = 'Default';
-        this.queryModel.siteLocationCity = 'Default';
-        this.queryModel.siteStatus = 'Default';
+        this.queryModel.siteid = '';
+        this.queryModel.sitename = '';
+        this.queryModel.provincecity = 'Default';
+        this.queryModel.state = 'Default';
     }
 }
