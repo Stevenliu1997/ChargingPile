@@ -7,17 +7,17 @@
                 <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
-                            <label for="siteID-text-input" class="col-4 col-form-label">站点ID</label>
+                            <label for="siteid-text-input" class="col-4 col-form-label">站点ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="siteID-text-input" [(ngModel)]="queryModel.siteID" name="queryModel.siteID">
+                                <input class="form-control" type="text" id="siteid-text-input" [(ngModel)]="queryModel.siteid" name="queryModel.siteid">
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="siteName-text-input" class="col-4 col-form-label">站点名称</label>
+                            <label for="sitename-text-input" class="col-4 col-form-label">站点名称</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="siteName-text-input" [(ngModel)]="queryModel.siteName" name="queryModel.siteName">
+                                <input class="form-control" type="text" id="sitename-text-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename">
                             </div>
                         </div>
                     </div>
@@ -41,8 +41,8 @@
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="siteStatus-text-input" class="col-4 col-form-label">站点状态</label>
-                            <select id="siteStatus-text-input" [(ngModel)]="queryModel.siteStatus" name="queryModel.siteStatus">
+                            <label for="state-text-input" class="col-4 col-form-label">站点状态</label>
+                            <select id="state-text-input" [(ngModel)]="queryModel.state" name="queryModel.state">
                                 <option value="Default">请选择</option>
                                 <option value="Normal">正常</option>
                                 <option value="locked">锁定</option>

@@ -32,11 +32,11 @@ export class SiteManagementComponent implements OnInit {
     config: object = {
         url: 'SiteManagement/site-management',
         column: [
-            {name: '站点ID', key: 'siteID'},
-            {name: '站点名称', key: 'siteName'},
-            {name: '站点省市', key: 'siteLocation'},
-            {name: '站点状态', key: 'siteStatus'},
-            {name: '收费是否合理', key: 'isReasonable'}
+            {name: '站点ID', key: 'siteid'},
+            {name: '站点名称', key: 'sitename'},
+            {name: '站点省市', key: 'provincecity'},
+            {name: '站点状态', key: 'state'},
+            {name: '收费是否合理', key: 'isreasonable'}
         ],
         params: (function (thisObj) {
             return function () {
@@ -130,10 +130,9 @@ export class SiteManagementComponent implements OnInit {
         })
     }
     clear(): void {
-        this.queryModel.siteID = '';
-        this.queryModel.siteName = '';
-        this.queryModel.siteLocationProvince = 'Default';
-        this.queryModel.siteLocationCity = 'Default';
-        this.queryModel.siteStatus = 'Default';
+        this.queryModel.siteid = '';
+        this.queryModel.sitename = '';
+        this.queryModel.provincecity = 'Default';
+        this.queryModel.state = 'Default';
     }
 }
