@@ -106,7 +106,6 @@ export class ProviderComponent implements OnInit {
         this.queryModel.position = '';
         this.queryModel.province = '';
         this.queryModel.city='';
-        this.queryModel.area='';
         this.queryModel.phone = '';
         this.queryModel.contactor = '';
 
