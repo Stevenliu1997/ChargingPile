@@ -51,7 +51,7 @@ export class SiteManagementComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteCreateComponent);
                     modalRef.componentInstance.actionTitle = '新建';
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     })
                 }.bind(this)
             },
@@ -74,7 +74,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -85,7 +85,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '查看';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -96,7 +96,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -104,10 +104,10 @@ export class SiteManagementComponent implements OnInit {
                 type: 'delete',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteDeleteComponent);
-                    modalRef.componentInstance.actionTitle = '';
+                    modalRef.componentInstance.actionTitle = '删除';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.updateCar(result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -124,7 +124,7 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateCar(role: object) {
+    update(role: object) {
         this.customHttpClient.post('SiteManagement/site-management', role).subscribe(result => {
 
         })

@@ -6,14 +6,36 @@
             "siteName": "中国石油",
             "siteLocation": "四川省成都市",
             "siteStatus": "正常",
-            "isReasonable": "不合理"
+            "isReasonable": "不合理",
+            "name": "某站点",
+            "state": "正常",
+            "isopen": "yes",
+            "type": "超大型",
+            "province": "四川",
+            "city": "成都",
+            "position": "yyyy",
+            "interfacenumber": "12",
+            "seatnumber": "9",
+            "operatorInformation": "rrrrr",
+            "isscanning": "no"
         },
         {
             "siteID": "002",
             "siteName": "中国石化",
             "siteLocation": "四川省成都市",
             "siteStatus": "锁定",
-            "isReasonable": "很不合理"
+            "isReasonable": "很不合理",
+            "name": "某站点",
+            "state": "正常",
+            "isopen": "yes",
+            "type": "小型",
+            "province": "四川",
+            "city": "成都",
+            "position": "xxxx",
+            "interfacenumber": "6",
+            "seatnumber": "6",
+            "operatorInformation": "111",
+            "isscanning": "no"
         }
 
     ]

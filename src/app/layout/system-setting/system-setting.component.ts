@@ -17,62 +17,35 @@ export class SystemSettingComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     /*查询对象*/
     queryModel: any = {
-        Status: '开启'
+        Status: ''
     };
     // datagrid 配置
     config: object = {
-        url: 'CarBrand/CarBrand',
+        url: 'SystemSetting/SystemSetting',
         column: [],
         params: (function (thisObj) {
             return function () {
                 return thisObj.queryModel;
             }
         })(this),
-        topActions: [
-            {
-                type: 'add',
-                name: '添加',
-                action: function (ids) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '添加';
-                    modalRef.result.then(result => {
-                        this.updateCar(result);
-                    })
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                name: '删除',
-                action: function (ids) {
-                    console.log(ids);
-                }.bind(this),
-                autoConfig: {
-                    url: 'CarBrand/delete'
-                }
-            }
-        ],
+        topActions: [],
         rowActions: []
     };
-
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
-
     ngOnInit() {
-    }
-
-    refreshGrid() {
-        this.datagridComponent.refreshGrid();
-    }
-
-    updateCar(role: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
-
-        })
+        this.customHttpClient.get('SystemSetting/Systemsetting').subscribe(result => {
+            this.queryModel.Status = result.Status;
+        }, error => {})
     }
     open(): void {
         this.queryModel.Status = '开启';
+        this.customHttpClient.post('SystemSetting/Systemsetting', this.queryModel).subscribe(result => {
+        }, error => {})
     }
     close(): void {
         this.queryModel.Status = '关闭';
+        this.customHttpClient.post('SystemSetting/Systemsetting', this.queryModel).subscribe(result => {
+        }, error => {})
     }
 }
