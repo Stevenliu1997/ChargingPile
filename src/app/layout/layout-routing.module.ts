@@ -33,7 +33,8 @@ const routes: Routes = [
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             {path: 'dockoperator', loadChildren: './dockoperator/dockoperator.module#DockoperatorModule'},
-            {path: 'provider', loadChildren: './provider/provider.module#ProviderModule'}
+            {path: 'provider', loadChildren: './provider/provider.module#ProviderModule'},
+            {path: 'order-manage',loadChildren: './order-manage/order-manage.module#OrderManageModule'}
         ]
     }
 ];

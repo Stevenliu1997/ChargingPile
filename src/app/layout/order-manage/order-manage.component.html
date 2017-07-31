@@ -1,0 +1,58 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'预约管理'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.rechargename" class="col-4 col-form-label">充电站</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.rechargename" [(ngModel)]="queryModel.rechargename" name="queryModel.rechargename">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.ordernumber" class="col-4 col-form-label">订单编号</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.ordernumber" [(ngModel)]="queryModel.ordernumber" name="queryModel.ordernumber">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.stime" class="col-4 col-form-label">开始时间</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.stime" [(ngModel)]="queryModel.stime" name="queryModel.stime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.etime" class="col-4 col-form-label">结束时间</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.etime" [(ngModel)]="queryModel.etime" name="queryModel.etime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>
