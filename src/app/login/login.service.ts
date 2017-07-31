@@ -16,14 +16,8 @@ export class LoginService {
 
     }
     login(user: any): Observable<Response> {
-        /*return this.httpClient.post(loginUrl, user);*/
-        let params: HttpParams = new HttpParams();
-        for(let i in user) {
-            params.set(i, user);
-        }
-        return this.httpClient.get(loginUrl, {
-           params: params
-        })
+        //登陆使用formData形式提交
+        return this.httpClient.formPost(loginUrl, user)
 
     }
 }
