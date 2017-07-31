@@ -20,7 +20,7 @@ export class DockoperatorComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: '/Operator/Find',
+        url: 'Operator/Find',
         column: [
             {name: '运营商ID', key: 'operatorid'},
             {name: '运营商名称', key: 'operatorname'},
@@ -51,7 +51,7 @@ export class DockoperatorComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'/Operator/Delete'
+                    url:'Operator/Delete'
                 }
             }
         ],
@@ -83,13 +83,13 @@ export class DockoperatorComponent implements OnInit {
     }
 
     updateOperator(operator: object){
-        this.customHttpClient.post('/Operator/Update', operator).subscribe(result => {
+        this.customHttpClient.post('Operator/Update', operator).subscribe(result => {
 
         })
     }
 
     addOperator(operator: object){
-        this.customHttpClient.post('/Operator/Add', operator).subscribe(result => {
+        this.customHttpClient.post('Operator/Add', operator).subscribe(result => {
 
         })
     }

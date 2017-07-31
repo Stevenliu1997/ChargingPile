@@ -54,7 +54,7 @@ export class ProviderComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Provider/delete'
+                    url:'Factory/delete'
                 }
             }
         ],
@@ -64,7 +64,7 @@ export class ProviderComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Provider/Find'
+                    url:'Factory/Find'
                 }
             },
             {
@@ -112,13 +112,13 @@ export class ProviderComponent implements OnInit {
     }
 
     updateProvider(provider: object){
-        this.customHttpClient.post('/Factory/Update', provider).subscribe(result => {
+        this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
 
         })
     }
 
     addProvider(provider: object){
-        this.customHttpClient.post('/Factory/Add', provider).subscribe(result => {
+        this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
 
         })
     }

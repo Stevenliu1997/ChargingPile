@@ -68,11 +68,28 @@
                             <span>{{ '汽车品牌管理' | translate }}</span></a>
                     </li>
                     <li>
-
-
                         <a routerLink="/provider" href="javascript:void(0)">
                             <span>{{ '硬件提供商管理' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
 
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('operator')">
+                <span><i class="fa fa-plus"></i>&nbsp;{{ '运营商管理' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'operator'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/site-information" href="javascript:void(0)">
+                            <span>{{ '站点管理' | translate }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/IC-card-check" href="javascript:void(0)">
+                            <span>{{ 'IC卡审核' | translate }}</span>
                         </a>
                     </li>
                 </ul>
