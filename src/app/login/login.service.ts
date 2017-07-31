@@ -15,7 +15,7 @@ export class LoginService {
     constructor(private httpClient: CustomHttpClient) {
 
     }
-    login(user: any): Observable<Response> {
+    login(user: any): Observable<any> {
         //登陆使用formData形式提交
         return this.httpClient.formPost(loginUrl, user)
 

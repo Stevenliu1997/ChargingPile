@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
                 alert(response.errorMessage);
                 alert(response.message);
             }
+        },error => {
+            console.log(error);
         })
 
     }
