@@ -1,9 +1,17 @@
 <div [@routerTransition] content="main-section">
-    <app-page-header [heading]="'运行商基本信息'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'站点管理'" [icon]="'fa-table'"></app-page-header>
 
     <div content="main-content container">
 
         <div class="modal-body">
+
+
+
+
+
+
+
+            
             <ngb-tabset [destroyOnHide]="false">
                 <ngb-tab title="站点管理">
                     <ng-template ngbTabContent>
@@ -179,8 +187,8 @@
                                     <div class="col-8">
                                         <select  [(ngModel)]="queryModel.levelonetitle" name="queryModel.levelonetitle" id="levelonetitle-text-input">
                                             <option value="Default">请选择</option>
-                                            <option>充电站帮助</option>
-                                            <option>官方联系方式</option>
+                                            <option value="充电站帮助">充电站帮助</option>
+                                            <option value="官方联系方式">官方联系方式</option>
                                         </select>
                                     </div>
                                 </div>
@@ -201,8 +209,8 @@
                                     <div class="col-8">
                                         <select  [(ngModel)]="queryModel.isdisplay" name="queryModel.isdisplay" id="isdisplay-select-input">
                                             <option value="Default">请选择</option>
-                                            <option value="yes">显示</option>
-                                            <option value="no">不显示</option>
+                                            <option value="显示">显示</option>
+                                            <option value="不显示">不显示</option>
                                         </select>
                                     </div>
                                 </div>
@@ -213,8 +221,8 @@
                                     <div class="col-8">
                                         <select  [(ngModel)]="queryModel.classification" name="queryModel.classification" id="classification-select-input">
                                             <option value="Default">请选择</option>
-                                            <option>关于</option>
-                                            <option>帮助</option>
+                                            <option value="about">关于</option>
+                                            <option value="help">帮助</option>
                                         </select>
                                     </div>
                                 </div>

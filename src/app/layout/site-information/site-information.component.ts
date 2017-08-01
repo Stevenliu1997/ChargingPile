@@ -3,6 +3,9 @@ import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {SiteManagementAddComponent} from './site-management-modal/site-management-add.component';
+import {ChargingRuleAddComponent} from './charging-rule-modal/charging-rule-add.component';
+import {ArticleManagementAddComponent} from './article-management-modal/article-management-add.component';
 
 @Component({
     selector: 'site-information',
@@ -54,7 +57,7 @@ export class SiteInformationComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open();
+                    const modalRef = this.ngbModal.open(SiteManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.update(result);
@@ -78,17 +81,6 @@ export class SiteInformationComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open();
                     modalRef.componentInstance.actionTitle = '编辑';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.update(result);
-                    }, error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.update(result);
@@ -120,12 +112,22 @@ export class SiteInformationComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open();
+                    const modalRef = this.ngbModal.open(ChargingRuleAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.update(result);
                     })
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                name: '删除',
+                action: function (ids) {
+                    console.log(ids);
+                }.bind(this),
+                autoConfig: {
+                    url: 'SiteInformation/delete'
+                }
             }
         ],
         rowActions: [
@@ -150,17 +152,6 @@ export class SiteInformationComponent implements OnInit {
                         this.update(result);
                     }, error => {})
                 }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '车辆';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.update(result);
-                    }, error => {})
-                }.bind(this)
             }
         ]
     };
@@ -171,7 +162,6 @@ export class SiteInformationComponent implements OnInit {
             {name: '一级标题', key: 'levelonetitle'},
             {name: '二级标题', key: 'leveltwotitle'},
             {name: '是否显示', key: 'isdisplay'},
-            {name: '排序', key: 'sort'},
             {name: '追加用户', key: 'additionaluser'},
             {name: '追加时间', key: 'additionaltime'},
             {name: '最后修改人', key: 'finalmodifier'},
@@ -185,31 +175,30 @@ export class SiteInformationComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open();
+                    const modalRef = this.ngbModal.open(ArticleManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.update(result);
                     })
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                name: '删除',
+                action: function (ids) {
+                    console.log(ids);
+                }.bind(this),
+                autoConfig: {
+                    url: 'SiteInformation/delete'
+                }
             }
         ],
         rowActions: [
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open();
+                    const modalRef = this.ngbModal.open(ArticleManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.update(result);
-                    }, error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.update(result);
@@ -218,7 +207,7 @@ export class SiteInformationComponent implements OnInit {
             }
         ]
     };
-    constructor(private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
     confirm() {
@@ -230,6 +219,13 @@ export class SiteInformationComponent implements OnInit {
     refreshGrid() {
         this.datagridComponent.refreshGrid();
     }
+
+    update(url: string, role: object) {
+        this.customHttpClient.post(url, role).subscribe(result => {
+
+        })
+    }
+
     siteclear(): void {
         this.queryModel.siteid = '';
         this.queryModel.sitename = '';

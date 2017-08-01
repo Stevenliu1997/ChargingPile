@@ -9,7 +9,6 @@ import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
 import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
-import {SiteDeleteComponent} from './ModalPage/site-delete.component';
 
 @NgModule({
     imports: [
@@ -24,13 +23,11 @@ import {SiteDeleteComponent} from './ModalPage/site-delete.component';
         SiteDataComponent,
         SiteInformationComponent,
         SiteModifyInformationComponent,
-        SiteDeleteComponent,
     ],
     entryComponents: [
         SiteDataComponent,
         SiteInformationComponent,
         SiteModifyInformationComponent,
-        SiteDeleteComponent,
     ]
 })
 export class SiteManagementModule { }

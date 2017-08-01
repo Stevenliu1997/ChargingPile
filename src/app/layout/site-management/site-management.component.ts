@@ -6,7 +6,6 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
 import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
-import {SiteDeleteComponent} from './ModalPage/site-delete.component';
 
 @Component({
     selector: 'site-management',
@@ -21,11 +20,11 @@ export class SiteManagementComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     /*查询对象*/
     queryModel: any = {
-        siteID: '',
-        siteName: '',
-        siteLocationProvince: 'Default',
-        siteLocationCity: 'Default',
-        siteStatus: 'Default'
+        siteid: '',
+        sitename: '',
+        province: 'Default',
+        city: 'Default',
+        state: 'Default'
     };
     // datagrid 配置
     config: object = {
@@ -93,17 +92,6 @@ export class SiteManagementComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '修改信息';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.update('SiteManagement/site-management', result);
-                    }, error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(SiteDeleteComponent);
-                    modalRef.componentInstance.actionTitle = '删除';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.update('SiteManagement/site-management', result);
