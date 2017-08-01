@@ -30,7 +30,10 @@ export class DatagridComponent implements OnInit {
     //默认配置
     defaultConfig: object;
     //翻页对象
+    pageParams: any = {};
+    //翻页显示
     page: any = {};
+    pageArr: any = [];
     key: string;
     //全选标记
     allChecked: boolean = false;
@@ -54,7 +57,7 @@ export class DatagridComponent implements OnInit {
         };
         this.config = Object.assign(this.defaultConfig, this.config);
         //翻页对象初始化
-        this.page = {
+        this.pageParams = {
             pageNumber: 1,
             pageSize: this.config.pageSize
         };
@@ -63,17 +66,32 @@ export class DatagridComponent implements OnInit {
         this.loadData(this.config.url, this.config.params());
     }
 
-    public loadData(ur: string, params?: object, options?: object): void{
-        this.httpClient.get(this.config.url, {httpParams: Object.assign({}, params, this.page)}).subscribe((result: any) => {
-            if(result.result == 'OK')
-                this.fetchedData = result.data;
+    public loadData(ur: string, params?: object, pageParams?: any): void{
+
+
+        this.httpClient.post(this.config.url, Object.assign({}, params, Object.assign({}, this.pageParams, pageParams))).subscribe((result: any) => {
+            if(result.code == '00'){
+                this.fetchedData = result.pageData;
+                this.page.totalPages = result.totalPages;
+                this.page.totalElements = result.totalElements;
+                this.pageParams.pageNumber = result.currentPage;
+                this.initPageArray(this.page.totalPages);
+            }
         })
     }
 
     public refreshGrid(){
-        this.page.pageNumber = 1;
+        this.pageParams.pageNumber = 1;
         this.loadData(this.config.url, this.config.params());
     }
+
+    turnPage(page: number){
+        if(page < 1 || page >= this.page.totalPages){
+            return;
+        }
+        this.loadData(this.config.url, this.config.params(), {pageNumber: page});
+    }
+
 
     rowAction (act: any, item: object) {
         act.action(item);
@@ -85,6 +103,7 @@ export class DatagridComponent implements OnInit {
             }
         }
     }
+
 
     topAction (act: any) {
         //TODO 传入checkBox选中数据
@@ -125,6 +144,13 @@ export class DatagridComponent implements OnInit {
     checkAll(checked: boolean) {
         for(let i in this.fetchedData){
             this.fetchedData[i].checked = checked;
+        }
+    }
+
+    initPageArray(total: number){
+        this.pageArr = [];
+        for(let i=1;i<=total;i++){
+            this.pageArr.push(i);
         }
     }
 
