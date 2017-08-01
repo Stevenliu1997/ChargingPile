@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {OrderManageEditComponent} from "./order-manage-edit.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {window} from "rxjs/operator/window";
+
 
 @Component({
     selector: 'app-tables',
@@ -11,82 +11,38 @@ import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomH
     styleUrls: ['./order-manage.component.scss'],
     animations: [routerTransition()]
 })
+
 export class OrderManageComponent implements OnInit {
-    name: String = 'name';
+
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
+
+    window: any={};
     //查询对象
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: 'ReserveForm /Find',
         column: [
-            {name: '预订单ID', key: 'name'},
-            {name: '创建时间', key: 'auth'},
-            {name: '创建人', key: 'creator'},
+            {name: '预订单ID', key: 'reseverid'},
+            {name: '创建时间', key: 'createTime'},
+            {name: '创建人', key: 'user'},
             {name: '使用时间', key: 'usetime'},
             {name: '联系方式', key: 'phone'},
-            {name: '站点', key: 'site'},
-            {name: '充电桩', key: 'station'},
-            {name: '充电枪', key: 'gun'},
-            {name: '充电状态', key: 'state'},
-            {name: '剩余时间', key: 'lefttime'},
+            {name: '站点', key: 'siteid2'},
+            {name: '充电桩', key: 'siteid'},
+            {name: '充电枪', key: 'gunid'},
+            {name: '充电状态', key: 'reseverstate'},
+            {name: '剩余时间', key: 'surplustime'},
             {name: '取消原因', key: 'reasion'}
         ],
         params: function () {
             return this.queryModel;
         }.bind(this),
-        /*topActions: [
-            {
-                type: 'add',
-                name: '添加',
-                action: function (ids) {
-                    const modalRef = this.ngbModal.open(OrderManageEditComponent);
-                    modalRef.componentInstance.actionTitle = '添加';
-                    modalRef.result.then(result => {
-                        this.updateRole(result);
-                    },
-                    error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                name: '删除',
-                action: function (ids) {
-                    console.log(ids);
-                }.bind(this),
-                autoConfig: {
-                    url:'Role/delete'
-                }
-            }
-        ],
-        rowActions: [
-            {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'Role/Find'
-                }
-            },
-            {
-                type: 'edit',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(OrderManageEditComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.updateRole(result);
-                    },
-                    error => {
-                    })
-                }.bind(this)
-            }
-        ]*/
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor( private customHttpClient: CustomHttpClient) {
     }
 
     ngOnInit() {
@@ -101,5 +57,10 @@ export class OrderManageComponent implements OnInit {
         this.queryModel.ordernumber='';
         this.queryModel.stime='';
         this.queryModel.etime='';
+    }
+
+    exportGrid(ids){
+        this.customHttpClient.post('ReserveForm /Export',ids);
+        this.window.open('ReserveForm /Export');
     }
 }
