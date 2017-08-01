@@ -1,23 +1,24 @@
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OrderManageComponent } from './order-manage.component';
-import { OrderManageRoutingModule } from './order-manage-routing.module';
+import { OrderQueryComponent } from './orderquery.component';
+import { OrderQueryRoutingModule } from './orderquery-routing.module';
 import { PageHeaderModule } from './../../shared';
 import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {window} from 'rxjs/operator/window';
+import {OrderQueryEditComponent} from "./orderquery-edit.component";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        OrderManageRoutingModule,
+        OrderQueryRoutingModule,
         PageHeaderModule,
         WidgetModule,
         NgbModule,
     ],
-    declarations: [OrderManageComponent]
+    declarations: [OrderQueryComponent,OrderQueryEditComponent],
+    entryComponents: [OrderQueryEditComponent]
 })
-export class OrderManageModule { }
+export class OrderQueryModule { }

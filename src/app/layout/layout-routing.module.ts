@@ -34,7 +34,8 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             {path: 'dockoperator', loadChildren: './dockoperator/dockoperator.module#DockoperatorModule'},
             {path: 'provider', loadChildren: './provider/provider.module#ProviderModule'},
-            {path: 'order-manage',loadChildren: './order-manage/order-manage.module#OrderManageModule'}
+            {path: 'order-manage',loadChildren: './order-manage/order-manage.module#OrderManageModule'},
+            {path: 'orderquery',loadChildren: './orderquery/orderquery.moddule#OrderQueryModule'}
         ]
     }
 ];
