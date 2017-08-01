@@ -1,0 +1,15 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "cardid": "1",
+            "owener": "2",
+            "createtime": "3",
+            "balance": "4",
+            "phone":  "5",
+            "icstate": "6",
+            "endtime": "7",
+            "ictype": "8"
+        }
+    ]
+}

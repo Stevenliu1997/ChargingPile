@@ -24,6 +24,8 @@ const routes: Routes = [
             { path: 'operation-record', loadChildren: './operation-record/operation-record.module#OperationRecordModule' },
             /*个人信息*/
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+            /*IC卡管理*/
+            { path: 'IC-card-manage', loadChildren: './IC-card-manage/IC-card-manage.module#ICCardManageModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
