@@ -26,6 +26,8 @@ const routes: Routes = [
             { path: 'site-information', loadChildren: './site-information/site-information.module#SiteInformationModule' },
             /*个人信息*/
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule' },
+            /*IC卡管理*/
+            { path: 'IC-card-manage', loadChildren: './IC-card-manage/IC-card-manage.module#ICCardManageModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
