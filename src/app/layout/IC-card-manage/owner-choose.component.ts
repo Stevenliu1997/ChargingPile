@@ -22,14 +22,10 @@ export class OwnerChooseComponent {
     config: object = {
         url: 'IcCard/Find',
         column: [
-            {name: 'IC卡号', key: 'cardid'},
-            {name: '卡主姓名', key: 'owener'},
-            {name: '余额', key: 'balance'},
-            {name: '类型', key: 'ictype'},
-            {name: '状态', key: 'icstate'},
-            {name: '创建日期', key: 'createtime'},
+            {name: '用户ID', key: 'account'},
+            {name: '用户名称', key: 'name'},
+            {name: '角色名称', key: 'rolename'},
             {name: '手机号', key: 'phone'},
-            {name: '失效日期', key: 'endtime'},
         ],
         params: function () {
             return this.queryModel;
@@ -48,6 +44,4 @@ export class OwnerChooseComponent {
     refreshGrid(){
         this.datagridComponent.refreshGrid();
     }
-
-
 }

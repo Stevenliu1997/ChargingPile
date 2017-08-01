@@ -1,17 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {RoleEditComponent} from "./role-edit.component";
+import {OrderManageEditComponent} from "./order-manage-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 
 @Component({
     selector: 'app-tables',
-    templateUrl: './role.component.html',
-    styleUrls: ['./role.component.scss'],
+    templateUrl: './order-manage.component.html',
+    styleUrls: ['./order-manage.component.scss'],
     animations: [routerTransition()]
 })
-export class RoleComponent implements OnInit {
+export class OrderManageComponent implements OnInit {
     name: String = 'name';
 
     @ViewChild(DatagridComponent)
@@ -22,19 +22,27 @@ export class RoleComponent implements OnInit {
     config: object = {
         url: 'Role/Find',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '预订单ID', key: 'name'},
+            {name: '创建时间', key: 'auth'},
+            {name: '创建人', key: 'creator'},
+            {name: '使用时间', key: 'usetime'},
+            {name: '联系方式', key: 'phone'},
+            {name: '站点', key: 'site'},
+            {name: '充电桩', key: 'station'},
+            {name: '充电枪', key: 'gun'},
+            {name: '充电状态', key: 'state'},
+            {name: '剩余时间', key: 'lefttime'},
+            {name: '取消原因', key: 'reasion'}
         ],
         params: function () {
             return this.queryModel;
         }.bind(this),
-        topActions: [
+        /*topActions: [
             {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    const modalRef = this.ngbModal.open(OrderManageEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.updateRole(result);
@@ -65,7 +73,7 @@ export class RoleComponent implements OnInit {
             {
                 type: 'edit',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    const modalRef = this.ngbModal.open(OrderManageEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
@@ -75,7 +83,7 @@ export class RoleComponent implements OnInit {
                     })
                 }.bind(this)
             }
-        ]
+        ]*/
     };
 
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
@@ -88,10 +96,10 @@ export class RoleComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateRole(role: object){
-        this.customHttpClient.post('Role/Update', role).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-        })
+    blankinit(){
+        this.queryModel.rechargename='';
+        this.queryModel.ordernumber='';
+        this.queryModel.stime='';
+        this.queryModel.etime='';
     }
 }
