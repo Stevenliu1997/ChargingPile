@@ -1,4 +1,4 @@
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../../../environments/environment";
 import {Injectable} from "@angular/core";
@@ -13,10 +13,35 @@ export class CustomHttpClient extends HttpClient{
     post(url: string, body?: any | any, options?): Observable<any> {
         url = this.modifyUrl(url);
         options = this.convertUrlParams(options);
-        //模拟数据post会报404，暂时时候get
-        // if(this.environment.developMode === 'demo')
-        //     return super.get(url, options);
+        //TODO 模拟数据post会报404，暂时时候get
+        if(this.environment.developMode === 'demo'){
+            console.debug('----------------params');
+            console.debug(body);
+            return super.get(url, options);
+        }
+
         return super.post(url, body, options);
+    }
+
+    formPost(url: string, params?: any, options?: any): Observable<any>{
+        url = this.modifyUrl(url);
+        options = !options ? {} : options;
+        //转换参数
+        let urlSearchParams = new URLSearchParams();
+        for(let i in params){
+            urlSearchParams.append(i, params[i]);
+        }
+        let body = urlSearchParams.toString();
+
+        //修改headers
+        options = Object.assign(options,{
+            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+        }) ;
+
+        //TODO 模拟数据post会报404，暂时时候get
+        if(this.environment.developMode === 'demo')
+            return super.get(url, options);
+        return super.post(url, body, options)
     }
 
 
@@ -41,7 +66,11 @@ export class CustomHttpClient extends HttpClient{
         if(this.environment.developMode === 'demo'){
             url = url + '.json';
         }
-        url = this.environment.host + url;
+        if(this.environment.host){
+            url = this.environment.host + url;
+        }else {
+            url = `${window.location.origin}/${url}`;
+        }
         return url;
     }
 

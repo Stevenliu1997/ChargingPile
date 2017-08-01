@@ -1,6 +1,6 @@
 {
-    "result": "OK",
-    "data": [
+    "code": "00",
+    "pageData": [
         {
             "id": "1",
             "name": "超级管理员",
@@ -13,6 +13,8 @@
             "auth": "平台一般用户",
             "desc": ""
         }
-
-    ]
+    ],
+    "currentPage": 1,
+    "totalPages": 5,
+    "totalElements": 50
 }

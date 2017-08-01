@@ -7,7 +7,7 @@
                 <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
-                            <label for="contact" class="col-4 col-form-label">联系人名称</label>
+                            <label for="contact" class="col-4 col-form-label">联系人</label>
                             <div class="col-8">
                                 <input class="form-control" type="text" id="contact" [(ngModel)]="queryModel.contactor" name="queryModel.contactor">
                             </div>
@@ -15,15 +15,12 @@
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="phonenumber" class="col-4 col-form-label">联系人电话</label>
+                            <label for="phonenumber" class="col-4 col-form-label">联系电话</label>
                             <div class="col-8">
                                 <input class="form-control" type="text" id="phonenumber" [(ngModel)]="queryModel.phone" name="queryModel.phone">
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
                             <label for="name" class="col-4 col-form-label">厂商名称</label>
@@ -32,6 +29,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
                             <label for="id" class="col-4 col-form-label">厂商ID</label>

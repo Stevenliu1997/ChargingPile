@@ -1,18 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {routerTransition} from '../../router.animations';
+import { routerTransition } from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {RoleEditComponent} from "./role-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {OrderQueryEditComponent} from "./orderquery-edit.component";
 
 @Component({
-    selector: 'app-tables',
-    templateUrl: './role.component.html',
-    styleUrls: ['./role.component.scss'],
+    selector: 'app-form',
+    templateUrl: 'orderquery.component.html',
+    styleUrls: ['orderquery.component.scss'],
     animations: [routerTransition()]
 })
-export class RoleComponent implements OnInit {
-    name: String = 'name';
+export class OrderQueryComponent implements OnInit {
+    name: string = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -20,11 +20,17 @@ export class RoleComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'Role/Find',
+        url: 'ManageUser/Find',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '用户ID', key: 'account'},
+            {name: '用户名', key: 'name'},
+            {name: '角色名', key: 'rolename'},
+            {name: 'Email', key: 'email'},
+            {name: '手机号', key: 'phone'},
+            {name: 'QQ', key: 'qq'},
+            {name: '微信', key: 'weixin'},
+            {name: '锁定状态', key: 'lockstate'},
+            {name: '运营商ID', key: 'operatorInformation_operatorid'}
         ],
         params: function () {
             return this.queryModel;
@@ -34,12 +40,11 @@ export class RoleComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    const modalRef = this.ngbModal.open(OrderQueryEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateRole(result);
-                    },
-                    error => {})
+                        this.addUser(result);
+                    },error => {})
                 }.bind(this)
             },
             {
@@ -49,35 +54,24 @@ export class RoleComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Role/delete'
+                    url: 'ManageUser/delete'
                 }
             }
         ],
         rowActions: [
             {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'Role/Find'
-                }
-            },
-            {
                 type: 'edit',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(RoleEditComponent);
+                    const modalRef = this.ngbModal.open(OrderQueryEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateRole(result);
-                    },
-                    error => {
+                        this.updateUser(result);
                     })
                 }.bind(this)
             }
         ]
     };
-
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
@@ -85,13 +79,27 @@ export class RoleComponent implements OnInit {
     }
 
     refreshGrid(){
+        console.log(this.config);
         this.datagridComponent.refreshGrid();
     }
 
-    updateRole(role: object){
-        this.customHttpClient.post('Role/Update', role).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
+    updateUser(user: object){
+        this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
+
         })
+    }
+
+    addUser(user: object){
+        this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
+
+        })
+    }
+
+    blankGrid(){
+        this.queryModel.account ='';
+        this.queryModel.name ='';
+        this.queryModel.realname ='';
+        this.queryModel.phone ='';
+        this.queryModel.lockstate ='';
     }
 }

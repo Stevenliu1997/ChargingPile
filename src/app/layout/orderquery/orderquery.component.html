@@ -1,0 +1,61 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'预约管理'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.siterid2" class="col-4 col-form-label">充电站</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.siterid2" [(ngModel)]="queryModel.siterid2" name="queryModel.siterid2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.reseverid" class="col-4 col-form-label">订单编号</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.reseverid" [(ngModel)]="queryModel.reseverid" name="queryModel.reseverid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.starttime" class="col-4 col-form-label">开始时间</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.starttime" [(ngModel)]="queryModel.starttime" name="queryModel.starttime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="queryModel.endtime" class="col-4 col-form-label">结束时间</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" id="queryModel.endtime" [(ngModel)]="queryModel.endtime" name="queryModel.endtime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="blankinit()">清空</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="exportGrid()">导出</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>

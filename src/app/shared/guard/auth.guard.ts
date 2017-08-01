@@ -8,6 +8,10 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router) { }
 
     canActivate() {
+        //现在不要前端挡板，后端做挡板
+        if(1==1)
+            return true;
+
         if (localStorage.getItem('isLoggedin')) {
             return true;
         }
