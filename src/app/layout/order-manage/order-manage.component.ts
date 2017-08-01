@@ -24,20 +24,20 @@ export class OrderManageComponent implements OnInit {
         column: [
             {name: '预订单ID', key: 'name'},
             {name: '创建时间', key: 'auth'},
-            {name: '创建人', key: 'desc'},
-            {name: '使用时间', key: 'desc'},
-            {name: '联系方式', key: 'desc'},
-            {name: '站点', key: 'desc'},
-            {name: '充电桩', key: 'desc'},
-            {name: '充电枪', key: 'desc'},
-            {name: '充电状态', key: 'desc'},
-            {name: '剩余时间', key: 'desc'},
-            {name: '取消原因', key: 'desc'}
+            {name: '创建人', key: 'creator'},
+            {name: '使用时间', key: 'usetime'},
+            {name: '联系方式', key: 'phone'},
+            {name: '站点', key: 'site'},
+            {name: '充电桩', key: 'station'},
+            {name: '充电枪', key: 'gun'},
+            {name: '充电状态', key: 'state'},
+            {name: '剩余时间', key: 'lefttime'},
+            {name: '取消原因', key: 'reasion'}
         ],
         params: function () {
             return this.queryModel;
         }.bind(this),
-        topActions: [
+        /*topActions: [
             {
                 type: 'add',
                 name: '添加',
@@ -61,7 +61,7 @@ export class OrderManageComponent implements OnInit {
                 }
             }
         ],
-        /*rowActions: [
+        rowActions: [
             {
                 type: 'delete',
                 action: function (item) {
@@ -96,9 +96,10 @@ export class OrderManageComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateRole(role: object){
-        this.customHttpClient.post('Role/Update', role).subscribe(result => {
-
-        })
+    blankinit(){
+        this.queryModel.rechargename='';
+        this.queryModel.ordernumber='';
+        this.queryModel.stime='';
+        this.queryModel.etime='';
     }
 }
