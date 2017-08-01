@@ -1,0 +1,17 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "siteid": "003",
+            "sitename": "中石油",
+            "provincecity": "四川省成都市",
+            "state": "正常"
+        },
+        {
+            "siteid": "848",
+            "sitename": "中石化",
+            "provincecity": "四川省成都市",
+            "state": "锁定"
+        }
+    ]
+}
