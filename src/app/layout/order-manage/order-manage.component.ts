@@ -18,7 +18,7 @@ export class OrderManageComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
 
-    window: any={};
+
     //查询对象
     queryModel: any = {};
     // datagrid 配置
@@ -59,8 +59,9 @@ export class OrderManageComponent implements OnInit {
         this.queryModel.etime='';
     }
 
+
     exportGrid(ids){
         this.customHttpClient.post('ReserveForm /Export',ids);
-        this.window.open('ReserveForm /Export');
+        //window.open('ReserveForm /Export');
     }
 }
