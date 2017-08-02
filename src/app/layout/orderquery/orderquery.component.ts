@@ -20,7 +20,7 @@ export class OrderQueryComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'ManageUser/Find',
+        url: 'OrderQuery/Find',
         column: [
             {name: '订单号', key: 'orderid'},
             {name: '订单状态', key: 'orderstate'},
@@ -73,7 +73,7 @@ export class OrderQueryComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Role/Find'
+                    url:'OrderQuery/Find'
                 }
             }
         ]
@@ -90,17 +90,22 @@ export class OrderQueryComponent implements OnInit {
     }
 
     updateOrder(order: object){
-        this.customHttpClient.post('ManageUser/Update', order).subscribe(result => {
+        this.customHttpClient.post('OrderQuery/Update', order).subscribe(result => {
 
         })
     }
 
     blankGrid(){
-        this.queryModel.account ='';
-        this.queryModel.name ='';
-        this.queryModel.realname ='';
-        this.queryModel.phone ='';
+        this.queryModel.orderid ='';
+        this.queryModel.icid ='';
+        this.queryModel.user ='';
+        this.queryModel.station ='';
         this.queryModel.lockstate ='';
+        this.queryModel.site ='';
+        this.queryModel.gun ='';
+        this.queryModel.starttime ='';
+        this.queryModel.endtime ='';
+        this.queryModel.orderstate =''
     }
 
     exportGrid(){
