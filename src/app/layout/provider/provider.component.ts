@@ -26,8 +26,9 @@ export class ProviderComponent implements OnInit {
         column: [
             {name: '厂商ID', key: 'factoryid'},
             {name: '厂商名称', key: 'name'},
-            {name: '厂商详细地址', key: 'position'},
             {name: '厂商省市', key: 'provincecity'},
+            {name: '厂商详细地址', key: 'position'},
+
             {name: '联系人姓名', key: 'contactor'},
             {name: '联系人电话', key: 'phone'}
         ],
@@ -79,14 +80,14 @@ export class ProviderComponent implements OnInit {
                     error => {
                     })
                 }.bind(this)
-            },
+            }/*,
             {
                 type: 'detail',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ProviderRecordComponent, {size: "lg"});
                     modalRef.componentInstance.factoryid = item.factoryid;
                 }.bind(this)
-            }
+            }*/
         ]
     };
 
