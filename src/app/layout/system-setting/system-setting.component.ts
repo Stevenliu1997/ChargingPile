@@ -17,7 +17,9 @@ export class SystemSettingComponent implements OnInit {
     }
     ngOnInit() {
         this.customHttpClient.post('SystemSetting/Systemsetting').subscribe(result => {
-            this.queryModel.Status = result.Status;
+            if (result.code === '00') {
+                this.queryModel.Status = result.Status;
+            }
         }, error => {})
     }
     open(): void {

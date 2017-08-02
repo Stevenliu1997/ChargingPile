@@ -6,7 +6,7 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
 import {SiteManagementAddComponent} from './site-management-modal/site-management-add.component';
 import {ChargingRuleAddComponent} from './charging-rule-modal/charging-rule-add.component';
 import {ArticleManagementAddComponent} from './article-management-modal/article-management-add.component';
-import {SiteEssentialInformationComponent} from './site-management-modal/site-essential-information.component';
+import {SiteEssentialInformationComponent} from "./site-management-modal/site-essential-information.component";
 
 @Component({
     selector: 'site-information',
@@ -38,9 +38,6 @@ export class SiteInformationComponent implements OnInit {
         isdisplay: 'Default',
         classification: 'Default'
     };
-
-    @Input()
-    userId: string;
 
     siteMConfig: object = {
         url: 'SiteInformation/site-management',
@@ -80,8 +77,8 @@ export class SiteInformationComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '编辑';
+                    const modalRef = this.ngbModal.open(SiteEssentialInformationComponent, {size: 'lg'});
+                    modalRef.componentInstance.actionTitle = '查看站点信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.update(result);
@@ -135,8 +132,8 @@ export class SiteInformationComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(SiteEssentialInformationComponent, {size: 'lg'});
-                    modalRef.componentInstance.actionTitle = '编辑';
+                    const modalRef = this.ngbModal.open();
+                    modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.update(result);
@@ -147,7 +144,7 @@ export class SiteInformationComponent implements OnInit {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '车辆';
+                    modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
                         this.update(result);
