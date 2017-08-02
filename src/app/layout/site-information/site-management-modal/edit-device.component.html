@@ -1,0 +1,90 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}设备</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group row">
+            <label for="devicename-text-input" class="col-2 col-form-label">设备名称</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.devicename' id="devicename-text-input" name="editModel.devicename" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="devicetype-text-input" class="col-2 col-form-label">设备型号</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.devicetype' id="devicetype-text-input" name="editModel.devicetype" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="powertype-select-input" class="col-2 col-form-label">电源类型</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'editModel.powertype' id="powertype-select-input" name="editModel.powertype" class="form-control">
+                    <option value="Default">请选择</option>
+                    <option value="交流">交流</option>
+                    <option value="直流">直流</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="voltage-text-input" class="col-2 col-form-label">电压</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.voltage' id="voltage-text-input" name="editModel.voltage" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="current-text-input" class="col-2 col-form-label">电流</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.current' id="current-text-input" name="editModel.current" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="power-text-input" class="col-2 col-form-label">功率</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.power' id="power-text-input" name="editModel.power" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="interfacetype-text-input" class="col-2 col-form-label">接口类型</label>
+            <div class="col-10">
+                <input type="number" [(ngModel)] = 'editModel.interfacetype' id="interfacetype-text-input" name="editModel.interfacetype" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="interfacestandard-text-input" class="col-2 col-form-label">接口标准</label>
+            <div class="col-10">
+                <input type="number" [(ngModel)] = 'editModel.interfacestandard' id="interfacestandard-text-input" name="editModel.interfacestandard" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="programid-text-input" class="col-2 col-form-label">程序ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.programid' id="programid-text-input" name="editModel.programid" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="manufacturerid-text-input" class="col-2 col-form-label">厂商ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.manufacturerid' id="manufacturerid-text-input" name="editModel.manufacturerid" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="deviceremark-text-input" class="col-2 col-form-label">设备备注</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.deviceremark' id="deviceremark-text-input" name="editModel.deviceremark" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="location-text-input" class="col-2 col-form-label">地址信息</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.location' id="location-text-input" name="editModel.location" class="form-control">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>
