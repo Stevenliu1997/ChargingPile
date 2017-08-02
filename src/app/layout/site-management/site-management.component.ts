@@ -6,8 +6,6 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
 import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
-import {SiteDeleteComponent} from './ModalPage/site-delete.component';
-import {SiteCreateComponent} from "./ModalPage/site-create.component";
 
 @Component({
     selector: 'site-management',
@@ -16,17 +14,15 @@ import {SiteCreateComponent} from "./ModalPage/site-create.component";
     animations: [routerTransition()]
 })
 export class SiteManagementComponent implements OnInit {
-    name: String = 'name';
-
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
     queryModel: any = {
-        siteID: '',
-        siteName: '',
-        siteLocationProvince: 'Default',
-        siteLocationCity: 'Default',
-        siteStatus: 'Default'
+        siteid: '',
+        sitename: '',
+        province: 'Default',
+        city: 'Default',
+        state: 'Default'
     };
     // datagrid 配置
     config: object = {
@@ -48,10 +44,10 @@ export class SiteManagementComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(SiteCreateComponent);
-                    modalRef.componentInstance.actionTitle = '新建';
+                    const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
+                    modalRef.componentInstance.actionTitle = '新建站点';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.add(result);
                     })
                 }.bind(this)
             },
@@ -62,7 +58,7 @@ export class SiteManagementComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'CarBrand/delete'
+                    url: 'Site/Delete'
                 }
             }
         ],
@@ -74,7 +70,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.edit(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -85,7 +81,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '查看';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.detail(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -93,21 +89,10 @@ export class SiteManagementComponent implements OnInit {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
-                    modalRef.componentInstance.actionTitle = '修改';
+                    modalRef.componentInstance.actionTitle = '修改信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
-                    }, error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(SiteDeleteComponent);
-                    modalRef.componentInstance.actionTitle = '删除';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.update(result);
+                        this.modify('SiteManagement/site-management', result);
                     }, error => {})
                 }.bind(this)
             },
@@ -124,8 +109,35 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    update(role: object) {
-        this.customHttpClient.post('SiteManagement/site-management', role).subscribe(result => {
+    add(role: object) {
+        this.customHttpClient.post('Site/Add', role).subscribe(result => {
+            if (result.code === '00') {
+                this.refreshGrid();
+            }else if (result.code === '01') {
+                alert('错误！' + result.message);
+            } else {
+                alert('未知错误！');
+            }
+        })
+    }
+    edit(role: object) {
+        this.customHttpClient.post('Site/Update', role).subscribe(result => {
+            if (result.code === '00') {
+                alert('修改成功！');
+            } else if (result.code === '01') {
+                alert('错误！' + result.message);
+            } else {
+                alert('未知错误！');
+            }
+        })
+    }
+    detail(role: object) {
+        this.customHttpClient.post('Site/Site', role).subscribe(result => {
+
+        })
+    }
+    modify(role: object) {
+        this.customHttpClient.post('Site/Site', role).subscribe(result => {
 
         })
     }

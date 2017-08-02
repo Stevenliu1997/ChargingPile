@@ -1,10 +1,31 @@
 {
-    "result": "OK",
-    "data": [
+    "pageData": [
         {
-            "account": "超级管理员",
-            "qq": "超级管理员",
-            "realname": "系统管理员"
+            "id": "11",
+            "account": "account11",
+            "name": "name11",
+            "rolename": "rolename11",
+            "phone": "phone11",
+            "email": "email11",
+            "lockstate": "lockstate11",
+            "weixin": "weixin11",
+            "qq": "qq11"
+        },
+        {
+            "id": "22",
+            "account": "account22",
+            "name": "name22",
+            "rolename": "rolename22",
+            "phone": "phone22",
+            "email": "email22",
+            "lockstate": "lockstate22",
+            "weixin": "weixin22",
+            "qq": "qq22"
         }
-    ]
+    ],
+    "currentPage": 1,
+    "totalPages": 3,
+    "totalElements": 60,
+    "message": null,
+    "code": "00"
 }

@@ -13,7 +13,6 @@ import {UserRecordComponent} from "./user-record.component";
     animations: [routerTransition()]
 })
 export class UserComponent implements OnInit {
-    name: string = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -44,7 +43,7 @@ export class UserComponent implements OnInit {
                     const modalRef = this.ngbModal.open(UserEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.addUser(result);
+                        this.refreshGrid();
                     },error => {})
                 }.bind(this)
             },
@@ -67,8 +66,8 @@ export class UserComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateUser(result);
-                    })
+                        this.refreshGrid();
+                    },error => {})
                 }.bind(this)
             },
             {
@@ -80,6 +79,7 @@ export class UserComponent implements OnInit {
             }
         ]
     };
+
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
@@ -87,20 +87,7 @@ export class UserComponent implements OnInit {
     }
 
     refreshGrid(){
-        console.log(this.config);
         this.datagridComponent.refreshGrid();
-    }
-
-    updateUser(user: object){
-        this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
-
-        })
-    }
-
-    addUser(user: object){
-        this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
-
-        })
     }
 
     blankGrid(){

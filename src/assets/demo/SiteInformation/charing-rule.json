@@ -1,0 +1,29 @@
+{
+    "result": "OK",
+    "data": [
+        {
+            "chargename": "迪克斯特拉",
+            "operator": "中石油",
+            "chargerulenum": "01",
+            "startdate": "2017.1.1",
+            "enddate": "2020.3.3",
+            "startstate": "正在使用",
+            "ruletype": "sss",
+            "usingsign": "dvcv",
+            "testdata": "是",
+            "createtime": "是"
+        },
+        {
+            "chargename": "迪克斯特拉",
+            "operator": "中石油",
+            "chargerulenum": "01",
+            "startdate": "正常",
+            "enddate": "元素",
+            "startstate": "正在使用",
+            "ruletype": "是",
+            "usingsign": "是",
+            "testdata": "是",
+            "createtime": "是"
+        }
+    ]
+}

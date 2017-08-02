@@ -1,12 +1,11 @@
-
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'site-delete',
-    templateUrl: './site-delete.component.html'
+    selector: 'article-management-add',
+    templateUrl: './article-management-add.component.html'
 })
-export class SiteDeleteComponent {
+export class ArticleManagementAddComponent {
 
     @Input()
     actionTitle: string;

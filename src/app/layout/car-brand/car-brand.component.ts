@@ -13,8 +13,6 @@ import {CarBrandDetailComponent} from './car-brand-detail.component';
     animations: [routerTransition()]
 })
 export class CarBrandComponent implements OnInit {
-    name: String = 'name';
-
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
@@ -44,7 +42,7 @@ export class CarBrandComponent implements OnInit {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.add(result);
                     })
                 }.bind(this)
             },
@@ -67,7 +65,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.edit(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -78,7 +76,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.detail(result);
                     }, error => {})
                 }.bind(this)
             }
@@ -95,8 +93,24 @@ export class CarBrandComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    update(role: object) {
+    add(role: object) {
         this.customHttpClient.post('CarBrand/Add', role).subscribe(result => {
+            if (result.code === '00') {
+                this.refreshGrid();
+            } else if (result.code === '01') {
+                alert('错误！' + result.message);
+            } else {
+                alert('未知错误!');
+            }
+        })
+    }
+    edit(role: object) {
+        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
+
+        })
+    }
+    detail(role: object) {
+        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
 
         })
     }

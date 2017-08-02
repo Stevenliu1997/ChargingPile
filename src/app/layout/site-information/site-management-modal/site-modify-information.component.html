@@ -23,9 +23,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="isopen-select-input" class="col-2 col-form-label">是否对外开放</label>
+            <label for="isopen-text-input" class="col-2 col-form-label">是否对外开放</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.isopen' id="isopen-select-input" name="editModel.isopen" class="form-control">
+                <select [(ngModel)] = 'editModel.isopen' id="isopen-text-input" name="editModel.isopen" class="form-control">
                     <option value="Default">请选择</option>
                     <option value="yes">是</option>
                     <option value="no">否</option>
@@ -91,6 +91,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">返回</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">保存</button>
 </div>

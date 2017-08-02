@@ -20,22 +20,20 @@ export class OrderQueryComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'ManageUser/Find',
+        url: 'OrderQuery/Find',
         column: [
-            {name: '用户ID', key: 'account'},
-            {name: '用户名', key: 'name'},
-            {name: '角色名', key: 'rolename'},
-            {name: 'Email', key: 'email'},
-            {name: '手机号', key: 'phone'},
-            {name: 'QQ', key: 'qq'},
-            {name: '微信', key: 'weixin'},
-            {name: '锁定状态', key: 'lockstate'},
-            {name: '运营商ID', key: 'operatorInformation_operatorid'}
+            {name: '订单号', key: 'orderid'},
+            {name: '订单状态', key: 'orderstate'},
+            {name: '充电时长', key: 'chargetime'},
+            {name: '总电量', key: 'power'},
+            {name: '完成时间', key: 'endtime'},
+            {name: '支付方式', key: 'pay'},
+            {name: '用户', key: 'user'}
         ],
         params: function () {
             return this.queryModel;
         }.bind(this),
-        topActions: [
+        /*topActions: [
             {
                 type: 'add',
                 name: '添加',
@@ -57,7 +55,7 @@ export class OrderQueryComponent implements OnInit {
                     url: 'ManageUser/delete'
                 }
             }
-        ],
+        ],*/
         rowActions: [
             {
                 type: 'edit',
@@ -66,9 +64,17 @@ export class OrderQueryComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateUser(result);
+                        this.updateOrder(result);
                     })
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                },
+                autoConfig: {
+                    url:'OrderQuery/Find'
+                }
             }
         ]
     };
@@ -83,23 +89,26 @@ export class OrderQueryComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateUser(user: object){
-        this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
-
-        })
-    }
-
-    addUser(user: object){
-        this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
+    updateOrder(order: object){
+        this.customHttpClient.post('OrderQuery/Update', order).subscribe(result => {
 
         })
     }
 
     blankGrid(){
-        this.queryModel.account ='';
-        this.queryModel.name ='';
-        this.queryModel.realname ='';
-        this.queryModel.phone ='';
+        this.queryModel.orderid ='';
+        this.queryModel.icid ='';
+        this.queryModel.user ='';
+        this.queryModel.station ='';
         this.queryModel.lockstate ='';
+        this.queryModel.site ='';
+        this.queryModel.gun ='';
+        this.queryModel.starttime ='';
+        this.queryModel.endtime ='';
+        this.queryModel.orderstate =''
+    }
+
+    exportGrid(){
+
     }
 }
