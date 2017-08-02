@@ -49,7 +49,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.updateEquipment(result);
                     })
                 }.bind(this)
             },
@@ -79,7 +79,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateProgram(result);
+                        this.updateEquipment(result);
                     })
                 }.bind(this)
             },

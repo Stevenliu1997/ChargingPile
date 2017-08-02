@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}文章</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group row">
+            <label for="levelonetitle-select-input" class="col-2 col-form-label">一级标题</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'editModel.levelonetitle' id="levelonetitle-select-input" name="editModel.levelonetitle" class="form-control">
+                    <option value="Default">请选择</option>
+                    <option value="充电站帮助">充电站帮助</option>
+                    <option value="官方联系方式">官方联系方式</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="leveltwotitle-text-input" class="col-2 col-form-label">二级标题</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.leveltwotitle' id="leveltwotitle-text-input" name="editModel.leveltwotitle" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="isdisplay-select-input" class="col-2 col-form-label">是否显示</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'editModel.isdisplay' id="isdisplay-select-input" name="editModel.isdisplay" class="form-control">
+                    <option value="Default">请选择</option>
+                    <option value="显示">显示</option>
+                    <option value="不显示">不显示</option>
+                </select>
+            </div>
+        </div>
+        <label for="isdisplay-select-input" class="col-3 col-form-label">文章主体</label>
+        <textarea class="form-control" rows="3" [(ngModel)] = 'editModel.content' name="editModel.content"></textarea>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">返回</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">保存</button>
+</div>

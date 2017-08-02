@@ -6,8 +6,6 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
 import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
-import {SiteDeleteComponent} from './ModalPage/site-delete.component';
-import {SiteCreateComponent} from "./ModalPage/site-create.component";
 
 @Component({
     selector: 'site-management',
@@ -22,11 +20,11 @@ export class SiteManagementComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     /*查询对象*/
     queryModel: any = {
-        siteID: '',
-        siteName: '',
-        siteLocationProvince: 'Default',
-        siteLocationCity: 'Default',
-        siteStatus: 'Default'
+        siteid: '',
+        sitename: '',
+        province: 'Default',
+        city: 'Default',
+        state: 'Default'
     };
     // datagrid 配置
     config: object = {
@@ -48,10 +46,10 @@ export class SiteManagementComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(SiteCreateComponent);
-                    modalRef.componentInstance.actionTitle = '新建';
+                    const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
+                    modalRef.componentInstance.actionTitle = '新建站点';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('SiteManagement/site-management', result);
                     })
                 }.bind(this)
             },
@@ -74,7 +72,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('SiteManagement/site-management', result);
                     }, error => {})
                 }.bind(this)
             },
@@ -85,7 +83,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '查看';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('SiteManagement/site-management', result);
                     }, error => {})
                 }.bind(this)
             },
@@ -93,21 +91,10 @@ export class SiteManagementComponent implements OnInit {
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
-                    modalRef.componentInstance.actionTitle = '修改';
+                    modalRef.componentInstance.actionTitle = '修改信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
-                    }, error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(SiteDeleteComponent);
-                    modalRef.componentInstance.actionTitle = '删除';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('SiteManagement/site-management', result);
                     }, error => {})
                 }.bind(this)
             },
@@ -124,8 +111,8 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    update(role: object) {
-        this.customHttpClient.post('SiteManagement/site-management', role).subscribe(result => {
+    update(url: string, role: object) {
+        this.customHttpClient.post(url, role).subscribe(result => {
 
         })
     }

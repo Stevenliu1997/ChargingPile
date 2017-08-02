@@ -13,8 +13,6 @@ import {CarBrandDetailComponent} from './car-brand-detail.component';
     animations: [routerTransition()]
 })
 export class CarBrandComponent implements OnInit {
-    name: String = 'name';
-
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
@@ -44,7 +42,7 @@ export class CarBrandComponent implements OnInit {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('CarBrand/CarBrand', result);
                     })
                 }.bind(this)
             },
@@ -67,7 +65,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('CarBrand/CarBrand', result);
                     }, error => {})
                 }.bind(this)
             },
@@ -78,7 +76,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.update('CarBrand/CarBrand', result);
                     }, error => {})
                 }.bind(this)
             }
@@ -95,8 +93,8 @@ export class CarBrandComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    update(role: object) {
-        this.customHttpClient.post('CarBrand/Add', role).subscribe(result => {
+    update(url: string, role: object) {
+        this.customHttpClient.post(url, role).subscribe(result => {
 
         })
     }
