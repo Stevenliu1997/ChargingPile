@@ -49,7 +49,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
-                        this.updateEquipment(result);
+                        this.addEquipment(result);
                     })
                 }.bind(this)
             },
@@ -106,7 +106,15 @@ export class RechargeEquipmentComponent implements OnInit {
 
     updateEquipment(Equipment: object){
         this.customHttpClient.post('Pile/Update', Equipment).subscribe(result => {
+            if(result.code == '00')
+                this.refreshGrid();
 
+        })
+    }
+    addEquipment(Equipment: object){
+        this.customHttpClient.post('Pile/Add', Equipment).subscribe(result => {
+            if(result.code == '00')
+                this.refreshGrid();
         })
     }
     clear(){

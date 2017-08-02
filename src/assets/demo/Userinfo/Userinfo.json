@@ -1,0 +1,19 @@
+{
+    "code": "00",
+    "pageData": [
+        {
+        "account": "12324",
+        "name": "24142",
+        "rolename": "1231412",
+        "password": "123",
+        "operatorInformation_operatorid": 1,
+        "phone": "1",
+        "qq": "1",
+        "weixin": "1",
+        "email": "1"
+        }
+    ],
+    "currentPage": 1,
+    "totalPages": 5,
+    "totalElements": 50
+}

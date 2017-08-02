@@ -36,7 +36,7 @@ export class RechargeProgramComponent implements OnInit {
                     const modalRef = this.ngbModal.open(RechargeProgramAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateProgram(result);
+                        this.addProgram(result);
                     })
                 }.bind(this)
             }
@@ -90,6 +90,14 @@ export class RechargeProgramComponent implements OnInit {
     //改
     updateProgram(program: object){
         this.customHttpClient.post('Program/Add', program).subscribe(result => {
+            if(result.code == '00')
+                this.refreshGrid();
+        })
+    }
+    addProgram(program: object){
+        this.customHttpClient.post('Program/Add', program).subscribe(result => {
+            if(result.code == '00')
+                this.refreshGrid();
 
         })
     }

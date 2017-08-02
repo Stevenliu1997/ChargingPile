@@ -76,7 +76,11 @@ export class ICCardManageComponent implements OnInit {
                 }
             },
             {
-                //锁定
+                //todo 锁定
+                type: 'lock',
+                action: function (item){
+
+                }
             }
         ]
     };
@@ -93,13 +97,15 @@ export class ICCardManageComponent implements OnInit {
 
     addCard(Equipment: object){
         this.customHttpClient.post('IcCard/Add', Equipment).subscribe(result => {
-
+            if(result.code == '00')
+                this.refreshGrid();
         })
     }
 
     updateCard(Equipment: object){
         this.customHttpClient.post('IcCard/Update', Equipment).subscribe(result => {
-
+            if(result.code == '00')
+                this.refreshGrid();
         })
     }
 
