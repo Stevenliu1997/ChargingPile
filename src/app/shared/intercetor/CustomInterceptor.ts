@@ -13,12 +13,12 @@ import {Observable} from "rxjs/Observable";
 export class CustomInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let nextOb = next.handle(req);
-        nextOb.subscribe((response: any) => {
-            //错误信息拦截
-            if(response.body && response.body.code != '00'){
-                console.debug(response.body.message);
-            }
-        });
+        // nextOb.subscribe((response: any) => {
+        //     //错误信息拦截
+        //     if(response.body && response.body.code != '00'){
+        //         console.debug(response.body.message);
+        //     }
+        // });
         return nextOb;
     }
 }
