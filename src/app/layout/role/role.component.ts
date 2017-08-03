@@ -90,8 +90,11 @@ export class RoleComponent implements OnInit {
 
     updateRole(role: object){
         this.customHttpClient.post('Role/Update', role).subscribe(result => {
-            if(result.code == '00')
+            if(result.code == '00') {
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
+            }
         })
     }
 }

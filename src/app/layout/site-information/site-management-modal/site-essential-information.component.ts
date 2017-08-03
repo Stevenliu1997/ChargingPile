@@ -1,19 +1,22 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatagridComponent} from '../../../shared/components/widget/datagrid/datagrid.component';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 import {EditDeviceComponent} from './edit-device.component';
+import {ChargingPileInformationComponent} from './charging-pile-information.component';
 
 @Component({
     selector: 'app-site-essential-information',
     templateUrl: './site-essential-information.component.html'
 })
-export class SiteEssentialInformationComponent {
+export class SiteEssentialInformationComponent implements OnInit {
 
     @Input()
     actionTitle: string;
     @Input()
     editModel: any = {};
+    @Input()
+    chargingpileInformation: object = {}
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -60,11 +63,11 @@ export class SiteEssentialInformationComponent {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '';
+                    const modalRef = this.ngbModal.open(ChargingPileInformationComponent);
+                    modalRef.componentInstance.actionTitle = '此';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                            this.updateRole(result);
+                            this.information(result);
                         },
                         error => {
                         })
@@ -91,6 +94,18 @@ export class SiteEssentialInformationComponent {
         private ngbModal: NgbModal,
         private customHttpClient: CustomHttpClient
     ) {}
+
+    ngOnInit() {
+        this.customHttpClient.post('Site/'/*, siteid*/).subscribe(result => {
+            if (result.code === '00') {
+
+            }else if (result === '01') {
+                alert('错误！' + result.message);
+            } else {
+                alert('未知错误！');
+            }
+        })
+    }
 
     confirm() {
         this.activeModal.close(this.editModel);

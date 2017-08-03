@@ -1,6 +1,6 @@
 {
-    "code": "00",
-    "pageData": [
+    "result": "OK",
+    "data": [
         {
             "cardid": "1",
             "owener": "2",
@@ -11,8 +11,5 @@
             "endtime": "7",
             "ictype": "8"
         }
-    ],
-       "currentPage": 1,
-       "totalPages": 5,
-       "totalElements": 50
+    ]
 }

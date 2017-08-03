@@ -2,11 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { PageHeaderModule } from './../../shared';
-import { ICCardManageComponent } from './IC-card-manage.component';
+import { RechargeEquipmentComponent } from './IC-card-manage.component';
 
 describe('RechargeEquipmentComponent', () => {
-  let component: ICCardManageComponent;
-  let fixture: ComponentFixture<ICCardManageComponent>;
+  let component: RechargeEquipmentComponent;
+  let fixture: ComponentFixture<RechargeEquipmentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,13 +14,13 @@ describe('RechargeEquipmentComponent', () => {
       RouterTestingModule,
       PageHeaderModule,
     ],
-      declarations: [ ICCardManageComponent ]
+      declarations: [ RechargeEquipmentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ICCardManageComponent);
+    fixture = TestBed.createComponent(RechargeEquipmentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

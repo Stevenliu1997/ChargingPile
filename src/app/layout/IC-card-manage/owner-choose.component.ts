@@ -16,8 +16,11 @@ export class OwnerChooseComponent {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
 
+    queryModel: any = {
+    };
+
     config: object = {
-        url: 'ManegeUser/Find',
+        url: 'IcCard/Find',
         column: [
             {name: '用户ID', key: 'account'},
             {name: '用户名称', key: 'name'},
@@ -25,7 +28,7 @@ export class OwnerChooseComponent {
             {name: '手机号', key: 'phone'},
         ],
         params: function () {
-            return this.editModel;
+            return this.queryModel;
         }.bind(this),
     };
 

@@ -21,17 +21,10 @@ export class ICCardManageEditComponent {
         this.activeModal.close(this.editModel);
     }
 
-    /*makecard(){
-        this.customHttpClient.post('')
-    }*/
-
     openModal(){
-        const modalRef = this.ngbModal.open(OwnerChooseComponent, {size: "lg"});
-        modalRef.componentInstance.actionTitle = '';
+        const modalRef = this.ngbModal.open(OwnerChooseComponent);
+        modalRef.componentInstance.actionTitle = '新增';
         modalRef.result.then(result => {
-                this.editModel.owener=result.name;
-            },
-            error => {
-            })
+        })
     }
 }

@@ -13,6 +13,7 @@ import {UserRecordComponent} from "./user-record.component";
     animations: [routerTransition()]
 })
 export class UserComponent implements OnInit {
+    name: string = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -29,8 +30,7 @@ export class UserComponent implements OnInit {
             {name: '手机号', key: 'phone'},
             {name: 'QQ', key: 'qq'},
             {name: '微信', key: 'weixin'},
-            {name: '锁定状态', key: 'lockstate'},
-            {name: '运营商ID', key: 'operatorInformation_operatorid'}
+            {name: '锁定状态', key: 'lockstate'}
         ],
         params: function () {
             return this.queryModel;
@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
                     const modalRef = this.ngbModal.open(UserEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.refreshGrid();
+                        this.addUser(result);
                     },error => {})
                 }.bind(this)
             },
@@ -66,8 +66,9 @@ export class UserComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.refreshGrid();
-                    },error => {})
+                        this.updateUser(result);
+                    },
+                    error => {})
                 }.bind(this)
             },
             {
@@ -79,7 +80,6 @@ export class UserComponent implements OnInit {
             }
         ]
     };
-
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
@@ -87,14 +87,31 @@ export class UserComponent implements OnInit {
     }
 
     refreshGrid(){
+        console.log(this.config);
         this.datagridComponent.refreshGrid();
     }
 
+    updateUser(user: object){
+        this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
+            if(result.code == '00'){
+                this.refreshGrid();
+            }else {
+                console.log(result.message);
+            }
+        })
+    }
+
+    addUser(user: object){
+        this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
+            if(result.code == '00'){
+                this.refreshGrid();
+            }else {
+                console.log(result.message);
+            }
+        })
+    }
+
     blankGrid(){
-        this.queryModel.account ='';
-        this.queryModel.name ='';
-        this.queryModel.realname ='';
-        this.queryModel.phone ='';
-        this.queryModel.lockstate ='';
+        this.queryModel = '';
     }
 }

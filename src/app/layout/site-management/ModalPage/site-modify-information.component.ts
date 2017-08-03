@@ -11,7 +11,14 @@ export class SiteModifyInformationComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        siteid: 0,
+        account: '',
+        isreasonable: '',
+        createtime: '',
+        name: '',
+        ruleid: ''
+    };
 
     constructor(public activeModal: NgbActiveModal) {}
 

@@ -21,14 +21,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="real-name-input" class="col-4 col-form-label">真实姓名</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="real-name-input" [(ngModel)]="queryModel.realname" name="queryModel.realname">
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-4">
@@ -43,7 +35,7 @@
                         <div class="row">
                             <label for="state-input" class="col-4 col-form-label">锁定状态</label>
                             <div class="col-8">
-                                <select id="state-input" [(ngModel)]="queryModel.lockstate" class="form-control">
+                                <select id="state-input" [(ngModel)]="queryModel.lockstate" class="form-control" name="queryModel.lockstate">
                                     <option value="">请选择</option>
                                     <option value=true>正常</option>
                                     <option value=false>锁定</option>
