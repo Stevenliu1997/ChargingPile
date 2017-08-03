@@ -15,7 +15,7 @@ export class UserRecordComponent {
     operationLogConfig: object = {
         url: 'Record/Site',
         column: [
-            {name: '记录ID', key: 'useraccount'},
+            {name: '记录ID', key: 'recordid'},
             {name: '操作品牌', key: 'operatesite'},
             {name: '操作类型', key: 'type'},
             {name: '操作用户', key: 'operater'},
@@ -31,7 +31,7 @@ export class UserRecordComponent {
         column: [
             {name: '用户账户', key: 'account'},
             {name: '记录ID', key: 'recordid'},
-            {name: '操作类型', key: 'rtype'},
+            {name: '操作类型', key: 'type'},
             {name: '时间', key: 'operatetime'}
         ],
         params: function () {
@@ -39,7 +39,7 @@ export class UserRecordComponent {
         }.bind(this)
     };
     rechargeLogConfig: object = {
-        url: 'ManageUser/Find',
+        url: 'Record/Pile',
         column: [
             {name: '记录ID', key: 'recordid'},
             {name: '操作充电桩', key: 'operatepile'},

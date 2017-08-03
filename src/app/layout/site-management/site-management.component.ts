@@ -17,19 +17,13 @@ export class SiteManagementComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
-    queryModel: any = {
-        siteid: '',
-        sitename: '',
-        province: 'Default',
-        city: 'Default',
-        state: 'Default'
-    };
+    queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'SiteManagement/site-management',
+        url: 'SiteManagement/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'sitename'},
+            {name: '站点名称', key: 'name'},
             {name: '站点省市', key: 'provincecity'},
             {name: '站点状态', key: 'state'},
             {name: '收费是否合理', key: 'isreasonable'}
@@ -70,7 +64,6 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.edit(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -81,7 +74,6 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '查看';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.detail(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -92,7 +84,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.modify('SiteManagement/site-management', result);
+                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -109,9 +101,10 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    add(role: object) {
-        this.customHttpClient.post('Site/Add', role).subscribe(result => {
+    add(obj: object) {
+        this.customHttpClient.post('Site/Add', obj).subscribe(result => {
             if (result.code === '00') {
+                this.clear();
                 this.refreshGrid();
             }else if (result.code === '01') {
                 alert('错误！' + result.message);
@@ -120,10 +113,11 @@ export class SiteManagementComponent implements OnInit {
             }
         })
     }
-    edit(role: object) {
-        this.customHttpClient.post('Site/Update', role).subscribe(result => {
+    update(obj: object) {
+        this.customHttpClient.post('Site/Update', obj).subscribe(result => {
             if (result.code === '00') {
-                alert('修改成功！');
+                this.clear();
+                this.refreshGrid();
             } else if (result.code === '01') {
                 alert('错误！' + result.message);
             } else {
@@ -131,20 +125,17 @@ export class SiteManagementComponent implements OnInit {
             }
         })
     }
-    detail(role: object) {
-        this.customHttpClient.post('Site/Site', role).subscribe(result => {
-
-        })
-    }
-    modify(role: object) {
-        this.customHttpClient.post('Site/Site', role).subscribe(result => {
-
+    find(): void {
+        this.customHttpClient.post('Site/Find', this.queryModel).subscribe(result => {
+            this.clear();
+            this.refreshGrid();
         })
     }
     clear(): void {
         this.queryModel.siteid = '';
-        this.queryModel.sitename = '';
-        this.queryModel.provincecity = 'Default';
+        this.queryModel.name = '';
+        this.queryModel.province = 'Default';
+        this.queryModel.city = 'Default';
         this.queryModel.state = 'Default';
     }
 }

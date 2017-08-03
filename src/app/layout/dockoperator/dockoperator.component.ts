@@ -17,7 +17,9 @@ export class DockoperatorComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {};
+    queryModel: any = {
+
+    };
     // datagrid 配置
     config: object = {
         url: 'Operator/Find',
@@ -26,6 +28,7 @@ export class DockoperatorComponent implements OnInit {
             {name: '运营商名称', key: 'operatorname'},
             {name: '联系人', key: 'contactor'},
             {name: '手机号', key: 'phone'},
+            {name: '锁定状态', key: 'state'},
             {name: '备注信息', key :'remark'}
         ],
         params: function () {
@@ -39,6 +42,7 @@ export class DockoperatorComponent implements OnInit {
                     const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
+                        result.operatorid = -1;
                         this.addOperator(result);
                     },
                     error => {})
@@ -84,22 +88,21 @@ export class DockoperatorComponent implements OnInit {
 
     updateOperator(operator: object){
         this.customHttpClient.post('Operator/Update', operator).subscribe(result => {
-
+            if(result.code == '00'){
+                this.refreshGrid();
+            }
         })
     }
 
     addOperator(operator: object){
         this.customHttpClient.post('Operator/Add', operator).subscribe(result => {
-
+            if(result.code == '00'){
+                this.refreshGrid();
+            }
         })
     }
 
     blankGrid(){
-        this.queryModel.operatorid ='';
-        this.queryModel.operatorname ='';
-        this.queryModel.phone ='';
-        this.queryModel.remark ='';
-        this.queryModel.contactor ='';
-        this.queryModel.state ='';
+        this.queryModel ='';
     }
 }

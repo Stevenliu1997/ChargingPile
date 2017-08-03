@@ -1,6 +1,6 @@
 {
-    "result": "OK",
-    "data": [
+    "code": "00",
+    "pageData": [
         {
             "classification": "关于",
             "levelonetitle": "充电站帮助",
