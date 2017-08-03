@@ -1,6 +1,6 @@
 {
-    "result": "OK",
-    "data": [
+    "code": "00",
+    "pageData": [
         {
             "chargename": "迪克斯特拉",
             "operator": "中石油",

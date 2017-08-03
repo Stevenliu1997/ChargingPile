@@ -13,6 +13,7 @@ import {ArticleManagementAddComponent} from './article-management-modal/article-
 import {SiteEssentialInformationComponent} from './site-management-modal/site-essential-information.component';
 import {SiteModifyInformationComponent} from './site-management-modal/site-modify-information.component';
 import {EditDeviceComponent} from './site-management-modal/edit-device.component';
+import {ChargingPileInformationComponent} from './site-management-modal/charging-pile-information.component';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import {EditDeviceComponent} from './site-management-modal/edit-device.component
         SiteEssentialInformationComponent,
         SiteModifyInformationComponent,
         EditDeviceComponent,
+        ChargingPileInformationComponent,
     ],
     entryComponents: [
         SiteInformationComponent,
@@ -40,6 +42,7 @@ import {EditDeviceComponent} from './site-management-modal/edit-device.component
         SiteEssentialInformationComponent,
         SiteModifyInformationComponent,
         EditDeviceComponent,
+        ChargingPileInformationComponent,
     ]
 })
 export class SiteInformationModule { }

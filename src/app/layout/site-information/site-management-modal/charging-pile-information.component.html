@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}站点下充电桩信息</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <div>电源类型：{{chargingpileInformation.powertype}}</div>
+        </div>
+        <div class="form-group">
+            <div>电压：{{chargingpileInformation.voltage}}</div>
+        </div>
+        <div class="form-group">
+            <div>电流：{{chargingpileInformation.current}}</div>
+        </div>
+        <div class="form-group">
+            <div>功率：{{chargingpileInformation.power}}</div>
+        </div>
+        <div class="form-group">
+            <div>接口类型：{{chargingpileInformation.interfacetype}}</div>
+        </div>
+        <div class="form-group">
+            <div>接口标准：{{chargingpileInformation.interfacestandard}}</div>
+        </div>
+        <div class="form-group">
+            <div>程序ID：{{chargingpileInformation.programid}}</div>
+        </div>
+        <div class="form-group">
+            <div>厂商ID：{{chargingpileInformation.manufacturerid}}</div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>
