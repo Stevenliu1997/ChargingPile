@@ -2,12 +2,10 @@
     "code": "00",
     "pageData": [
         {
-            "operatorid": "1",
-            "operatorname": "1",
-            "state": "1",
-            "phone": "1"
+            "programid": 1,
+             "version": "23",
+             "programname": "java"
         }
-
     ],
     "currentPage": 1,
     "totalPages": 5,

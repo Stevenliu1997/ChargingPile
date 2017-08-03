@@ -30,8 +30,7 @@ export class UserComponent implements OnInit {
             {name: '手机号', key: 'phone'},
             {name: 'QQ', key: 'qq'},
             {name: '微信', key: 'weixin'},
-            {name: '锁定状态', key: 'lockstate'},
-            {name: '运营商ID', key: 'operatorInformation_operatorid'}
+            {name: '锁定状态', key: 'lockstate'}
         ],
         params: function () {
             return this.queryModel;
@@ -68,7 +67,8 @@ export class UserComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateUser(result);
-                    })
+                    },
+                    error => {})
                 }.bind(this)
             },
             {
@@ -93,21 +93,25 @@ export class UserComponent implements OnInit {
 
     updateUser(user: object){
         this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
-
+            if(result.code == '00'){
+                this.refreshGrid();
+            }else {
+                console.log(result.message);
+            }
         })
     }
 
     addUser(user: object){
         this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
-
+            if(result.code == '00'){
+                this.refreshGrid();
+            }else {
+                console.log(result.message);
+            }
         })
     }
 
     blankGrid(){
-        this.queryModel.account ='';
-        this.queryModel.name ='';
-        this.queryModel.realname ='';
-        this.queryModel.phone ='';
-        this.queryModel.lockstate ='';
+        this.queryModel = '';
     }
 }

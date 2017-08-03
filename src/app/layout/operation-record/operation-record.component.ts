@@ -4,7 +4,7 @@
 import {Component, Input,OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal, NgbTabChangeEvent} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 
 @Component({
@@ -19,20 +19,17 @@ export class OperationRecordComponent {
 
     queryModel: any = {};
 
-    @Input()
-    userId: string;
-
     siteLogConfig: object = {
         url: 'Record/Site',
         column: [
             {name: '记录ID', key: 'recordid'},
-            {name: '操作品牌', key: 'operatersite'},
+            {name: '操作站点', key: 'operatersite'},
             {name: '操作类型', key: 'type'},
             {name: '操作用户', key: 'operater'},
             {name: '时间', key: 'operatetime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            return this.queryModel;
         }.bind(this)
     };
 
@@ -45,7 +42,7 @@ export class OperationRecordComponent {
             {name: '时间', key: 'operatetime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            return this.queryModel;
         }.bind(this)
     };
     rechargeLogConfig: object = {
@@ -58,20 +55,25 @@ export class OperationRecordComponent {
             {name: '时间', key: 'operatetime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            return this.queryModel;
         }.bind(this)
     };
     constructor(private customHttpClient: CustomHttpClient) {
     }
 
-    confirm() {
-
-    }
     ngOnInit() {
     }
 
     refreshGrid(){
         this.datagridComponent.refreshGrid();
+    }
+    change($event: NgbTabChangeEvent){
+        if($event.activeId==='siteLog')
+            this.queryModel={};
+        if($event.activeId==='rechargeLog')
+            this.queryModel={};
+        if($event.activeId==='loginOutLog')
+            this.queryModel={};
     }
 
 }

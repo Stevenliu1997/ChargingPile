@@ -11,6 +11,8 @@ export class RechargeEquipmentRecordComponent {
 
     @Input()
     userId: string;
+    @Input()
+    editModel: any = {};
 
     rechargeDetail: object = {
         url: 'Pile/Find',//TODO

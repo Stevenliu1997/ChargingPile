@@ -37,7 +37,9 @@ const routes: Routes = [
             {path: 'dockoperator', loadChildren: './dockoperator/dockoperator.module#DockoperatorModule'},
             {path: 'provider', loadChildren: './provider/provider.module#ProviderModule'},
             {path: 'order-manage',loadChildren: './order-manage/order-manage.module#OrderManageModule'},
-            {path: 'orderquery',loadChildren: './orderquery/orderquery.module#OrderQueryModule'}
+            {path: 'orderquery',loadChildren: './orderquery/orderquery.module#OrderQueryModule'},
+            {path: 'IC-card-check',loadChildren: './IC-card-check/IC-card-check.module#ICCardCheckModule'},
+            {path: 'IC-card-manage',loadChildren: './IC-card-manage/IC-card-manage.module#ICCardManageModule'},
         ]
     }
 ];

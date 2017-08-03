@@ -1,0 +1,31 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'IC卡管理'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-12 row">
+                <div class="col-8">
+                    <div class="row" >
+                        <label class="col-form-label col-3">审核状态查询:</label>
+                        <select class="form-contro col-5">
+                            <option value="">请选择</option>
+                            <option value="">取消</option>
+                            <option value="">待审核</option>
+                            <option value="">审核通过</option>
+                            <option value="">审核不通过</option>
+                            <option value="">制卡成功</option>
+                            <option value="">发卡成功</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4 ">
+                    <div class="row" >
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                </div>
+             </div>
+        </div>
+
+        <app-datagrid [config]="config"></app-datagrid>
+    </div>
+</div>
