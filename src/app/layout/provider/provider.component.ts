@@ -13,13 +13,19 @@ import {ProviderRecordComponent} from './provider-record.component';
     animations: [routerTransition()]
 })
 export class ProviderComponent implements OnInit {
-    name: String = 'name';
+
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
 
     //查询对象
-    queryModel: any = {};
+    address: any = {};
+
+    queryModel: any = {
+        provincecity : this.address.province + '&' + this.address.city
+    };
+
+
     // datagrid 配置
     config: object = {
         url: 'Factory/Find',
@@ -65,7 +71,7 @@ export class ProviderComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Factory/Find'
+                    url:'Factory/Delete'
                 }
             },
             {
@@ -80,14 +86,14 @@ export class ProviderComponent implements OnInit {
                     error => {
                     })
                 }.bind(this)
-            }/*,
+            },
             {
                 type: 'detail',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ProviderRecordComponent, {size: "lg"});
                     modalRef.componentInstance.factoryid = item.factoryid;
                 }.bind(this)
-            }*/
+            }
         ]
     };
 
@@ -102,25 +108,25 @@ export class ProviderComponent implements OnInit {
     }
 
     initquery(){
-        this.queryModel.factoryid = '';
-        this.queryModel.name= '';
-        this.queryModel.position = '';
-        this.queryModel.province = '';
-        this.queryModel.city='';
-        this.queryModel.phone = '';
-        this.queryModel.contactor = '';
+        this.queryModel = {};
+        this.address = {};
 
     }
 
     updateProvider(provider: object){
         this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
-
+            if(result.code == '00'){
+                this.refreshGrid();
+            }
         })
     }
 
     addProvider(provider: object){
         this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
-
+            if(result.code == '00'){
+                this.refreshGrid();
+            }
         })
     }
+
 }

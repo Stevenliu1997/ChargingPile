@@ -15,10 +15,10 @@
             <!--<textarea [(ngModel)] = 'editModel.desc' id="editModel.desc" name="editModel.desc" class="form-control">-->
             <!--</textarea>-->
         <!--</div>-->
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="actionTitle == '编辑'">
             <label class="col-2 col-form-label">厂商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.id' name="editModel.id" class="form-control">
+                <input type="number" [(ngModel)] = 'editModel.factoryid' name="editModel.factoryid" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -28,16 +28,36 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">厂商地址</label>
+            <label class="col-2 col-form-label">省</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.address' name="editModel.address" class="form-control">
+                <select [(ngModel)] = 'address.province' name="editModel.province" class="form-control">
+                    <option value="">请选择</option>
+                    <option value="四川">四川</option>
+                    <option value="湖南">湖南</option>
+                </select>
             </div>
         </div>
-        //添加省市区级联选择
+        <div class="form-group row">
+            <label class="col-2 col-form-label">市</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'address.city' name="editModel.city" class="form-control">
+                    <option value="">请选择</option>
+                    <option value="四川">成都</option>
+                    <option value="湖南">郑州</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label">厂商地址</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.position' name="editModel.position" class="form-control">
+            </div>
+        </div>
+
         <div class="form-group row">
             <label class="col-2 col-form-label">联系人</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.contact' name="editModel.contact" class="form-control">
+                <input [(ngModel)] = 'editModel.contactor' name="editModel.contactor" class="form-control">
             </div>
         </div>
         <div class="form-group row">
