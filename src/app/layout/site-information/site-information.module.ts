@@ -14,6 +14,9 @@ import {SiteEssentialInformationComponent} from './site-management-modal/site-es
 import {SiteModifyInformationComponent} from './site-management-modal/site-modify-information.component';
 import {EditDeviceComponent} from './site-management-modal/edit-device.component';
 import {ChargingPileInformationComponent} from './site-management-modal/charging-pile-information.component';
+import {ChargingRuleEditComponent} from './charging-rule-modal/charging-rule-edit.component';
+import {ChargingRuleInformationComponent} from './charging-rule-modal/charging-rule-information.component';
+import {AddRuleComponent} from './charging-rule-modal/add-rule.component';
 
 @NgModule({
     imports: [
@@ -33,6 +36,9 @@ import {ChargingPileInformationComponent} from './site-management-modal/charging
         SiteModifyInformationComponent,
         EditDeviceComponent,
         ChargingPileInformationComponent,
+        ChargingRuleEditComponent,
+        ChargingRuleInformationComponent,
+        AddRuleComponent,
     ],
     entryComponents: [
         SiteInformationComponent,
@@ -43,6 +49,9 @@ import {ChargingPileInformationComponent} from './site-management-modal/charging
         SiteModifyInformationComponent,
         EditDeviceComponent,
         ChargingPileInformationComponent,
+        ChargingRuleEditComponent,
+        ChargingRuleInformationComponent,
+        AddRuleComponent,
     ]
 })
 export class SiteInformationModule { }

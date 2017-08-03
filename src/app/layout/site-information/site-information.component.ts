@@ -1,12 +1,14 @@
 import {Component, OnInit, ViewChild, Input} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 import {SiteManagementAddComponent} from './site-management-modal/site-management-add.component';
 import {ChargingRuleAddComponent} from './charging-rule-modal/charging-rule-add.component';
 import {ArticleManagementAddComponent} from './article-management-modal/article-management-add.component';
 import {SiteEssentialInformationComponent} from './site-management-modal/site-essential-information.component';
+import {ChargingRuleEditComponent} from './charging-rule-modal/charging-rule-edit.component';
+import {ChargingRuleInformationComponent} from './charging-rule-modal/charging-rule-information.component';
 
 @Component({
     selector: 'app-site-information',
@@ -18,26 +20,7 @@ export class SiteInformationComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
 
-    queryModel: any = {
-        siteid: '',
-        sitename: '',
-        province: 'Default',
-        city: 'Default',
-        state: 'Default',
-
-        chargename: '',
-        operator: 'Default',
-        chargerulenum: '',
-        startstate: 'Default',
-        ruletype: 'Default',
-        usingsign: 'Default',
-        testdata: 'Default',
-
-        levelonetitle: 'Default',
-        leveltwotitle: '',
-        isdisplay: 'Default',
-        classification: 'Default'
-    };
+    queryModel: any = {};
 
     siteMConfig: object = {
         url: 'SiteInformation/site-management',
@@ -88,7 +71,7 @@ export class SiteInformationComponent implements OnInit {
     };
 
     chargingRConfig: object = {
-        url: 'SiteInformation/charing-rule',
+        url: 'ChargingRule/Find',
         column: [
             {name: '计费规则名称', key: 'chargename'},
             {name: '运营方', key: 'operator'},
@@ -109,10 +92,10 @@ export class SiteInformationComponent implements OnInit {
                 type: 'add',
                 name: '添加',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(ChargingRuleAddComponent);
+                    const modalRef = this.ngbModal.open(ChargingRuleAddComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.ChargingRuleAdd(result);
                     })
                 }.bind(this)
             },
@@ -123,7 +106,7 @@ export class SiteInformationComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'SiteInformation/delete'
+                    url: 'ArticleManage/Delete'
                 }
             }
         ],
@@ -131,7 +114,7 @@ export class SiteInformationComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open();
+                    const modalRef = this.ngbModal.open(ChargingRuleInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
@@ -142,7 +125,7 @@ export class SiteInformationComponent implements OnInit {
             {
                 type: 'edit',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open();
+                    const modalRef = this.ngbModal.open(ChargingRuleEditComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
@@ -212,15 +195,20 @@ export class SiteInformationComponent implements OnInit {
     }
     ngOnInit() {
     }
-
+    beforeChange($event: NgbTabChangeEvent) {
+        if ($event.activeId === 'siteManagement') {
+            this.chargingclear();
+            this.articleclear();
+        } else if ($event.activeId === 'chargingRule') {
+            this.siteclear();
+            this.articleclear();
+        } else if ($event.activeId === 'articleManagement') {
+            this.siteclear();
+            this.chargingclear();
+        }
+    }
     refreshGrid() {
         this.datagridComponent.refreshGrid();
-    }
-
-    update(url: string, role: object) {
-        this.customHttpClient.post(url, role).subscribe(result => {
-
-        })
     }
 
     siteclear(): void {
@@ -244,5 +232,9 @@ export class SiteInformationComponent implements OnInit {
         this.queryModel.leveltwotitle = '';
         this.queryModel.isdisplay = 'Default';
         this.queryModel.classification = 'Default';
+    }
+    ChargingRuleAdd(obj: object): void {
+        this.customHttpClient.post('ChargingRule/Add', obj).subscribe(result => {
+        })
     }
 }

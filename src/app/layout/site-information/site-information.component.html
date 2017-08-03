@@ -4,8 +4,8 @@
     <div content="main-content container">
 
         <div class="modal-body">
-            <ngb-tabset [destroyOnHide]="false">
-                <ngb-tab title="站点管理">
+            <ngb-tabset [destroyOnHide]="false" (tabChange)="beforeChange($event)">
+                <ngb-tab title="站点管理" id="siteManagement">
                     <ng-template ngbTabContent>
 
                         <div class="row">
@@ -70,7 +70,7 @@
                         </div>
                     </ng-template>
                 </ngb-tab>
-                <ngb-tab title="计费规则管理">
+                <ngb-tab title="计费规则管理" id="chargingRule">
                     <ng-template ngbTabContent>
                         <div class="row">
                             <div class="col-3">
@@ -170,7 +170,7 @@
 
                     </ng-template>
                 </ngb-tab>
-                <ngb-tab title="文章管理">
+                <ngb-tab title="文章管理" id="articleManagement">
                     <ng-template ngbTabContent>
                         <div class="row">
                             <div class="col-3">

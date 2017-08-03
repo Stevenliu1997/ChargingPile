@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}车辆信息</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="editModel.price">电价</label>
+            <input [(ngModel)] = 'editModel.price' id="editModel.price" name="editModel.price" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.servicecharge">服务费</label>
+            <input [(ngModel)] = 'editModel.servicecharge' id="editModel.servicecharge" name="editModel.servicecharge" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.starttime">开始时间</label>
+            <input type="date" [(ngModel)] = 'editModel.starttime' id="editModel.starttime" name="editModel.starttime" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="editModel.endtime">结束时间</label>
+            <input type="date" [(ngModel)] = 'editModel.endtime' id="editModel.endtime" name="editModel.endtime" class="form-control">
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>

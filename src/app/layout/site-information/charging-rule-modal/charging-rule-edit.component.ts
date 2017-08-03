@@ -1,13 +1,14 @@
-import {Component, Input} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 
 import {AddRuleComponent} from './add-rule.component';
 
 @Component({
-    selector: 'app-charging-rule-add',
-    templateUrl: './charging-rule-add.component.html'
+    selector: 'app-charging-rule-edit',
+    templateUrl: './charging-rule-edit.component.html'
 })
-export class ChargingRuleAddComponent {
+export class ChargingRuleEditComponent {
 
     @Input()
     actionTitle: string;
@@ -50,7 +51,10 @@ export class ChargingRuleAddComponent {
         ]
     };
 
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(
+        public activeModal: NgbActiveModal,
+        public ngbModal: NgbModal
+        ) {}
 
     confirm() {
         this.activeModal.close(this.editModel);

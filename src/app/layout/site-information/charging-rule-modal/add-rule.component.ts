@@ -2,19 +2,17 @@ import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-charging-pile-information',
-    templateUrl: './charging-pile-information.component.html'
+    selector: 'app-add-rule-aticle',
+    templateUrl: './add-rule.component.html'
 })
-export class ChargingPileInformationComponent {
+export class AddRuleComponent {
 
     @Input()
     actionTitle: string;
     @Input()
     editModel: any = {};
 
-    constructor(public activeModal: NgbActiveModal) {
-        console.log(this.editModel);
-    }
+    constructor(public activeModal: NgbActiveModal) {}
 
     confirm() {
         this.activeModal.close(this.editModel);
