@@ -14,8 +14,10 @@ const routes: Routes = [
             { path: 'recharge-program', loadChildren: './recharge-program/recharge-program.module#RechargeProgramModule' },
             //汽车品牌管理
             { path: 'car-brand', loadChildren: './car-brand/car-brand.module#CarBrandModule' },
-            //站点管理
+            /*基础数据管理里的站点管理*/
             { path: 'site-management', loadChildren: './site-management/site-management.module#SiteManagementModule'},
+            /*运营商管理里的站点管理*/
+            { path: 'site-information', loadChildren: './site-information/site-information.module#SiteInformationModule'},
             /*系统设置*/
             { path: 'system-setting', loadChildren: './system-setting/system-setting.module#SystemSettingModule'},
             //充电桩硬件设备库
