@@ -16,14 +16,10 @@ export class CarBrandComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     /*查询对象*/
-    queryModel: any = {
-        brandId: '',
-        brandName: '',
-        carModel: ''
-    };
+    queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'CarBrand/CarBrand',
+        url: 'CarBrand/Find',
         column: [
             {name: '品牌ID', key: 'brandid'},
             {name: '品牌名称', key: 'brandname'},
@@ -100,8 +96,10 @@ export class CarBrandComponent implements OnInit {
     }
 
     add(obj: object) {
-        this.customHttpClient.post('CarBrand/Add', obj).subscribe(result => {
+        this.customHttpClient.post('CarBrand/Add', {brandname: this.queryModel.brandname, cartype: this.queryModel.cartype})
+            .subscribe(result => {
             if (result.code === '00') {
+                this.clear();
                 this.refreshGrid();
             } else if (result.code === '01') {
                 alert('错误！' + result.message);
@@ -110,19 +108,7 @@ export class CarBrandComponent implements OnInit {
             }
         });
     }
-    edit(obj: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', obj).subscribe(result => {
-
-        })
-    }
-    detail(obj: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', obj).subscribe(result => {
-
-        })
-    }
     clear(): void {
-        this.queryModel.brandid = '';
-        this.queryModel.brandname = '';
-        this.queryModel.cartyper = '';
+        this.queryModel = {};
     }
 }

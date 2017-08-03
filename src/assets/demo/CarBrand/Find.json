@@ -1,5 +1,4 @@
 {
-    "code": "00",
     "pageData": [
         {
             "brandid": "2015220503001",
@@ -15,5 +14,9 @@
             "introduction": "ddd",
             "image": "http://localhost:4200/assets/demo/CarBrand/BMWLogo.jpg"
         }
-    ]
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "message": null,
+    "code": null
 }

@@ -3,6 +3,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatagridComponent} from '../../../shared/components/widget/datagrid/datagrid.component';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 import {EditDeviceComponent} from './edit-device.component';
+import {ChargingPileInformationComponent} from './charging-pile-information.component';
 
 @Component({
     selector: 'app-site-essential-information',
@@ -14,6 +15,8 @@ export class SiteEssentialInformationComponent implements OnInit {
     actionTitle: string;
     @Input()
     editModel: any = {};
+    @Input()
+    chargingpileInformation: object = {}
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -60,11 +63,11 @@ export class SiteEssentialInformationComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open();
-                    modalRef.componentInstance.actionTitle = '';
+                    const modalRef = this.ngbModal.open(ChargingPileInformationComponent);
+                    modalRef.componentInstance.actionTitle = '此';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                            this.updateRole(result);
+                            this.information(result);
                         },
                         error => {
                         })
