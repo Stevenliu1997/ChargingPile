@@ -16,8 +16,10 @@ export class ProfileEditpasswordComponent {
 
     value= '';
     pwd= false;
-    errormsg: string;
     newpwd= false;
+    errormsg: string;
+    //确认密码
+    newpassword='';
 
     private datagridComponent: DatagridComponent;
 
@@ -29,8 +31,8 @@ export class ProfileEditpasswordComponent {
     }
 
     confirm() {
-        this.customHttpClient.post('',this.editModel).subscribe(result => {
-            if(result.code=='00'){
+        this.customHttpClient.post('User/UpdatePassword',this.editModel.oldpassword).subscribe(result => {
+            if(result.code=='00'&&!this.pwd&&!this.newpwd){
                 this.activeModal.close(this.editModel);
             }else{
                 this.errormsg= result.message;
@@ -52,12 +54,5 @@ export class ProfileEditpasswordComponent {
             this.pwd= true;
         else
             this.pwd= false;
-    }
-    //比较原密码 TODO
-    compare2(oldpassword: object){
-        this.customHttpClient.post('User/UpdatePassword', oldpassword).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-        })
     }
 }

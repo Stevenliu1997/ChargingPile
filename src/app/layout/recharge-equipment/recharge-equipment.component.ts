@@ -18,7 +18,7 @@ export class RechargeEquipmentComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     //查询对象
     queryModel: any = {
-        status: '',
+        state: '',
         equipmentId: '',
         name: '',
         siteId: '',
@@ -50,6 +50,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
                         this.addEquipment(result);
+                    },error => {
                     })
                 }.bind(this)
             },
@@ -68,7 +69,7 @@ export class RechargeEquipmentComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent, {size: "lg"});
+                    const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent);
                     modalRef.componentInstance.userId = item.id;
                 }.bind(this)
             },
@@ -80,6 +81,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateEquipment(result);
+                    },error => {
                     })
                 }.bind(this)
             },
@@ -108,20 +110,25 @@ export class RechargeEquipmentComponent implements OnInit {
         this.customHttpClient.post('Pile/Update', Equipment).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
-
+            else
+                console.log("result.message");
         })
     }
     addEquipment(Equipment: object){
         this.customHttpClient.post('Pile/Add', Equipment).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
+            else
+                console.log("result.message");
         })
     }
     clear(){
-        this.queryModel.state= '';
-        this.queryModel.pileid= '';
-        this.queryModel.factoryid= '';
-        this.queryModel.pilename= '';
-        this.queryModel.siteid= '';
+        this.queryModel={
+            state: '',
+            equipmentId: '',
+            name: '',
+            siteId: '',
+            factoryId: ''
+        }
     }
 }

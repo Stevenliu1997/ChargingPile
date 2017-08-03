@@ -14,17 +14,7 @@ import {error} from "selenium-webdriver";
     animations: [routerTransition()]
 })
 export class ProfileComponent implements OnInit {
-    queryModel: any = {
-        account: '',
-        name: '',
-        rolename: '',
-        password: '',
-        operatorInformation_operatorid: '',
-        phone: '',
-        qq: '',
-        weixin: '',
-        email: ''
-    };
+    queryModel: any = {};
 
     // datagrid 配置
     constructor(private ngbModal: NgbModal,public router: Router, private customHttpClient: CustomHttpClient) {
@@ -32,18 +22,8 @@ export class ProfileComponent implements OnInit {
 
 
     ngOnInit() {
-        this.customHttpClient.post('Userinfo').subscribe(result => {
-            if(result.code == '00'){
-                this.queryModel.account=result.pageData.account;
-                this.queryModel.name=result.pageData.name;
-                this.queryModel.rolename=result.pageData.rolename;
-                this.queryModel.password=result.pageData.password;
-                this.queryModel.operatorInformation_operatorid=result.pageData.operatorInformation_operatorid;
-                this.queryModel.phone=result.pageData.phone;
-                this.queryModel.qq=result.pageData.qq;
-                this.queryModel.weixin=result.pageData.weixin;
-                this.queryModel.email=result.pageData.email;
-            }
+        this.customHttpClient.get('Userinformation').subscribe(result => {
+                this.queryModel=result;
         },error => {
         })
     }
@@ -72,17 +52,10 @@ export class ProfileComponent implements OnInit {
     updateProfile(profile: object){
         this.customHttpClient.post('ManageUser/Update', profile).subscribe(result => {
             if(result.code == '00')
-                this.queryModel.account=result.pageData.account;
-                this.queryModel.name=result.pageData.name;
-                this.queryModel.rolename=result.pageData.rolename;
-                this.queryModel.password=result.pageData.password;
-                this.queryModel.operatorInformation_operatorid=result.pageData.operatorInformation_operatorid;
-                this.queryModel.phone=result.pageData.phone;
-                this.queryModel.qq=result.pageData.qq;
-                this.queryModel.weixin=result.pageData.weixin;
-                this.queryModel.email=result.pageData.email;
+                this.queryModel=result;
         },error => {})
     }
+
     updatePassword(password: object){
         this.customHttpClient.post('User/UpdatePassword', password).subscribe(result => {
         },error => {})

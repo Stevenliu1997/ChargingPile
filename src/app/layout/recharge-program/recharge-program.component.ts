@@ -21,6 +21,7 @@ export class RechargeProgramComponent implements OnInit {
     config: object = {
         url: 'Program/Find',    //和后端交互URL
         column: [
+            {name: '程序ID', key: 'programid'},
             {name: '程序版本号', key: 'version'},
             {name: '程序名称', key: 'programname'}
         ],
@@ -36,8 +37,9 @@ export class RechargeProgramComponent implements OnInit {
                     const modalRef = this.ngbModal.open(RechargeProgramAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
+                        result.programid=-1;
                         this.addProgram(result);
-                    })
+                    },error =>{})
                 }.bind(this)
             }
         ],
@@ -61,7 +63,7 @@ export class RechargeProgramComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateProgram(result);
-                    })
+                    },error => {})
                 }.bind(this)
             },
             {
@@ -92,13 +94,14 @@ export class RechargeProgramComponent implements OnInit {
         this.customHttpClient.post('Program/Add', program).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
+        },error => {
         })
     }
     addProgram(program: object){
         this.customHttpClient.post('Program/Add', program).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
-
+        },error => {
         })
     }
 }
