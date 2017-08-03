@@ -6,10 +6,10 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
 import {SiteManagementAddComponent} from './site-management-modal/site-management-add.component';
 import {ChargingRuleAddComponent} from './charging-rule-modal/charging-rule-add.component';
 import {ArticleManagementAddComponent} from './article-management-modal/article-management-add.component';
-import {SiteEssentialInformationComponent} from "./site-management-modal/site-essential-information.component";
+import {SiteEssentialInformationComponent} from './site-management-modal/site-essential-information.component';
 
 @Component({
-    selector: 'site-information',
+    selector: 'app-site-information',
     templateUrl: './site-information.component.html',
     styleUrls: ['./site-information.component.scss'],
     animations: [routerTransition()]
@@ -79,9 +79,8 @@ export class SiteInformationComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteEssentialInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '查看站点信息';
-                    modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+
                     }, error => {})
                 }.bind(this)
             }

@@ -1,6 +1,6 @@
 {
-    "result": "OK",
-    "data": [
+    "code": "00",
+    "pageData": [
         {
             "siteid": "001",
             "sitename": "中国石油",

@@ -109,8 +109,8 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    add(role: object) {
-        this.customHttpClient.post('Site/Add', role).subscribe(result => {
+    add(obj: object) {
+        this.customHttpClient.post('Site/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.refreshGrid();
             }else if (result.code === '01') {
@@ -120,15 +120,21 @@ export class SiteManagementComponent implements OnInit {
             }
         })
     }
-    edit(role: object) {
-        this.customHttpClient.post('Site/Update', role).subscribe(result => {
+    edit(obj: object) {
+        this.customHttpClient.post('Site/Update', obj).subscribe(result => {
             if (result.code === '00') {
                 alert('修改成功！');
+                this.refreshGrid();
             } else if (result.code === '01') {
                 alert('错误！' + result.message);
             } else {
                 alert('未知错误！');
             }
+        })
+    }
+    find(): void {
+        this.customHttpClient.post('Site/Find', this.queryModel).subscribe(result => {
+            this.refreshGrid();
         })
     }
     detail(role: object) {

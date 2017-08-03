@@ -1,17 +1,36 @@
 {
-    "result": "OK",
-    "data": [
+    "code": "00",
+    "pageData": [
         {
-            "siteid": "003",
-            "sitename": "中石油",
+            "siteid": "001",
+            "sitename": "中国石油",
             "provincecity": "四川省成都市",
-            "state": "正常"
+            "state": "正常",
+            "isreasonable": "不合理",
+            "isopen": "是",
+            "type": "超大型",
+            "position": "yyyy",
+            "pilenumber": "12",
+            "seatnumber": "9",
+            "operatorInformation_operatorid": "rrrrr",
+            "isscanning": "是"
         },
         {
-            "siteid": "848",
-            "sitename": "中石化",
+            "siteid": "002",
+            "sitename": "中国石化",
             "provincecity": "四川省成都市",
-            "state": "锁定"
+            "state": "锁定",
+            "isreasonable": "很不合理",
+            "isopen": "否",
+            "type": "小型",
+            "province": "四川",
+            "city": "成都",
+            "position": "xxxx",
+            "pilenumber": "6",
+            "seatnumber": "6",
+            "operatorInformation_operatorid": "111",
+            "isscanning": "否"
         }
+
     ]
 }

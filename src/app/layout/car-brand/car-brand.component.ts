@@ -93,8 +93,14 @@ export class CarBrandComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    add(role: object) {
-        this.customHttpClient.post('CarBrand/Add', role).subscribe(result => {
+    find(): void {
+        this.customHttpClient.post('CarBrand/Find', this.queryModel).subscribe(result => {
+            this.refreshGrid();
+        })
+    }
+
+    add(obj: object) {
+        this.customHttpClient.post('CarBrand/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.refreshGrid();
             } else if (result.code === '01') {
@@ -102,15 +108,15 @@ export class CarBrandComponent implements OnInit {
             } else {
                 alert('未知错误!');
             }
-        })
+        });
     }
-    edit(role: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
+    edit(obj: object) {
+        this.customHttpClient.post('CarBrand/CarBrand', obj).subscribe(result => {
 
         })
     }
-    detail(role: object) {
-        this.customHttpClient.post('CarBrand/CarBrand', role).subscribe(result => {
+    detail(obj: object) {
+        this.customHttpClient.post('CarBrand/CarBrand', obj).subscribe(result => {
 
         })
     }

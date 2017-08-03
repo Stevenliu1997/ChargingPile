@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatagridComponent} from '../../../shared/components/widget/datagrid/datagrid.component';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
@@ -8,7 +8,7 @@ import {EditDeviceComponent} from './edit-device.component';
     selector: 'app-site-essential-information',
     templateUrl: './site-essential-information.component.html'
 })
-export class SiteEssentialInformationComponent {
+export class SiteEssentialInformationComponent implements OnInit {
 
     @Input()
     actionTitle: string;
@@ -91,6 +91,18 @@ export class SiteEssentialInformationComponent {
         private ngbModal: NgbModal,
         private customHttpClient: CustomHttpClient
     ) {}
+
+    ngOnInit() {
+        this.customHttpClient.post('Site/'/*, siteid*/).subscribe(result => {
+            if (result.code === '00') {
+
+            }else if (result === '01') {
+                alert('错误！' + result.message);
+            } else {
+                alert('未知错误！');
+            }
+        })
+    }
 
     confirm() {
         this.activeModal.close(this.editModel);
