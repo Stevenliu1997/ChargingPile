@@ -61,7 +61,9 @@ export class OrderManageComponent implements OnInit {
 
 
     exportGrid(ids){
-        this.customHttpClient.post('ReserveForm /Export',ids);
+        this.customHttpClient.post('ReserveForm /Export',ids).subscribe(result =>{
+
+        });
         //window.open('ReserveForm /Export');
     }
 }
