@@ -91,7 +91,7 @@ export class ProviderComponent implements OnInit {
                             tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                             tempResult.province = undefined;
                             tempResult.city = undefined;
-                            this.addProvider(tempResult)
+                            this.updateProvider(tempResult);
                     },
                     error => {
                     })
