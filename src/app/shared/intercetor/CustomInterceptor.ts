@@ -18,21 +18,41 @@ export class CustomInterceptor implements HttpInterceptor {
 
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let nextOb = next.handle(req);
-        // nextOb.subscribe((response: any) => {
-        //     console.log(response);
-        //
-        //     //错误信息拦截
-        //     if(response.body && response.body.code != '00'){
-        //         this.toastr.clearAllToasts();
-        //         this.toastr.error(response.body.message);
-        //     }else {
-        //         if(response.url && response.url.indexOf('Add') != -1){
-        //             this.toastr.clearAllToasts();
-        //             this.toastr.success('操作成功！');
-        //         }
-        //     }
-        // });
-        return next.handle(req);
+        let nextOb = next.handle(req).map(event => {
+            this.handResponse(event);
+            return event;
+        });
+
+        return nextOb;
     }
+
+    handResponse(response: any){
+        //错误信息拦截
+        if(response.body && response.body.code != '00'){
+            this.toastr.clearAllToasts();
+            window.setTimeout(() => {
+                this.toastr.error(response.body.message);
+            },0);
+        }else {
+            if(response.url){
+                let msg;
+                if(response.url.indexOf('Add') != -1){
+                    msg = '添加成功！';
+                }else if(response.url.indexOf('Update') != -1){
+                    msg = '修改成功！';
+                }else if(response.url.indexOf('Delete') != -1){
+                    msg = '删除成功！';
+                }
+                if(msg){
+                    this.toastr.clearAllToasts();
+                    window.setTimeout(() => {
+                        this.toastr.success(msg);
+                    },0);
+
+
+                }
+            }
+        }
+    }
+
 }

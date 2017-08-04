@@ -19,7 +19,6 @@ export class CRUDService {
             result => {
                 this.customHttpClient.post(url, {ids: ids}).subscribe(
                     success => {
-                        alert('删除成功！');
                         successFn();
                     }
                 );
