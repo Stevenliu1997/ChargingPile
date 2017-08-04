@@ -20,7 +20,7 @@ export class SiteManagementComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'SiteManagement/Find',
+        url: 'Site/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
             {name: '站点名称', key: 'name'},
@@ -125,12 +125,7 @@ export class SiteManagementComponent implements OnInit {
             }
         })
     }
-    find(): void {
-        this.customHttpClient.post('Site/Find', this.queryModel).subscribe(result => {
-            this.clear();
-            this.refreshGrid();
-        })
-    }
+
     clear(): void {
         this.queryModel.siteid = '';
         this.queryModel.name = '';
