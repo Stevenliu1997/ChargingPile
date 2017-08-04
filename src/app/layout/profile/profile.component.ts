@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
+        key: 'account',
         url: 'Userinfo', //和后端交互URL
         column: [
             {name: '用户ID', key: 'account'},
@@ -60,22 +61,21 @@ export class ProfileComponent implements OnInit {
         modalRef.componentInstance.actionTitle = '修改';
         modalRef.result.then(result => {
             this.updatePassword(result);
-        })
+        },
+            error => {
+            })
     }
 
     updateProfile(profile: object) {
         this.customHttpClient.post('ManageUser/Update', profile).subscribe(result => {
-
-            if (result.code == '00')
-                this.queryModel = result;
-        }, error => {
-        })
+            if(result.code == '00')
+                this.queryModel=result;
+        },error => {})
     }
 
 
     updatePassword(password: object){
         this.customHttpClient.post('User/UpdatePassword', password).subscribe(result => {
-
-        })
+        },error => {})
     }
 }

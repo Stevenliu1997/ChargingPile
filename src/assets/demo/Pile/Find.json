@@ -20,7 +20,27 @@
             "workstation": "dsa",
             "pilename": "dsa",
             "qrcode": "wq"
-        }
+        },
+                {
+                    "pileid": "123",
+                    "name": "231",
+                    "type": "321",
+                    "remarks": "2131",
+                    "v": "312",
+                    "powertype": "1",
+                    "i": 1,
+                    "p": 2,
+                    "interfacetype": "2",
+                    "interfacestatard": "312",
+                    "programid": "321",
+                    "factoryid": "3232",
+                    "siteid": "asd",
+                    "position": "dsa",
+                    "state": "dsa",
+                    "workstation": "dsa",
+                    "pilename": "dsa",
+                    "qrcode": "wq"
+                }
     ],
     "currentPage": 1,
     "totalPages": 5,

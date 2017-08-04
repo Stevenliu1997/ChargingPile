@@ -7,13 +7,11 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ProviderEditComponent {
 
-    address: any ={};
 
     @Input()
     actionTitle: string;
     @Input()
     editModel: any = {
-        provincecity: this.address.province +"&"+ this.address.city
     };
 
 

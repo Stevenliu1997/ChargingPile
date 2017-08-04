@@ -27,6 +27,7 @@ export class ProviderComponent implements OnInit {
 
     // datagrid 配置
     config: object = {
+        key: 'factoryid',
         url: 'Factory/Find',
         column: [
             {name: '厂商ID', key: 'factoryid'},
@@ -48,8 +49,13 @@ export class ProviderComponent implements OnInit {
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ProviderEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
+
                     modalRef.result.then(result => {
-                        this.addProvider(result);
+                        let tempResult  =Object.assign({},result);
+                        tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
+                        tempResult.province = undefined;
+                        tempResult.city = undefined;
+                        this.addProvider(tempResult);
                     },
                     error => {})
                 }.bind(this)
@@ -61,7 +67,7 @@ export class ProviderComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Factory/delete'
+                    url:'Factory/Delete'
                 }
             }
         ],
@@ -69,7 +75,7 @@ export class ProviderComponent implements OnInit {
             {
                 type: 'delete',
                 action: function (item) {
-                },
+                }.bind(this),
                 autoConfig: {
                     url:'Factory/Delete'
                 }
@@ -81,7 +87,11 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateProvider(result);
+                            let tempResult  =Object.assign({},result);
+                            tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
+                            tempResult.province = undefined;
+                            tempResult.city = undefined;
+                            this.updateProvider(tempResult);
                     },
                     error => {
                     })
@@ -117,6 +127,8 @@ export class ProviderComponent implements OnInit {
         this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
             if(result.code == '00'){
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
             }
         })
     }
@@ -125,6 +137,8 @@ export class ProviderComponent implements OnInit {
         this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
             if(result.code == '00'){
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
             }
         })
     }
