@@ -60,10 +60,10 @@ export class OrderManageComponent implements OnInit {
     }
 
 
-    exportGrid(ids){
+/*    exportGrid(ids){
         this.customHttpClient.post('ReserveForm /Export',ids).subscribe(result =>{
 
         });
         //window.open('ReserveForm /Export');
-    }
+    }*/
 }

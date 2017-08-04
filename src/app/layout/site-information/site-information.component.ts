@@ -17,8 +17,12 @@ import {ChargingRuleInformationComponent} from './charging-rule-modal/charging-r
     animations: [routerTransition()]
 })
 export class SiteInformationComponent implements OnInit {
-    @ViewChild(DatagridComponent)
-    private datagridComponent: DatagridComponent;
+    @ViewChild('siteM')
+    private siteMComponent: DatagridComponent;
+    @ViewChild('charging')
+    private chargingComponent: DatagridComponent;
+    @ViewChild('article')
+    private articleComponent: DatagridComponent;
 
     queryModel: any = {};
 
@@ -207,8 +211,14 @@ export class SiteInformationComponent implements OnInit {
             this.chargingclear();
         }
     }
-    refreshGrid() {
-        this.datagridComponent.refreshGrid();
+    refreshGridSiteM() {
+        this.siteMComponent.refreshGrid();
+    }
+    refreshGridCharging() {
+        this.chargingComponent.refreshGrid();
+    }
+    refreshGridArticle() {
+        this.articleComponent.refreshGrid();
     }
 
     siteclear(): void {
