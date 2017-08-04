@@ -12,7 +12,6 @@ import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomH
     animations: [routerTransition()]
 })
 export class RoleComponent implements OnInit {
-    name: String = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -20,11 +19,12 @@ export class RoleComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
+        key: 'roleid',
         url: 'Role/Find',
         column: [
-            {name: '角色名称', key: 'name'},
-            {name: '角色权限', key: 'auth'},
-            {name: '角色描述', key: 'desc'}
+            {name: '角色ID', key: 'roleid'},
+            {name: '角色名称', key: 'rolename'},
+            {name: '角色权限', key: 'authorities'},
         ],
         params: function () {
             return this.queryModel;
@@ -37,7 +37,7 @@ export class RoleComponent implements OnInit {
                     const modalRef = this.ngbModal.open(RoleEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                        this.addRole(result);
                     },
                     error => {})
                 }.bind(this)
@@ -49,7 +49,7 @@ export class RoleComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Role/delete'
+                    url:'Role/Delete'
                 }
             }
         ],
@@ -59,7 +59,7 @@ export class RoleComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Role/Find'
+                    url:'Role/Delete'
                 }
             },
             {
@@ -85,6 +85,7 @@ export class RoleComponent implements OnInit {
     }
 
     refreshGrid(){
+        this.queryModel.roleid=-1;
         this.datagridComponent.refreshGrid();
     }
 
@@ -96,5 +97,17 @@ export class RoleComponent implements OnInit {
                 console.log(result.message);
             }
         })
+    }
+    addRole(role: object){
+        this.customHttpClient.post('Role/Add', role).subscribe(result => {
+            if(result.code == '00') {
+                this.refreshGrid();
+            }else {
+                console.log(result.message);
+            }
+        })
+    }
+    clear(){
+        this.queryModel={};
     }
 }

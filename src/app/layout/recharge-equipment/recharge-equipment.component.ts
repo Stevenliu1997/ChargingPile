@@ -26,6 +26,7 @@ export class RechargeEquipmentComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
+        key: 'pileid',
         url: 'Pile/Find',
         column: [
             {name: '设备ID', key: 'pileid'},
@@ -70,7 +71,8 @@ export class RechargeEquipmentComponent implements OnInit {
                 type: 'detail',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent);
-                    modalRef.componentInstance.userId = item.id;
+                    modalRef.componentInstance.editModel = Object.assign({},item);
+
                 }.bind(this)
             },
             {

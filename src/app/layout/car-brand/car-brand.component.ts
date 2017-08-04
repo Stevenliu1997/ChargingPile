@@ -15,10 +15,11 @@ import {CarBrandDetailComponent} from './car-brand-detail.component';
 export class CarBrandComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
-    /*查询对象*/
+
     queryModel: any = {};
-    // datagrid 配置
+
     config: object = {
+        key: 'brandid',
         url: 'CarBrand/Find',
         column: [
             {name: '品牌ID', key: 'brandid'},
@@ -38,6 +39,7 @@ export class CarBrandComponent implements OnInit {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
+                        result.brandid = -1;
                         this.add(result);
                     })
                 }.bind(this)
@@ -61,7 +63,6 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.edit(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -72,7 +73,6 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.detail(result);
                     }, error => {})
                 }.bind(this)
             }
@@ -89,24 +89,17 @@ export class CarBrandComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    find(): void {
-        this.customHttpClient.post('CarBrand/Find', this.queryModel).subscribe(result => {
-            this.refreshGrid();
-        })
-    }
-
     add(obj: object) {
-        this.customHttpClient.post('CarBrand/Add', {brandname: this.queryModel.brandname, cartype: this.queryModel.cartype})
+        this.customHttpClient.post('CarBrand/Add', obj)
             .subscribe(result => {
             if (result.code === '00') {
-                this.clear();
                 this.refreshGrid();
             } else if (result.code === '01') {
                 alert('错误！' + result.message);
             } else {
                 alert('未知错误!');
             }
-        });
+        }, error => {});
     }
     clear(): void {
         this.queryModel = {};

@@ -8,4 +8,3 @@ export const environment = {
     developMode: 'demo',
     host: './assets/demo/'
 };
-

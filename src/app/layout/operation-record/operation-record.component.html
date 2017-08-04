@@ -38,12 +38,12 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                <button type="submit" class="btn btn-primary" (click)="refreshrechargeLog()">查询</button>
                             </div>
                         </div>
 
                         <div class="mt-2">
-                            <app-datagrid [config]="rechargeLogConfig"></app-datagrid>
+                            <app-datagrid #rechargeLog [config]="rechargeLogConfig"></app-datagrid>
                         </div>
                     </ng-template>
                 </ngb-tab>
@@ -73,12 +73,12 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                <button type="submit" class="btn btn-primary" (click)="refreshloginOutLog()">查询</button>
                             </div>
                         </div>
 
                         <div class="mt-2">
-                            <app-datagrid [config]="loginOutLogConfig"></app-datagrid>
+                            <app-datagrid #loginOutLog [config]="loginOutLogConfig"></app-datagrid>
                         </div>
 
                     </ng-template>
@@ -118,12 +118,12 @@
                                 </div>
                             </div>
                             <div class="col-2">
-                                <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                <button type="submit" class="btn btn-primary" (click)="refreshsiteLog()">查询</button>
                             </div>
                         </div>
 
                         <div class="mt-2">
-                            <app-datagrid [config]="siteLogConfig"></app-datagrid>
+                            <app-datagrid #siteLog [config]="siteLogConfig"></app-datagrid>
                         </div>
                     </ng-template>
                 </ngb-tab>
