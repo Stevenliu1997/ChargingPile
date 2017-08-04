@@ -57,7 +57,7 @@ export class UserComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'ManageUser/delete'
+                    url: 'ManageUser/Delete'
                 }
             }
         ],

@@ -22,6 +22,7 @@ export class DockoperatorComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
+        key: 'operatorid',
         url: 'Operator/Find',
         column: [
             {name: '运营商ID', key: 'operatorid'},
@@ -90,6 +91,8 @@ export class DockoperatorComponent implements OnInit {
         this.customHttpClient.post('Operator/Update', operator).subscribe(result => {
             if(result.code == '00'){
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
             }
         })
     }
@@ -98,6 +101,8 @@ export class DockoperatorComponent implements OnInit {
         this.customHttpClient.post('Operator/Add', operator).subscribe(result => {
             if(result.code == '00'){
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
             }
         })
     }
