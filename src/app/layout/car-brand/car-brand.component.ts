@@ -15,10 +15,11 @@ import {CarBrandDetailComponent} from './car-brand-detail.component';
 export class CarBrandComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
-    /*查询对象*/
+
     queryModel: any = {};
-    // datagrid 配置
+
     config: object = {
+        key: 'brandid',
         url: 'CarBrand/Find',
         column: [
             {name: '品牌ID', key: 'brandid'},

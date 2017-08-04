@@ -9,10 +9,7 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
     animations: [routerTransition()]
 })
 export class SystemSettingComponent implements OnInit {
-    /*查询对象*/
-    queryModel: any = {
-        Status: ''
-    };
+    queryModel: any = {};
     constructor(private customHttpClient: CustomHttpClient) {
     }
     ngOnInit() {
