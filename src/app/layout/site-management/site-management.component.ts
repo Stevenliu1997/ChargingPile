@@ -16,11 +16,13 @@ import {SiteInformationComponent} from './ModalPage/site-information.component';
 export class SiteManagementComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
-    /*查询对象*/
+
     queryModel: any = {};
-    // datagrid 配置
+    address: any = {};
+
     config: object = {
-        url: 'SiteManagement/Find',
+        key: 'siteid',
+        url: 'Site/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
             {name: '站点名称', key: 'name'},
@@ -28,11 +30,10 @@ export class SiteManagementComponent implements OnInit {
             {name: '站点状态', key: 'state'},
             {name: '收费是否合理', key: 'isreasonable'}
         ],
-        params: (function (thisObj) {
-            return function () {
-                return thisObj.queryModel;
-            }
-        })(this),
+        params: function () {
+            this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
+            return this.queryModel;
+        }.bind(this),
         topActions: [
             {
                 type: 'add',
@@ -101,7 +102,12 @@ export class SiteManagementComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    add(obj: object) {
+    add(obj: any) {
+        var date = new Date();
+        var time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
+        + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        console.log(time);
+        obj.createtime = time;
         this.customHttpClient.post('Site/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.clear();
@@ -125,12 +131,7 @@ export class SiteManagementComponent implements OnInit {
             }
         })
     }
-    find(): void {
-        this.customHttpClient.post('Site/Find', this.queryModel).subscribe(result => {
-            this.clear();
-            this.refreshGrid();
-        })
-    }
+
     clear(): void {
         this.queryModel.siteid = '';
         this.queryModel.name = '';
