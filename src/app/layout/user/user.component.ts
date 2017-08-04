@@ -5,7 +5,6 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {UserEditComponent} from "./user-edit.component";
 import {UserRecordComponent} from "./user-record.component";
-import {ToastsManager} from "ng2-toastr";
 
 @Component({
     selector: 'app-form',
@@ -44,7 +43,6 @@ export class UserComponent implements OnInit {
                     const modalRef = this.ngbModal.open(UserEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.toastr.success('添加成功!');
                         this.refreshGrid();
                     },error => {})
                 }.bind(this)
@@ -82,8 +80,7 @@ export class UserComponent implements OnInit {
             }
         ]
     };
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, public toastr: ToastsManager, vcr: ViewContainerRef) {
-        this.toastr.setRootViewContainerRef(vcr);
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
     ngOnInit() {
