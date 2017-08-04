@@ -62,7 +62,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Pile/Delete.json'
+                    url:'Pile/Delete'
                 }
             }
         ],
@@ -71,7 +71,8 @@ export class RechargeEquipmentComponent implements OnInit {
                 type: 'detail',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent);
-                    modalRef.componentInstance.userId = item.id;
+                    modalRef.componentInstance.editModel = Object.assign({},item);
+
                 }.bind(this)
             },
             {
@@ -91,7 +92,7 @@ export class RechargeEquipmentComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Pile/Delete.json'
+                    url:'Pile/Delete'
                 }
             }
         ]

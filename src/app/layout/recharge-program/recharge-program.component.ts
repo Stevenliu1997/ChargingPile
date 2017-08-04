@@ -21,7 +21,6 @@ export class RechargeProgramComponent implements OnInit {
     config: object = {
         key: 'programid',
         url: 'Program/Find',    //和后端交互URL
-
         column: [
             {name: '程序ID', key: 'programid'},
             {name: '程序版本号', key: 'version'},
@@ -75,7 +74,7 @@ export class RechargeProgramComponent implements OnInit {
                     console.log(item);
                 }.bind(this),
                 autoConfig: {
-                    url:'Program/Delete.json'
+                    url:'Program/Delete'
                 }
             }
         ]
