@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
+        key: 'account',
         url: 'Userinfo', //和后端交互URL
         column: [
             {name: '用户ID', key: 'account'},

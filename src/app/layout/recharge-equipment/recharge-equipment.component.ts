@@ -26,6 +26,7 @@ export class RechargeEquipmentComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
+        key: 'pileid',
         url: 'Pile/Find',
         column: [
             {name: '设备ID', key: 'pileid'},
@@ -61,7 +62,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Pile/Delete'
+                    url:'Pile/Delete.json'
                 }
             }
         ],
@@ -90,7 +91,7 @@ export class RechargeEquipmentComponent implements OnInit {
                 action: function (item) {
                 },
                 autoConfig: {
-                    url:'Pile/Delete'
+                    url:'Pile/Delete.json'
                 }
             }
         ]

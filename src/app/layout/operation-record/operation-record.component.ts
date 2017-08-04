@@ -14,12 +14,20 @@ import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomH
     animations: [routerTransition()]
 })
 export class OperationRecordComponent {
-    @ViewChild(DatagridComponent)
-    private datagridComponent: DatagridComponent;
+    @ViewChild('siteLog')
+    private siteLogComponent: DatagridComponent;
+
+    @ViewChild('loginOutLog')
+    private loginOutLogComponent: DatagridComponent;
+
+    @ViewChild('rechargeLog')
+    private rechargeLogComponent: DatagridComponent;
+
 
     queryModel: any = {};
 
     siteLogConfig: object = {
+        key: 'recordid',
         url: 'Record/Site',
         column: [
             {name: '记录ID', key: 'recordid'},
@@ -34,6 +42,7 @@ export class OperationRecordComponent {
     };
 
     loginOutLogConfig: object = {
+        key: 'recordid',
         url: 'Record/LoginOut',
         column: [
             {name: '记录ID', key: 'recordid'},
@@ -46,6 +55,7 @@ export class OperationRecordComponent {
         }.bind(this)
     };
     rechargeLogConfig: object = {
+        key: 'recordid',
         url: 'Record/Pile',
         column: [
             {name: '记录ID', key: 'recordid'},
@@ -64,16 +74,25 @@ export class OperationRecordComponent {
     ngOnInit() {
     }
 
-    refreshGrid(){
-        this.datagridComponent.refreshGrid();
+    refreshsiteLog(){
+        this.siteLogComponent.refreshGrid();
     }
+    refreshloginOutLog(){
+        this.loginOutLogComponent.refreshGrid();
+    }
+    refreshrechargeLog(){
+        this.rechargeLogComponent.refreshGrid();
+    }
+
     change($event: NgbTabChangeEvent){
-        if($event.activeId==='siteLog')
+        if($event.activeId==='siteLog'){
             this.queryModel={};
-        if($event.activeId==='rechargeLog')
+        }else if($event.activeId==='rechargeLog'){
             this.queryModel={};
-        if($event.activeId==='loginOutLog')
+        }else if($event.activeId==='loginOutLog'){
             this.queryModel={};
+        }
+
     }
 
 }

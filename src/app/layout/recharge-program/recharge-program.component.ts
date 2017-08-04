@@ -19,7 +19,9 @@ export class RechargeProgramComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
+        key: 'programid',
         url: 'Program/Find',    //和后端交互URL
+
         column: [
             {name: '程序ID', key: 'programid'},
             {name: '程序版本号', key: 'version'},
@@ -69,11 +71,11 @@ export class RechargeProgramComponent implements OnInit {
             {
                 type: 'delete',
                 name: '删除',
-                action: function (ids) {
-                    console.log(ids);
+                action: function (item) {
+                    console.log(item);
                 }.bind(this),
                 autoConfig: {
-                    url:'Program/Delete'
+                    url:'Program/Delete.json'
                 }
             }
         ]
@@ -103,5 +105,8 @@ export class RechargeProgramComponent implements OnInit {
                 this.refreshGrid();
         },error => {
         })
+    }
+    clear(){
+        this.queryModel={};
     }
 }
