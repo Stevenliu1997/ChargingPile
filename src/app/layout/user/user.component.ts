@@ -21,6 +21,7 @@ export class UserComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
+        key: 'account',
         url: 'ManageUser/Find',
         column: [
             {name: '用户ID', key: 'account'},

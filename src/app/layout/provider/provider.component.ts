@@ -28,6 +28,7 @@ export class ProviderComponent implements OnInit {
 
     // datagrid 配置
     config: object = {
+        key: 'factoryid',
         url: 'Factory/Find',
         column: [
             {name: '厂商ID', key: 'factoryid'},
@@ -61,7 +62,7 @@ export class ProviderComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Factory/delete'
+                    url:'Factory/Delete'
                 }
             }
         ],
@@ -69,7 +70,7 @@ export class ProviderComponent implements OnInit {
             {
                 type: 'delete',
                 action: function (item) {
-                },
+                }.bind(this),
                 autoConfig: {
                     url:'Factory/Delete'
                 }
@@ -117,6 +118,8 @@ export class ProviderComponent implements OnInit {
         this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
             if(result.code == '00'){
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
             }
         })
     }
@@ -125,6 +128,8 @@ export class ProviderComponent implements OnInit {
         this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
             if(result.code == '00'){
                 this.refreshGrid();
+            }else {
+                console.log(result.message);
             }
         })
     }
