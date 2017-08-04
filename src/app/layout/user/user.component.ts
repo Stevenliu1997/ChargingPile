@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {UserEditComponent} from "./user-edit.component";
 import {UserRecordComponent} from "./user-record.component";
+import {ToastsManager} from "ng2-toastr";
 
 @Component({
     selector: 'app-form',
@@ -44,7 +45,8 @@ export class UserComponent implements OnInit {
                     const modalRef = this.ngbModal.open(UserEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.addUser(result);
+                        this.toastr.success('添加成功!');
+                        this.refreshGrid();
                     },error => {})
                 }.bind(this)
             },
@@ -67,7 +69,7 @@ export class UserComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateUser(result);
+                        this.refreshGrid();
                     },
                     error => {})
                 }.bind(this)
@@ -81,38 +83,18 @@ export class UserComponent implements OnInit {
             }
         ]
     };
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, public toastr: ToastsManager, vcr: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
     }
 
     refreshGrid(){
-        console.log(this.config);
         this.datagridComponent.refreshGrid();
     }
 
-    updateUser(user: object){
-        this.customHttpClient.post('ManageUser/Update', user).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                console.log(result.message);
-            }
-        })
-    }
-
-    addUser(user: object){
-        this.customHttpClient.post('ManageUser/Add', user).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                console.log(result.message);
-            }
-        })
-    }
-
     blankGrid(){
-        this.queryModel = '';
+        this.queryModel = {};
     }
 }
