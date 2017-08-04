@@ -22,7 +22,6 @@ export class ProviderComponent implements OnInit {
     address: any = {};
 
     queryModel: any = {
-        provincecity : this.address.province + '&' + this.address.city
     };
 
 
@@ -40,6 +39,7 @@ export class ProviderComponent implements OnInit {
             {name: '联系人电话', key: 'phone'}
         ],
         params: function () {
+            this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
             return this.queryModel;
         }.bind(this),
         topActions: [
