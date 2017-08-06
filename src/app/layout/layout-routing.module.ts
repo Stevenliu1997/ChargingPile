@@ -12,14 +12,16 @@ const routes: Routes = [
             /*基础数据管理*/
             /*充电桩程序库*/
             { path: 'recharge-program', loadChildren: './recharge-program/recharge-program.module#RechargeProgramModule' },
-            //汽车品牌管理
+            /*汽车品牌管理*/
             { path: 'car-brand', loadChildren: './car-brand/car-brand.module#CarBrandModule' },
             /*基础数据管理里的站点管理*/
             { path: 'site-management', loadChildren: './site-management/site-management.module#SiteManagementModule'},
-            /*运营商管理里的站点管理*/
-            { path: 'site-information', loadChildren: './site-information/site-information.module#SiteInformationModule'},
             /*系统设置*/
             { path: 'system-setting', loadChildren: './system-setting/system-setting.module#SystemSettingModule'},
+            /*运营商管理里的站点管理*/
+            { path: 'site-information', loadChildren: './site-information/site-information.module#SiteInformationModule'},
+            /*站点分析*/
+            { path: 'order-analysis', loadChildren: './order-analysis/order-analysis.module#OrderAnalysisModule'},
             //充电桩硬件设备库
             { path: 'recharge-equipment', loadChildren: './recharge-equipment/recharge-equipment.module#RechargeEquipmentModule' },
             /*操作记录*/
@@ -40,6 +42,7 @@ const routes: Routes = [
             {path: 'orderquery',loadChildren: './orderquery/orderquery.module#OrderQueryModule'},
             {path: 'IC-card-check',loadChildren: './IC-card-check/IC-card-check.module#ICCardCheckModule'},
             {path: 'IC-card-manage',loadChildren: './IC-card-manage/IC-card-manage.module#ICCardManageModule'},
+            {path: 'sitedata', loadChildren: './sitedata/sitedata.module#SiteDataModule' }
         ]
     }
 ];

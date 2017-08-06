@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 import {SiteModifyInformationComponent} from './ModalPage/site-modify-information.component';
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
     selector: 'app-site-management',
@@ -31,8 +31,14 @@ export class SiteManagementComponent implements OnInit {
             {name: '收费是否合理', key: 'isreasonable'},
         ],
         params: function () {
-            this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
-            return this.queryModel;
+            const tempquery = Object.assign({}, this.queryModel);
+            if (!tempquery.siteid) {
+                tempquery.siteid = -1;
+            }
+            tempquery.provincecity = `${this.queryModel.province || ''}&${this.queryModel.city || ''}`;
+            tempquery.province = undefined;
+            tempquery.city = undefined;
+            return tempquery;
         }.bind(this),
         topActions: [
             {
@@ -42,12 +48,7 @@ export class SiteManagementComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '新建站点';
                     modalRef.result.then(result => {
-                        const tempResult = Object.assign({}, result);
-                        tempResult.siteid = -1;
-                        tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
-                        tempResult.province = undefined;
-                        tempResult.city = undefined;
-                        this.add(tempResult);
+                        this.refreshGrid()
                     })
                 }.bind(this)
             },
@@ -90,52 +91,26 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGrid()
                     }, error => {})
                 }.bind(this)
             },
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(
+        private ngbModal: NgbModal,
+        public toastr: ToastsManager,
+        vcr: ViewContainerRef
+    ) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
     }
 
     refreshGrid() {
-        this.queryModel.siteid = -1;
         this.datagridComponent.refreshGrid();
-    }
-
-    add(obj: any) {
-        const date = new Date();
-        const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
-        + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        console.log(time);
-        obj.createtime = time;
-        this.customHttpClient.post('Site/Add', obj).subscribe(result => {
-            if (result.code === '00') {
-                this.clear();
-                this.refreshGrid();
-            }else if (result.code === '01') {
-                alert('错误！' + result.message);
-            } else {
-                alert('未知错误！');
-            }
-        })
-    }
-    update(obj: object) {
-        this.customHttpClient.post('Site/Update', obj).subscribe(result => {
-            if (result.code === '00') {
-                this.clear();
-                this.refreshGrid();
-            } else if (result.code === '01') {
-                alert('错误！' + result.message);
-            } else {
-                alert('未知错误！');
-            }
-        })
     }
 
     clear(): void {

@@ -30,10 +30,6 @@ export class CarBrandEditComponent {
         this.customHttpClient.post('CarBrand/Update', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close();
-            } else if (result.code === '01') {
-                alert('错误：' + result.message)
-            } else {
-                alert('未知错误！');
             }
         })
     }
@@ -41,10 +37,6 @@ export class CarBrandEditComponent {
         this.customHttpClient.post('CarBrand/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close();
-            } else if (result.code === '01') {
-                alert('错误：' + result.message);
-            } else {
-                alert('未知错误！');
             }
         })
     }

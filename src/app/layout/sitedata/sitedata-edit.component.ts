@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
-    selector: 'app-car-brand-detail',
-    templateUrl: './car-brand-detail.component.html'
+    selector: 'role-edit',
+    templateUrl: './sitedata-edit.component.html'
 })
-export class CarBrandDetailComponent {
+export class SiteDataEditComponent {
 
     @Input()
     actionTitle: string;

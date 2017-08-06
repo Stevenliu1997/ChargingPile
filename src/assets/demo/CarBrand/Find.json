@@ -17,6 +17,7 @@
     ],
     "currentPage": 1,
     "totalPages": 2,
-    "message": null,
+    "totalElements": 1,
+    "message": "this is an error!!!",
     "code": "00"
 }
