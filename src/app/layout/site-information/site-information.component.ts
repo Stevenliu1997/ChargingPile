@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';

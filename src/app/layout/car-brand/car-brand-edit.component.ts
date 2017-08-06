@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 
 @Component({
-    selector: 'car-brand-edit',
+    selector: 'app-car-brand-edit',
     templateUrl: './car-brand-edit.component.html'
 })
 export class CarBrandEditComponent {
@@ -12,10 +13,39 @@ export class CarBrandEditComponent {
     @Input()
     editModel: any = {};
 
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(
+        public activeModal: NgbActiveModal,
+        private customHttpClient: CustomHttpClient
+    ) {}
 
     confirm() {
-        this.activeModal.close(this.editModel);
+        if (this.actionTitle === '添加') {
+            this.editModel.brandid = -1;
+            this.add(this.editModel);
+        } else {
+            this.edit(this.editModel);
+        }
     }
-
+    edit(obj: object) {
+        this.customHttpClient.post('CarBrand/Update', obj).subscribe(result => {
+            if (result.code === '00') {
+                this.activeModal.close();
+            } else if (result.code === '01') {
+                alert('错误：' + result.message)
+            } else {
+                alert('未知错误！');
+            }
+        })
+    }
+    add(obj: object) {
+        this.customHttpClient.post('CarBrand/Add', obj).subscribe(result => {
+            if (result.code === '00') {
+                this.activeModal.close();
+            } else if (result.code === '01') {
+                alert('错误：' + result.message);
+            } else {
+                alert('未知错误！');
+            }
+        })
+    }
 }

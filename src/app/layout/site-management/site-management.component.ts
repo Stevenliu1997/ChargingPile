@@ -8,7 +8,7 @@ import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
 
 @Component({
-    selector: 'site-management',
+    selector: 'app-site-management',
     templateUrl: './site-management.component.html',
     styleUrls: ['./site-management.component.scss'],
     animations: [routerTransition()]
@@ -28,7 +28,7 @@ export class SiteManagementComponent implements OnInit {
             {name: '站点名称', key: 'name'},
             {name: '站点省市', key: 'provincecity'},
             {name: '站点状态', key: 'state'},
-            {name: '收费是否合理', key: 'isreasonable'}
+            {name: '收费是否合理', key: 'isreasonable'},
         ],
         params: function () {
             this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
@@ -42,7 +42,12 @@ export class SiteManagementComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '新建站点';
                     modalRef.result.then(result => {
-                        this.add(result);
+                        const tempResult = Object.assign({}, result);
+                        tempResult.siteid = -1;
+                        tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
+                        tempResult.province = undefined;
+                        tempResult.city = undefined;
+                        this.add(tempResult);
                     })
                 }.bind(this)
             },
@@ -99,12 +104,13 @@ export class SiteManagementComponent implements OnInit {
     }
 
     refreshGrid() {
+        this.queryModel.siteid = -1;
         this.datagridComponent.refreshGrid();
     }
 
     add(obj: any) {
-        var date = new Date();
-        var time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
+        const date = new Date();
+        const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
         + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         console.log(time);
         obj.createtime = time;
