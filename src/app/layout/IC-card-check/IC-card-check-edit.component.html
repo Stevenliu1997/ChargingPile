@@ -1,4 +1,4 @@
-<script src="recharge-equipment-routing.module.ts"></script>
+<script src="recharge-equipment-routing.module.ts" xmlns="http://www.w3.org/1999/html"></script>
 <div class="modal-header">
     <h4 class="modal-title">{{actionTitle}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -6,69 +6,9 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="editModel.owener">卡主姓名</label>
-            <div class="col-8">
-                <input type="text" [(ngModel)] = 'editModel.owener' name="editModel.owener"  class="form-control" id="editModel.owener">
-            </div>
-            <button type="button" class="btn btn-primary col-2" >选择</button>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="editModel.balance">余额</label>
-            <div class="col-10">
-                <input type="text" [(ngModel)] = 'editModel.balance' name="editModel.balance"  class="form-control" id="editModel.balance">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="editModel.phone">手机号</label>
-            <div class="col-10">
-                <input type="text" [(ngModel)] = 'editModel.phone' name="editModel.phone"  class="form-control" id="editModel.phone">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="editModel.ictype">类型</label>
-            <div class="col-10">
-                <select class="form-control" [(ngModel)] = 'editModel.ictype' name="editModel.ictype" id="editModel.ictype" >
-                    <option value="1">实体卡</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label form_datetime" for="editModel.createtime">创建日期</label>
-            <div class="col-10">
-                <input type="date" [(ngModel)] = 'editModel.createtime' name="editModel.createtime"  class="form-control" id="editModel.createtime">
-            </div>
-        </div>
-        <div class="form-group row">
-            <!--TODO 日期样式-->
-            <label class="col-2 col-form-label form_datetime" for="editModel.endtime">失效日期</label>
-            <div class="col-10">
-                <input type="date" [(ngModel)] = 'editModel.endtime' name="editModel.endtime"  class="form-control" id="editModel.endtime">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="editModel.cardid">IC卡编号</label>
-            <div class="col-10">
-                <input type="text" [(ngModel)] = 'editModel.cardid' name="editModel.cardid"  class="form-control" id="editModel.cardid">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="editModel.icstate">状态</label>
-            <div class="col-10">
-                <select class="form-control" [(ngModel)] = 'editModel.icstate' name="editModel.icstate" id="editModel.icstate">
-                    <option value="1">正常</option>
-                    <option value="2">锁定</option>
-                </select>
-            </div>
-        </div>
-
-
-    </form>
+    <!--todo 组件-->
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
-    <!--TODO 制卡-->
-    <button type="button" class="btn btn-primary">制卡</button>
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
 </div>

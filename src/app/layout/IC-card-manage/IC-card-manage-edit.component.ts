@@ -3,6 +3,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {OwnerChooseComponent} from "./owner-choose.component"
+import {modelGroupProvider} from "@angular/forms/src/directives/ng_model_group";
 
 @Component({
     selector: 'IC-card-manage-edit',
@@ -22,7 +23,7 @@ export class ICCardManageEditComponent {
     }
 
     openModal(){
-        const modalRef = this.ngbModal.open(OwnerChooseComponent);
+        const modalRef = this.ngbModal.open(OwnerChooseComponent, {size: "lg"});
         modalRef.componentInstance.actionTitle = '新增';
         modalRef.result.then(result => {
         })
