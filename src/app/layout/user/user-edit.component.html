@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
     <form name="submitForm" #submitForm="ngForm">
-        <div class="form-group row" *ngIf="actionTitle == '编辑'">
+        <div class="form-group row" >
             <label for="editModel.account" class="col-2 col-form-label">用户ID</label>
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.account' id="editModel.account" name="editModel.account" type="text" class="form-control" validationMsg required>

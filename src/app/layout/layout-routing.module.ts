@@ -42,6 +42,7 @@ const routes: Routes = [
             {path: 'orderquery',loadChildren: './orderquery/orderquery.module#OrderQueryModule'},
             {path: 'IC-card-check',loadChildren: './IC-card-check/IC-card-check.module#ICCardCheckModule'},
             {path: 'IC-card-manage',loadChildren: './IC-card-manage/IC-card-manage.module#ICCardManageModule'},
+            {path: 'sitedata', loadChildren: './sitedata/sitedata.module#SiteDataModule' }
         ]
     }
 ];

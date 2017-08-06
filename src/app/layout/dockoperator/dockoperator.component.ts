@@ -33,7 +33,11 @@ export class DockoperatorComponent implements OnInit {
             {name: '备注信息', key :'remark'}
         ],
         params: function () {
-            return this.queryModel;
+            let queryModel = Object.assign({},this.queryModel);
+            if (!queryModel.operatorid){
+                queryModel.operatorid = -1;
+            }
+            return queryModel;
         }.bind(this),
         topActions: [
             {
@@ -84,9 +88,6 @@ export class DockoperatorComponent implements OnInit {
     }
 
     refreshGrid(){
-        if (this.queryModel.operatorid == null){
-            this.queryModel.operatorid = -1;
-        }
         this.datagridComponent.refreshGrid();
     }
 

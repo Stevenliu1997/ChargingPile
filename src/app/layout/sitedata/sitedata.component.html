@@ -1,0 +1,59 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'站点数据分析'" [icon]="'fa-table'"></app-page-header>
+
+    <div content="main-content container">
+
+        <div class="query-section row breadcrumb mx-0">
+            <div class="col-3 ">
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">站点名称</label>
+                    <div class="col-8">
+                        <input class="form-control" type="text" id="example-text-in" [(ngModel)]="queryModel.sitename" name="queryModel.rolename">
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="example-text-input" class="col-4 col-form-label">查询日期</label>
+                    <div class="col-8">
+                        <input class="form-control" type="date" id="example-text-input" [(ngModel)]="queryModel.startdate" name="queryModel.rolename">
+                    </div>
+                    <div class="col-8" >
+                        <input class="form-control" type="date" id="example-te-input" [(ngModel)]="queryModel.enddate" name="queryModel.rolename">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshchart()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <canvas baseChart width="400" height="400"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
