@@ -38,7 +38,11 @@ export class ProviderComponent implements OnInit {
         params: function () {
             this.queryModel.provincecity =
                 `${this.address.province || ''}${this.address.province && this.address.city ? '&':''}${this.address.city || ''}`;
-            return this.queryModel;
+            let queryModel = Object.assign({},this.queryModel);
+            if (!queryModel.factoryid){
+                queryModel.factoryid = -1;
+            }
+            return queryModel;
         }.bind(this),
         topActions: [
             {
@@ -52,7 +56,8 @@ export class ProviderComponent implements OnInit {
 
                         let tempResult  =Object.assign({},result);
                         tempResult.factoryid = -1;
-                        tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
+                        tempResult.provincecity =
+                            `${tempResult.province || ''}${tempResult.province && tempResult.city ? '&':''}${tempResult.city || ''}`;
                         tempResult.province = undefined;
                         tempResult.city = undefined;
 
@@ -117,9 +122,6 @@ export class ProviderComponent implements OnInit {
     }
 
     refreshGrid(){
-        if (this.queryModel.factoryid == null){
-            this.queryModel.factoryid = -1;
-        }
         this.datagridComponent.refreshGrid();
     }
 

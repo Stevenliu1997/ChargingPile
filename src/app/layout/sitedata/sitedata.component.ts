@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
-import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
 import {SiteDataEditComponent} from "./sitedata-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
@@ -16,13 +15,15 @@ export class SiteDataComponent implements OnInit {
 
     //查询对象
     queryModel: any = {};
-    
+
     constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
     }
 
     ngOnInit() {
     }
-    //***********************
+    refreshchart(){
+
+    }
     // lineChart
     public lineChartData:Array<any> = [
         {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
