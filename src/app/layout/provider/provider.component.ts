@@ -19,10 +19,8 @@ export class ProviderComponent implements OnInit {
     private datagridComponent: DatagridComponent;
 
     //查询对象
-
-    queryModel: any = {
-    };
-
+    address: any = {};
+    queryModel: any = {};
 
     // datagrid 配置
     config: object = {
@@ -52,12 +50,13 @@ export class ProviderComponent implements OnInit {
 
                     modalRef.result.then(result => {
 
-                        /*let tempResult  =Object.assign({},result);
+                        let tempResult  =Object.assign({},result);
+                        tempResult.factoryid = -1;
                         tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                         tempResult.province = undefined;
-                        tempResult.city = undefined;*/
+                        tempResult.city = undefined;
 
-                        this.addProvider(result);
+                        this.addProvider(tempResult);
                     },
                     error => {})
                 }.bind(this)
@@ -90,12 +89,12 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
 
-                            /*let tempResult  =Object.assign({},result);
+                            let tempResult  =Object.assign({},result);
                             tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                             tempResult.province = undefined;
-                            tempResult.city = undefined;*/
+                            tempResult.city = undefined;
 
-                            this.updateProvider(result);
+                            this.updateProvider(tempResult);
                     },
                     error => {
                     })
@@ -118,6 +117,9 @@ export class ProviderComponent implements OnInit {
     }
 
     refreshGrid(){
+        if (this.queryModel.factoryid == null){
+            this.queryModel.factoryid = -1;
+        }
         this.datagridComponent.refreshGrid();
     }
 
@@ -131,6 +133,7 @@ export class ProviderComponent implements OnInit {
             if(result.code == '00'){
                 this.refreshGrid();
             }else {
+                this.refreshGrid();
                 console.log(result.message);
             }
         })
@@ -141,6 +144,7 @@ export class ProviderComponent implements OnInit {
             if(result.code == '00'){
                 this.refreshGrid();
             }else {
+                this.refreshGrid();
                 console.log(result.message);
             }
         })
