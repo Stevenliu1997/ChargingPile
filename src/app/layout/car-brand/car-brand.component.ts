@@ -3,7 +3,6 @@ import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {CarBrandEditComponent} from './car-brand-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 import {CarBrandDetailComponent} from './car-brand-detail.component';
 import {ToastsManager} from 'ng2-toastr';
 
@@ -27,11 +26,9 @@ export class CarBrandComponent implements OnInit {
             {name: '品牌名称', key: 'brandname'},
             {name: '车型', key: 'cartyper'}
         ],
-        params: (function (thisObj) {
-            return function () {
-                return thisObj.queryModel;
-            }
-        })(this),
+        params: function () {
+            return this.queryModel;
+        }.bind(this),
         topActions: [
             {
                 type: 'add',
@@ -40,7 +37,6 @@ export class CarBrandComponent implements OnInit {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.toastr.success('添加成功!');
                         this.refreshGrid();
                     })
                 }.bind(this)
@@ -64,6 +60,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
+                        this.refreshGrid();
                     }, error => {})
                 }.bind(this)
             },
@@ -82,7 +79,6 @@ export class CarBrandComponent implements OnInit {
 
     constructor(
         private ngbModal: NgbModal,
-        private customHttpClient: CustomHttpClient,
         public toastr: ToastsManager,
         vcr: ViewContainerRef
     ) {

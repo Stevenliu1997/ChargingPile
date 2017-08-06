@@ -1,5 +1,4 @@
 {
-    "code": "00",
     "pageData": [
         {
             "siteid": "001",
@@ -39,6 +38,11 @@
             "create": "2017.2.2",
             "ruleid": "444"
         }
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "totalElements": 1,
+    "message": "this is an error",
+    "code": "00"
 
-    ]
 }
