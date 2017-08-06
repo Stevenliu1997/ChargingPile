@@ -84,6 +84,9 @@ export class DockoperatorComponent implements OnInit {
     }
 
     refreshGrid(){
+        if (this.queryModel.operatorid == null){
+            this.queryModel.operatorid = -1;
+        }
         this.datagridComponent.refreshGrid();
     }
 
@@ -92,6 +95,7 @@ export class DockoperatorComponent implements OnInit {
             if(result.code == '00'){
                 this.refreshGrid();
             }else {
+                this.refreshGrid();
                 console.log(result.message);
             }
         })
@@ -102,12 +106,13 @@ export class DockoperatorComponent implements OnInit {
             if(result.code == '00'){
                 this.refreshGrid();
             }else {
+                this.refreshGrid();
                 console.log(result.message);
             }
         })
     }
 
     blankGrid(){
-        this.queryModel ='';
+        this.queryModel = {};
     }
 }

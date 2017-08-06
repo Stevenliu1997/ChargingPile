@@ -20,10 +20,7 @@ export class ProviderComponent implements OnInit {
 
     //查询对象
     address: any = {};
-
-    queryModel: any = {
-    };
-
+    queryModel: any = {};
 
     // datagrid 配置
     config: object = {
@@ -39,7 +36,8 @@ export class ProviderComponent implements OnInit {
             {name: '联系人电话', key: 'phone'}
         ],
         params: function () {
-            this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
+            this.queryModel.provincecity =
+                `${this.address.province || ''}${this.address.province && this.address.city ? '&':''}${this.address.city || ''}`;
             return this.queryModel;
         }.bind(this),
         topActions: [
@@ -51,10 +49,13 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
 
                     modalRef.result.then(result => {
+
                         let tempResult  =Object.assign({},result);
+                        tempResult.factoryid = -1;
                         tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                         tempResult.province = undefined;
                         tempResult.city = undefined;
+
                         this.addProvider(tempResult);
                     },
                     error => {})
@@ -87,10 +88,12 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
+
                             let tempResult  =Object.assign({},result);
                             tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                             tempResult.province = undefined;
                             tempResult.city = undefined;
+
                             this.updateProvider(tempResult);
                     },
                     error => {
@@ -114,12 +117,14 @@ export class ProviderComponent implements OnInit {
     }
 
     refreshGrid(){
+        if (this.queryModel.factoryid == null){
+            this.queryModel.factoryid = -1;
+        }
         this.datagridComponent.refreshGrid();
     }
 
     initquery(){
         this.queryModel = {};
-        this.address = {};
 
     }
 
@@ -128,6 +133,7 @@ export class ProviderComponent implements OnInit {
             if(result.code == '00'){
                 this.refreshGrid();
             }else {
+                this.refreshGrid();
                 console.log(result.message);
             }
         })
@@ -138,6 +144,7 @@ export class ProviderComponent implements OnInit {
             if(result.code == '00'){
                 this.refreshGrid();
             }else {
+                this.refreshGrid();
                 console.log(result.message);
             }
         })

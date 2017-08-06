@@ -17,10 +17,14 @@
                 <input [(ngModel)] = 'editModel.type' name="editModel.type"  class="form-control" id="editModel.type">
             </div>
         </div>
-        <div class="form-group row" *ngIf="actionTitle!='新增'">
-            <label class="col-2 col-form-label" for="editModel.siteid">站点ID</label>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.pileid">设备ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.siteid' name="editModel.siteid"  class="form-control" id="editModel.siteid">
+                <input [(ngModel)] = 'editModel.pileid' name="editModel.pileid"  class="form-control" id="editModel.pileid">
+            </div>
+            <label class="col-2 col-form-label" for="siteid">站点ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.siteid' name="editModel.siteid"  class="form-control" id="siteid">
             </div>
         </div>
         <div class="form-group row">
