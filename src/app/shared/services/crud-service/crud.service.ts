@@ -12,7 +12,7 @@ export class CRUDService {
     }
 
     delete(url: string, ids: string | string[], successFn: any, title?: string){
-        if(typeof ids  === 'string'){
+        if(typeof ids  === 'string' || typeof ids === 'number'){
             ids = [ids];
         }
         this.confirmService.deleteConfirm(title).then(
