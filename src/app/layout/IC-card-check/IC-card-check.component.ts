@@ -33,14 +33,14 @@ export class ICCardCheckComponent implements OnInit {
         }.bind(this),
         topActions: [
             {
-                type: 'allcheck',
-                name: '全选',
+                type: 'agree',
+                name: '同意',
                 action: function (ids) {
                 }.bind(this)
             },
             {
-                type: 'allcheck',
-                name: '不选',
+                type: 'disagree',
+                name: '拒绝',
                 action: function (ids) {
                 }.bind(this)
             }
@@ -63,13 +63,6 @@ export class ICCardCheckComponent implements OnInit {
                 },
                 autoConfig: {
                     url:'IcCard/Delete'
-                }
-            },
-            {
-                //todo 锁定
-                type: 'lock',
-                action: function (item){
-
                 }
             }
         ]

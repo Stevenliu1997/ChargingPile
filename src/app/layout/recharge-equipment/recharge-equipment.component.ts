@@ -19,10 +19,10 @@ export class RechargeEquipmentComponent implements OnInit {
     //查询对象
     queryModel: any = {
         state: '',
-        equipmentId: '',
+        equipmentid: '',
         name: '',
-        siteId: '',
-        factoryId: ''
+        siteid: '',
+        factoryid: ''
     };
     // datagrid 配置
     config: object = {
@@ -105,7 +105,17 @@ export class RechargeEquipmentComponent implements OnInit {
     }
 
     refreshGrid(){
+        if(this.queryModel.factoryid == '')
+            this.queryModel.factoryid = -1;
+        if(this.queryModel.siteid == '')
+            this.queryModel.siteid = -1;
+
         this.datagridComponent.refreshGrid();
+
+        if(this.queryModel.factoryid == -1)
+            this.queryModel.factoryid = '';
+        if(this.queryModel.siteid == -1)
+            this.queryModel.siteid = '';
     }
 
     updateEquipment(Equipment: object){
@@ -127,10 +137,10 @@ export class RechargeEquipmentComponent implements OnInit {
     clear(){
         this.queryModel={
             state: '',
-            equipmentId: '',
+            equipmentid: '',
             name: '',
-            siteId: '',
-            factoryId: ''
+            siteid: '',
+            factoryid: ''
         }
     }
 }
