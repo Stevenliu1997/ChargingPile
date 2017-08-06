@@ -39,7 +39,8 @@ export class ProviderComponent implements OnInit {
             {name: '联系人电话', key: 'phone'}
         ],
         params: function () {
-            this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
+            this.queryModel.provincecity =
+                `${this.address.province || ''}${this.address.province && this.address.city ? '&':''}${this.address.city || ''}`;
             return this.queryModel;
         }.bind(this),
         topActions: [
@@ -91,7 +92,7 @@ export class ProviderComponent implements OnInit {
                             tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                             tempResult.province = undefined;
                             tempResult.city = undefined;
-                            this.addProvider(tempResult)
+                            this.updateProvider(tempResult);
                     },
                     error => {
                     })
