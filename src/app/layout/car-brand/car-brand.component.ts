@@ -27,7 +27,11 @@ export class CarBrandComponent implements OnInit {
             {name: '车型', key: 'cartyper'}
         ],
         params: function () {
-            return this.queryModel;
+            const tempquery = Object.assign({}, this.queryModel);
+            if (!tempquery.brandid) {
+                tempquery.brandid = -1;
+            }
+            return tempquery;
         }.bind(this),
         topActions: [
             {
@@ -89,7 +93,6 @@ export class CarBrandComponent implements OnInit {
     }
 
     refreshGrid() {
-        this.queryModel.brandid = -1;
         this.datagridComponent.refreshGrid();
     }
     clear(): void {

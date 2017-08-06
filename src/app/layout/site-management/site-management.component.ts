@@ -31,8 +31,14 @@ export class SiteManagementComponent implements OnInit {
             {name: '收费是否合理', key: 'isreasonable'},
         ],
         params: function () {
-            this.queryModel.provincecity = `${this.address.province || ''}&${this.address.city || ''}`;
-            return this.queryModel;
+            const tempquery = Object.assign({}, this.queryModel);
+            if (!tempquery.siteid) {
+                tempquery.siteid = -1;
+            }
+            tempquery.provincecity = `${this.queryModel.province || ''}&${this.queryModel.city || ''}`;
+            tempquery.province = undefined;
+            tempquery.city = undefined;
+            return tempquery;
         }.bind(this),
         topActions: [
             {
@@ -104,7 +110,6 @@ export class SiteManagementComponent implements OnInit {
     }
 
     refreshGrid() {
-        this.queryModel.siteid = -1;
         this.datagridComponent.refreshGrid();
     }
 
