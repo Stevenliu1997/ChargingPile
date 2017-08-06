@@ -19,7 +19,6 @@ export class ProviderComponent implements OnInit {
     private datagridComponent: DatagridComponent;
 
     //查询对象
-    address: any = {};
 
     queryModel: any = {
     };
@@ -51,11 +50,13 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
 
                     modalRef.result.then(result => {
-                        let tempResult  =Object.assign({},result);
+
+                        /*let tempResult  =Object.assign({},result);
                         tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                         tempResult.province = undefined;
-                        tempResult.city = undefined;
-                        this.addProvider(tempResult);
+                        tempResult.city = undefined;*/
+
+                        this.addProvider(result);
                     },
                     error => {})
                 }.bind(this)
@@ -87,11 +88,13 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                            let tempResult  =Object.assign({},result);
+
+                            /*let tempResult  =Object.assign({},result);
                             tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
                             tempResult.province = undefined;
-                            tempResult.city = undefined;
-                            this.updateProvider(tempResult);
+                            tempResult.city = undefined;*/
+
+                            this.updateProvider(result);
                     },
                     error => {
                     })
@@ -119,7 +122,6 @@ export class ProviderComponent implements OnInit {
 
     initquery(){
         this.queryModel = {};
-        this.address = {};
 
     }
 
