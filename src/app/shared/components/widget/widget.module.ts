@@ -4,13 +4,15 @@ import {FormsModule} from '@angular/forms';
 import {DatagridComponent} from './datagrid/datagrid.component';
 import {ToolModule} from "../../services/tool.module";
 import {ValidationMsgDirective} from "../validation-msg/validation-msg.directive";
+import {ChartsModule} from "ng2-charts";
 
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        ToolModule
+        ToolModule,
+        ChartsModule
     ],
     declarations: [
         DatagridComponent,
@@ -18,7 +20,8 @@ import {ValidationMsgDirective} from "../validation-msg/validation-msg.directive
     ],
     exports: [
         DatagridComponent,
-        ValidationMsgDirective
+        ValidationMsgDirective,
+        ChartsModule
     ]
 })
 export class WidgetModule {

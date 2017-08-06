@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}角色</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="rolename">角色名称</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.rolename' name="editModel.rolename" id="rolename" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="authorities">角色描述</label>
+            <div class="col-10">
+                <textarea [(ngModel)] = 'editModel.authorities' name="editModel.authorities" id="authorities" class="form-control">
+                </textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+</div>
