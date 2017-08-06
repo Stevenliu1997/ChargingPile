@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {CarBrandEditComponent} from './car-brand-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 import {CarBrandDetailComponent} from './car-brand-detail.component';
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
     selector: 'app-tables',
@@ -26,11 +26,9 @@ export class CarBrandComponent implements OnInit {
             {name: '品牌名称', key: 'brandname'},
             {name: '车型', key: 'cartyper'}
         ],
-        params: (function (thisObj) {
-            return function () {
-                return thisObj.queryModel;
-            }
-        })(this),
+        params: function () {
+            return this.queryModel;
+        }.bind(this),
         topActions: [
             {
                 type: 'add',
@@ -39,8 +37,7 @@ export class CarBrandComponent implements OnInit {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        result.brandid = -1;
-                        this.add(result);
+                        this.refreshGrid();
                     })
                 }.bind(this)
             },
@@ -63,6 +60,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
+                        this.refreshGrid();
                     }, error => {})
                 }.bind(this)
             },
@@ -79,27 +77,20 @@ export class CarBrandComponent implements OnInit {
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(
+        private ngbModal: NgbModal,
+        public toastr: ToastsManager,
+        vcr: ViewContainerRef
+    ) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
     }
 
     refreshGrid() {
+        this.queryModel.brandid = -1;
         this.datagridComponent.refreshGrid();
-    }
-
-    add(obj: object) {
-        this.customHttpClient.post('CarBrand/Add', obj)
-            .subscribe(result => {
-            if (result.code === '00') {
-                this.refreshGrid();
-            } else if (result.code === '01') {
-                alert('错误！' + result.message);
-            } else {
-                alert('未知错误!');
-            }
-        }, error => {});
     }
     clear(): void {
         this.queryModel = {};
