@@ -18,13 +18,12 @@ export class RechargeProgramEditComponent {
         editForm: NgForm;*/
 
     constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
-
     confirm() {
         this.updateProgram(this.editModel);
     }
 
-    updateProgram(program: object){
-        this.customHttpClient.post('Program/Upload', program).subscribe(result => {
+    updateProgram(program: any){
+        this.customHttpClient.post('Program/Update', program).subscribe(result => {
             if(result.code == '00')
                 this.activeModal.close();
         })

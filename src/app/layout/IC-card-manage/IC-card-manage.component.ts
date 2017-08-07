@@ -111,7 +111,7 @@ export class ICCardManageComponent implements OnInit {
     }
 
     updateCard(Equipment: object){
-        this.customHttpClient.post('IcCard/Update', Equipment).subscribe(result => {
+        this.customHttpClient.post('IcCard/Update.json', Equipment).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
         },error =>{

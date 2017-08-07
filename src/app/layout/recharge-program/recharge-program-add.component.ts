@@ -15,12 +15,15 @@ export class RechargeProgramAddComponent {
     @Input()
     editModel: any = {};
 
-/*    @ViewChild('submitForm')
-    editForm: NgForm;*/
+    @ViewChild('submitForm')
+    editForm: NgForm;
 
     constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
 
     confirm() {
+        if(this.editForm.form.invalid){
+            return;
+        }
         this.addProgram(this.editModel);
     }
 

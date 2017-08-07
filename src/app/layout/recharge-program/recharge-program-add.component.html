@@ -5,17 +5,17 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <form  name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
             <label class="col-2 col-form-label" for="programname">程序名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname">
+                <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="version">版本号</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control" id="version">
+                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control" id="version" validationMsg required>
             </div>
         </div>
     </form>
