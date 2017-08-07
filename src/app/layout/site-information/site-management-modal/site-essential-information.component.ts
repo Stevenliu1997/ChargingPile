@@ -99,10 +99,6 @@ export class SiteEssentialInformationComponent implements OnInit {
         this.customHttpClient.post('Site/'/*, siteid*/).subscribe(result => {
             if (result.code === '00') {
 
-            }else if (result === '01') {
-                alert('错误！' + result.message);
-            } else {
-                alert('未知错误！');
             }
         })
     }
@@ -112,15 +108,9 @@ export class SiteEssentialInformationComponent implements OnInit {
     }
 
     confirmChange() {
-        console.log(this.editModel);
-        this.customHttpClient.post('site/site', this.editModel).subscribe(result => {
+        this.customHttpClient.post('SiteInformation/Add', this.editModel).subscribe(result => {
             if (result.code === '00') {
-                alert('修改成功！');
-                this.activeModal.close();
-            } else if (result.code === '01') {
-                alert('修改失败！' + result.message);
-            } else {
-                alert('未知错误！');
+                this.activeModal.close(this.editModel);
             }
         })
     }

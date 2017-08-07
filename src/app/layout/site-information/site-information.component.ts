@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
-import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {ToastsManager} from 'ng2-toastr';
 import {SiteManagementAddComponent} from './site-management-modal/site-management-add.component';
 import {ChargingRuleAddComponent} from './charging-rule-modal/charging-rule-add.component';
 import {ArticleManagementAddComponent} from './article-management-modal/article-management-add.component';
@@ -27,6 +27,7 @@ export class SiteInformationComponent implements OnInit {
     queryModel: any = {};
 
     siteMConfig: object = {
+        key: 'siteid',
         url: 'SiteInformation/site-management',
         column: [
             {name: '站点ID', key: 'siteid'},
@@ -35,7 +36,14 @@ export class SiteInformationComponent implements OnInit {
             {name: '站点状态', key: 'state'}
         ],
         params: function () {
-            return {userId: this.userId};
+            const tempquery = Object.assign({}, this.queryModel);
+            if (!tempquery.siteid) {
+                tempquery.siteid = -1;
+            }
+            tempquery.provincecity = `${this.queryModel.province || ''}${this.queryModel.city || ''}`;
+            tempquery.province = undefined;
+            tempquery.city = undefined;
+            return tempquery;
         }.bind(this),
         topActions: [
             {
@@ -45,7 +53,7 @@ export class SiteInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGridSiteM();
                     })
                 }.bind(this)
             },
@@ -67,7 +75,6 @@ export class SiteInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteEssentialInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '查看站点信息';
                     modalRef.result.then(result => {
-
                     }, error => {})
                 }.bind(this)
             }
@@ -89,7 +96,11 @@ export class SiteInformationComponent implements OnInit {
             {name: '创建时间', key: 'createtime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            /*const tempquery = Object.assign({}, this.queryModel);
+            if (!tempquery.siteid) {
+                tempquery.siteid = -1;
+            }*/
+            return this.queryModel;
         }.bind(this),
         topActions: [
             {
@@ -152,7 +163,11 @@ export class SiteInformationComponent implements OnInit {
             {name: '最后修改时间', key: 'finalmodifiedtime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            /*const tempquery = Object.assign({}, this.queryModel);
+            if (!tempquery.siteid) {
+                tempquery.siteid = -1;
+            }*/
+            return this.queryModel;
         }.bind(this),
         topActions: [
             {
@@ -162,7 +177,7 @@ export class SiteInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(ArticleManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGridArticle();
                     })
                 }.bind(this)
             },
@@ -185,13 +200,18 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGridArticle();
                     }, error => {})
                 }.bind(this)
             }
         ]
     };
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(
+        private ngbModal: NgbModal,
+        public toastr: ToastsManager,
+        vcr: ViewContainerRef
+    ) {
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     confirm() {
@@ -242,9 +262,5 @@ export class SiteInformationComponent implements OnInit {
         this.queryModel.leveltwotitle = '';
         this.queryModel.isdisplay = 'Default';
         this.queryModel.classification = 'Default';
-    }
-    ChargingRuleAdd(obj: object): void {
-        this.customHttpClient.post('ChargingRule/Add', obj).subscribe(result => {
-        })
     }
 }
