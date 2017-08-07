@@ -23,8 +23,8 @@
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.isopen' id="isopen-text-input" name="editModel.isopen" class="form-control" disabled>
                     <option value="Default">请选择</option>
-                    <option value="是">是</option>
-                    <option value="否">否</option>
+                    <option value="true">是</option>
+                    <option value="false">否</option>
                 </select>
             </div>
         </div>
@@ -75,12 +75,12 @@
             <label class="col-2 col-form-label">是否支持扫描充电</label>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" value="是" [(ngModel)] = 'editModel.isscanning' disabled>是
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" value="true" [(ngModel)] = 'editModel.isscanning' disabled>是
                 </label>
             </div>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="否" [(ngModel)] = 'editModel.isscanning' disabled>否
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="false" [(ngModel)] = 'editModel.isscanning' disabled>否
                 </label>
             </div>
         </div>
