@@ -83,6 +83,8 @@ export class SiteDataComponent implements OnInit {
         console.log(e);
     }
 
+    clear(){
 
+    }
 
 }
