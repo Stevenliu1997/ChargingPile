@@ -154,4 +154,10 @@ export class DatagridComponent implements OnInit {
         }
     }
 
+    colAction(col: any, data: object) {
+        if(col.action){
+            col.action(data);
+        }
+    }
+
 }

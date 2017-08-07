@@ -19,7 +19,10 @@
                 <tr *ngFor="let data of fetchedData;let $index = index">
                     <td *ngIf="config.topActions && config.topActions.length>0"><input type="checkbox" [(ngModel)]="data.checked"></td>
                     <td>{{$index+1}}</td>
-                    <td *ngFor="let col of config.column">{{data[col.key]}}</td>
+                    <td *ngFor="let col of config.column" (click)="colAction(col, data)">
+                        <span *ngIf="!col.html">{{data[col.key]}}</span>
+                        <span *ngIf="col.html" [innerHtml]="col.html(data)"></span>
+                    </td>
                     <td *ngIf="config.rowActions && config.rowActions.length > 0">
                         <i [ngClass]="{'fa-trash-o': rowAct.type === 'delete',
                                        'fa-pencil-square-o': rowAct.type==='edit',
