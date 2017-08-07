@@ -24,12 +24,7 @@
                         <span *ngIf="col.html" [innerHtml]="col.html(data)"></span>
                     </td>
                     <td *ngIf="config.rowActions && config.rowActions.length > 0">
-                        <i [ngClass]="{'fa-trash-o': rowAct.type === 'delete',
-                                       'fa-pencil-square-o': rowAct.type==='edit',
-                                       'fa-file-o': rowAct.type==='detail',
-                                       'fa-upload': rowAct.type==='upload'
-                                       }"
-                           class="fa mr-2" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
+                        <i class="fa mr-2" [ngClass]="getIcon(rowAct, data)" aria-hidden="true" *ngFor="let rowAct of config.rowActions" (click)="rowAction(rowAct, data)"></i>
                     </td>
                 </tr>
 
