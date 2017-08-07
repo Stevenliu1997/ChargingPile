@@ -92,7 +92,7 @@ export class DatagridComponent implements OnInit {
     }
 
     turnPage(page: number){
-        if(page < 1 || page >= this.page.totalPages){
+        if(page < 1 || page > this.page.totalPages){
             return;
         }
         this.loadData(this.config.url, this.config.params(), {pageNumber: page});
