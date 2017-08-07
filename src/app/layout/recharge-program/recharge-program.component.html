@@ -3,7 +3,7 @@
 
     <div content="main-content container">
         <div class="query-section row breadcrumb no-gutters">
-            <div class="col-3">
+            <div class="col-4">
                 <div class="row">
                     <label for="programname" class="col-4 col-form-label">程序名称</label>
                     <div class="col-8">
@@ -12,11 +12,13 @@
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-3 offset-2">
                 <div class="row">
-                    <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary " (click)="refreshGrid()">查询</button>&nbsp;
-                        <button type="submit" class="btn btn-primary " (click)="clear()">清空</button>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
                     </div>
                 </div>
             </div>

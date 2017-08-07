@@ -7,20 +7,25 @@
                 <div class="col-8">
                     <div class="row" >
                         <label class="col-form-label col-3">审核状态查询:</label>
-                        <select class="form-contro col-5">
+                        <select class="form-contro col-5" [(ngModel)]="queryModel.status">
                             <option value="">请选择</option>
-                            <option value="">取消</option>
-                            <option value="">待审核</option>
-                            <option value="">审核通过</option>
-                            <option value="">审核不通过</option>
-                            <option value="">制卡成功</option>
-                            <option value="">发卡成功</option>
+                            <option value="cancel">取消</option>
+                            <option value="checkpending">待审核</option>
+                            <option value="pass">审核通过</option>
+                            <option value="nopass">审核不通过</option>
+                            <option value="makesuccess">制卡成功</option>
+                            <option value="fasuccess">发卡成功</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-4 ">
-                    <div class="row" >
-                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                        </div>
                     </div>
                 </div>
              </div>

@@ -17,16 +17,17 @@ export class ICCardCheckComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     //查询对象
     queryModel: any = {
+        status: ''
     };
     // datagrid 配置
     config: object = {
-        url: 'IcCard/Find',
+        url: 'IcCard-check/Find',
         column: [
-            {name: '持有用户', key: 'cardid'},
-            {name: '手机号', key: 'owener'},
-            {name: '地址', key: 'balance'},
-            {name: '期望日期', key: 'ictype'},
-            {name: '申请状态', key: 'icstate'},
+            {name: '持有用户', key: 'owener'},
+            {name: '手机号', key: 'phone'},
+            {name: '地址', key: 'position'},
+            {name: '期望日期', key: 'hopedate'},
+            {name: '申请状态', key: 'status'},
         ],
         params: function () {
             return this.queryModel;
@@ -36,6 +37,11 @@ export class ICCardCheckComponent implements OnInit {
                 type: 'agree',
                 name: '同意',
                 action: function (ids) {
+                    const modalRef = this.ngbModal.open(ICCardCheckEditComponent);
+                    modalRef.componentInstance.actionTitle = '';
+                    modalRef.result.then(result => {
+                        this.agree(result);
+                    },error =>{})
                 }.bind(this)
             },
             {
@@ -78,29 +84,16 @@ export class ICCardCheckComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    addCard(Equipment: object){
-        this.customHttpClient.post('IcCard/Add', Equipment).subscribe(result => {
+    agree(ICcard: object){
+        this.customHttpClient.post('', ICcard).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
         })
     }
 
-    updateCard(Equipment: object){
-        this.customHttpClient.post('IcCard/Update', Equipment).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-        })
-    }
 
     clear(){
-        this.queryModel.owener= '';
-        this.queryModel.balance= '';
-        this.queryModel.phone= '';
-        this.queryModel.ictype= '';
-        this.queryModel.createtime= '';
-        this.queryModel.endtime= '';
-        this.queryModel.cardid= '';
-        this.queryModel.icstate= '';
+        this.queryModel.status='';
     }
 
 }

@@ -40,7 +40,12 @@ export class RechargeEquipmentComponent implements OnInit {
             {name: '设备备注', key: 'remarks'}
         ],
         params: function () {
-            return this.queryModel;
+            let queryModel=Object.assign({},this.queryModel);
+            if(queryModel.factoryid == '')
+                queryModel.factoryid = -1;
+            if(queryModel.siteid == '')
+                queryModel.siteid = -1;
+            return queryModel;
         }.bind(this),
         topActions: [
             {
@@ -105,17 +110,7 @@ export class RechargeEquipmentComponent implements OnInit {
     }
 
     refreshGrid(){
-        if(this.queryModel.factoryid == '')
-            this.queryModel.factoryid = -1;
-        if(this.queryModel.siteid == '')
-            this.queryModel.siteid = -1;
-
         this.datagridComponent.refreshGrid();
-
-        if(this.queryModel.factoryid == -1)
-            this.queryModel.factoryid = '';
-        if(this.queryModel.siteid == -1)
-            this.queryModel.siteid = '';
     }
 
     updateEquipment(Equipment: object){
