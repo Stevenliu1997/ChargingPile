@@ -6,7 +6,6 @@ import { SiteDataRoutingModule } from './sitedata-routing.module';
 import { PageHeaderModule } from './../../shared';
 import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
-import {SiteDataEditComponent} from "./sitedata-edit.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
@@ -18,7 +17,6 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         WidgetModule,
         NgbModule
     ],
-    declarations: [SiteDataComponent, SiteDataEditComponent],
-    entryComponents: [SiteDataEditComponent]
+    declarations: [SiteDataComponent],
 })
 export class SiteDataModule { }
