@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {NgForm} from "@angular/forms";
 
 @Component({
     selector: 'recharge-program-add',
@@ -13,10 +15,21 @@ export class RechargeProgramAddComponent {
     @Input()
     editModel: any = {};
 
-    constructor(public activeModal: NgbActiveModal) {}
+/*    @ViewChild('submitForm')
+    editForm: NgForm;*/
+
+    constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
 
     confirm() {
-        this.activeModal.close(this.editModel);
+        this.addProgram(this.editModel);
+    }
+
+    addProgram(program: any){
+        program.programid=-1;
+        this.customHttpClient.post('Program/Add', program).subscribe(result => {
+            if(result.code == '00')
+                this.activeModal.close();
+        })
     }
 
 }

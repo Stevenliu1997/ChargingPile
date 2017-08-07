@@ -15,25 +15,6 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class ProfileComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
-    config: object = {
-        key: 'account',
-        url: 'Userinfo', //和后端交互URL
-        column: [
-            {name: '用户ID', key: 'account'},
-            {name: '用户名', key: 'name'},
-            {name: '角色名', key: 'rolename'},
-            {name: '密码', key: 'password'},
-            {name: '运行商ID', key: 'operatorInformation_operatorid'},
-            {name: '手机号', key: 'phone'},
-            {name: 'QQ', key: 'qq'},
-            {name: '微信', key: 'weixin'},
-            {name: 'Emaii地址', key: 'email'},
-        ],
-        // 与后端交互，queryModel.name
-        params: function () {
-            return this.queryModel;
-        }.bind(this),
-    };
     constructor(private ngbModal: NgbModal,public router: Router, private customHttpClient: CustomHttpClient) {
     }
 

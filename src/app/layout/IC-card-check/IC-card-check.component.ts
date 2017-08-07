@@ -48,6 +48,11 @@ export class ICCardCheckComponent implements OnInit {
                 type: 'disagree',
                 name: '拒绝',
                 action: function (ids) {
+                    const modalRef = this.ngbModal.open(ICCardCheckEditComponent);
+                    modalRef.componentInstance.actionTitle = '';
+                    modalRef.result.then(result => {
+                        this.disagree(result);
+                    },error =>{})
                 }.bind(this)
             }
         ],
@@ -60,6 +65,7 @@ export class ICCardCheckComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateCard(result);
+                    },error => {
                     })
                 }.bind(this)
             },
@@ -85,6 +91,13 @@ export class ICCardCheckComponent implements OnInit {
     }
 
     agree(ICcard: object){
+        this.customHttpClient.post('', ICcard).subscribe(result => {
+            if(result.code == '00')
+                this.refreshGrid();
+        })
+    }
+
+    disagree(ICcard: object){
         this.customHttpClient.post('', ICcard).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();

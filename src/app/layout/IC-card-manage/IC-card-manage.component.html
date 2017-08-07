@@ -1,5 +1,5 @@
 <div [@routerTransition] content="main-section">
-    <app-page-header [heading]="'IC卡管理'" [icon]="'fa-table'"></app-page-header>
+    <app-page-header [heading]="'IC卡数据管理'" [icon]="'fa-table'"></app-page-header>
 
     <div content="main-content container">
         <div class="query-section row breadcrumb mx-xl-0">
@@ -67,7 +67,7 @@
                         <div class="row">
                             <label for="cardid" class="col-4 col-form-label">IC卡编号</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="cardid" [(ngModel)]="queryModel.cardid" name="queryModel.cardid">
+                                <input class="form-control" type="number" id="cardid" [(ngModel)]="queryModel.cardid" name="queryModel.cardid">
                             </div>
                         </div>
                     </div>

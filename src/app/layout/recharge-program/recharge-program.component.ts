@@ -38,8 +38,7 @@ export class RechargeProgramComponent implements OnInit {
                     const modalRef = this.ngbModal.open(RechargeProgramAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        result.programid=-1;
-                        this.addProgram(result);
+                        this.refreshGrid();
                     },error =>{})
                 }.bind(this)
             }
@@ -52,7 +51,7 @@ export class RechargeProgramComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '上传';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateProgram(result);
+                        this.refreshGrid();
                     },error => {})
                 }.bind(this)
             },
@@ -63,7 +62,7 @@ export class RechargeProgramComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '更新';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateProgram(result);
+                        this.refreshGrid();
                     },error => {})
                 }.bind(this)
             },
@@ -91,20 +90,7 @@ export class RechargeProgramComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
     //改
-    updateProgram(program: object){
-        this.customHttpClient.post('Program/Add', program).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-        },error => {
-        })
-    }
-    addProgram(program: object){
-        this.customHttpClient.post('Program/Add', program).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-        },error => {
-        })
-    }
+
     clear(){
         this.queryModel={};
     }

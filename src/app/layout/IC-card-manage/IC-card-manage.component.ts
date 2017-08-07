@@ -28,6 +28,7 @@ export class ICCardManageComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
+        key: 'cardid',
         url: 'IcCard/Find',
         column: [
             {name: 'IC卡号', key: 'cardid'},
@@ -40,7 +41,11 @@ export class ICCardManageComponent implements OnInit {
             {name: '失效日期', key: 'endtime'},
         ],
         params: function () {
-            return this.queryModel;
+            let queryModel =  Object.assign({},this.queryModel);
+            if (queryModel.cardid == ''){
+                queryModel.cardid = -1;
+            }
+            return queryModel;
         }.bind(this),
         topActions: [
             {
@@ -51,6 +56,7 @@ export class ICCardManageComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
                         this.addCard(result);
+                    },error => {
                     })
                 }.bind(this)
             }
@@ -64,6 +70,7 @@ export class ICCardManageComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateCard(result);
+                    },error => {
                     })
                 }.bind(this)
             },
