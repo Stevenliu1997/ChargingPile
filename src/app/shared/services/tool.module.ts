@@ -7,11 +7,13 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ConfirmConfirComponent} from "./confirm-service/confirm-confir.component";
 import {ConfirmService} from "./confirm-service/confirm.service";
 import {CRUDService} from "./crud-service/crud.service";
+import {FormsModule} from "@angular/forms";
 /**
  * Created by thundersoft on 2017/7/24.
  */
 @NgModule({
     imports: [
+        FormsModule,
         CommonModule,
         HttpClientModule,
         NgbModule

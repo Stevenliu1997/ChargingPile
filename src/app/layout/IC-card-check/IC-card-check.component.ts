@@ -4,6 +4,7 @@ import {DatagridComponent} from "../../shared/components/widget/datagrid/datagri
 import {ICCardCheckEditComponent} from "./IC-card-check-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {ConfirmService} from "../../shared/services/confirm-service/confirm.service";
 
 @Component({
     selector: 'app-tables',
@@ -27,7 +28,12 @@ export class ICCardCheckComponent implements OnInit {
             {name: '手机号', key: 'phone'},
             {name: '地址', key: 'position'},
             {name: '期望日期', key: 'hopedate'},
-            {name: '申请状态', key: 'status'},
+            {name: '申请状态', key: 'status', html: function (item) {
+                return `<span>${item.status == '1' ? '审核通过' : '待审核'}<i class="fa ${item.status === '1' ? 'fa-credit-card' : ''}" aria-hidden="true"></i></span>`
+            }, action: function (item) {
+                if(item.status === '1')
+                    console.log(item);
+            }},
         ],
         params: function () {
             return this.queryModel;
@@ -37,17 +43,24 @@ export class ICCardCheckComponent implements OnInit {
                 type: 'agree',
                 name: '同意',
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(ICCardCheckEditComponent);
-                    modalRef.componentInstance.actionTitle = '';
-                    modalRef.result.then(result => {
+                    // const modalRef = this.ngbModal.open(ICCardCheckEditComponent);
+                    // modalRef.componentInstance.actionTitle = '';
+                    // modalRef.result.then(result => {
+                    //     this.agree(result);
+                    // },error =>{})
+                    this.confirmService.confirm('你确认通过吗？',{subMsg:'通过后即可制卡！'}).then(result => {
                         this.agree(result);
-                    },error =>{})
+                    }, error =>{})
+
                 }.bind(this)
             },
             {
                 type: 'disagree',
                 name: '拒绝',
                 action: function (ids) {
+                    this.confirmService.confirm('拒绝通过！',{subMsg:'请输入你拒绝通过的理由：', inputInfo: true}).then(result => {
+                        this.agree(result);
+                    }, error =>{})
                 }.bind(this)
             }
         ],
@@ -74,7 +87,7 @@ export class ICCardCheckComponent implements OnInit {
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, private confirmService: ConfirmService) {
     }
 
     ngOnInit() {
