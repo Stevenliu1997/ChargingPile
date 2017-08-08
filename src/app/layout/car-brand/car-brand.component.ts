@@ -79,6 +79,14 @@ export class CarBrandComponent implements OnInit {
                         this.refreshGrid();
                     }, error => {})
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'CarBrand/Delete'
+                }
             }
         ]
     };

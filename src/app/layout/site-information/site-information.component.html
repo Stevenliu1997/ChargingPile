@@ -4,6 +4,66 @@
     <div content="main-content container">
 
         <div class="modal-body">
+            <div class="query-section row breadcrumb mx-xl-0">
+                <div class="col-9">
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="operatorid-text-input" class="col-4 col-form-label">运营商ID</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="operatorid-text-input" [(ngModel)]="Operator.operatorid" name="Operator.operatorid" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="operatorname-text-input" class="col-4 col-form-label">运营商名称</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="operatorname-text-input" [(ngModel)]="Operator.operatorname" name="Operator.operatorname" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="state-text-input2" class="col-4 col-form-label">锁定状态</label>
+                                <div class="col-8">
+                                    <select id="state-text-input2" [(ngModel)]="Operator.state" name="Operator.state" class="form-control" disabled>
+                                        <option value="正常">正常</option>
+                                        <option value="锁定">锁定</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="contactor-text-input" class="col-4 col-form-label">联系人</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="contactor-text-input" [(ngModel)]="Operator.contactor" name="Operator.contactor" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="phone-text-input" class="col-4 col-form-label">手机号</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="phone-text-input" [(ngModel)]="Operator.phone" name="Operator.phone" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <label for="remark-text-input" class="col-4 col-form-label">备注信息</label>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" id="remark-text-input" [(ngModel)]="Operator.remark" name="Operator.remark" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <ngb-tabset [destroyOnHide]="false" (tabChange)="beforeChange($event)">
                 <ngb-tab title="站点管理" id="siteManagement">
                     <ng-template ngbTabContent>
@@ -71,10 +131,10 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                        <button type="submit" class="btn btn-primary" (click)="refreshGridSiteM()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="siteclear()">清空</button>
                                     </div>
                                 </div>
                             </div>
@@ -137,10 +197,10 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                        <button type="submit" class="btn btn-primary" (click)="refreshGridCharging()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="chargingclear()">清空</button>
                                     </div>
                                 </div>
                             </div>
@@ -209,10 +269,10 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                        <button type="submit" class="btn btn-primary" (click)="refreshGridArticle()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="articleclear()">清空</button>
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@ import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import {ToastsManager} from 'ng2-toastr';
+import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 import {SiteManagementAddComponent} from './site-management-modal/site-management-add.component';
 import {ChargingRuleAddComponent} from './charging-rule-modal/charging-rule-add.component';
 import {ArticleManagementAddComponent} from './article-management-modal/article-management-add.component';
@@ -25,11 +26,12 @@ export class SiteInformationComponent implements OnInit {
     private articleComponent: DatagridComponent;
 
     queryModel: any = {};
+    Operator: any = {};
 
     /*站点管理*/
     siteMConfig: object = {
         key: 'siteid',
-        url: 'SiteInformation/site-management',
+        url: 'Site/Manage/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
             {name: '站点名称', key: 'sitename'},
@@ -66,7 +68,7 @@ export class SiteInformationComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'CarBrand/Delete'
+                    url: 'Site/Manage/Delete'
                 }
             }
         ],
@@ -79,6 +81,14 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.result.then(result => {
                     }, error => {})
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'Site/Manage/Delete'
+                }
             }
         ]
     };
@@ -109,6 +119,7 @@ export class SiteInformationComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ChargingRuleAddComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '添加';
@@ -150,6 +161,14 @@ export class SiteInformationComponent implements OnInit {
                         this.update(result);
                     }, error => {})
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'CarBrand/Delete'
+                }
             }
         ]
     };
@@ -158,26 +177,33 @@ export class SiteInformationComponent implements OnInit {
     articleMConfig: object = {
         url: 'ArticleManage/Find',
         column: [
-            {name: '所属分类', key: 'classification'},
-            {name: '一级标题', key: 'levelonetitle'},
-            {name: '二级标题', key: 'leveltwotitle'},
+            {name: '所属分类', key: 'articletype'},
+            {name: '一级标题', key: 'firsttitle'},
+            {name: '二级标题', key: 'secondtitle'},
             {name: '是否显示', key: 'isdisplay'},
-            {name: '追加用户', key: 'additionaluser'},
-            {name: '追加时间', key: 'additionaltime'},
-            {name: '最后修改人', key: 'finalmodifier'},
-            {name: '最后修改时间', key: 'finalmodifiedtime'}
+            {name: '作者', key: 'adduser'},
+            {name: '追加时间', key: 'addtime'},
+            {name: '最后修改人', key: 'lastupdateuser'},
+            {name: '最后修改时间', key: 'lastupdatetime'}
         ],
         params: function () {
-            /*const tempquery = Object.assign({}, this.queryModel);
-            if (!tempquery.siteid) {
-                tempquery.siteid = -1;
-            }*/
-            return this.queryModel;
+            const tempquery = {
+                firsttitle: '',
+                secondtitle: '',
+                isdisplay: '',
+                articletype: ''
+            };
+            tempquery.firsttitle = this.queryModel.firsttitle;
+            tempquery.secondtitle = this.queryModel.secondtitle;
+            tempquery.isdisplay = this.queryModel.isdisplay;
+            tempquery.articletype = this.queryModel.articletype;
+            return tempquery;
         }.bind(this),
         topActions: [
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ArticleManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
@@ -208,11 +234,20 @@ export class SiteInformationComponent implements OnInit {
                         this.refreshGridArticle();
                     }, error => {})
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'ArticleManage/Delete'
+                }
             }
         ]
     };
     constructor(
         private ngbModal: NgbModal,
+        private customHttpClient: CustomHttpClient,
         public toastr: ToastsManager,
         vcr: ViewContainerRef
     ) {
@@ -223,6 +258,12 @@ export class SiteInformationComponent implements OnInit {
 
     }
     ngOnInit() {
+        this.customHttpClient.get('Operator/Get').subscribe(result => {
+            console.log(result.code);
+            if (result.code === '00') {
+                this.Operator = result.data;
+            }
+        })
     }
     beforeChange($event: NgbTabChangeEvent) {
         if ($event.activeId === 'siteManagement') {
@@ -263,9 +304,9 @@ export class SiteInformationComponent implements OnInit {
         this.queryModel.testdata = 'Default';
     }
     articleclear(): void {
-        this.queryModel.levelonetitle = 'Default';
-        this.queryModel.leveltwotitle = '';
+        this.queryModel.firsttitle = 'Default';
+        this.queryModel.secondtitle = '';
         this.queryModel.isdisplay = 'Default';
-        this.queryModel.classification = 'Default';
+        this.queryModel.articletype = 'Default';
     }
 }

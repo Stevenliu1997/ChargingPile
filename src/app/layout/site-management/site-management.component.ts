@@ -96,6 +96,14 @@ export class SiteManagementComponent implements OnInit {
                     }, error => {})
                 }.bind(this)
             },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'Site/Delete'
+                }
+            }
         ]
     };
 

@@ -1,9 +1,9 @@
 {
     "code": "00",
     "message":"",
-    "date":["1","2"],
-    "times":["","1"],
-    "Amount":["1"],
-    "usernumber":["1","2"],
-    "errornumber":["1","2"]
+    "date":["一月", "二月"],
+    "times":[4, 1],
+    "Amount":[1, 4],
+    "usernumber":[5,6],
+    "errornumber":[3,2]
 }

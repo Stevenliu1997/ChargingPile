@@ -7,9 +7,9 @@
 <div class="modal-body">
     <form>
         <div class="form-group row">
-            <label for="levelonetitle-select-input" class="col-2 col-form-label">一级标题</label>
+            <label for="firsttitle-select-input" class="col-2 col-form-label">一级标题</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.levelonetitle' id="levelonetitle-select-input" name="editModel.levelonetitle" class="form-control">
+                <select [(ngModel)] = 'editModel.firsttitle' id="firsttitle-select-input" name="editModel.firsttitle" class="form-control">
                     <option value="Default">请选择</option>
                     <option value="充电站帮助">充电站帮助</option>
                     <option value="官方联系方式">官方联系方式</option>
@@ -17,9 +17,9 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="leveltwotitle-text-input" class="col-2 col-form-label">二级标题</label>
+            <label for="secondtitle-text-input" class="col-2 col-form-label">二级标题</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.leveltwotitle' id="leveltwotitle-text-input" name="editModel.leveltwotitle" class="form-control">
+                <input [(ngModel)] = 'editModel.secondtitle' id="secondtitle-text-input" name="editModel.secondtitle" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -27,13 +27,25 @@
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.isdisplay' id="isdisplay-select-input" name="editModel.isdisplay" class="form-control">
                     <option value="Default">请选择</option>
-                    <option value="显示">显示</option>
-                    <option value="不显示">不显示</option>
+                    <option value="true">显示</option>
+                    <option value="false">不显示</option>
                 </select>
             </div>
         </div>
+        <div class="form-group row" *ngIf="actionTitle == '添加'">
+            <label for="adduser-text-input" class="col-2 col-form-label">作者</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.adduser' id="adduser-text-input" name="editModel.adduser" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row" *ngIf="actionTitle == '编辑'">
+            <label for="adduser-text-input" class="col-2 col-form-label">最后修改人</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.lastupdateuser' id="lastupdateuser-text-input" name="editModel.lastupdateuser" class="form-control">
+            </div>
+        </div>
         <label for="isdisplay-select-input" class="col-3 col-form-label">文章主体</label>
-        <textarea class="form-control" rows="3" [(ngModel)] = 'editModel.content' name="editModel.content"></textarea>
+        <textarea class="form-control" rows="3" [(ngModel)] = 'editModel.articlecontent' name="editModel.articlecontent"></textarea>
     </form>
 </div>
 <div class="modal-footer">
