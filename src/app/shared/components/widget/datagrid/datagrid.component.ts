@@ -143,6 +143,12 @@ export class DatagridComponent implements OnInit {
         }.bind(this));
     }
 
+    hasSelected(): boolean {
+        return this.fetchedData.some(function (item) {
+            return item.checked;
+        })
+    }
+
     /**
      * 全选
      * @param checked

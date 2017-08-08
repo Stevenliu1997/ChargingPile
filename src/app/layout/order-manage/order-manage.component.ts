@@ -30,12 +30,12 @@ export class OrderManageComponent implements OnInit {
             {name: '创建人', key: 'user'},
             {name: '使用时间', key: 'usetime'},
             {name: '联系方式', key: 'phone'},
-            {name: '站点', key: 'siteid2'},
+            {name: '站点', key: 'pileid'},
             {name: '充电桩', key: 'siteid'},
             {name: '充电枪', key: 'gunid'},
             {name: '充电状态', key: 'reseverstate'},
             {name: '剩余时间', key: 'surplustime'},
-            {name: '取消原因', key: 'reasion'}
+            {name: '取消原因', key: 'reason'}
         ],
         params: function () {
             return this.queryModel;
