@@ -77,7 +77,6 @@ export class RechargeEquipmentComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent);
                     modalRef.componentInstance.editModel = Object.assign({},item);
-
                 }.bind(this)
             },
             {

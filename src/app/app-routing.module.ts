@@ -9,7 +9,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
     },
     //登陆现在暂时放在另外一个页面
-     { path: 'login', loadChildren: './login/login.module#LoginModule' },
+    // { path: 'login', loadChildren: './login/login.module#LoginModule' },
     { path: 'signup', loadChildren: './signup/signup.module#SignupModule' },
     { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
     { path: '**', redirectTo: 'not-found' }

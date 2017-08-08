@@ -4,6 +4,7 @@ import {DatagridComponent} from "../../shared/components/widget/datagrid/datagri
 import {ICCardManageEditComponent} from "./IC-card-manage-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {ConfirmService} from "../../shared/services/confirm-service/confirm.service";
 
 @Component({
     selector: 'app-tables',
@@ -84,27 +85,17 @@ export class ICCardManageComponent implements OnInit {
             },
             {//TODO
                 icon: function (item) {
-                    //TODO item.lock指有上传文件
-                    if (item.lock) {
+                    if (item.icstate == "locked") {
                         return 'fa-lock '
                     } else {
                         return 'fa-unlock'
                     }
                 },
                 action: function (item) {
-                    //TODO item.uploaded指有上传文件
-                    if(item.uploaded){
-
-                        this.confirmService.confirm('你确认通过吗？',{subMsg:'通过后即可制卡！'}).then(result => {
-                            this.agree(result);
+                    if(item.icstate == "locked"){
+                        this.confirmService.confirm('').then(result => {
                         }, error =>{})
                     }else {
-                        const modalRef = this.ngbModal.open();
-                        modalRef.componentInstance.actionTitle = '上传';
-                        modalRef.componentInstance.editModel = Object.assign({},item);
-                        modalRef.result.then(result => {
-                            this.refreshGrid();
-                        },error => {})
                     }
 
                 }.bind(this)
@@ -112,7 +103,7 @@ export class ICCardManageComponent implements OnInit {
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, private confirmService: ConfirmService) {
     }
 
     ngOnInit() {
@@ -131,7 +122,7 @@ export class ICCardManageComponent implements OnInit {
     }
 
     updateCard(Equipment: object){
-        this.customHttpClient.post('IcCard/Update.json', Equipment).subscribe(result => {
+        this.customHttpClient.post('IcCard/Update', Equipment).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
         },error =>{

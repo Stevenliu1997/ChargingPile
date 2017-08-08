@@ -28,10 +28,10 @@ export class HeaderComponent implements OnInit {
         dom.classList.toggle('rtl');
     }
 
+
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
     }
-
     changeLang(language: string) {
     }
 }

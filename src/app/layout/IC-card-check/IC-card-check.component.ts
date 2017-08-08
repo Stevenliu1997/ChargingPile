@@ -66,23 +66,7 @@ export class ICCardCheckComponent implements OnInit {
         ],
         rowActions: [
             {
-                type: 'edit',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(ICCardCheckEditComponent);
-                    modalRef.componentInstance.actionTitle = '修改';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.updateCard(result);
-                    })
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'IcCard/Delete'
-                }
+                //todo 打印下载
             }
         ]
     };
