@@ -26,11 +26,11 @@ export class SiteDataComponent implements OnInit {
     };
 
 
-    timesChart: any;
-    userChart: any;
-    amountChart: any;
-    errorChart: any;
-    chartDate: any;
+    timesChart: any = {data: []};
+    userChart: any = {data: []};
+    amountChart: any = {data: []};
+    errorChart: any = {data: []};
+    chartDate: any = {data: []};
 
     formData(tempResult:any){
         for(let i = 0;i < tempResult.Data.length;i++){
@@ -50,7 +50,6 @@ export class SiteDataComponent implements OnInit {
         this.customHttpClient.post('DataAnalysis/Find',this.queryModel).subscribe(result => {
             if(result.code == '00'){
                 this.formData(result);
-                this.refreshChart();
             }
         });
     }
