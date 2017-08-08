@@ -44,6 +44,7 @@ export class SiteManagementComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '新建站点';
@@ -95,6 +96,14 @@ export class SiteManagementComponent implements OnInit {
                     }, error => {})
                 }.bind(this)
             },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'Site/Delete'
+                }
+            }
         ]
     };
 

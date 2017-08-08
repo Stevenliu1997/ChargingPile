@@ -26,7 +26,7 @@ export class SiteManagementAddComponent {
         tempResult.provincecity = `${tempResult.province || ''}${tempResult.city || ''}`;
         tempResult.province = undefined;
         tempResult.city = undefined;
-        this.customHttpClient.post('SiteInformation/Add', tempResult).subscribe(result => {
+        this.customHttpClient.post('Site/Manage/Add', tempResult).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }

@@ -37,6 +37,7 @@ export class CarBrandComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
@@ -78,6 +79,14 @@ export class CarBrandComponent implements OnInit {
                         this.refreshGrid();
                     }, error => {})
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'CarBrand/Delete'
+                }
             }
         ]
     };
