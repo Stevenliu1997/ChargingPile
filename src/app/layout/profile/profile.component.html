@@ -2,89 +2,86 @@
     <app-page-header [heading]="'个人信息'" [icon]="'fa-table'"></app-page-header>
 
     <div content="main-content container">
-        <div class="query-section row breadcrumb mx-xl-0">
-            <div class="col-12">
-                <div class="row mb-3">
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="account" class="col-3 col-form-label">用户ID</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="account" [(ngModel)]="queryModel.account" name="queryModel.account" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="name" class="col-3 col-form-label">用户名</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="name" [(ngModel)]="queryModel.name" name="queryModel.name" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="rolename" class="col-3 col-form-label">角色名</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="rolename" [(ngModel)]="queryModel.rolename" name="queryModel.rolename" disabled>
-                            </div>
+        <div class="col-12">
+            <div class="row mb-3">
+                <div class="col-4">
+                    <div class="row">
+                        <label for="account" class="col-3 col-form-label">用户ID</label>
+                        <div class="col-8">
+                            <input class="form-control" type="number" id="account" [(ngModel)]="queryModel.account" name="queryModel.account" disabled>
                         </div>
                     </div>
                 </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label for="name" class="col-3 col-form-label">用户名</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="name" [(ngModel)]="queryModel.name" name="queryModel.name" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label for="rolename" class="col-3 col-form-label">角色名</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="rolename" [(ngModel)]="queryModel.rolename" name="queryModel.rolename" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <div class="row mb-3">
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="operatorInformation_operatorid" class="col-3 col-form-label">运营商ID</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="operatorInformation_operatorid" [(ngModel)]="queryModel.operatorInformation_operatorid" name="queryModel.operatorInformation_operatorid" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="phone" class="col-3 col-form-label">手机号</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="phone" [(ngModel)]="queryModel.phone" name="queryModel.phone" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="qq" class="col-3 col-form-label">QQ</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="qq" [(ngModel)]="queryModel.qq" name="queryModel.qq" disabled>
-                            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <div class="row">
+                        <label for="operatorInformation_operatorid" class="col-3 col-form-label">运营商ID</label>
+                        <div class="col-8">
+                            <input class="form-control" type="number" id="operatorInformation_operatorid" [(ngModel)]="queryModel.operatorInformation_operatorid" name="queryModel.operatorInformation_operatorid" disabled>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="weixin" class="col-3 col-form-label">微信</label>
-                            <div class="col-8">
-                                <input class="form-control" type="text" id="weixin" [(ngModel)]="queryModel.weixin" name="queryModel.weixin" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <label for="email" class="col-3 col-form-label">Email地址</label>
-                            <div class="col-8">
-                                <input class="form-control" type="email" id="email" [(ngModel)]="queryModel.email" name="queryModel.email" disabled>
-                            </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label for="phone" class="col-3 col-form-label">手机号</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="phone" [(ngModel)]="queryModel.phone" name="queryModel.phone" disabled>
                         </div>
                     </div>
                 </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label for="qq" class="col-3 col-form-label">QQ</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="qq" [(ngModel)]="queryModel.qq" name="queryModel.qq" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-4">
+                    <div class="row">
+                        <label for="weixin" class="col-3 col-form-label">微信</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" id="weixin" [(ngModel)]="queryModel.weixin" name="queryModel.weixin" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label for="email" class="col-3 col-form-label">Email地址</label>
+                        <div class="col-8">
+                            <input class="form-control" type="email" id="email" [(ngModel)]="queryModel.email" name="queryModel.email" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <div class="row offset-4 col-10">
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-primary" (click)="editProfile(this.queryModel)">修改个人信息</button>
-                    </div>
-                    <div class="col-2">
-                        <button type="submit" class="btn btn-primary" (click)="editPassword()">修改密码</button>
-                    </div>
+            <div class="row offset-4 col-10">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary" (click)="editProfile(this.queryModel)">修改个人信息</button>
                 </div>
-
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary" (click)="editPassword()">修改密码</button>
+                </div>
             </div>
 
         </div>

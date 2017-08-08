@@ -59,30 +59,14 @@ export class ICCardCheckComponent implements OnInit {
                 name: '拒绝',
                 action: function (ids) {
                     this.confirmService.confirm('拒绝通过！',{subMsg:'请输入你拒绝通过的理由：', inputInfo: true}).then(result => {
-                        this.agree(result);
+                        this.disagree(result);
                     }, error =>{})
                 }.bind(this)
             }
         ],
         rowActions: [
             {
-                type: 'edit',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(ICCardCheckEditComponent);
-                    modalRef.componentInstance.actionTitle = '修改';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.updateCard(result);
-                    })
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'IcCard/Delete'
-                }
+                //todo 打印下载
             }
         ]
     };
@@ -97,13 +81,19 @@ export class ICCardCheckComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
+    //根据后端接口看ICcard是否为boolean
     agree(ICcard: object){
         this.customHttpClient.post('', ICcard).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
         })
     }
-
+    disagree(ICcard: object){
+        this.customHttpClient.post('', ICcard).subscribe(result => {
+            if(result.code == '00')
+                this.refreshGrid();
+        })
+    }
 
     clear(){
         this.queryModel.status='';

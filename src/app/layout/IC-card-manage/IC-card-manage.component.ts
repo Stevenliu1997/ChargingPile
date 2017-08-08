@@ -4,6 +4,7 @@ import {DatagridComponent} from "../../shared/components/widget/datagrid/datagri
 import {ICCardManageEditComponent} from "./IC-card-manage-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {ConfirmService} from "../../shared/services/confirm-service/confirm.service";
 
 @Component({
     selector: 'app-tables',
@@ -28,6 +29,7 @@ export class ICCardManageComponent implements OnInit {
     };
     // datagrid 配置
     config: object = {
+        key: 'cardid',
         url: 'IcCard/Find',
         column: [
             {name: 'IC卡号', key: 'cardid'},
@@ -40,7 +42,11 @@ export class ICCardManageComponent implements OnInit {
             {name: '失效日期', key: 'endtime'},
         ],
         params: function () {
-            return this.queryModel;
+            let queryModel =  Object.assign({},this.queryModel);
+            if (queryModel.cardid == ''){
+                queryModel.cardid = -1;
+            }
+            return queryModel;
         }.bind(this),
         topActions: [
             {
@@ -51,6 +57,7 @@ export class ICCardManageComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
                         this.addCard(result);
+                    },error => {
                     })
                 }.bind(this)
             }
@@ -64,6 +71,7 @@ export class ICCardManageComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.updateCard(result);
+                    },error => {
                     })
                 }.bind(this)
             },
@@ -75,17 +83,27 @@ export class ICCardManageComponent implements OnInit {
                     url:'IcCard/Delete'
                 }
             },
-            {
-                //todo 锁定
-                type: 'lock',
-                action: function (item){
+            {//TODO
+                icon: function (item) {
+                    if (item.icstate == "locked") {
+                        return 'fa-lock '
+                    } else {
+                        return 'fa-unlock'
+                    }
+                },
+                action: function (item) {
+                    if(item.icstate == "locked"){
+                        this.confirmService.confirm('').then(result => {
+                        }, error =>{})
+                    }else {
+                    }
 
-                }
+                }.bind(this)
             }
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, private confirmService: ConfirmService) {
     }
 
     ngOnInit() {

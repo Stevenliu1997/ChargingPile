@@ -24,8 +24,8 @@ export class ICCardManageEditComponent {
 
     openModal(){
         const modalRef = this.ngbModal.open(OwnerChooseComponent, {size: "lg"});
-        modalRef.componentInstance.actionTitle = '新增';
         modalRef.result.then(result => {
+        },error => {
         })
     }
 }

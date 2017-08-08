@@ -1,4 +1,3 @@
-<script src="recharge-equipment-routing.module.ts"></script>
 <div class="modal-header">
     <h4 class="modal-title">详细信息</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -44,15 +43,15 @@
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.programid">程序ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.programid' name="editModel.programid"  class="form-control" id="editModel.programid" disabled="disabled">
+                <input type="number" [(ngModel)] = 'editModel.programid' name="editModel.programid"  class="form-control" id="editModel.programid" disabled="disabled">
             </div>
             <label class="col-2 col-form-label" for="editModel.factoryid">厂商ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.factoryid' name="editModel.factoryid"  class="form-control" id="editModel.factoryid" disabled="disabled">
+                <input type="number" [(ngModel)] = 'editModel.factoryid' name="editModel.factoryid"  class="form-control" id="editModel.factoryid" disabled="disabled">
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Close click')">关闭</button>
 </div>
