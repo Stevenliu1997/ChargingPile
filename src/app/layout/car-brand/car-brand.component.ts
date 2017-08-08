@@ -75,6 +75,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
+                        this.refreshGrid();
                     }, error => {})
                 }.bind(this)
             }

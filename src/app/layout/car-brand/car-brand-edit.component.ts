@@ -22,11 +22,11 @@ export class CarBrandEditComponent {
         if (this.actionTitle === '添加') {
             this.editModel.brandid = -1;
             this.add(this.editModel);
-        } else {
-            this.edit(this.editModel);
+        } else if (this.actionTitle === '编辑') {
+            this.update(this.editModel);
         }
     }
-    edit(obj: object) {
+    update(obj: object) {
         this.customHttpClient.post('CarBrand/Update', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close();
