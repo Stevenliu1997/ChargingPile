@@ -50,6 +50,7 @@ export class SiteInformationComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(SiteManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
