@@ -4,6 +4,7 @@ import {DatagridComponent} from "../../shared/components/widget/datagrid/datagri
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {OrderQueryEditComponent} from "./orderquery-edit.component";
+import {OrderQueryRecordComponent} from "./orderquery-record.component";
 
 @Component({
     selector: 'app-form',
@@ -57,7 +58,7 @@ export class OrderQueryComponent implements OnInit {
             }
         ],*/
         rowActions: [
-            {
+            /*{
                 type: 'edit',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(OrderQueryEditComponent);
@@ -75,6 +76,13 @@ export class OrderQueryComponent implements OnInit {
                 autoConfig: {
                     url:'OrderQuery/Find'
                 }
+            }*/
+            {
+                type: 'detail',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(OrderQueryRecordComponent, {size: "lg"});
+                    modalRef.componentInstance.account = item.account;
+                }.bind(this)
             }
         ]
     };
@@ -89,23 +97,9 @@ export class OrderQueryComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateOrder(order: object){
-        this.customHttpClient.post('OrderQuery/Update', order).subscribe(result => {
-
-        })
-    }
-
     blankGrid(){
-        this.queryModel.orderid ='';
-        this.queryModel.icid ='';
-        this.queryModel.user ='';
-        this.queryModel.station ='';
-        this.queryModel.lockstate ='';
-        this.queryModel.site ='';
-        this.queryModel.gun ='';
-        this.queryModel.starttime ='';
-        this.queryModel.endtime ='';
-        this.queryModel.orderstate =''
+        this.queryModel = {};
+
     }
 
     exportGrid(){

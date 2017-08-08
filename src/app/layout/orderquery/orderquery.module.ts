@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {OrderQueryEditComponent} from "./orderquery-edit.component";
+import {OrderQueryRecordComponent} from "./orderquery-record.component";
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import {OrderQueryEditComponent} from "./orderquery-edit.component";
         WidgetModule,
         NgbModule,
     ],
-    declarations: [OrderQueryComponent,OrderQueryEditComponent],
-    entryComponents: [OrderQueryEditComponent]
+    declarations: [OrderQueryComponent,OrderQueryEditComponent,OrderQueryRecordComponent],
+    entryComponents: [OrderQueryEditComponent,OrderQueryRecordComponent]
 })
 export class OrderQueryModule { }
