@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import {CustomHttpClient} from "../../services/custom-http-client/CustomHttpClient"
 
 @Component({
     selector: 'app-header',
@@ -8,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-    constructor(public router: Router) {
+    constructor(public router: Router, private customHttpClient: CustomHttpClient) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992) {
                 this.toggleSidebar();
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        this.customHttpClient.get('logout');
     }
     changeLang(language: string) {
     }
