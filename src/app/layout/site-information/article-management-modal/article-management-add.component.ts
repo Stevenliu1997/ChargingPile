@@ -26,14 +26,14 @@ export class ArticleManagementAddComponent {
         }
     }
     add(obj: any) {
-        this.customHttpClient.post('SiteInformation/Add', obj).subscribe(result => {
+        this.customHttpClient.post('ArticleManage/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }
         })
     }
     update(obj: any) {
-        this.customHttpClient.post('SiteInformation/Add', obj).subscribe(result => {
+        this.customHttpClient.post('ArticleManage/Update', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }

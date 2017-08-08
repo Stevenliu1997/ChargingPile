@@ -1,30 +1,9 @@
 {
     "code": "00",
-    "Data":[
-        {
-            "siteid": 1,
-            "amount": 1,
-            "times": 1,
-            "usernumber": 1,
-            "errornumber": 1,
-            "operatetime": 1
-        },
-        {
-            "siteid": 1,
-            "amount": 1,
-            "times": 1,
-            "usernumber": 1,
-            "errornumber": 1,
-            "operatetime": 1
-        },
-        {
-            "siteid": 1,
-            "amount": 1,
-            "times": 1,
-            "usernumber": 1,
-            "errornumber": 1,
-            "operatetime": 1
-        }
-    ]
-
+    "message":"",
+    "date":["1","2"],
+    "times":["","1"],
+    "Amount":["1"],
+    "usernumber":["1","2"],
+    "errornumber":["1","2"]
 }
