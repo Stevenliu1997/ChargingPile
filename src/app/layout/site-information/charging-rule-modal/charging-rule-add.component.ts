@@ -1,14 +1,18 @@
-import {Component, Input} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {Component, Input, ViewChild, ViewContainerRef} from '@angular/core';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 import {AddRuleComponent} from './add-rule.component';
+import {ToastsManager} from 'ng2-toastr';
+import {DatagridComponent} from '../../../shared/components/widget/datagrid/datagrid.component';
+
 
 @Component({
     selector: 'app-charging-rule-add',
     templateUrl: './charging-rule-add.component.html'
 })
 export class ChargingRuleAddComponent {
-
+    @ViewChild(DatagridComponent)
+    private datagridComponent: DatagridComponent;
     @Input()
     actionTitle: string;
     @Input()
@@ -33,7 +37,7 @@ export class ChargingRuleAddComponent {
                     const modalRef = this.ngbModal.open(AddRuleComponent);
                     modalRef.componentInstance.actionTitle = '';
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGrid();
                     })
                 }.bind(this)
             },
@@ -50,10 +54,19 @@ export class ChargingRuleAddComponent {
         ]
     };
 
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(
+        public activeModal: NgbActiveModal,
+        private ngbModal: NgbModal,
+        public toastr: ToastsManager,
+        vcr: ViewContainerRef
+    ) {
+        this.toastr.setRootViewContainerRef(vcr);
+    }
 
     confirm() {
         this.activeModal.close(this.editModel);
     }
-
+    refreshGrid() {
+        this.datagridComponent.refreshGrid();
+    }
 }

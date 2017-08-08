@@ -26,6 +26,7 @@ export class SiteInformationComponent implements OnInit {
 
     queryModel: any = {};
 
+    /*站点管理*/
     siteMConfig: object = {
         key: 'siteid',
         url: 'SiteInformation/site-management',
@@ -81,6 +82,7 @@ export class SiteInformationComponent implements OnInit {
         ]
     };
 
+    /*计费规则管理*/
     chargingRConfig: object = {
         url: 'ChargingRule/Find',
         column: [
@@ -121,7 +123,7 @@ export class SiteInformationComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'ArticleManage/Delete'
+                    url: 'ChargingRule/Delete'
                 }
             }
         ],
@@ -150,8 +152,10 @@ export class SiteInformationComponent implements OnInit {
             }
         ]
     };
+
+    /*文章管理*/
     articleMConfig: object = {
-        url: 'SiteInformation/article-management',
+        url: 'ArticleManage/Find',
         column: [
             {name: '所属分类', key: 'classification'},
             {name: '一级标题', key: 'levelonetitle'},
@@ -188,7 +192,7 @@ export class SiteInformationComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'SiteInformation/delete'
+                    url: 'ArticleManage/Delete'
                 }
             }
         ],
