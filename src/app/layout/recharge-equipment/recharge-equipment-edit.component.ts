@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input,ViewChild} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {NgForm} from "@angular/forms";
 
 @Component({
     selector: 'recharge-equipment-edit',
@@ -11,11 +13,33 @@ export class RechargeEquipmentEditComponent {
     actionTitle: string;
     @Input()
     editModel: any = {};
+    @ViewChild('submitForm')
+    editForm: NgForm;
 
-    constructor(public activeModal: NgbActiveModal) {}
+    constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
 
     confirm() {
-        this.activeModal.close(this.editModel);
+        if(this.editForm.form.invalid){
+            return;
+        }
+        if(this.actionTitle === '新增'){
+            this.addEquipment(this.editModel);
+        }else {
+            this.updateEquipment(this.editModel);
+        }
     }
+    addEquipment(Equipment: object){
+        this.customHttpClient.post('Pile/Add', Equipment).subscribe(result => {
+            if(result.code == '00')
+                this.activeModal.close();
+        })
+    }
+    updateEquipment(Equipment: object){
+        this.customHttpClient.post('Pile/Update', Equipment).subscribe(result => {
+            if(result.code == '00')
+                this.activeModal.close();
+        })
+    }
+
 
 }

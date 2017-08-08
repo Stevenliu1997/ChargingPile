@@ -16,8 +16,4 @@ export class RechargeEquipmentRecordComponent {
 
     constructor(public activeModal: NgbActiveModal) {}
 
-    confirm() {
-
-    }
-
 }

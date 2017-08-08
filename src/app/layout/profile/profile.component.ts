@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
         modalRef.componentInstance.actionTitle = '修改';
         modalRef.componentInstance.editModel = Object.assign({},item);
         modalRef.result.then(result => {
-            this.updateProfile(result);
+                this.queryModel=result;
         },
         error => {
          })
@@ -41,22 +41,7 @@ export class ProfileComponent implements OnInit {
         const modalRef = this.ngbModal.open(ProfileEditpasswordComponent);
         modalRef.componentInstance.actionTitle = '修改';
         modalRef.result.then(result => {
-            this.updatePassword(result);
-        },
-            error => {
-            })
-    }
-
-    updateProfile(profile: object) {
-        this.customHttpClient.post('ManageUser/Update', profile).subscribe(result => {
-            if(result.code == '00')
-                this.queryModel=result;
-        },error => {})
-    }
-
-
-    updatePassword(password: object){
-        this.customHttpClient.post('User/UpdatePassword', password).subscribe(result => {
-        },error => {})
+        }, error => {
+        })
     }
 }

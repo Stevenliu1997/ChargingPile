@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input,ViewChild} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {NgForm} from "@angular/forms";
@@ -14,8 +14,8 @@ export class RechargeProgramEditComponent {
     @Input()
     editModel: any = {};
 
-    /*    @ViewChild('submitForm')
-        editForm: NgForm;*/
+    @ViewChild('submitForm')
+    editForm: NgForm;
 
     constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
     confirm() {

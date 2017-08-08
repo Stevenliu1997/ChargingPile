@@ -51,11 +51,12 @@ export class RechargeEquipmentComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {
-                        this.addEquipment(result);
+                        this.refreshGrid();
                     },error => {
                     })
                 }.bind(this)
@@ -86,7 +87,7 @@ export class RechargeEquipmentComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateEquipment(result);
+                        this.refreshGrid();
                     },error => {
                     })
                 }.bind(this)
@@ -112,22 +113,7 @@ export class RechargeEquipmentComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateEquipment(Equipment: object){
-        this.customHttpClient.post('Pile/Update', Equipment).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-            else
-                console.log("result.message");
-        })
-    }
-    addEquipment(Equipment: object){
-        this.customHttpClient.post('Pile/Add', Equipment).subscribe(result => {
-            if(result.code == '00')
-                this.refreshGrid();
-            else
-                console.log("result.message");
-        })
-    }
+
     clear(){
         this.queryModel={
             state: '',

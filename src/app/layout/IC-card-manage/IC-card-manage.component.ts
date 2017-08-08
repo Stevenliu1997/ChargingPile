@@ -52,6 +52,7 @@ export class ICCardManageComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ICCardManageEditComponent);
                     modalRef.componentInstance.actionTitle = '新增';
