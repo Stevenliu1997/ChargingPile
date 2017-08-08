@@ -43,6 +43,7 @@ export class CustomInterceptor implements HttpInterceptor {
                 }else if(response.url.indexOf('Delete') != -1){
                     msg = '删除成功！';
                 }
+                //todo 上传成功
                 if(msg){
                     this.toastr.clearAllToasts();
                     window.setTimeout(() => {

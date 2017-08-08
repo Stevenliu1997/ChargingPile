@@ -5,12 +5,9 @@
     </button>
 </div>
 <div class="modal-body">
-    {{confirmMsg}}{{options.subMsg}}
-    <div *ngIf="options.inputInfo">
-        <input class="form-control" [(ngModel)]="inputInfo" type="text" name="inputInfo">
-    </div>
+    {{confirmMsg || '是否同意？'}}
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="activeModal.close(inputInfo)">确认</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close()">确认</button>
 </div>

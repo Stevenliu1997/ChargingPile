@@ -45,27 +45,45 @@ export class RechargeProgramComponent implements OnInit {
         ],
         rowActions: [
             {//TODO
-                type: `upload`,
+                icon: function (item) {
+                    //TODO item.uploaded指有上传文件
+                    if(item.uploaded){
+                        return 'fa-pencil-square-o'
+                    }else {
+                        return 'fa-upload'
+                    }
+                },
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
-                    modalRef.componentInstance.actionTitle = '上传';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.refreshGrid();
-                    },error => {})
+                    //TODO item.uploaded指有上传文件
+                    if(item.uploaded){
+                        const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
+                        modalRef.componentInstance.actionTitle = '更新';
+                        modalRef.componentInstance.editModel = Object.assign({},item);
+                        modalRef.result.then(result => {
+                            this.refreshGrid()
+                        },error => {})
+                    }else {
+                        const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
+                        modalRef.componentInstance.actionTitle = '上传';
+                        modalRef.componentInstance.editModel = Object.assign({},item);
+                        modalRef.result.then(result => {
+                            this.refreshGrid();
+                        },error => {})
+                    }
+
                 }.bind(this)
             },
-            {
-                type: 'edit',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
-                    modalRef.componentInstance.actionTitle = '更新';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.refreshGrid();
-                    },error => {})
-                }.bind(this)
-            },
+            // {
+            //     type: 'edit',
+            //     action: function (item) {
+            //         const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
+            //         modalRef.componentInstance.actionTitle = '更新';
+            //         modalRef.componentInstance.editModel = Object.assign({},item);
+            //         modalRef.result.then(result => {
+            //             this.updateProgram(result);
+            //         },error => {})
+            //     }.bind(this)
+            // },
             {
                 type: 'delete',
                 name: '删除',

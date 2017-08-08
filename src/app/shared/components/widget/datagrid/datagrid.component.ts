@@ -40,6 +40,12 @@ export class DatagridComponent implements OnInit {
 
     fetchedData: any = [];
 
+    private rowIcons: object = {'delete' : 'fa-trash-o',
+        'edit': 'fa-pencil-square-o',
+        'detail': 'fa-file-o',
+        'upload': 'fa-upload'
+    };
+
     constructor(private httpClient: CustomHttpClient, private crudService: CRUDService) {
 
     }
@@ -152,6 +158,29 @@ export class DatagridComponent implements OnInit {
         for(let i=1;i<=total;i++){
             this.pageArr.push(i);
         }
+    }
+
+    /**
+     * 每一小列事件
+     * @param col
+     * @param data
+     */
+    colAction(col: any, data: object) {
+        if(col.action){
+            col.action(data);
+        }
+    }
+
+    /**
+     * 行内时间icon
+     * @param col
+     * @param data
+     * @returns {any}
+     */
+    getIcon(col:any, data: object){
+        return col.type ?
+            this.rowIcons[col.type] :
+            (col.icon ? col.icon(data) : '');
     }
 
 }

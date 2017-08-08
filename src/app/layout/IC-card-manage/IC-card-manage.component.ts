@@ -82,12 +82,32 @@ export class ICCardManageComponent implements OnInit {
                     url:'IcCard/Delete'
                 }
             },
-            {
-                //todo 锁定
-                type: 'lock',
-                action: function (item){
+            {//TODO
+                icon: function (item) {
+                    //TODO item.lock指有上传文件
+                    if (item.lock) {
+                        return 'fa-lock '
+                    } else {
+                        return 'fa-unlock'
+                    }
+                },
+                action: function (item) {
+                    //TODO item.uploaded指有上传文件
+                    if(item.uploaded){
 
-                }
+                        this.confirmService.confirm('你确认通过吗？',{subMsg:'通过后即可制卡！'}).then(result => {
+                            this.agree(result);
+                        }, error =>{})
+                    }else {
+                        const modalRef = this.ngbModal.open();
+                        modalRef.componentInstance.actionTitle = '上传';
+                        modalRef.componentInstance.editModel = Object.assign({},item);
+                        modalRef.result.then(result => {
+                            this.refreshGrid();
+                        },error => {})
+                    }
+
+                }.bind(this)
             }
         ]
     };

@@ -4,10 +4,10 @@
     <div content="main-content container">
         <div class="query-section row breadcrumb mx-xl-0">
             <div class="col-12 row">
-                <div class="col-8">
+                <div class="col-4">
                     <div class="row" >
-                        <label class="col-form-label col-3">审核状态查询:</label>
-                        <select class="form-contro col-5" [(ngModel)]="queryModel.status">
+                        <label class="col-form-label col-5">审核状态查询:</label>
+                        <select class="form-control col-7" [(ngModel)]="queryModel.status">
                             <option value="">请选择</option>
                             <option value="cancel">取消</option>
                             <option value="checkpending">待审核</option>
@@ -18,12 +18,12 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ export class SiteManagementComponent implements OnInit {
             if (!tempquery.siteid) {
                 tempquery.siteid = -1;
             }
-            tempquery.provincecity = `${this.queryModel.province || ''}&${this.queryModel.city || ''}`;
+            tempquery.provincecity = `${this.queryModel.province || ''}${this.queryModel.city || ''}`;
             tempquery.province = undefined;
             tempquery.city = undefined;
             return tempquery;
@@ -48,7 +48,7 @@ export class SiteManagementComponent implements OnInit {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '新建站点';
                     modalRef.result.then(result => {
-                        this.refreshGrid()
+                        this.refreshGrid();
                     })
                 }.bind(this)
             },
@@ -91,7 +91,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.refreshGrid()
+                        this.refreshGrid();
                     }, error => {})
                 }.bind(this)
             },

@@ -19,11 +19,20 @@ export class RechargeProgramEditComponent {
 
     constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
     confirm() {
-        this.updateProgram(this.editModel);
+        if(this.actionTitle === '更新')
+            this.updateProgram(this.editModel);
+        else
+            this.uploadProgram(this.editModel);
     }
 
     updateProgram(program: any){
         this.customHttpClient.post('Program/Update', program).subscribe(result => {
+            if(result.code == '00')
+                this.activeModal.close();
+        })
+    }
+    uploadProgram(program: any){
+        this.customHttpClient.post('Program/Upload', program).subscribe(result => {
             if(result.code == '00')
                 this.activeModal.close();
         })
