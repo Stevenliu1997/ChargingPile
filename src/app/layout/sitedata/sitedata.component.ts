@@ -27,25 +27,24 @@ export class SiteDataComponent implements OnInit {
 
 
     timesChart: any = [{data: []}];
-    userChart: any = {data: []};
-    amountChart: any = {data: []};
-    errorChart: any = {data: []};
-    chartDate: any = {data: []};
+    userChart: any = [{data: []}];
+    amountChart: any = [{data: []}];
+    errorChart: any = [{data: []}];
+    chartDate: any = [{data: []}];
 
     formData(tempResult:any){
 
         this.timesChart[0].data = tempResult.times;
-        this.userChart.data = tempResult.usernumber;
-        this.amountChart.data = tempResult.errornumber;
-        this.errorChart.data = tempResult.amount;
+        this.userChart[0].data = tempResult.usernumber;
+        this.amountChart[0].data = tempResult.errornumber;
+        this.errorChart[0].data = tempResult.amount;
 
         this.lineChartLabels = tempResult.date;
 
-
         this.timesChart[0].label = '充电次数';
-        this.userChart.label = '用户数';
-        this.amountChart.label = '充电量';
-        this.errorChart.label = '故障数';
+        this.userChart[0].label = '用户数';
+        this.amountChart[0].label = '充电量';
+        this.errorChart[0].label = '故障数';
     };
 
     refreshChart(){
@@ -55,12 +54,6 @@ export class SiteDataComponent implements OnInit {
             }
         });
     }
-
-
-    public timesChartData:Array<any> = this.timesChart;
-    public userChartData:Array<any> = this.userChart;
-    public errorChartData:Array<any> =this.errorChart;
-    public amountChartData:Array<any> = this.amountChart;
 
     public lineChartLabels:Array<any>;
     public lineChartOptions:any = {

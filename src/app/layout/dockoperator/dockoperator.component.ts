@@ -92,28 +92,6 @@ export class DockoperatorComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateOperator(operator: object){
-        this.customHttpClient.post('Operator/Update', operator).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
-    }
-
-    addOperator(operator: object){
-        this.customHttpClient.post('Operator/Add', operator).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
-    }
-
     blankGrid(){
         this.queryModel = {};
     }

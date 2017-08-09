@@ -8,7 +8,7 @@
                         <div class="row">
                             <label for="brandid-text-input" class="col-4 col-form-label">品牌ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="brandid-text-input" [(ngModel)]="queryModel.brandid" name="queryModel.brandid">
+                                <input class="form-control" type="text" id="brandid-text-input" [(ngModel)]="queryModel.brandid" name="queryModel.brandid" validationMsg maxlength="9223372036854775807">
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="row">
                             <label for="brandname-text-input" class="col-4 col-form-label">品牌名称</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="brandname-text-input" [(ngModel)]="queryModel.brandname" name="queryModel.brandname">
+                                <input class="form-control" type="text" id="brandname-text-input" [(ngModel)]="queryModel.brandname" name="queryModel.brandname" validationMsg maxlength="50">
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                         <div class="row">
                             <label for="cartyper-text-input" class="col-4 col-form-label">车型</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="cartyper-text-input" [(ngModel)]="queryModel.cartyper" name="queryModel.cartyper">
+                                <input class="form-control" type="text" id="cartyper-text-input" [(ngModel)]="queryModel.cartyper" name="queryModel.cartyper" validationMsg maxlength="50">
                             </div>
                         </div>
                     </div>

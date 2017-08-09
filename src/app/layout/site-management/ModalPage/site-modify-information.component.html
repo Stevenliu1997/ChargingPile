@@ -5,11 +5,11 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
             <label for="sitename-text-input" class="col-2 col-form-label">站点名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.sitename' id="sitename-text-input" name="editModel.sitename" class="form-control">
+                <input [(ngModel)] = 'editModel.sitename' id="sitename-text-input" name="editModel.sitename" class="form-control" validationMsg maxlength="50">
             </div>
         </div>
         <div class="form-group row">
@@ -35,7 +35,7 @@
         <div class="form-group row">
             <label for="type-text-input" class="col-2 col-form-label">充电站类型</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.type' id="type-text-input" name="editModel.type" class="form-control">
+                <input [(ngModel)] = 'editModel.type' id="type-text-input" name="editModel.type" class="form-control" validationMsg maxlength="50">
             </div>
         </div>
         <div class="form-group row">
@@ -54,25 +54,25 @@
         <div class="form-group row">
             <label for="position-text-input" class="col-2 col-form-label">详细地址</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.position' id="position-text-input" name="editModel.position" class="form-control">
+                <input [(ngModel)] = 'editModel.position' id="position-text-input" name="editModel.position" class="form-control" validationMsg maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label for="pilenumber-text-input" class="col-2 col-form-label">充电桩数量</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.pilenumber' id="pilenumber-text-input" name="editModel.pilenumber" class="form-control">
+                <input type="number" [(ngModel)] = 'editModel.pilenumber' id="pilenumber-text-input" name="editModel.pilenumber" class="form-control" validationMsg maxlength="2147483647">
             </div>
         </div>
         <div class="form-group row">
             <label for="seatnumber-text-input" class="col-2 col-form-label">车位数量</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.seatnumber' id="seatnumber-text-input" name="editModel.seatnumber" class="form-control">
+                <input type="number" [(ngModel)] = 'editModel.seatnumber' id="seatnumber-text-input" name="editModel.seatnumber" class="form-control" validationMsg maxlength="2147483647">
             </div>
         </div>
         <div class="form-group row">
             <label for="operatorInformation_operatorid-text-input" class="col-2 col-form-label">运营商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="operatorInformation_operatorid-text-input" name="editModel.operatorInformation_operatorid" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="operatorInformation_operatorid-text-input" name="editModel.operatorInformation_operatorid" class="form-control" validationMsg maxlength="9223372036854775807">
             </div>
         </div>
         <div class="form-group row">
