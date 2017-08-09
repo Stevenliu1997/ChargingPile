@@ -17,7 +17,7 @@
                         <div class="row">
                             <label for="operator-name" class="col-4 col-form-label">运营商名称</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="operator-name" [(ngModel)]="queryModel.operatorname" name="queryModel.operatorname">
+                                <input class="form-control" type="text" id="operator-name" [(ngModel)]="queryModel.operatorname" maxlength="50" name="queryModel.operatorname">
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         <div class="row">
                             <label for="contactor" class="col-4 col-form-label">联系人</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="contactor" [(ngModel)]="queryModel.contactor" name="queryModel.contactor">
+                                <input class="form-control" type="text" id="contactor" [(ngModel)]="queryModel.contactor" maxlength="50" name="queryModel.contactor">
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="row">
                             <label for="phone-number" class="col-4 col-form-label">手机号</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="phone-number" [(ngModel)]="queryModel.phone" name="queryModel.phone">
+                                <input class="form-control" type="text" id="phone-number" [(ngModel)]="queryModel.phone" maxlength="11" minlength="11" name="queryModel.phone">
                             </div>
                         </div>
                     </div>
@@ -53,8 +53,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-3">
                 <div class="row">
                     <div class="col-4">
@@ -65,32 +63,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
         <div class="query-section row breadcrumb mx-0">
-            <!--<div class="col-3">
-                <div class="row">
-                    <label for="example-text-input" class="col-4 col-form-label">角色名称</label>
-                    <div class="col-8">
-                        <input class="form-control" type="text" id="example-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
-                    </div>
-                </div>
-            </div>-->
-
-            <!--<div class="col-3">
-                <div class="row">
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
-                    </div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">清空</button>
-                    </div>
-                </div>
-            </div>-->
-
         </div>
-
         <app-datagrid [config]="config"></app-datagrid>
     </div>
 </div>

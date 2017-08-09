@@ -33,11 +33,12 @@ export class RoleComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(RoleEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        this.addRole(result);
+                        this.refreshGrid();
                     },
                     error => {})
                 }.bind(this)
@@ -69,7 +70,7 @@ export class RoleComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateRole(result);
+                            this.refreshGrid();
                     },
                     error => {
                     })
@@ -89,24 +90,7 @@ export class RoleComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
 
-    updateRole(role: object){
-        this.customHttpClient.post('Role/Update', role).subscribe(result => {
-            if(result.code == '00') {
-                this.refreshGrid();
-            }else {
-                console.log(result.message);
-            }
-        })
-    }
-    addRole(role: object){
-        this.customHttpClient.post('Role/Add', role).subscribe(result => {
-            if(result.code == '00') {
-                this.refreshGrid();
-            }else {
-                console.log(result.message);
-            }
-        })
-    }
+
     clear(){
         this.queryModel={};
     }

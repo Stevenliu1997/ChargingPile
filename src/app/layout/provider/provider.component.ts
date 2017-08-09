@@ -48,6 +48,7 @@ export class ProviderComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ProviderEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
@@ -128,28 +129,6 @@ export class ProviderComponent implements OnInit {
     initquery(){
         this.queryModel = {};
 
-    }
-
-    updateProvider(provider: object){
-        this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
-    }
-
-    addProvider(provider: object){
-        this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
     }
 
 }

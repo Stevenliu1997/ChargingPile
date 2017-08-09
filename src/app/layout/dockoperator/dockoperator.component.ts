@@ -43,6 +43,7 @@ export class DockoperatorComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
@@ -89,28 +90,6 @@ export class DockoperatorComponent implements OnInit {
 
     refreshGrid(){
         this.datagridComponent.refreshGrid();
-    }
-
-    updateOperator(operator: object){
-        this.customHttpClient.post('Operator/Update', operator).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
-    }
-
-    addOperator(operator: object){
-        this.customHttpClient.post('Operator/Add', operator).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
     }
 
     blankGrid(){
