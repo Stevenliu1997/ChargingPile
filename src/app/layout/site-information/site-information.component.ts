@@ -295,7 +295,7 @@ export class SiteInformationComponent implements OnInit {
         this.queryModel.state = 'Default';
     }
     chargingclear(): void {
-        this.queryModel.chargename = '';
+        this.queryModel.rulename = '';
         this.queryModel.operator = 'Default';
         this.queryModel.chargerulenum = '';
         this.queryModel.startstate = 'Default';

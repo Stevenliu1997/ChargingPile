@@ -1,7 +1,7 @@
-
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-site-modify-information',
@@ -14,12 +14,18 @@ export class SiteModifyInformationComponent {
     @Input()
     editModel: any = {};
 
+    @ViewChild('submitForm')
+    editForm: NgForm;
+
     constructor(
         public activeModal: NgbActiveModal,
         private customHttpClient: CustomHttpClient
     ) {}
 
     confirm() {
+        if (this.editForm.form.invalid) {
+            return;
+        }
         if (this.actionTitle === '新建站点') {
             this.add(this.editModel);
         } else if (this.actionTitle === '修改信息') {
