@@ -20,7 +20,7 @@ export class ProfileEditProfileComponent {
     }
 
     confirm() {
-        if(this.editForm.form.invalid){
+          if(this.editForm.form.invalid){
             return;
         }
         this.updateProfile(this.editModel);

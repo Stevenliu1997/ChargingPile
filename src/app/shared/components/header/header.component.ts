@@ -31,4 +31,7 @@ export class HeaderComponent implements OnInit {
 
     changeLang(language: string) {
     }
+    onLoggedout() {
+        this.customHttpClient.get('logout').subscribe();
+    }
 }

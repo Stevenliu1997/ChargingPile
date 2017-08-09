@@ -27,24 +27,14 @@ export class ProfileEditpasswordComponent {
     }
 
     confirm() {
+
         if(this.editForm.form.invalid){
             return;
         }
-        this.customHttpClient.post('User/UpdatePassword',this.editModel.oldpassword).subscribe(result => {
-            if(result.code=='00'&&!this.pwd&&!this.newpwd){
-                this.updatePassword(this.editModel);
-            }else{
-                this.errormsg= result.message;
-                return;
-            }
-        })
-    }
-    newPwd(value: string){
-        this.value=value;
-        if (this.value != '')
-            this.newpwd= false;
-        else
-            this.newpwd= true;
+        if(this.pwd){
+            return;
+        }
+        this.updatePassword(this.editModel);
     }
 
     //比较两次密码
@@ -55,9 +45,14 @@ export class ProfileEditpasswordComponent {
         else
             this.pwd= false;
     }
+
     updatePassword(password: object){
         this.customHttpClient.post('User/UpdatePassword', password).subscribe(result => {
-            this.activeModal.close();
-        },error => {})
+            if(result.code=='00'){
+                this.activeModal.close();
+            }else{
+                this.errormsg= result.message;
+                return;
+            }})
     }
 }

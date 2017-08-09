@@ -9,7 +9,7 @@
                         <div class="row">
                             <label for="pileid" class="col-4 col-form-label">设备ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="pileid" [(ngModel)]="queryModel.pileid" name="queryModel.pileid">
+                                <input class="form-control" type="text" id="pileid" [(ngModel)]="queryModel.pileid" name="queryModel.pileid" maxlength="50">
                             </div>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
                         <div class="row">
                             <label for="pilename" class="col-4 col-form-label">设备名称</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="pilename" [(ngModel)]="queryModel.pilename" name="queryModel.pilename">
+                                <input class="form-control" type="text" id="pilename" [(ngModel)]="queryModel.pilename" name="queryModel.pilename" maxlength="50">
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         <div class="row">
                             <label for="siteid" class="col-4 col-form-label">站点ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" id="siteid" [(ngModel)]="queryModel.siteid" name="queryModel.siteid">
+                                <input class="form-control" type="number" id="siteid" [(ngModel)]="queryModel.siteid" name="queryModel.siteid" max="9223372036854775807">
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="row">
                             <label for="factoryid" class="col-4 col-form-label">厂商ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" id="factoryid" [(ngModel)]="queryModel.factoryid" name="queryModel.factoryid">
+                                <input class="form-control" type="number" id="factoryid" [(ngModel)]="queryModel.factoryid" name="queryModel.factoryid" max="2147483647">
                             </div>
                         </div>
                     </div>

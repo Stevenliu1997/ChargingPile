@@ -9,21 +9,21 @@
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.pilename">设备名称</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.pilename' name="editModel.pilename"  class="form-control" id="editModel.pilename">
+                <input [(ngModel)] = 'editModel.pilename' name="editModel.pilename"  class="form-control" id="editModel.pilename" maxlength="50">
             </div>
             <label class="col-2 col-form-label" for="editModel.type">设备型号</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.type' name="editModel.type"  class="form-control" id="editModel.type">
+                <input [(ngModel)] = 'editModel.type' name="editModel.type"  class="form-control" id="editModel.type" maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.pileid">设备ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.pileid' name="editModel.pileid"  class="form-control" id="editModel.pileid">
+                <input [(ngModel)] = 'editModel.pileid' name="editModel.pileid"  class="form-control" id="editModel.pileid" maxlength="50">
             </div>
             <label class="col-2 col-form-label" for="siteid">站点ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.siteid' type="number" name="editModel.siteid"  class="form-control" id="siteid">
+                <input [(ngModel)] = 'editModel.siteid' type="number" name="editModel.siteid"  class="form-control" id="siteid" max="9223372036854775807">
             </div>
         </div>
         <div class="form-group row">
@@ -36,17 +36,17 @@
             </div>
             <label class="col-2 col-form-label" for="editModel.v">电压</label>
             <div class="col-4">
-                <input type="number" [(ngModel)] = 'editModel.v' name="editModel.v"  class="form-control" id="editModel.v">
+                <input type="number" [(ngModel)] = 'editModel.v' name="editModel.v"  class="form-control" id="editModel.v" max="10000.0">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.i">电流</label>
             <div class="col-4">
-                <input type="number" [(ngModel)] = 'editModel.i' name="editModel.i"  class="form-control" id="editModel.i">
+                <input type="number" [(ngModel)] = 'editModel.i' name="editModel.i"  class="form-control" id="editModel.i" max="10000.0">
             </div>
             <label class="col-2 col-form-label" for="editModel.p">功率</label>
             <div class="col-4">
-                <input type="number" [(ngModel)] = 'editModel.p' name="editModel.p"  class="form-control" id="editModel.p">
+                <input type="number" [(ngModel)] = 'editModel.p' name="editModel.p"  class="form-control" id="editModel.p" max="10000.0">
             </div>
         </div>
         <div class="form-group row">
@@ -59,30 +59,30 @@
             </div>
             <label class="col-2 col-form-label" for="editModel.interfacestatard">接口标准</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.interfacestatard' name="editModel.interfacestatard"  class="form-control" id="editModel.interfacestatard">
+                <input [(ngModel)] = 'editModel.interfacestatard' name="editModel.interfacestatard"  class="form-control" id="editModel.interfacestatard" maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="programid">程序ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.programid' type="number" name="editModel.programid"  class="form-control" id="programid">
+                <input [(ngModel)] = 'editModel.programid' type="number" name="editModel.programid"  class="form-control" id="programid" max="2147483647">
             </div>
             <label class="col-2 col-form-label" for="factoryid">厂商ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.factoryid' type="number" name="editModel.factoryid"  class="form-control" id="factoryid">
+                <input [(ngModel)] = 'editModel.factoryid' type="number" name="editModel.factoryid"  class="form-control" id="factoryid" max="2147483647">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.remarks">设备备注</label>
             <div class="col-10">
-                <textarea [(ngModel)] = 'editModel.remarks' name="editModel.remarks"  class="form-control" id="editModel.remarks">
+                <textarea [(ngModel)] = 'editModel.remarks' name="editModel.remarks"  class="form-control" id="editModel.remarks" maxlength="1000">
                 </textarea>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.position">地址信息</label>
             <div class="col-10">
-                <textarea [(ngModel)] = 'editModel.position' name="editModel.position"  class="form-control" id="editModel.position">
+                <textarea [(ngModel)] = 'editModel.position' name="editModel.position"  class="form-control" id="editModel.position" maxlength="200">
                 </textarea>
             </div>
         </div>
