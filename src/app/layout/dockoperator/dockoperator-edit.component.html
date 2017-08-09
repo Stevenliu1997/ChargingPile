@@ -5,38 +5,29 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
-        <!--<div class="form-group">-->
-            <!--<label for="editModel.name">角色名称</label>-->
-            <!--<input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="email" class="form-control">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="editModel.desc">角色描述</label>-->
-            <!--<textarea [(ngModel)] = 'editModel.desc' id="editModel.desc" name="editModel.desc" class="form-control">-->
-            <!--</textarea>-->
-        <!--</div>-->
+    <form name="submitform" #submitForm="ngForm">
         <div class="form-group row" *ngIf="actionTitle == '编辑'">
             <label class="col-2 col-form-label" >运营商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorid' name="editModel.operatorid" type="number" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorid' name="editModel.operatorid" type="number" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">运营商名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorname' name="editModel.operatorname" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorname' name="editModel.operatorname" type="text" maxlength="50" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">联系人</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.contactor' name="editModel.contactor" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.contactor' name="editModel.contactor" type="text" maxlength="50" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">手机号</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.phone' name="editModel.phone" type="text" class="form-control">
+                <input [(ngModel)] = 'editModel.phone' name="editModel.phone" maxlength="11" minlength="11" type="text" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -52,7 +43,7 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">备注信息</label>
             <div class="col-10">
-                <textarea [(ngModel)] = 'editModel.remark' name="editModel.remark" class="form-control">
+                <textarea [(ngModel)] = 'editModel.remark' name="editModel.remark"  maxlength="1000" class="form-control">
                 </textarea>
             </div>
         </div>

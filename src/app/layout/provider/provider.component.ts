@@ -131,26 +131,4 @@ export class ProviderComponent implements OnInit {
 
     }
 
-    updateProvider(provider: object){
-        this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
-    }
-
-    addProvider(provider: object){
-        this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
-            if(result.code == '00'){
-                this.refreshGrid();
-            }else {
-                this.refreshGrid();
-                console.log(result.message);
-            }
-        })
-    }
-
 }
