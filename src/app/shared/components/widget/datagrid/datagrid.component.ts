@@ -37,6 +37,8 @@ export class DatagridComponent implements OnInit {
     key: string;
     //全选标记
     allChecked: boolean = false;
+    //单选时数据
+    radioValue: object;
 
     fetchedData: any = [];
 

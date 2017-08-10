@@ -10,6 +10,7 @@ import {ToolModule} from "../../shared/services/tool.module";
 import {ProfileEditpasswordComponent} from './profile-editpassword.component';
 import {ProfileEditProfileComponent} from './profile-editProfile.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {LoginService} from "../../login/login.service";
 
 @NgModule({
     imports: [

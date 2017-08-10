@@ -7,7 +7,8 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
-                    <th *ngIf="config.topActions && config.topActions.length>0"><input type="checkbox" [(ngModel)]="allChecked" (change)="checkAll(allChecked)"></th>
+                    <th *ngIf="config.topActions && config.topActions.length>0 && !config.radioCheck"><input type="checkbox" [(ngModel)]="allChecked" (change)="checkAll(allChecked)"></th>
+                    <th *ngIf="config.radioCheck"></th>
                     <th>序号</th>
                     <th *ngFor="let col of config.column" >
                         {{col.name}}
@@ -17,7 +18,8 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let data of fetchedData;let $index = index">
-                    <td *ngIf="config.topActions && config.topActions.length>0"><input type="checkbox" [(ngModel)]="data.checked"></td>
+                    <td *ngIf="config.topActions && config.topActions.length>0 && !config.radioCheck"><input class="form-check-inline" type="checkbox" [(ngModel)]="data.checked"></td>
+                    <td *ngIf="config.radioCheck"><input type="radio" name="radioValue" [(ngModel)]="radioValue" [value]="data"></td>
                     <td>{{$index+1}}</td>
                     <td *ngFor="let col of config.column" (click)="colAction(col, data)">
                         <span *ngIf="!col.html">{{data[col.key]}}</span>
