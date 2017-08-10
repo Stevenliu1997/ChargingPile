@@ -5,6 +5,7 @@ import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomH
 import {ProfileEditProfileComponent} from "./profile-editProfile.component";
 import {ProfileEditpasswordComponent} from "./profile-editpassword.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {LoginService} from "../../login/login.service";
 
 @Component({
     selector: 'app-profile',
@@ -16,14 +17,13 @@ export class ProfileComponent implements OnInit {
     queryModel: any = {};
     x: any = {};
     // datagrid 配置
-    constructor(private ngbModal: NgbModal,public router: Router, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal,public router: Router, private customHttpClient: CustomHttpClient,private loginService: LoginService) {
     }
 
 
     ngOnInit() {
-        this.customHttpClient.get('Userinformation').subscribe(result => {
-            this.queryModel = result;
-        }, error => {
+        this.loginService.getUserInfo().then(userInfo => {
+            this.queryModel = userInfo;
         })
     }
 
@@ -32,10 +32,8 @@ export class ProfileComponent implements OnInit {
         modalRef.componentInstance.actionTitle = '修改';
         modalRef.componentInstance.editModel = Object.assign({},this.queryModel);
         modalRef.result.then(result => {
-                this.customHttpClient.get('Userinformation').subscribe(result => {
-                    this.queryModel = result;
-                }, error => {
-                })
+            this.queryModel = result;
+            this.loginService.userInfo = result;
         },
         error => {
          })

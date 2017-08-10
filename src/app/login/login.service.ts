@@ -12,6 +12,9 @@ const loginUrl: string = 'User/Login';
 @Injectable()
 export class LoginService {
 
+    //登陆用户信息
+    public userInfo: any = {};
+
     constructor(private httpClient: CustomHttpClient) {
 
     }
@@ -20,4 +23,26 @@ export class LoginService {
         return this.httpClient.formPost(loginUrl, user)
 
     }
+
+    /**
+     * 取得登陆用户信息
+     */
+    getUserInfo(forceGet?: boolean): Promise<any>{
+        if(this.userInfo.name && !forceGet){
+            return new Promise(function (resolve, reject) {
+                resolve(this.userInfo);
+            }.bind(this))
+        }
+        return new Promise(function (resolve, reject) {
+            this.httpClient.get('Userinformation').subscribe(result => {
+                if(result.code === '00'){
+                    this.userInfo = result.context;
+                    resolve(result.context)
+                }
+            }, error => {
+            })
+        }.bind(this))
+    }
+
+
 }

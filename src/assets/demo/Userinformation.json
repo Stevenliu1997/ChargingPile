@@ -1,11 +1,15 @@
 {
-    "account": "12324",
-    "name": "24142",
-    "rolename": "1231412",
-    "password": "123",
-    "operatorInformation_operatorid": 1,
-    "phone": "1",
-    "qq": "1",
-    "weixin": "1",
-    "email": "1"
+    "code": "00",
+    "context": {
+        "account": "12324",
+        "name": "张三",
+        "rolename": "1231412",
+        "password": "123",
+        "operatorInformation_operatorid": 1,
+        "phone": "1",
+        "qq": "1",
+        "weixin": "1",
+        "email": "1"
+    }
+
 }
