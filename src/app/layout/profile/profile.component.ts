@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.customHttpClient.get('Userinformation').subscribe(result => {
-            this.queryModel = result;
+            this.queryModel = result.data;
         }, error => {
         })
     }
@@ -33,14 +33,14 @@ export class ProfileComponent implements OnInit {
         modalRef.componentInstance.editModel = Object.assign({},this.queryModel);
         modalRef.result.then(result => {
                 this.customHttpClient.get('Userinformation').subscribe(result => {
-                    this.queryModel = result;
+                    this.queryModel = result.data;
                 }, error => {
                 })
         },
         error => {
          })
     }
-    //todo 修改成功后返回登录界面
+    //todo 修改密码成功后返回登录界面
     editPassword(){
         const modalRef = this.ngbModal.open(ProfileEditpasswordComponent);
         modalRef.componentInstance.actionTitle = '修改';
