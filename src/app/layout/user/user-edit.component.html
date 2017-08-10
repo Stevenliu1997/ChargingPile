@@ -15,13 +15,13 @@
         <div class="form-group row">
             <label for="editModel.name"class="col-2 col-form-label">用户名</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="text" class="form-control" maxlength="32">
+                <input [(ngModel)] = 'editModel.name' id="editModel.name" name="editModel.name" type="text" class="form-control" maxlength="32" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label for="editModel.rolename" class="col-2 col-form-label">角色名</label>
             <div class="col-10">
-                <select class="form-control" [(ngModel)]="editModel.rolename" id="editModel.rolename" name="editmodel.rolename" maxlength="32">
+                <select class="form-control" [(ngModel)]="editModel.rolename" id="editModel.rolename" name="editmodel.rolename" maxlength="32" validationMsg required>
                     <option value="">请选择</option>
                     <option value="超级管理员">超级管理员</option>
                     <option value="用户管理员">用户管理员</option>
@@ -31,7 +31,7 @@
         <div class="form-group row">
             <label for="editModel.operatorInformation_operatorid" class="col-2 col-form-label">运营商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="editModel.operatorInformation_operatorid" max="9223372036854775807" min="0" name="editModel.operatorInformation_operatorid" type="number" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="editModel.operatorInformation_operatorid" max="9223372036854775807" min="0" name="editModel.operatorInformation_operatorid" type="number" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
@@ -43,7 +43,7 @@
         <div class="form-group row">
             <label for="editModel.qq" class="col-2 col-form-label">QQ</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.qq' id="editModel.qq" name="editModel.qq" type="text" class="form-control" maxlength="32">
+                <input [(ngModel)] = 'editModel.qq' id="editModel.qq" name="editModel.qq" type="text" class="form-control" maxlength="15" minlength="8">
             </div>
         </div>
         <div class="form-group row">
@@ -55,7 +55,7 @@
         <div class="form-group row">
             <label for="editModel.lockstate" class="col-2 col-form-label">锁定状态</label>
             <div class="col-10">
-                <select [(ngModel)]='editModel.lockstate' id="editModel.lockstate" name="editModel.lockstate" class="form-control" >
+                <select [(ngModel)]='editModel.lockstate' id="editModel.lockstate" name="editModel.lockstate" class="form-control" validationMsg required >
                     <option value="">请选择</option>
                     <option value= true>正常</option>
                     <option value= false>锁定</option>
@@ -65,13 +65,13 @@
         <div class="form-group row">
             <label for="editModel.email" class="col-2 col-form-label">email</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.email' id="editModel.email"  maxlength="50" name="editModel.email" type="email" class="form-control">
+                <input [(ngModel)] = 'editModel.email' id="editModel.email"  maxlength="50" name="editModel.email" type="email" class="form-control" validationMsg required>
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">确认</button>
 </div>
 
