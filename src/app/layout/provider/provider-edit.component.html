@@ -15,13 +15,13 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">厂商姓名</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' name="editModel.name" maxlength="50" class="form-control">
+                <input [(ngModel)] = 'editModel.name' name="editModel.name" maxlength="50" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">省</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.province' name="editModel.province" class="form-control">
+                <select [(ngModel)] = 'editModel.province' name="editModel.province" class="form-control" validationMsg required>
                     <option value="">请选择</option>
                     <option value="四川">四川</option>
                     <option value="湖南">湖南</option>
@@ -31,7 +31,7 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">市</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.city' name="editModel.city" class="form-control">
+                <select [(ngModel)] = 'editModel.city' name="editModel.city" class="form-control" validationMsg required>
                     <option value="">请选择</option>
                     <option value="成都">成都</option>
                     <option value="湖南">郑州</option>
@@ -41,25 +41,25 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">厂商地址</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.position' name="editModel.position" maxlength="200" x class="form-control">
+                <input [(ngModel)] = 'editModel.position' name="editModel.position" maxlength="200" x class="form-control" validationMsg required>
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-2 col-form-label">联系人</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.contactor' name="editModel.contactor" class="form-control" maxlength="20">
+                <input [(ngModel)] = 'editModel.contactor' name="editModel.contactor" class="form-control" maxlength="20" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">联系人电话</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.phone' name="editModel.phone" maxlength="11" minlength="11" class="form-control">
+                <input [(ngModel)] = 'editModel.phone' name="editModel.phone" maxlength="11" minlength="11" class="form-control" validationMsg required>
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">确认</button>
 </div>

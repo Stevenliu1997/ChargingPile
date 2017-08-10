@@ -30,7 +30,6 @@ export class SiteDataComponent implements OnInit {
     userChart: any = [{data: []}];
     amountChart: any = [{data: []}];
     errorChart: any = [{data: []}];
-    chartDate: any = [{data: []}];
 
     formData(tempResult:any){
 
