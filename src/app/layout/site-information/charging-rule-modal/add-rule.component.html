@@ -6,21 +6,29 @@
 </div>
 <div class="modal-body">
     <form>
-        <div class="form-group">
-            <label for="editModel.price">电价</label>
-            <input [(ngModel)] = 'editModel.price' id="editModel.price" name="editModel.price" class="form-control">
+        <div class="form-group row">
+            <label for="price-text-input" class="col-2 col-form-label">电价</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.price' id="price-text-input" name="editModel.price" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.servicecharge">服务费</label>
-            <input [(ngModel)] = 'editModel.servicecharge' id="editModel.servicecharge" name="editModel.servicecharge" class="form-control">
+        <div class="form-group row">
+            <label for="servicecharge-text-input" class="col-2 col-form-label">服务费</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.servicecharge' id="servicecharge-text-input" name="editModel.servicecharge" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.starttime">开始时间</label>
-            <input type="date" [(ngModel)] = 'editModel.starttime' id="editModel.starttime" name="editModel.starttime" class="form-control">
+        <div class="form-group row">
+            <label for="starttime-text-input" class="col-2 col-form-label">开始时间</label>
+            <div class="col-10">
+                <input type="date" [(ngModel)] = 'editModel.starttime' id="starttime-text-input" name="editModel.starttime" class="form-control">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="editModel.endtime">结束时间</label>
-            <input type="date" [(ngModel)] = 'editModel.endtime' id="editModel.endtime" name="editModel.endtime" class="form-control">
+        <div class="form-group row">
+            <label for="endtime-text-input" class="col-2 col-form-label">结束时间</label>
+            <div class="col-10">
+                <input type="date" [(ngModel)] = 'editModel.endtime' id="endtime-text-input" name="editModel.endtime" class="form-control">
+            </div>
         </div>
     </form>
 </div>

@@ -30,6 +30,7 @@ export class ChargingRuleEditComponent {
             {
                 type: 'add',
                 name: '增加规则',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(AddRuleComponent);
                     modalRef.componentInstance.actionTitle = '';
@@ -43,6 +44,16 @@ export class ChargingRuleEditComponent {
                 name: '删除',
                 action: function (ids) {
                     console.log(ids);
+                }.bind(this),
+                autoConfig: {
+                    url: 'CarBrand/Delete'
+                }
+            }
+        ],
+        rowActions: [
+            {
+                type: 'delete',
+                action: function (item) {
                 }.bind(this),
                 autoConfig: {
                     url: 'CarBrand/Delete'

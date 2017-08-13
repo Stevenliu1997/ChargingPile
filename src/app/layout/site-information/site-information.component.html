@@ -80,9 +80,9 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="row">
-                                            <label for="sitename-text-input" class="col-4 col-form-label">站点名称</label>
+                                            <label for="name-text-input" class="col-4 col-form-label">站点名称</label>
                                             <div class="col-8">
-                                                <input class="form-control" type="text" id="sitename-text-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename">
+                                                <input class="form-control" type="text" id="name-text-input" [(ngModel)]="queryModel.name" name="queryModel.name">
                                             </div>
                                         </div>
                                     </div>
@@ -125,6 +125,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <label for="district-select-input" class="col-4 col-form-label">区</label>
+                                            <div class="col-8">
+                                                <select id="district-select-input" [(ngModel)]="queryModel.district" name="queryModel.district" class="form-control">
+                                                    <option value="Default">请选择</option>
+                                                    <option value="tt">tt</option>
+                                                    <option value="rr">rr</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -159,9 +171,9 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="row">
-                                            <label for="chargerulenum-text-input" class="col-4 col-form-label">计费规则版本号</label>
+                                            <label for="version-text-input" class="col-4 col-form-label">计费规则版本号</label>
                                             <div class="col-8">
-                                                <input class="form-control" type="text" id="chargerulenum-text-input" [(ngModel)]="queryModel.chargerulenum" name="queryModel.chargerulenum">
+                                                <input class="form-control" type="text" id="version-text-input" [(ngModel)]="queryModel.version" name="queryModel.version">
                                             </div>
                                         </div>
                                     </div>
@@ -182,9 +194,9 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="row">
-                                            <label for="usingsign-select-input" class="col-4 col-form-label">使用标志</label>
+                                            <label for="userstate-select-input" class="col-4 col-form-label">使用标志</label>
                                             <div class="col-8">
-                                                <select [(ngModel)]="queryModel.usingsign" name="queryModel.usingsign" id="usingsign-select-input" class="form-control">
+                                                <select [(ngModel)]="queryModel.userstate" name="queryModel.userstate" id="userstate-select-input" class="form-control">
                                                     <option value="Default">请选择</option>
                                                     <option value="use">正在使用</option>
                                                     <option value="unuse">未使用</option>
