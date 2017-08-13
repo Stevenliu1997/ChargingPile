@@ -82,6 +82,9 @@ export class OrderQueryComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(OrderQueryRecordComponent, {size: "lg"});
                     modalRef.componentInstance.account = item.account;
+                    modalRef.result.then(result => {
+                        this.getdetail(result);
+                    },error => {})
                 }.bind(this)
             }
         ]
@@ -102,6 +105,9 @@ export class OrderQueryComponent implements OnInit {
 
     }
 
+    getdetail(){
+        this.customHttpClient.post("",)
+    }
     exportGrid(){
 
     }
