@@ -12,7 +12,10 @@ export class RechargeEquipmentEditComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        powertype: "",
+        interfacetype: ""
+    };
     @ViewChild('submitForm')
     editForm: NgForm;
 

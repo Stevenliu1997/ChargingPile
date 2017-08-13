@@ -53,6 +53,7 @@ export class RechargeEquipmentComponent implements OnInit {
                 name: '添加',
                 allowEmpty: true,
                 action: function (ids) {
+
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
                     modalRef.componentInstance.actionTitle = '新增';
                     modalRef.result.then(result => {

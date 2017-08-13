@@ -2,8 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
-import {window} from "rxjs/operator/window";
-
 
 @Component({
     selector: 'app-tables',
@@ -60,10 +58,7 @@ export class OrderManageComponent implements OnInit {
     }
 
 
-/*    exportGrid(ids){
-        this.customHttpClient.post('ReserveForm /Export',ids).subscribe(result =>{
-
-        });
-        //window.open('ReserveForm /Export');
-    }*/
+    exportGrid(ids){
+        window.open('ReserveForm /Export?');
+    }
 }
