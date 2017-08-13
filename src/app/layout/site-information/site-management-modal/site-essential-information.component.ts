@@ -15,14 +15,13 @@ export class SiteEssentialInformationComponent implements OnInit {
     actionTitle: string;
     @Input()
     editModel: any = {};
-    @Input()
-    chargingpileInformation: object = {}
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
+    @Input()
     queryModel: any = {}
     config: object = {
-        url: 'SiteInformation/Essential-information',
+        url: 'Site/Manage/Detail',
         column: [
             {name: '设备ID', key: 'deviceid'},
             {name: '设备名称', key: 'devicename'},
@@ -96,11 +95,6 @@ export class SiteEssentialInformationComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.customHttpClient.post('Site/'/*, siteid*/).subscribe(result => {
-            if (result.code === '00') {
-
-            }
-        })
     }
 
     confirm() {
@@ -108,7 +102,11 @@ export class SiteEssentialInformationComponent implements OnInit {
     }
 
     confirmChange() {
-        this.customHttpClient.post('SiteInformation/Add', this.editModel).subscribe(result => {
+        const tempquery = Object.assign({}, this.editModel);
+        tempquery.provincecity = `${this.editModel.province || ''}${this.editModel.city || ''}`;
+        tempquery.province = undefined;
+        tempquery.city = undefined;
+        this.customHttpClient.post('Site/Manage/Update', tempquery).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }

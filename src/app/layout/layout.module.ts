@@ -9,6 +9,7 @@ import { HeaderComponent, SidebarComponent } from '../shared';
 import {WidgetModule} from "../shared/components/widget/widget.module";
 import {LoginService} from "../login/login.service";
 import {FormsModule} from "@angular/forms";
+import {BusinessToolModule} from "../shared/business-selector/business-tool.module";
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
         NgbDropdownModule.forRoot(),
         LayoutRoutingModule,
         TranslateModule,
-        WidgetModule
+        WidgetModule,
+        BusinessToolModule
     ],
     declarations: [
         LayoutComponent,

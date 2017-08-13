@@ -12,6 +12,8 @@ export class ArticleManagementAddComponent {
     actionTitle: string;
     @Input()
     editModel: any = {};
+    @Input()
+    Operator: any = {};
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -31,6 +33,9 @@ export class ArticleManagementAddComponent {
         const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
             + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         tempquery.publishtime = time;
+        tempquery.lastupdateuser = '';
+        tempquery.lastupdatetime = '';
+        tempquery.operatorid = this.Operator.operatorid;
         this.customHttpClient.post('ArticleManage/Add', tempquery).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
@@ -38,7 +43,13 @@ export class ArticleManagementAddComponent {
         })
     }
     update(obj: any) {
-        this.customHttpClient.post('ArticleManage/Update', obj).subscribe(result => {
+        const tempquery = Object.assign({}, this.editModel);
+        const date = new Date();
+        const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
+            + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        tempquery.lastupdatetime = time;
+        tempquery.operatorid = this.Operator.operatorid;
+        this.customHttpClient.post('ArticleManage/Update', tempquery).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }

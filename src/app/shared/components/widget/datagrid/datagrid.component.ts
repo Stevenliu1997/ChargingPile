@@ -79,11 +79,14 @@ export class DatagridComponent implements OnInit {
 
         this.httpClient.post(this.config.url, Object.assign({}, params, Object.assign({}, this.pageParams, pageParams))).subscribe((result: any) => {
             if(result.code == '00'){
-                this.fetchedData = result.pageData;
+                this.fetchedData = result.pageData || [];
                 this.page.totalPages = result.totalPages;
                 this.page.totalElements = result.totalElements;
                 this.pageParams.pageNumber = result.currentPage;
                 this.initPageArray(this.page.totalPages);
+
+                //清除单选
+                delete this.radioValue;
             }
         })
     }

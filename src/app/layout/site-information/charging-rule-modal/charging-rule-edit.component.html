@@ -5,78 +5,7 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
-        <div class="col-9">
-            <div class="row mb-3">
-                <div class="col-6">
-                    <div class="row">
-                        <label for="rulename-text-input" class="col-4 col-form-label">规则名称</label>
-                        <div class="col-6">
-                            <input [(ngModel)] = 'editModel.rulename' id="rulename-text-input" name="editModel.rulename" class="form-control" disabled>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <label for="type-select-input" class="col-4 col-form-label">类别</label>
-                        <div class="col-6">
-                            <select [(ngModel)] = 'editModel.type' id="type-select-input" name="editModel.type" class="form-control">
-                                <option value="Default">请选择</option>
-                                <option value="正常">正常</option>
-                                <option value="锁定">锁定</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-6">
-                    <div class="row">
-                        <label for="versionnumber-text-input" class="col-4 col-form-label">版本号</label>
-                        <div class="col-6">
-                            <input [(ngModel)] = 'editModel.versionnumber' id="versionnumber-text-input" name="editModel.versionnumber" class="form-control" disabled>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <label for="useflag-select-input" class="col-4 col-form-label">使用标志</label>
-                        <div class="col-6">
-                            <select [(ngModel)] = 'editModel.useflag' id="useflag-select-input" name="editModel.useflag" class="form-control">
-                                <option value="Default">请选择</option>
-                                <option value="正常">正常</option>
-                                <option value="锁定">锁定</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-6">
-                    <div class="row">
-                        <label for="startdate-text-input" class="col-4 col-form-label">开始日期</label>
-                        <div class="col-6">
-                            <input type="date" [(ngModel)] = 'editModel.startdate' id="startdate-text-input" name="editModel.startdate" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <label for="enddate-text-input" class="col-4 col-form-label">结束日期</label>
-                        <div class="col-6">
-                            <input type="date" [(ngModel)] = 'editModel.enddate' id="enddate-text-input" name="editModel.enddate" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </form>
-
     <app-datagrid [config]="config"></app-datagrid>
-
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>

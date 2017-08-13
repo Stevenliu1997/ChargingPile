@@ -5,23 +5,27 @@
             "articletype": "关于",
             "firsttitle": "充电站帮助",
             "secondtitle": "论撕逼的重要性",
-            "isdisplay": "true",
+            "isdisplay": "显示",
             "adduser": "逼哥",
             "addtime": "2017.05.01",
             "lastupdateuser": "逼哥",
             "lastupdatetime": "2017.06.02",
-            "articlecontent": "我是文章的主体"
+            "articlecontent": "我是文章的主体",
+            "articletype": "帮助",
+            "articleid": 123
         },
         {
             "articletype": "帮助",
             "firsttitle": "官方联系方式",
             "secondtitle": "我要原谅全世界",
-            "isdisplay": "false",
+            "isdisplay": "不显示",
             "adduser": "羽凡",
             "addtime": "2012.11.12",
             "lastupdateuser": "百合",
             "lastupdatetime": "2017.06.05",
-            "articlecontent": "我是文章的主体"
+            "articlecontent": "我是文章的主体",
+            "articletype": "帮助",
+            "article": 1234
         }
     ]
 }

@@ -23,9 +23,15 @@ export class SiteManagementAddComponent {
     add(obj: any) {
         const tempResult = Object.assign({}, obj);
         tempResult.siteid = -1;
+        tempResult.isreasinable = 'true';
+        tempResult.ruleid = -1;
         tempResult.provincecity = `${tempResult.province || ''}${tempResult.city || ''}`;
         tempResult.province = undefined;
         tempResult.city = undefined;
+        const date = new Date();
+        const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
+            + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        tempResult.createtime = time;
         this.customHttpClient.post('Site/Manage/Add', tempResult).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

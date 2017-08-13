@@ -10,9 +10,9 @@
             <div class="row mb-3">
                 <div class="col-4">
                     <div class="row">
-                        <label for="sitename-text-input" class="col-6 col-form-label">站点名称</label>
+                        <label for="name-text-input" class="col-6 col-form-label">站点名称</label>
                         <div class="col-6">
-                            <input [(ngModel)] = 'editModel.sitename' id="sitename-text-input" name="editModel.sitename" class="form-control">
+                            <input [(ngModel)] = 'editModel.name' id="name-text-input" name="editModel.name" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -53,17 +53,14 @@
                 </div>
                 <div class="col-4">
                     <div class="row">
-                        <label class="col-4 col-form-label">省市</label>
-                        <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4">
-                            <option value="Default">请选择</option>
-                            <option value="ll">ll</option>
-                            <option value="mm">mm</option>
-                        </select>
-                        <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4">
-                            <option value="Default">请选择</option>
-                            <option value="hh">hh</option>
-                            <option value="ii">ii</option>
-                        </select>
+                        <label for="isreasonable-select-input" class="col-6 col-form-label">收费是否合理</label>
+                        <div class="col-6">
+                            <select [(ngModel)] = 'editModel.isreasonable' id="isreasonable-select-input" name="editModel.isreasonable" class="form-control">
+                                <option value="Default">请选择</option>
+                                <option value="true">是</option>
+                                <option value="false">否</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="col-4">
@@ -117,6 +114,31 @@
                                 <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="false" [(ngModel)] = 'editModel.isscanning'>否
                             </label>
                         </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label class="col-4 col-form-label">省市</label>
+                        <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4">
+                            <option value="Default">请选择</option>
+                            <option value="ll">ll</option>
+                            <option value="mm">mm</option>
+                        </select>
+                        <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4">
+                            <option value="Default">请选择</option>
+                            <option value="hh">hh</option>
+                            <option value="ii">ii</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <label class="col-4 col-form-label">区</label>
+                        <select [(ngModel)] = 'editModel.district' id="district-select-input" name="editModel.district" class="form-control col-4">
+                            <option value="Default">请选择</option>
+                            <option value="ww">ww</option>
+                            <option value="tt">tt</option>
+                        </select>
                     </div>
                 </div>
             </div>

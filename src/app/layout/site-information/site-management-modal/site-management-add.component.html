@@ -27,8 +27,8 @@
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.isopen' id="isopen-text-input" name="editModel.isopen" class="form-control">
                     <option value="Default">请选择</option>
-                    <option value="yes">是</option>
-                    <option value="no">否</option>
+                    <option value="true">是</option>
+                    <option value="false">否</option>
                 </select>
             </div>
         </div>
@@ -52,15 +52,25 @@
             </select>
         </div>
         <div class="form-group row">
+            <label class="col-2 col-form-label">区</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'editModel.district' id="district-select-input" name="editModel.district" class="form-control">
+                    <option value="Default">请选择</option>
+                    <option value="ww">ww</option>
+                    <option value="rr">rr</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="position-text-input" class="col-2 col-form-label">详细地址</label>
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.position' id="position-text-input" name="editModel.position" class="form-control">
             </div>
         </div>
         <div class="form-group row">
-            <label for="interfacenumber-text-input" class="col-2 col-form-label">充电桩数量</label>
+            <label for="pilenumber-text-input" class="col-2 col-form-label">充电桩数量</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.interfacenumber' id="interfacenumber-text-input" name="editModel.interfacenumber" class="form-control">
+                <input type="number" [(ngModel)] = 'editModel.pilenumber' id="pilenumber-text-input" name="editModel.pilenumber" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -70,21 +80,21 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="operatorInformation-text-input" class="col-2 col-form-label">运营商ID</label>
+            <label for="operatorInformation_operatorid-text-input" class="col-2 col-form-label">运营商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorInformation' id="operatorInformation-text-input" name="editModel.operatorInformation" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="operatorInformation_operatorid-text-input" name="editModel.operatorInformation_operatorid" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">是否支持扫描充电</label>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" value="yes" [(ngModel)] = 'editModel.isscanning'>是
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" value="true" [(ngModel)] = 'editModel.isscanning'>是
                 </label>
             </div>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="no" [(ngModel)] = 'editModel.isscanning'>否
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="false" [(ngModel)] = 'editModel.isscanning'>否
                 </label>
             </div>
         </div>
