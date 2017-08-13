@@ -19,7 +19,7 @@ export class RechargeEquipmentComponent implements OnInit {
     //查询对象
     queryModel: any = {
         state: '',
-        equipmentid: '',
+        pileid: '',
         name: '',
         siteid: '',
         factoryid: ''
@@ -117,7 +117,7 @@ export class RechargeEquipmentComponent implements OnInit {
     clear(){
         this.queryModel={
             state: '',
-            equipmentid: '',
+            pileid: '',
             name: '',
             siteid: '',
             factoryid: ''

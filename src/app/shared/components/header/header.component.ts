@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import {CustomHttpClient} from "../../services/custom-http-client/CustomHttpClient"
+import {LoginService} from "../../../login/login.service";
 
 @Component({
     selector: 'app-header',
@@ -9,7 +10,7 @@ import {CustomHttpClient} from "../../services/custom-http-client/CustomHttpClie
 })
 export class HeaderComponent implements OnInit {
 
-    constructor(public router: Router, private customHttpClient: CustomHttpClient) {
+    constructor(public router: Router, private customHttpClient: CustomHttpClient, public loginService: LoginService) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992) {
                 this.toggleSidebar();
@@ -17,7 +18,11 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        //取得用户信息
+        this.loginService.getUserInfo().then(function (userInfo) {
+        }.bind(this))
+    }
 
     toggleSidebar() {
         const dom: any = document.querySelector('body');
@@ -30,5 +35,8 @@ export class HeaderComponent implements OnInit {
     }
 
     changeLang(language: string) {
+    }
+    onLoggedout() {
+        this.customHttpClient.get('logout').subscribe();
     }
 }

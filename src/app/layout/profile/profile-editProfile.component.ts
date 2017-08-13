@@ -20,7 +20,7 @@ export class ProfileEditProfileComponent {
     }
 
     confirm() {
-        if(this.editForm.form.invalid){
+          if(this.editForm.form.invalid){
             return;
         }
         this.updateProfile(this.editModel);
@@ -29,7 +29,7 @@ export class ProfileEditProfileComponent {
     updateProfile(profile: object) {
         this.customHttpClient.post('ManageUser/Update', profile).subscribe(result => {
             if(result.code == '00')
-                this.activeModal.close();
+                this.activeModal.close(profile);
         },error => {})
     }
 }
