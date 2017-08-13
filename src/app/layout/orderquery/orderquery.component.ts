@@ -5,6 +5,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {OrderQueryEditComponent} from "./orderquery-edit.component";
 import {OrderQueryRecordComponent} from "./orderquery-record.component";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-form',
@@ -80,16 +81,18 @@ export class OrderQueryComponent implements OnInit {
             {
                 type: 'detail',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(OrderQueryRecordComponent, {size: "lg"});
-                    modalRef.componentInstance.account = item.account;
-                    modalRef.result.then(result => {
-                        this.getdetail(result);
-                    },error => {})
+                    this.router.navigate(['/orderquery/detail', item.orderid]);
+
+                    // const modalRef = this.ngbModal.open(OrderQueryRecordComponent, {size: "lg"});
+                    // modalRef.componentInstance.account = item.account;
+                    // modalRef.result.then(result => {
+                    //     this.getdetail(result);
+                    // },error => {})
                 }.bind(this)
             }
         ]
     };
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, private router: Router) {
     }
 
     ngOnInit() {
