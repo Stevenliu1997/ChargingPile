@@ -3,8 +3,7 @@ import { routerTransition } from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
-import {OrderQueryEditComponent} from "./orderquery-edit.component";
-import {OrderQueryRecordComponent} from "./orderquery-record.component";
+import {Router} from "@angular/router";
 import {URLSearchParams} from '@angular/http'
 
 @Component({
@@ -59,35 +58,16 @@ export class OrderQueryComponent implements OnInit {
             }
         ],*/
         rowActions: [
-            /*{
-                type: 'edit',
-                action: function (item) {
-                    const modalRef = this.ngbModal.open(OrderQueryEditComponent);
-                    modalRef.componentInstance.actionTitle = '编辑';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
-                    modalRef.result.then(result => {
-                        this.updateOrder(result);
-                    })
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                action: function (item) {
-                },
-                autoConfig: {
-                    url:'OrderQuery/Find'
-                }
-            }*/
             {
                 type: 'detail',
+                name: '详情',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(OrderQueryRecordComponent, {size: "lg"});
-                    modalRef.componentInstance.account = item.account;
+                    this.router.navigate(['/orderquery/detail', item.orderid]);
                 }.bind(this)
             }
         ]
     };
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, private router: Router) {
     }
 
     ngOnInit() {

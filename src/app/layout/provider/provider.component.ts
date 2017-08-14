@@ -81,6 +81,7 @@ export class ProviderComponent implements OnInit {
         rowActions: [
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {
@@ -89,6 +90,7 @@ export class ProviderComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '编辑',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ProviderEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
@@ -108,6 +110,7 @@ export class ProviderComponent implements OnInit {
             },
             {
                 type: 'detail',
+                name: '详情',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ProviderRecordComponent, {size: "lg"});
                     modalRef.componentInstance.factoryid = item.factoryid;

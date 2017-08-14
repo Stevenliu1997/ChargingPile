@@ -7,8 +7,6 @@ import { PageHeaderModule } from './../../shared';
 import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {OrderQueryEditComponent} from "./orderquery-edit.component";
-import {OrderQueryRecordComponent} from "./orderquery-record.component";
 import {OrderQueryDetailComponent} from "./orderquery-detail/orderquery-detail.component";
 
 @NgModule({
@@ -20,7 +18,6 @@ import {OrderQueryDetailComponent} from "./orderquery-detail/orderquery-detail.c
         WidgetModule,
         NgbModule,
     ],
-    declarations: [OrderQueryComponent,OrderQueryEditComponent,OrderQueryRecordComponent, OrderQueryDetailComponent],
-    entryComponents: [OrderQueryEditComponent,OrderQueryRecordComponent]
+    declarations: [OrderQueryComponent, OrderQueryDetailComponent]
 })
 export class OrderQueryModule { }
