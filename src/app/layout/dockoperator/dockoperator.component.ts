@@ -68,6 +68,7 @@ export class DockoperatorComponent implements OnInit {
         rowActions: [
             {
                 type: 'edit',
+                name: '编辑',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
