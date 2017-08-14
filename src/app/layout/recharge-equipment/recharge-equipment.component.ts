@@ -76,6 +76,7 @@ export class RechargeEquipmentComponent implements OnInit {
         rowActions: [
             {
                 type: 'detail',
+                name: '详细信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentRecordComponent);
                     modalRef.componentInstance.editModel = Object.assign({},item);
@@ -83,6 +84,7 @@ export class RechargeEquipmentComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '修改',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RechargeEquipmentEditComponent);
                     modalRef.componentInstance.actionTitle = '修改';
@@ -95,6 +97,7 @@ export class RechargeEquipmentComponent implements OnInit {
             },
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 },
                 autoConfig: {

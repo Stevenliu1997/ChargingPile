@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {URLSearchParams} from '@angular/http'
+
 
 @Component({
     selector: 'app-tables',
@@ -58,7 +60,14 @@ export class OrderManageComponent implements OnInit {
     }
 
 
-    exportGrid(ids){
-        window.open('ReserveForm /Export?');
+    exportGrid(){
+        let options = this.queryModel;
+
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "ReserveForm/Export?"+params.toString();
+        window.open(URL);
     }
 }

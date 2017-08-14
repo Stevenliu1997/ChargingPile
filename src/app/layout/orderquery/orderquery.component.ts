@@ -5,6 +5,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {OrderQueryEditComponent} from "./orderquery-edit.component";
 import {OrderQueryRecordComponent} from "./orderquery-record.component";
+import {URLSearchParams} from '@angular/http'
 
 @Component({
     selector: 'app-form',
@@ -103,6 +104,13 @@ export class OrderQueryComponent implements OnInit {
     }
 
     exportGrid(){
+        let options = this.queryModel;
 
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "OrderForm/Excel?"+params.toString();
+        window.open(URL);
     }
 }

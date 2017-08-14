@@ -35,7 +35,7 @@ export class ICCardManageComponent implements OnInit {
             {name: 'IC卡号', key: 'cardid'},
             {name: '卡主姓名', key: 'owener'},
             {name: '余额', key: 'balance'},
-            {name: '类型', key: 'ictype'}, //todo 表内状态
+            {name: '类型', key: 'ictype'},
             {name: '状态', key: 'icstate'},
             {name: '创建日期', key: 'createtime'},
             {name: '手机号', key: 'phone'},
@@ -46,11 +46,7 @@ export class ICCardManageComponent implements OnInit {
             if (queryModel.cardid == ''){
                 queryModel.cardid = -1;
             }
-            if (queryModel.icstate == 1){
-                this.queryModel.icstate = "正常";
-            }else{
-                queryModel.icstate = "锁定";
-            }
+
             return queryModel;
         }.bind(this),
         topActions: [
@@ -96,12 +92,10 @@ export class ICCardManageComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
     refreshGrid(){
         this.datagridComponent.refreshGrid();
-
     }
 
     addCard(Equipment: object){

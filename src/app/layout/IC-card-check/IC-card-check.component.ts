@@ -5,6 +5,8 @@ import {ICCardCheckEditComponent} from "./IC-card-check-edit.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {ConfirmService} from "../../shared/services/confirm-service/confirm.service";
+import {OperationRecordComponent} from "./operation-record.component";
+import {ICCardInfoComponent} from "./IC-card-info.component";
 
 @Component({
     selector: 'app-tables',
@@ -31,8 +33,9 @@ export class ICCardCheckComponent implements OnInit {
             {name: '申请状态', key: 'status', html: function (item) {
                 return `<span>${item.status == '1' ? '审核通过' : '待审核'}<i class="fa ${item.status === '1' ? 'fa-credit-card' : ''}" aria-hidden="true"></i></span>`
             }, action: function (item) {
-                if(item.status === '1')
-                    console.log(item);
+                if(item.status === '1'){
+
+                }
             }},
         ],
         params: function () {
@@ -66,6 +69,16 @@ export class ICCardCheckComponent implements OnInit {
         ],
         rowActions: [
             {
+                type: 'detail',
+                name: '操作记录',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(OperationRecordComponent,{size:'lg'});
+                    modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.result.then(result => {
+                    }, error => {})
+                }.bind(this)
+            },
+            {
                 //todo 打印下载
             }
         ]
@@ -92,6 +105,16 @@ export class ICCardCheckComponent implements OnInit {
         this.customHttpClient.post('', ICcard).subscribe(result => {
             if(result.code == '00')
                 this.refreshGrid();
+        })
+    }
+    cardInfo(ICcard: any){
+        this.customHttpClient.post('',ICcard).subscribe(result =>{
+            if (result.code == '00'){
+                const modalRef = this.ngbModal.open(ICCardInfoComponent,{size:'lg'});
+                modalRef.componentInstance.editModel = Object.assign({}, result.data);
+                modalRef.result.then(result => {
+                }, error => {})
+            }
         })
     }
 
