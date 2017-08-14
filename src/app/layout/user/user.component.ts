@@ -63,6 +63,7 @@ export class UserComponent implements OnInit {
         rowActions: [
             {
                 type: 'edit',
+                name: '编辑',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(UserEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
@@ -75,6 +76,7 @@ export class UserComponent implements OnInit {
             },
             {
                 type: 'detail',
+                name: 'xiangqing',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(UserRecordComponent, {size: "lg"});
                     modalRef.componentInstance.account = item.account;

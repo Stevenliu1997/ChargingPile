@@ -31,7 +31,8 @@ export class SiteDataComponent implements OnInit {
     public errorChartLabels:Array<any>;
 
     public lineChartOptions:any = {
-        responsive: true
+        responsive: true,
+        maintainAspectRatio: false
     };
     public lineChartColors:Array<any> = [
         { // grey
@@ -86,25 +87,29 @@ export class SiteDataComponent implements OnInit {
 
     downloadCanvas1(event){
         var anchor = event.target;
-        anchor.href = document.getElementById('chart1')[0].toDataURL();
+        let  canvas = document.getElementById('chart1') as HTMLCanvasElement;
+        anchor.href = canvas.toDataURL();
         anchor.download = "chargetimes.png";
     };
 
     downloadCanvas2(event){
         var anchor = event.target;
-        anchor.href = document.getElementById('chart2')[0].toDataURL();
+        let  canvas = document.getElementById('chart2') as HTMLCanvasElement;
+        anchor.href = canvas.toDataURL();
         anchor.download = "chargeamount.png";
     };
 
     downloadCanvas3(event){
         var anchor = event.target;
-        anchor.href = document.getElementById('chart3')[0].toDataURL();
+        let canvas = document.getElementById('chart3') as HTMLCanvasElement;
+        anchor.href = canvas.toDataURL();
         anchor.download = "users.png";
     };
 
     downloadCanvas4(event){
         var anchor = event.target;
-        anchor.href = document.getElementById('chart4')[0].toDataURL();
+        let  canvas = document.getElementById('chart4') as HTMLCanvasElement
+        anchor.href = canvas.toDataURL();
         anchor.download = "errors.png";
     }
 }

@@ -9,17 +9,17 @@
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.pilename">设备名称</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.pilename' name="editModel.pilename"  class="form-control" id="editModel.pilename" maxlength="50">
+                <input [(ngModel)] = 'editModel.pilename' name="editModel.pilename"  class="form-control" id="editModel.pilename" maxlength="50" required validationMsg>
             </div>
             <label class="col-2 col-form-label" for="editModel.type">设备型号</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.type' name="editModel.type"  class="form-control" id="editModel.type" maxlength="50">
+                <input [(ngModel)] = 'editModel.type' name="editModel.type"  class="form-control" id="editModel.type" maxlength="50" required validationMsg>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.pileid">设备ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.pileid' name="editModel.pileid"  class="form-control" id="editModel.pileid" maxlength="50">
+                <input [(ngModel)] = 'editModel.pileid' name="editModel.pileid"  class="form-control" id="editModel.pileid" maxlength="50" required validationMsg>
             </div>
             <label class="col-2 col-form-label" for="siteid">站点ID</label>
             <div class="col-4">
@@ -29,47 +29,49 @@
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.powertype">电源类型</label>
             <div class="col-4">
-                <select class="form-control" [(ngModel)] = 'editModel.powertype' name="editModel.powertype" id="editModel.powertype">
+                <select class="form-control" [(ngModel)] = 'editModel.powertype' name="editModel.powertype" id="editModel.powertype" required validationMsg>
+                    <option value="" >请选择</option>
                     <option value="1">直流电</option>
                     <option value="2">交流电</option>
                 </select>
             </div>
             <label class="col-2 col-form-label" for="editModel.v">电压</label>
             <div class="col-4">
-                <input type="number" [(ngModel)] = 'editModel.v' name="editModel.v"  class="form-control" id="editModel.v" max="10000.0">
+                <input type="number" [(ngModel)] = 'editModel.v' name="editModel.v"  class="form-control" id="editModel.v" max="10000.0" required validationMsg>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.i">电流</label>
             <div class="col-4">
-                <input type="number" [(ngModel)] = 'editModel.i' name="editModel.i"  class="form-control" id="editModel.i" max="10000.0">
+                <input type="number" [(ngModel)] = 'editModel.i' name="editModel.i"  class="form-control" id="editModel.i" max="10000.0" required validationMsg>
             </div>
             <label class="col-2 col-form-label" for="editModel.p">功率</label>
             <div class="col-4">
-                <input type="number" [(ngModel)] = 'editModel.p' name="editModel.p"  class="form-control" id="editModel.p" max="10000.0">
+                <input type="number" [(ngModel)] = 'editModel.p' name="editModel.p"  class="form-control" id="editModel.p" max="10000.0" required validationMsg>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="editModel.interfacetype">接口类型</label>
             <div class="col-4">
-                <select class="form-control" [(ngModel)] = 'editModel.interfacetype' name="editModel.interfacetype" id="editModel.interfacetype">
+                <select class="form-control" [(ngModel)] = 'editModel.interfacetype' name="editModel.interfacetype" id="editModel.interfacetype" required validationMsg>
+                    <option value="">请选择</option>
                     <option value="1">X接口</option>
                     <option value="2">Y接口</option>
                 </select>
             </div>
             <label class="col-2 col-form-label" for="editModel.interfacestatard">接口标准</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.interfacestatard' name="editModel.interfacestatard"  class="form-control" id="editModel.interfacestatard" maxlength="50">
+                <input [(ngModel)] = 'editModel.interfacestatard' name="editModel.interfacestatard"  class="form-control" id="editModel.interfacestatard" maxlength="50" required validationMsg>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label" for="programid">程序ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.programid' type="number" name="editModel.programid"  class="form-control" id="programid" max="2147483647">
+                <input [(ngModel)] = 'editModel.programid' type="number" name="editModel.programid"  class="form-control" id="programid" max="2147483647" required validationMsg>
             </div>
             <label class="col-2 col-form-label" for="factoryid">厂商ID</label>
             <div class="col-4">
-                <input [(ngModel)] = 'editModel.factoryid' type="number" name="editModel.factoryid"  class="form-control" id="factoryid" max="2147483647">
+                <input [(ngModel)] = 'editModel.factoryid' type="number" name="editModel.factoryid"  class="form-control" id="factoryid" max="2147483647" required validationMsg>
             </div>
         </div>
         <div class="form-group row">

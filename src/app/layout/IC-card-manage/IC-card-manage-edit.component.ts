@@ -27,7 +27,7 @@ export class ICCardManageEditComponent {
         this.businessSelector.userSelector().then(result => {
             this.editModel.owener = result.name;
             //TODO 卡主ID字段请按照文档修改
-            this.editModel.owenerId = result.account;
+            this.editModel.account = result.account;
         })
 
         // const modalRef = this.ngbModal.open(OwnerChooseComponent, {size: "lg"});

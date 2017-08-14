@@ -46,6 +46,7 @@ export class ICCardManageComponent implements OnInit {
             if (queryModel.cardid == ''){
                 queryModel.cardid = -1;
             }
+
             return queryModel;
         }.bind(this),
         topActions: [
@@ -83,23 +84,6 @@ export class ICCardManageComponent implements OnInit {
                 autoConfig: {
                     url:'IcCard/Delete'
                 }
-            },
-            {//TODO
-                icon: function (item) {
-                    if (item.icstate == "locked") {
-                        return 'fa-lock '
-                    } else {
-                        return 'fa-unlock'
-                    }
-                },
-                action: function (item) {
-                    if(item.icstate == "locked"){
-                        this.confirmService.confirm('').then(result => {
-                        }, error =>{})
-                    }else {
-                    }
-
-                }.bind(this)
             }
         ]
     };
