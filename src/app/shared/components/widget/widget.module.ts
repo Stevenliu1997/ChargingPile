@@ -5,6 +5,10 @@ import {DatagridComponent} from './datagrid/datagrid.component';
 import {ToolModule} from "../../services/tool.module";
 import {ValidationMsgDirective} from "../validation-msg/validation-msg.directive";
 import {ChartsModule} from "ng2-charts";
+import {Uploader} from "./uploader/uploader.service";
+import {UploaderModalComponent} from "./uploader/uploader-modal.component";
+import {FileUploadModule} from "ng2-file-upload";
+
 
 
 @NgModule({
@@ -12,17 +16,22 @@ import {ChartsModule} from "ng2-charts";
         CommonModule,
         FormsModule,
         ToolModule,
-        ChartsModule
+        ChartsModule,
+        FileUploadModule
     ],
     declarations: [
         DatagridComponent,
-        ValidationMsgDirective
+        ValidationMsgDirective,
+        UploaderModalComponent
     ],
+    entryComponents: [UploaderModalComponent],
     exports: [
         DatagridComponent,
         ValidationMsgDirective,
-        ChartsModule
-    ]
+        ChartsModule,
+        FileUploadModule
+    ],
+    providers: [Uploader]
 })
 export class WidgetModule {
 
