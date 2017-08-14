@@ -44,60 +44,62 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-
-
-        <div class="row">
-            <div class="col-4">
-                <canvas baseChart width="400" height="400"
-                        [datasets]="timesChart"
-                        [labels]="lineChartLabels"
-                        [options]="lineChartOptions"
-                        [colors]="lineChartColors"
-                        [legend]="lineChartLegend"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
+            <div class="row">
+                <div class="col-4">
+                    <canvas baseChart width="800" height="800" id="chart1"
+                            [datasets]="timesChart"
+                            [labels]="timesChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
+                <div class="col-4">
+                    <canvas baseChart width="600" height="600" id="chart2"
+                            [datasets]="userChart"
+                            [labels]="userChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
             </div>
-            <div class="col-4">
-                <canvas baseChart width="400" height="400"
-                        [datasets]="userChart"
-                        [labels]="lineChartLabels"
-                        [options]="lineChartOptions"
-                        [colors]="lineChartColors"
-                        [legend]="lineChartLegend"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
+            <div class="row">
+                <div class="col-4">
+                    <canvas baseChart width="400" height="400" id="chart3"
+                            [datasets]="amountChart"
+                            [labels]="amountChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
+                <div class="col-4">
+                    <canvas baseChart width="400" height="400" id="chart4"
+                            [datasets]="errorChart"
+                            [labels]="errorChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <canvas baseChart width="400" height="400"
-                        [datasets]="amountChart"
-                        [labels]="lineChartLabels"
-                        [options]="lineChartOptions"
-                        [colors]="lineChartColors"
-                        [legend]="lineChartLegend"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
+            <div>
+                <p>点击选择导出：</p>
+                <a  (click)="downloadCanvas1($event)">充电次数</a>
+                <a  (click)="downloadCanvas2($event)">充电量</a>
+                <a  (lick)="downloadCanvas3($event)">用户数</a>
+                <a  (click)="downloadCanvas4($event)">故障数</a>
             </div>
-            <div class="col-4">
-                <canvas baseChart width="400" height="400"
-                        [datasets]="errorChart"
-                        [labels]="lineChartLabels"
-                        [options]="lineChartOptions"
-                        [colors]="lineChartColors"
-                        [legend]="lineChartLegend"
-                        [chartType]="lineChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)"></canvas>
-            </div>
-        </div>
-
-
     </div>
 </div>

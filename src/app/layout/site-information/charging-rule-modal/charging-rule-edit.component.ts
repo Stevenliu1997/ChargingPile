@@ -1,14 +1,16 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 
 import {AddRuleComponent} from './add-rule.component';
+import {DatagridComponent} from '../../../shared/components/widget/datagrid/datagrid.component';
 
 @Component({
     selector: 'app-charging-rule-edit',
     templateUrl: './charging-rule-edit.component.html'
 })
 export class ChargingRuleEditComponent {
+    @ViewChild(DatagridComponent)
+    private datagridComponent: DatagridComponent;
 
     @Input()
     actionTitle: string;
@@ -16,15 +18,19 @@ export class ChargingRuleEditComponent {
     editModel: any = {};
 
     config: object = {
-        url: 'SiteInformation/site-management',
+        url: 'RuleDetails/Find',
         column: [
-            {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'sitename'},
-            {name: '省市', key: 'provincecity'},
-            {name: '站点状态', key: 'state'}
+            {name: '服务费', key: 'servicecharge'},
+            {name: '电价', key: 'price'},
+            {name: '开始时间', key: 'starttime'},
+            {name: '结束时间', key: 'endtime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            const tempquery = {
+                ruleid: 0,
+            };
+            tempquery.ruleid = this.editModel.ruleid;
+            return tempquery;
         }.bind(this),
         topActions: [
             {
@@ -33,9 +39,10 @@ export class ChargingRuleEditComponent {
                 allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(AddRuleComponent);
-                    modalRef.componentInstance.actionTitle = '';
+                    modalRef.componentInstance.actionTitle = '添加';
+                    modalRef.componentInstance.editModel.ruleid = this.editModel.ruleid;
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGrid();
                     })
                 }.bind(this)
             },
@@ -46,17 +53,18 @@ export class ChargingRuleEditComponent {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'CarBrand/Delete'
+                    url: 'RuleDetails/Delete'
                 }
             }
         ],
         rowActions: [
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {
-                    url: 'CarBrand/Delete'
+                    url: 'RuleDetails/Delete'
                 }
             }
         ]
@@ -70,5 +78,7 @@ export class ChargingRuleEditComponent {
     confirm() {
         this.activeModal.close(this.editModel);
     }
-
+    refreshGrid() {
+        this.datagridComponent.refreshGrid();
+    }
 }

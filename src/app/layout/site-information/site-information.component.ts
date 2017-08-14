@@ -10,6 +10,7 @@ import {ArticleManagementAddComponent} from './article-management-modal/article-
 import {SiteEssentialInformationComponent} from './site-management-modal/site-essential-information.component';
 import {ChargingRuleEditComponent} from './charging-rule-modal/charging-rule-edit.component';
 import {ChargingRuleInformationComponent} from './charging-rule-modal/charging-rule-information.component';
+import {ChargingRuleUpdateComponent} from './charging-rule-modal/charging-rule-update.component';
 
 @Component({
     selector: 'app-site-information',
@@ -39,13 +40,21 @@ export class SiteInformationComponent implements OnInit {
             {name: '站点状态', key: 'state'}
         ],
         params: function () {
-            const tempquery = Object.assign({}, this.queryModel);
+            const tempquery = {
+                siteid: 0,
+                name: '',
+                state: '',
+                provincecity: '',
+                district: '',
+            };
+            tempquery.siteid = this.queryModel.siteid;
+            tempquery.name = this.queryModel.name;
+            tempquery.state = this.queryModel.state;
+            tempquery.district = this.queryModel.district;
             if (!tempquery.siteid) {
                 tempquery.siteid = -1;
             }
             tempquery.provincecity = `${this.queryModel.province || ''}${this.queryModel.city || ''}`;
-            tempquery.province = undefined;
-            tempquery.city = undefined;
             return tempquery;
         }.bind(this),
         topActions: [
@@ -75,6 +84,7 @@ export class SiteInformationComponent implements OnInit {
         rowActions: [
             {
                 type: 'detail',
+                name: '查看站点信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteEssentialInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '查看站点信息';
@@ -87,6 +97,7 @@ export class SiteInformationComponent implements OnInit {
             },
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {
@@ -100,26 +111,23 @@ export class SiteInformationComponent implements OnInit {
     chargingRConfig: object = {
         url: 'ChargingRule/Find',
         column: [
-            {name: '计费规则名称', key: 'chargename'},
-            {name: '运营方', key: 'operator'},
-            {name: '版本号', key: 'chargerulenum'},
-            {name: '规则开始日', key: 'startdate'},
-            {name: '规则结束日', key: 'enddate'},
-            {name: '开启状态', key: 'startstate'},
+            {name: '计费规则名称', key: 'rulename'},
+            {name: '版本号', key: 'version'},
+            {name: '规则开始日', key: 'starttime'},
+            {name: '规则结束日', key: 'endtime'},
             {name: '规则类别', key: 'ruletype'},
-            {name: '使用标志', key: 'usingsign'},
-            {name: '是否测试数据', key: 'testdata'},
+            {name: '使用标志', key: 'usersate'},
             {name: '创建时间', key: 'createtime'}
         ],
         params: function () {
             const tempquery = {
                 rulename: '',
-                userstate: '',
+                usersate: '',
                 version: '',
                 ruletype: ''
             };
             tempquery.rulename = this.queryModel.rulename;
-            tempquery.userstate = this.queryModel.userstate;
+            tempquery.usersate = this.queryModel.usersate;
             tempquery.version = this.queryModel.version;
             tempquery.ruletype = this.queryModel.ruletype;
             return tempquery;
@@ -132,6 +140,8 @@ export class SiteInformationComponent implements OnInit {
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ChargingRuleAddComponent);
                     modalRef.componentInstance.actionTitle = '添加';
+                    modalRef.componentInstance.operatorname = this.Operator.operatorname;
+                    modalRef.componentInstance.editModel.operatorid = this.Operator.operatorid;
                     modalRef.result.then(result => {
                         this.ChargingRuleAdd(result);
                     })
@@ -151,6 +161,7 @@ export class SiteInformationComponent implements OnInit {
         rowActions: [
             {
                 type: 'detail',
+                name: '查看详细信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ChargingRuleInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '查看详细信息';
@@ -162,8 +173,9 @@ export class SiteInformationComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '编辑规则',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(ChargingRuleAddComponent);
+                    const modalRef = this.ngbModal.open(ChargingRuleUpdateComponent);
                     modalRef.componentInstance.actionTitle = '编辑规则';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
@@ -173,6 +185,7 @@ export class SiteInformationComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '编辑细则',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ChargingRuleEditComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '编辑细则';
@@ -184,6 +197,7 @@ export class SiteInformationComponent implements OnInit {
             },
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {
@@ -247,10 +261,12 @@ export class SiteInformationComponent implements OnInit {
         rowActions: [
             {
                 type: 'detail',
+                name: '编辑文章',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ArticleManagementAddComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.componentInstance.Operator = Object.assign({}, this.Operator);
                     modalRef.result.then(result => {
                         this.refreshGridArticle();
                     }, error => {})
@@ -258,6 +274,7 @@ export class SiteInformationComponent implements OnInit {
             },
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {

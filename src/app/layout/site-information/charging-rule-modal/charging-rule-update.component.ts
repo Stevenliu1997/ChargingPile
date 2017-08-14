@@ -5,33 +5,28 @@ import {CustomHttpClient} from '../../../shared/services/custom-http-client/Cust
 
 
 @Component({
-    selector: 'app-charging-rule-add',
-    templateUrl: './charging-rule-add.component.html'
+    selector: 'app-charging-rule-update',
+    templateUrl: './charging-rule-update.component.html'
 })
-export class ChargingRuleAddComponent {
+export class ChargingRuleUpdateComponent {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     @Input()
     actionTitle: string;
     @Input()
     editModel: any = {};
-    @Input()
-    operatorname: string;
     constructor(
         public activeModal: NgbActiveModal,
         private customHttpClient: CustomHttpClient,
     ) {}
 
     confirm() {
-        this.add(this.editModel);
+        this.update();
     }
-    add(obj: any) {
-        const tempResult = Object.assign({}, obj);
-        const date = new Date();
-        const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
-            + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        tempResult.createtime = time;
-        this.customHttpClient.post('ChargingRule/Add', tempResult).subscribe(result => {
+    update() {
+        const tempObj = this.editModel;
+        tempObj.createtime = undefined;
+        this.customHttpClient.post('ChargingRule/Update', tempObj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }
