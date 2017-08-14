@@ -6,6 +6,7 @@ import {EditDeviceComponent} from './edit-device.component';
 import {ChargingPileInformationComponent} from './charging-pile-information.component';
 import {ToastsManager} from 'ng2-toastr';
 import {GunInformationComponent} from './gun-information.component';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-site-essential-information',
@@ -17,6 +18,9 @@ export class SiteEssentialInformationComponent implements OnInit {
     actionTitle: string;
     @Input()
     editModel: any = {};
+
+    @ViewChild('submitForm')
+    editForm: NgForm;
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -129,6 +133,9 @@ export class SiteEssentialInformationComponent implements OnInit {
     }
 
     confirm() {
+        if (this.editForm.form.invalid) {
+            return;
+        }
         this.activeModal.close(this.editModel);
     }
 

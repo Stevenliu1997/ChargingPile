@@ -5,17 +5,17 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
             <label for="name-text-input" class="col-2 col-form-label">站点名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' id="name-text-input" name="editModel.name" class="form-control">
+                <input [(ngModel)] = 'editModel.name' id="name-text-input" name="editModel.name" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label for="state-select-input" class="col-2 col-form-label">站点状态</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.state' id="state-select-input" name="editModel.state" class="form-control">
+                <select [(ngModel)] = 'editModel.state' id="state-select-input" name="editModel.state" class="form-control" validationMsg required>
                     <option value="Default">请选择</option>
                     <option value="normal">正常</option>
                     <option value="locked">锁定</option>
@@ -25,7 +25,7 @@
         <div class="form-group row">
             <label for="isopen-text-input" class="col-2 col-form-label">是否对外开放</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.isopen' id="isopen-text-input" name="editModel.isopen" class="form-control">
+                <select [(ngModel)] = 'editModel.isopen' id="isopen-text-input" name="editModel.isopen" class="form-control" validationMsg required>
                     <option value="Default">请选择</option>
                     <option value="true">是</option>
                     <option value="false">否</option>
@@ -35,17 +35,17 @@
         <div class="form-group row">
             <label for="type-text-input" class="col-2 col-form-label">充电站类型</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.type' id="type-text-input" name="editModel.type" class="form-control">
+                <input [(ngModel)] = 'editModel.type' id="type-text-input" name="editModel.type" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">省市</label>
-            <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4">
+            <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4" validationMsg required>
                 <option value="Default">请选择</option>
                 <option value="ll">ll</option>
                 <option value="mm">mm</option>
             </select>
-            <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4">
+            <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4" validationMsg required>
                 <option value="Default">请选择</option>
                 <option value="hh">hh</option>
                 <option value="ii">ii</option>
@@ -54,7 +54,7 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">区</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.district' id="district-select-input" name="editModel.district" class="form-control">
+                <select [(ngModel)] = 'editModel.district' id="district-select-input" name="editModel.district" class="form-control" validationMsg required>
                     <option value="Default">请选择</option>
                     <option value="ww">ww</option>
                     <option value="rr">rr</option>
@@ -64,25 +64,25 @@
         <div class="form-group row">
             <label for="position-text-input" class="col-2 col-form-label">详细地址</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.position' id="position-text-input" name="editModel.position" class="form-control">
+                <input [(ngModel)] = 'editModel.position' id="position-text-input" name="editModel.position" class="form-control" validationMsg required maxlength="300">
             </div>
         </div>
         <div class="form-group row">
             <label for="pilenumber-text-input" class="col-2 col-form-label">充电桩数量</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.pilenumber' id="pilenumber-text-input" name="editModel.pilenumber" class="form-control">
+                <input type="number" [(ngModel)] = 'editModel.pilenumber' id="pilenumber-text-input" name="editModel.pilenumber" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label for="seatnumber-text-input" class="col-2 col-form-label">车位数量</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.seatnumber' id="seatnumber-text-input" name="editModel.seatnumber" class="form-control">
+                <input type="number" [(ngModel)] = 'editModel.seatnumber' id="seatnumber-text-input" name="editModel.seatnumber" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label for="operatorInformation_operatorid-text-input" class="col-2 col-form-label">运营商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="operatorInformation_operatorid-text-input" name="editModel.operatorInformation_operatorid" class="form-control">
+                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' id="operatorInformation_operatorid-text-input" name="editModel.operatorInformation_operatorid" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
@@ -102,5 +102,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">返回</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">保存</button>
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">保存</button>
 </div>
