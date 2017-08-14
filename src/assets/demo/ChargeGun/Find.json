@@ -1,0 +1,26 @@
+{
+    "data": [
+        {
+            "gunid": "001",
+            "gunsate": "12",
+            "haslock": "true"
+        },
+        {
+            "gunid": "002",
+            "gunsate": "34",
+            "haslock": "false"
+        },
+        {
+            "gunid": "003",
+            "gunsate": "56",
+            "haslock": "false"
+        },
+        {
+            "gunid": "004",
+            "gunsate": "78",
+            "haslock": "true"
+        }
+    ],
+    "code": "00",
+    "message": "this is an error!!!"
+}

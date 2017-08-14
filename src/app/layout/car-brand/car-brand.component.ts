@@ -60,6 +60,7 @@ export class CarBrandComponent implements OnInit {
         rowActions: [
             {
                 type: 'edit',
+                name: '编辑车辆信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(CarBrandEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
@@ -71,6 +72,7 @@ export class CarBrandComponent implements OnInit {
             },
             {
                 type: 'detail',
+                name: '查看车辆详细信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(CarBrandDetailComponent);
                     modalRef.componentInstance.actionTitle = '车辆';
@@ -82,6 +84,7 @@ export class CarBrandComponent implements OnInit {
             },
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {

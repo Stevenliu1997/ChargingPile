@@ -8,7 +8,7 @@
             "createtime": "3",
             "balance": "4",
             "phone":  "5",
-            "icstate": "normal",
+            "icstate": "1",
             "endtime": "7",
             "ictype": "8"
         },
@@ -19,7 +19,7 @@
                     "createtime": "3",
                     "balance": "4",
                     "phone":  "5",
-                    "icstate": "locked",
+                    "icstate": "2",
                     "endtime": "7",
                     "ictype": "8"
                 }

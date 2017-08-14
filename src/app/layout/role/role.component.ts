@@ -57,6 +57,7 @@ export class RoleComponent implements OnInit {
         rowActions: [
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 },
                 autoConfig: {
@@ -65,6 +66,7 @@ export class RoleComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '编辑',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(RoleEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';

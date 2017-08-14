@@ -1,9 +1,12 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatagridComponent} from '../../../shared/components/widget/datagrid/datagrid.component';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 import {EditDeviceComponent} from './edit-device.component';
 import {ChargingPileInformationComponent} from './charging-pile-information.component';
+import {ToastsManager} from 'ng2-toastr';
+import {GunInformationComponent} from './gun-information.component';
+import {NgForm} from '@angular/forms';
 
 @Component({
     selector: 'app-site-essential-information',
@@ -16,20 +19,23 @@ export class SiteEssentialInformationComponent implements OnInit {
     @Input()
     editModel: any = {};
 
+    @ViewChild('submitForm')
+    editForm: NgForm;
+
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     @Input()
     queryModel: any = {}
     config: object = {
-        url: 'Site/Manage/Detail',
+        url: 'PileManage/Find',
         column: [
-            {name: '设备ID', key: 'deviceid'},
-            {name: '设备名称', key: 'devicename'},
-            {name: '设备型号', key: 'devicetype'},
-            {name: '厂商ID', key: 'manufacturerid'},
-            {name: '是否故障', key: 'isnormal'},
-            {name: '工作状态', key: 'workstate'},
-            {name: '位置信息', key: 'location'},
+            {name: '设备ID', key: 'pileid'},
+            {name: '设备名称', key: 'pilename'},
+            {name: '设备型号', key: 'type'},
+            {name: '厂商ID', key: 'factoryid'},
+            {name: '是否故障', key: 'useful'},
+            {name: '工作状态', key: 'workstation'},
+            {name: '位置信息', key: 'position'},
             {name: '设备备注', key: 'remarks'}
         ],
         params: function () {
@@ -39,11 +45,13 @@ export class SiteEssentialInformationComponent implements OnInit {
             {
                 type: 'add',
                 name: '添加',
+                allowEmpty: true,
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(EditDeviceComponent);
                     modalRef.componentInstance.actionTitle = '添加';
+                    modalRef.componentInstance.editModel.siteid = this.queryModel.siteid;
                     modalRef.result.then(result => {
-                        this.add(result);
+                        this.refreshGrid();
                     })
                 }.bind(this)
             },
@@ -54,19 +62,33 @@ export class SiteEssentialInformationComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url: 'Role/delete'
+                    url: 'PileManage/Delete'
                 }
             }
         ],
         rowActions: [
             {
                 type: 'detail',
+                name: '充电桩详细信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ChargingPileInformationComponent);
-                    modalRef.componentInstance.actionTitle = '此';
+                    modalRef.componentInstance.actionTitle = '此站点下充电桩';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                            this.information(result);
+                        },
+                        error => {
+                        })
+                }.bind(this)
+            },
+            {
+                type: 'detail',
+                name: '充电枪信息',
+                action: function (item) {
+                    const modalRef = this.ngbModal.open(GunInformationComponent);
+                    modalRef.componentInstance.actionTitle = '充电枪';
+                    modalRef.componentInstance.editModel.pileid = this.queryModel.pileid;
+                    modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.result.then(result => {
                         },
                         error => {
                         })
@@ -74,16 +96,26 @@ export class SiteEssentialInformationComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '编辑充电桩信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(EditDeviceComponent);
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                            this.updateRole(result);
+                        this.refreshGrid();
                         },
                         error => {
                         })
                 }.bind(this)
+            },
+            {
+                type: 'delete',
+                name: '删除',
+                action: function (item) {
+                }.bind(this),
+                autoConfig: {
+                    url: 'PileManage/Delete'
+                }
             }
         ]
     }
@@ -91,16 +123,25 @@ export class SiteEssentialInformationComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private ngbModal: NgbModal,
-        private customHttpClient: CustomHttpClient
-    ) {}
-
+        private customHttpClient: CustomHttpClient,
+        public toastr: ToastsManager,
+        vcr: ViewContainerRef
+    ) {
+        this.toastr.setRootViewContainerRef(vcr);
+    }
     ngOnInit() {
     }
 
     confirm() {
+        if (this.editForm.form.invalid) {
+            return;
+        }
         this.activeModal.close(this.editModel);
     }
 
+    refreshGrid() {
+        this.datagridComponent.refreshGrid();
+    }
     confirmChange() {
         const tempquery = Object.assign({}, this.editModel);
         tempquery.provincecity = `${this.editModel.province || ''}${this.editModel.city || ''}`;

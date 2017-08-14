@@ -64,11 +64,11 @@
                                 <div class="row">
                                     <label for="operateMinTime1" class="col-2 col-form-label">时间</label>
                                     <div class="col-4">
-                                        <input class="form-control" type="date" id="operateMinTime1" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime">
+                                        <input class="form-control" type="date" id="operateMinTime1" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime" validationMsg required>
                                     </div>
                                     <span>—</span>
                                     <div class="col-4">
-                                        <input class="form-control" type="date" id="operateMaxTime1" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
+                                        <input class="form-control" type="date" id="operateMaxTime1" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime" validationMsg required>
                                     </div>
                                 </div>
                             </div>

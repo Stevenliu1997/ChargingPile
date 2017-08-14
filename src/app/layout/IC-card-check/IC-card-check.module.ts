@@ -8,6 +8,8 @@ import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {ICCardCheckEditComponent} from "./IC-card-check-edit.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {OperationRecordComponent} from "./operation-record.component";
+import {ICCardInfoComponent} from "./IC-card-info.component";
 
 @NgModule({
     imports: [
@@ -20,10 +22,14 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     ],
     declarations: [
         ICCardCheckComponent,
-        ICCardCheckEditComponent
+        ICCardCheckEditComponent,
+        OperationRecordComponent,
+        ICCardInfoComponent
     ],
     entryComponents: [
-        ICCardCheckEditComponent
+        ICCardCheckEditComponent,
+        OperationRecordComponent,
+        ICCardInfoComponent
     ]
 })
 export class ICCardCheckModule{ }

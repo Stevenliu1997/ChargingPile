@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{actionTitle}}信息</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.gun1id">充电枪ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun1id' name="editModel.gun1id"  class="form-control" id="editModel.gun1id" disabled>
+            </div>
+            <label class="col-2 col-form-label" for="editModel.gun1sate">充电枪状态</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun1sate' name="editModel.gun1sate"  class="form-control" id="editModel.gun1sate" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.gun2id">充电枪ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun2id' name="editModel.gun2id"  class="form-control" id="editModel.gun2id" disabled>
+            </div>
+            <label class="col-2 col-form-label" for="editModel.gun2sate">充电枪状态</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun2sate' name="editModel.gun2sate"  class="form-control" id="editModel.gun2sate" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.gun3id">充电枪ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun3id' name="editModel.gun3id"  class="form-control" id="editModel.gun3id" disabled>
+            </div>
+            <label class="col-2 col-form-label" for="editModel.gun3sate">充电枪状态</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun3sate' name="editModel.gun3sate"  class="form-control" id="editModel.gun3sate" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="editModel.gun4id">充电枪ID</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun4id' name="editModel.gun4id"  class="form-control" id="editModel.gun4id" disabled>
+            </div>
+            <label class="col-2 col-form-label" for="editModel.gun4sate">充电枪状态</label>
+            <div class="col-4">
+                <input [(ngModel)] = 'editModel.gun4sate' name="editModel.gun4sate"  class="form-control" id="editModel.gun4sate" disabled>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click')">确认</button>
+</div>

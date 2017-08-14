@@ -1,29 +1,29 @@
 {
-    "code": "00",
     "pageData": [
         {
-            "rulename": "迪克斯特拉",
-            "operatorid": "中石油",
-            "version": "01",
-            "starttime": "2017.1.1",
-            "endtime": "2020.3.3",
-            "userstate": "正在使用",
-            "ruletype": "sss",
-            "usingsign": "dvcv",
-            "testdata": "是",
-            "createtime": "是"
+            "rulename": "周末大酬宾",
+            "version": "1.0",
+            "starttime": "2017.01.01",
+            "endtime": "2017.01.02",
+            "ruletype": "正常",
+            "usersate": "false",
+            "createtime": "2017-01-01 00:00:00",
+            "ruleid": "12580"
         },
         {
-            "rulename": "迪克斯特拉",
-            "operatorid": "中石油",
-            "version": "01",
-            "starttime": "正常",
-            "endtime": "元素",
-            "userstate": "正在使用",
-            "ruletype": "是",
-            "usingsign": "是",
-            "testdata": "是",
-            "createtime": "是"
+            "rulename": "暑期大狂欢",
+            "version": "2.0",
+            "starttime": "2017.06.09",
+            "endtime": "2017.09.10",
+            "ruletype": "锁定",
+            "usersate": "true",
+            "createtime": "2017-05-01",
+            "ruleid": "12306"
         }
-    ]
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "totalElements": 1,
+    "message": "this is an error!!!",
+    "code": "00"
 }

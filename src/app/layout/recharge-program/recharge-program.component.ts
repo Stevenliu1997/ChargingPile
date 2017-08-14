@@ -55,6 +55,13 @@ export class RechargeProgramComponent implements OnInit {
                         return 'fa-upload'
                     }
                 },
+                name: function (item) {
+                    if(item.uploaded){
+                        return '更新';
+                    }else{
+                        return '上传';
+                    }
+                },
                 action: function (item) {
                     this.uploader.openUploadModal({url: 'upload'});
 

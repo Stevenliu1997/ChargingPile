@@ -7,12 +7,6 @@
 <div class="modal-body">
     <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
-            <label for="operatorname-text-input" class="col-2 col-form-label">运营方</label>
-            <div class="col-10">
-                <input [(ngModel)] = 'operatorname' id="operatorname-text-input" name="operatorname" class="form-control" disabled>
-            </div>
-        </div>
-        <div class="form-group row">
             <label for="rulename-text-input" class="col-2 col-form-label">规则名称</label>
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.rulename' id="rulename-text-input" name="editModel.rulename" class="form-control" validationMsg required>
@@ -21,7 +15,7 @@
         <div class="form-group row">
             <label for="ruletype-select-input" class="col-2 col-form-label">类别</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control">
+                <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control" validationMsg>
                     <option value="Default">请选择</option>
                     <option value="正常">正常</option>
                     <option value="锁定">锁定</option>
@@ -31,7 +25,7 @@
         <div class="form-group row">
             <label for="version-text-input" class="col-2 col-form-label">版本号</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.version' id="version-text-input" name="editModel.version" class="form-control" validationMsg required>
+                <input [(ngModel)] = 'editModel.version' id="version-text-input" name="editModel.version" class="form-control">
             </div>
         </div>
         <div class="form-group row">
@@ -47,13 +41,13 @@
         <div class="form-group row">
             <label for="starttime-text-input" class="col-2 col-form-label">开始时间</label>
             <div class="col-10">
-                <input type="date" [(ngModel)] = 'editModel.starttime' id="starttime-text-input" name="editModel.starttime" class="form-control" validationMsg required>
+                <input type="date" [(ngModel)] = 'editModel.starttime' id="starttime-text-input" name="editModel.starttime" class="form-control">
             </div>
         </div>
         <div class="form-group row">
             <label for="endtime-text-input" class="col-2 col-form-label">结束时间</label>
             <div class="col-10">
-                <input type="date" [(ngModel)] = 'editModel.endtime' id="endtime-text-input" name="editModel.endtime" class="form-control" validationMsg required>
+                <input type="date" [(ngModel)] = 'editModel.endtime' id="endtime-text-input" name="editModel.endtime" class="form-control">
             </div>
         </div>
     </form>
