@@ -67,6 +67,7 @@ export class SiteManagementComponent implements OnInit {
         rowActions: [
             {
                 type: 'edit',
+                name: '查看站点数据',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteDataComponent);
                     modalRef.componentInstance.actionTitle = '';
@@ -77,6 +78,7 @@ export class SiteManagementComponent implements OnInit {
             },
             {
                 type: 'detail',
+                name: '查看信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteInformationComponent);
                     modalRef.componentInstance.actionTitle = '查看';
@@ -87,6 +89,7 @@ export class SiteManagementComponent implements OnInit {
             },
             {
                 type: 'edit',
+                name: '修改信息',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteModifyInformationComponent);
                     modalRef.componentInstance.actionTitle = '修改信息';
@@ -98,6 +101,7 @@ export class SiteManagementComponent implements OnInit {
             },
             {
                 type: 'delete',
+                name: '删除',
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {

@@ -22,7 +22,7 @@ export class AddRuleComponent {
         this.add(this.editModel);
     }
     add(obj: any) {
-        this.customHttpClient.post('ChargingRule/Add', obj).subscribe(result => {
+        this.customHttpClient.post('RuleDetails/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
             }

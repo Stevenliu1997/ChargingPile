@@ -1,0 +1,51 @@
+{
+    "pageData": [
+        {
+            "pileid": "001",
+            "type": "835",
+            "remarks": "没有备注",
+            "interfacenumber": "12",
+            "v": "12V",
+            "powertype": "直流",
+            "i": "12A",
+            "p": "1000W",
+            "interfacetype": "typec",
+            "interfacestatard": "接口标准",
+            "programid": "007",
+            "factoryid": "008",
+            "siteid": "010",
+            "position": "hhh",
+            "state": "正常",
+            "workstation": "工作",
+            "pilename": "名字",
+            "qrcode": "二维码路径",
+            "useful": "true"
+        },
+        {
+            "pileid": "002",
+            "type": "235",
+            "remarks": "也没有备注",
+            "interfacenumber": "2",
+            "v": "220V",
+            "powertype": "交流",
+            "i": "20A",
+            "p": "1200W",
+            "interfacetype": "ios",
+            "interfacestatard": "接口标准",
+            "programid": "009",
+            "factoryid": "010",
+            "siteid": "200",
+            "position": "jjj",
+            "state": "不正常",
+            "workstation": "没有工作",
+            "pilename": "名字",
+            "qrcode": "二维码路径",
+            "useful": "false"
+        }
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "totalElements": 1,
+    "message": "this is an error!!!",
+    "code": "00"
+}

@@ -13,15 +13,19 @@ export class ChargingRuleInformationComponent {
     editModel: any = {};
 
     config: object = {
-        url: 'SiteInformation/site-management',
+        url: 'RuleDetails/Find',
         column: [
-            {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'sitename'},
-            {name: '省市', key: 'provincecity'},
-            {name: '站点状态', key: 'state'}
+            {name: '服务费', key: 'servicecharge'},
+            {name: '电价', key: 'price'},
+            {name: '开始时间', key: 'starttime'},
+            {name: '结束时间', key: 'endtime'}
         ],
         params: function () {
-            return {userId: this.userId};
+            const tempquery = {
+                ruleid: ''
+            };
+            tempquery.ruleid = this.editModel.ruleid;
+            return tempquery;
         }.bind(this),
     };
 

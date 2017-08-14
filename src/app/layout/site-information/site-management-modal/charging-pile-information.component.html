@@ -1,41 +1,68 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{actionTitle}}站点下充电桩信息</h4>
+    <h4 class="modal-title">{{actionTitle}}信息</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
     <form>
-        <div class="form-group">
-            <div>电源类型：</div>
+        <div class="form-group row">
+            <label for="pilename-text-input" class="col-2 col-form-label">电源类型</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.pilename' id="pilename-text-input" name="editModel.pilename" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>电压：</div>
+        <div class="form-group row">
+            <label for="v-text-input" class="col-2 col-form-label">电压</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.v' id="v-text-input" name="editModel.v" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>电流：</div>
+        <div class="form-group row">
+            <label for="i-text-input" class="col-2 col-form-label">电流</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.i' id="i-text-input" name="editModel.i" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>功率：</div>
+        <div class="form-group row">
+            <label for="p-text-input" class="col-2 col-form-label">功率</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.p' id="p-text-input" name="editModel.p" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>接口类型：</div>
+        <div class="form-group row">
+            <label for="interfacetype-text-input" class="col-2 col-form-label">接口类型</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.interfacetype' id="interfacetype-text-input" name="editModel.interfacetype" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>接口标准：</div>
+        <div class="form-group row">
+            <label for="interfacestatard-text-input" class="col-2 col-form-label">接口标准</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.interfacestatard' id="interfacestatard-text-input" name="editModel.interfacestatard" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>程序ID：</div>
+        <div class="form-group row">
+            <label for="programid-text-input" class="col-2 col-form-label">程序ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.programid' id="programid-text-input" name="editModel.programid" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <div>厂商ID：</div>
+        <div class="form-group row">
+            <label for="factoryid-text-input" class="col-2 col-form-label">厂商ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.factoryid' id="factoryid-text-input" name="editModel.factoryid" class="form-control" disabled>
+            </div>
         </div>
-        <div class="form-group">
-            <!--二维码：<img [src] = 'editModel.image' id="editModel.image" name="editModel.image" class="form-control">-->
-        </div>
+        <!--<div class="form-group row">-->
+            <!--<label for="qrcode-text-input" class="col-2 col-form-label">二维码</label>-->
+            <!--<div class="col-10">-->
+                <!--<input [(ngModel)] = 'editModel.qrcode' id="qrcode-text-input" name="editModel.qrcode" class="form-control">-->
+            <!--</div>-->
+        <!--</div>-->
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click')">确认</button>
 </div>

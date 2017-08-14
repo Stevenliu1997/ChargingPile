@@ -17,6 +17,8 @@ import {ChargingPileInformationComponent} from './site-management-modal/charging
 import {ChargingRuleEditComponent} from './charging-rule-modal/charging-rule-edit.component';
 import {ChargingRuleInformationComponent} from './charging-rule-modal/charging-rule-information.component';
 import {AddRuleComponent} from './charging-rule-modal/add-rule.component';
+import {GunInformationComponent} from './site-management-modal/gun-information.component';
+import {ChargingRuleUpdateComponent} from './charging-rule-modal/charging-rule-update.component';
 
 @NgModule({
     imports: [
@@ -39,6 +41,8 @@ import {AddRuleComponent} from './charging-rule-modal/add-rule.component';
         ChargingRuleEditComponent,
         ChargingRuleInformationComponent,
         AddRuleComponent,
+        GunInformationComponent,
+        ChargingRuleUpdateComponent,
     ],
     entryComponents: [
         SiteInformationComponent,
@@ -52,6 +56,8 @@ import {AddRuleComponent} from './charging-rule-modal/add-rule.component';
         ChargingRuleEditComponent,
         ChargingRuleInformationComponent,
         AddRuleComponent,
+        GunInformationComponent,
+        ChargingRuleUpdateComponent,
     ]
 })
 export class SiteInformationModule { }

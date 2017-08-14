@@ -5,23 +5,23 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
-            <label for="devicename-text-input" class="col-2 col-form-label">设备名称</label>
+            <label for="pilename-text-input" class="col-2 col-form-label">设备名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.devicename' id="devicename-text-input" name="editModel.devicename" class="form-control">
+                <input [(ngModel)] = 'editModel.pilename' id="pilename-text-input" name="editModel.pilename" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
-            <label for="devicetype-text-input" class="col-2 col-form-label">设备型号</label>
+            <label for="type-text-input" class="col-2 col-form-label">设备型号</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.devicetype' id="devicetype-text-input" name="editModel.devicetype" class="form-control">
+                <input [(ngModel)] = 'editModel.type' id="type-text-input" name="editModel.type" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label for="powertype-select-input" class="col-2 col-form-label">电源类型</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.powertype' id="powertype-select-input" name="editModel.powertype" class="form-control">
+                <select [(ngModel)] = 'editModel.powertype' id="powertype-select-input" name="editModel.powertype" class="form-control" validationMsg required maxlength="50">
                     <option value="Default">请选择</option>
                     <option value="交流">交流</option>
                     <option value="直流">直流</option>
@@ -29,62 +29,62 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="voltage-text-input" class="col-2 col-form-label">电压</label>
+            <label for="v-text-input" class="col-2 col-form-label">电压</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.voltage' id="voltage-text-input" name="editModel.voltage" class="form-control">
+                <input [(ngModel)] = 'editModel.v' id="v-text-input" name="editModel.v" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="current-text-input" class="col-2 col-form-label">电流</label>
+            <label for="i-text-input" class="col-2 col-form-label">电流</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.current' id="current-text-input" name="editModel.current" class="form-control">
+                <input [(ngModel)] = 'editModel.i' id="i-text-input" name="editModel.i" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
-            <label for="power-text-input" class="col-2 col-form-label">功率</label>
+            <label for="p-text-input" class="col-2 col-form-label">功率</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.power' id="power-text-input" name="editModel.power" class="form-control">
+                <input [(ngModel)] = 'editModel.p' id="p-text-input" name="editModel.p" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label for="interfacetype-text-input" class="col-2 col-form-label">接口类型</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.interfacetype' id="interfacetype-text-input" name="editModel.interfacetype" class="form-control">
+                <input [(ngModel)] = 'editModel.interfacetype' id="interfacetype-text-input" name="editModel.interfacetype" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
-            <label for="interfacestandard-text-input" class="col-2 col-form-label">接口标准</label>
+            <label for="interfacestatard-text-input" class="col-2 col-form-label">接口标准</label>
             <div class="col-10">
-                <input type="number" [(ngModel)] = 'editModel.interfacestandard' id="interfacestandard-text-input" name="editModel.interfacestandard" class="form-control">
+                <input [(ngModel)] = 'editModel.interfacestatard' id="interfacestatard-text-input" name="editModel.interfacestatard" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
             <label for="programid-text-input" class="col-2 col-form-label">程序ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.programid' id="programid-text-input" name="editModel.programid" class="form-control">
+                <input [(ngModel)] = 'editModel.programid' id="programid-text-input" name="editModel.programid" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
-            <label for="manufacturerid-text-input" class="col-2 col-form-label">厂商ID</label>
+            <label for="factoryid-text-input" class="col-2 col-form-label">厂商ID</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.manufacturerid' id="manufacturerid-text-input" name="editModel.manufacturerid" class="form-control">
+                <input [(ngModel)] = 'editModel.factoryid' id="factoryid-text-input" name="editModel.factoryid" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
-            <label for="deviceremark-text-input" class="col-2 col-form-label">设备备注</label>
+            <label for="remarks-text-input" class="col-2 col-form-label">设备备注</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.deviceremark' id="deviceremark-text-input" name="editModel.deviceremark" class="form-control">
+                <input [(ngModel)] = 'editModel.remarks' id="remarks-text-input" name="editModel.remarks" class="form-control" validationMsg maxlength="2000">
             </div>
         </div>
         <div class="form-group row">
-            <label for="location-text-input" class="col-2 col-form-label">地址信息</label>
+            <label for="position-text-input" class="col-2 col-form-label">地址信息</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.location' id="location-text-input" name="editModel.location" class="form-control">
+                <input [(ngModel)] = 'editModel.position' id="position-text-input" name="editModel.position" class="form-control" validationMsg required maxlength="300">
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">确认</button>
 </div>
