@@ -42,6 +42,17 @@
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary" (click)="clear()">重置</button>
                         </div>
+                        <div class="col-4 btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    导出
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a href="#" class="dropdown-item" (click)="exportGrid()">用户信息</a>
+                                    <a href="#" class="dropdown-item" (click)="exportGrid()">查询</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,13 +104,6 @@
                             (chartHover)="chartHovered($event)"
                             (chartClick)="chartClicked($event)"></canvas>
                 </div>
-            </div>
-            <div>
-                <h4>点击选择导出：</h4>
-                <a class="btn btn-primary" (click)="downloadCanvas1($event)">充电次数</a>
-                <a class="btn btn-primary" (click)="downloadCanvas2($event)">充电量</a>
-                <a class="btn btn-primary" (lick)="downloadCanvas3($event)">用户数</a>
-                <a class="btn btn-primary" (click)="downloadCanvas4($event)">故障数</a>
             </div>
     </div>
 </div>

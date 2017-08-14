@@ -4,22 +4,22 @@
     "data":[
         {
             "datatype":1,
-            "analyseData":[1,108,3,45,5],
+            "analysisData":[1,108,3,45,5],
             "time":["1","2","2017","4","5"]
         },
         {
             "datatype":1,
-            "analyseData":[1,2,3,4,5],
+            "analysisData":[1,2,3,4,5],
             "time":["1","2","3","4","5"]
         },
         {
             "datatype":1,
-            "analyseData":[1,2,3,4,5],
+            "analysisData":[1,2,3,4,5],
             "time":["1","2","3","4","5"]
         },
         {
             "datatype":1,
-            "analyseData":[1,2,3,4,5],
+            "analysisData":[1,2,3,4,5],
             "time":["1","2","3","4","5"]
         }
     ]

@@ -13,7 +13,6 @@ import {URLSearchParams} from '@angular/http'
     animations: [routerTransition()]
 })
 export class OrderQueryComponent implements OnInit {
-    name: string = 'name';
 
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
@@ -21,42 +20,20 @@ export class OrderQueryComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'OrderQuery/Find',
+        url: 'OrderForm/Find',
         column: [
             {name: '订单号', key: 'orderid'},
+            {name: '订单编号', key: 'ordernumber'},
             {name: '订单状态', key: 'orderstate'},
             {name: '充电时长', key: 'chargetime'},
-            {name: '总电量', key: 'power'},
-            {name: '完成时间', key: 'endtime'},
-            {name: '支付方式', key: 'pay'},
-            {name: '用户', key: 'user'}
+            {name: '总电量', key: 'chargeamount'},
+            {name: '完成时间', key: 'endchargetime'},
+            {name: '支付方式', key: 'paytype'},
+            {name: '用户', key: 'payer'}
         ],
         params: function () {
             return this.queryModel;
         }.bind(this),
-        /*topActions: [
-            {
-                type: 'add',
-                name: '添加',
-                action: function (ids) {
-                    const modalRef = this.ngbModal.open(OrderQueryEditComponent);
-                    modalRef.componentInstance.actionTitle = '添加';
-                    modalRef.result.then(result => {
-                        this.addUser(result);
-                    },error => {})
-                }.bind(this)
-            },
-            {
-                type: 'delete',
-                name: '删除',
-                action: function (ids) {
-                    console.log(ids);
-                }.bind(this),
-                autoConfig: {
-                    url: 'ManageUser/delete'
-                }
-            }
-        ],*/
         rowActions: [
             {
                 type: 'detail',

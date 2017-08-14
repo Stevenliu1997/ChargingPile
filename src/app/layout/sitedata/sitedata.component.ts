@@ -18,6 +18,7 @@ export class SiteDataComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.refreshChart();
     }
 
     timesChart: any = [{data: []}];
@@ -56,10 +57,10 @@ export class SiteDataComponent implements OnInit {
     }
 
     formData(tempResult:any){
-        this.timesChart[0].data = tempResult.data[0].analyseData;
-        this.userChart[0].data = tempResult.data[1].analyseData;
-        this.amountChart[0].data = tempResult.data[2].analyseData;
-        this.errorChart[0].data = tempResult.data[3].analyseData;
+        this.timesChart[0].data = tempResult.data[0].analysisData;
+        this.userChart[0].data = tempResult.data[1].analysisData;
+        this.amountChart[0].data = tempResult.data[2].analysisData;
+        this.errorChart[0].data = tempResult.data[3].analysisData;
 
         this.timesChartLabels = tempResult.data[0].time;
         this.userChartLabels = tempResult.data[1].time;
@@ -84,32 +85,14 @@ export class SiteDataComponent implements OnInit {
         this.queryModel = {};
     };
 
+    exportGrid(){
+        let options = this.queryModel;
 
-    downloadCanvas1(event){
-        var anchor = event.target;
-        let  canvas = document.getElementById('chart1') as HTMLCanvasElement;
-        anchor.href = canvas.toDataURL();
-        anchor.download = "chargetimes.png";
-    };
-
-    downloadCanvas2(event){
-        var anchor = event.target;
-        let  canvas = document.getElementById('chart2') as HTMLCanvasElement;
-        anchor.href = canvas.toDataURL();
-        anchor.download = "chargeamount.png";
-    };
-
-    downloadCanvas3(event){
-        var anchor = event.target;
-        let canvas = document.getElementById('chart3') as HTMLCanvasElement;
-        anchor.href = canvas.toDataURL();
-        anchor.download = "users.png";
-    };
-
-    downloadCanvas4(event){
-        var anchor = event.target;
-        let  canvas = document.getElementById('chart4') as HTMLCanvasElement
-        anchor.href = canvas.toDataURL();
-        anchor.download = "errors.png";
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "ReserveForm/Export?"+params.toString();
+        window.open(URL);
     }
 }
