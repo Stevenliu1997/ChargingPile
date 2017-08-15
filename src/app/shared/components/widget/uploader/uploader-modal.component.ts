@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {FileUploader} from "ng2-file-upload";
+import {FileItem, FileUploader} from "ng2-file-upload";
 
 @Component({
     templateUrl: 'uploader-modal.component.html'
@@ -14,6 +14,8 @@ export class UploaderModalComponent  implements OnInit{
     @Input()
     uploadConfig: any;
 
+    lastUploadItem: FileItem;
+
     constructor(public activeModal: NgbActiveModal,) {
     }
 
@@ -21,9 +23,13 @@ export class UploaderModalComponent  implements OnInit{
         this.uploader = new FileUploader({url: this.uploadConfig.url});
     }
 
-    confirm(que: any){
+    confirm(que: FileItem){
         console.log(que);
         if(que){
+            this.lastUploadItem = que;
+            que.formData = {
+                desc: this.uploadModel.desc
+            };
             que.upload();
         }
     }

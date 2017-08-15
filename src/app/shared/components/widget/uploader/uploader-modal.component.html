@@ -7,6 +7,9 @@
 <div class="modal-body">
     <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row" >
+            <input type="file" ng2FileSelect [uploader]="uploader">
+        </div>
+        <div class="form-group row" >
             <label for="uploadModel.name" class="col-2 col-form-label">附件名称</label>
             <div class="col-10">
                 <input disabled [(ngModel)]='uploader?.queue[uploader?.queue?.length-1]?.file.name' id="uploadModel.name" name="uploadModel.name" type="text" class="form-control">
@@ -27,11 +30,10 @@
                 </textarea>
             </div>
         </div>
-        {{uploader}}
+
     </form>
 </div>
 <div class="modal-footer">
-    <input type="button" class="btn btn-primary btn-submit" type="file" ng2FileSelect [uploader]="uploader">
     <button type="button" class="btn btn-primary btn-submit" (click)="confirm(uploader?.queue[uploader?.queue?.length-1])">上传</button>
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
 

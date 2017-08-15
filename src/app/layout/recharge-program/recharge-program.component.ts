@@ -63,7 +63,7 @@ export class RechargeProgramComponent implements OnInit {
                     }
                 },
                 action: function (item) {
-                    this.uploader.openUploadModal({url: 'upload'});
+                    this.uploader.openUploadModal({url: 'Program/Upload'});
 
                     if(1)
                     return;
