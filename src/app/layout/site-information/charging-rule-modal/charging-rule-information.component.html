@@ -12,7 +12,7 @@
                     <div class="row">
                         <label for="rulename-text-input" class="col-4 col-form-label">规则名称</label>
                         <div class="col-6">
-                            <input [(ngModel)] = 'editModel.rulename' id="rulename-text-input" name="editModel.rulename" class="form-control">
+                            <input [(ngModel)] = 'editModel.rulename' id="rulename-text-input" name="editModel.rulename" class="form-control" disabled>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="row">
                         <label for="ruletype-select-input" class="col-4 col-form-label">类别</label>
                         <div class="col-6">
-                            <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control">
+                            <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control" disabled>
                                 <option value="Default">请选择</option>
                                 <option value="true">正常</option>
                                 <option value="false">锁定</option>
@@ -43,7 +43,7 @@
                     <div class="row">
                         <label for="usersate-select-input" class="col-4 col-form-label">使用标志</label>
                         <div class="col-6">
-                            <select [(ngModel)] = 'editModel.usersate' id="usersate-select-input" name="editModel.usersate" class="form-control">
+                            <select [(ngModel)] = 'editModel.usersate' id="usersate-select-input" name="editModel.usersate" class="form-control" disabled>
                                 <option value="Default">请选择</option>
                                 <option value="true">正常</option>
                                 <option value="false">锁定</option>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <label for="starttime-text-input" class="col-4 col-form-label">开始日期</label>
                         <div class="col-6">
-                            <input type="date" [(ngModel)] = 'editModel.starttime' id="starttime-text-input" name="editModel.starttime" class="form-control">
+                            <input type="date" [(ngModel)] = 'editModel.starttime' id="starttime-text-input" name="editModel.starttime" class="form-control" disabled>
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="row">
                         <label for="endtime-text-input" class="col-4 col-form-label">结束日期</label>
                         <div class="col-6">
-                            <input type="date" [(ngModel)] = 'editModel.endtime' id="endtime-text-input" name="editModel.endtime" class="form-control">
+                            <input type="date" [(ngModel)] = 'editModel.endtime' id="endtime-text-input" name="editModel.endtime" class="form-control" disabled>
                         </div>
                     </div>
                 </div>

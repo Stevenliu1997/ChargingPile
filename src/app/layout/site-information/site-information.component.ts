@@ -143,7 +143,7 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.operatorname = this.Operator.operatorname;
                     modalRef.componentInstance.editModel.operatorid = this.Operator.operatorid;
                     modalRef.result.then(result => {
-                        this.ChargingRuleAdd(result);
+                        this.refreshGridCharging();
                     })
                 }.bind(this)
             },
@@ -167,7 +167,6 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '查看详细信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
                     }, error => {})
                 }.bind(this)
             },
@@ -179,7 +178,7 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑规则';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGridCharging();
                     }, error => {})
                 }.bind(this)
             },
@@ -191,7 +190,7 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑细则';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                        this.update(result);
+                        this.refreshGridCharging();
                     }, error => {})
                 }.bind(this)
             },
@@ -296,6 +295,9 @@ export class SiteInformationComponent implements OnInit {
 
     }
     ngOnInit() {
+        this.siteclear();
+        this.chargingclear();
+        this.articleclear();
         this.customHttpClient.get('Operator/Get').subscribe(result => {
             console.log(result.code);
             if (result.code === '00') {
@@ -327,19 +329,17 @@ export class SiteInformationComponent implements OnInit {
 
     siteclear(): void {
         this.queryModel.siteid = '';
-        this.queryModel.sitename = '';
+        this.queryModel.name = '';
         this.queryModel.province = 'Default';
         this.queryModel.city = 'Default';
         this.queryModel.state = 'Default';
+        this.queryModel.district = 'Default';
     }
     chargingclear(): void {
         this.queryModel.rulename = '';
-        this.queryModel.operator = 'Default';
-        this.queryModel.chargerulenum = '';
-        this.queryModel.startstate = 'Default';
+        this.queryModel.version = '';
         this.queryModel.ruletype = 'Default';
-        this.queryModel.usingsign = 'Default';
-        this.queryModel.testdata = 'Default';
+        this.queryModel.usersate = 'Default';
     }
     articleclear(): void {
         this.queryModel.firsttitle = 'Default';

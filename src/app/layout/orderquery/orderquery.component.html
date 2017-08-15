@@ -7,17 +7,17 @@
                 <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
-                            <label for="queryModel.orderid" class="col-4 col-form-label">订单编号</label>
+                            <label for="queryModel.ordernumber" class="col-4 col-form-label">订单编号</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" id="queryModel.orderid" [(ngModel)]="queryModel.orderid" name="queryModel.orderid">
+                                <input class="form-control" type="text" id="queryModel.ordernumber" [(ngModel)]="queryModel.ordernumber" name="queryModel.ordernumber">
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="queryModel.icid" class="col-4 col-form-label">IC卡</label>
+                            <label for="queryModel.carid" class="col-4 col-form-label">IC卡</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="queryModel.icid" [(ngModel)]="queryModel.icid" name="queryModel.icid">
+                                <input class="form-control" type="text" id="queryModel.carid" [(ngModel)]="queryModel.carid" name="queryModel.carid">
                             </div>
                         </div>
                     </div>
@@ -34,37 +34,25 @@
                 <div class="row mb-3">
                     <div class="col-4">
                         <div class="row">
-                            <label for="station" class="col-4 col-form-label">充电站</label>
+                            <label for="siteid" class="col-4 col-form-label">充电站</label>
                             <div class="col-8">
-                                <select id="station" [(ngModel)]="queryModel.station" name="queryModel.station" class="form-control">
-                                    <option value="">请选择</option>
-                                    <option value=true>正常</option>
-                                    <option value=false>锁定</option>
-                                </select>
+                                <input id="siteid" [(ngModel)]="queryModel.siteid" name="queryModel.siteid" class="form-control" type="number">
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="site" class="col-4 col-form-label">充电桩</label>
+                            <label for="pileid" class="col-4 col-form-label">充电桩</label>
                             <div class="col-8">
-                                <select id="site" [(ngModel)]="queryModel.site" class="form-control" name="queryModel.site">
-                                    <option value="">请选择</option>
-                                    <option value=true>正常</option>
-                                    <option value=false>锁定</option>
-                                </select>
+                                <input id="pileid" [(ngModel)]="queryModel.pileid" class="form-control" name="queryModel.pileid" type="number">
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="gun" class="col-4 col-form-label">充电枪</label>
+                            <label for="gunid" class="col-4 col-form-label">充电枪</label>
                             <div class="col-8">
-                                <select id="gun" [(ngModel)]="queryModel.gun" class="form-control" name="queryModel.gun">
-                                    <option value="">请选择</option>
-                                    <option value=true>正常</option>
-                                    <option value=false>锁定</option>
-                                </select>
+                                <input id="gunid" [(ngModel)]="queryModel.gunid" class="form-control" name="queryModel.gunid" type="number">
                             </div>
                         </div>
                     </div>
@@ -81,9 +69,9 @@
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <label for="queryModel.endtime" class="col-4 col-form-label">结束时间</label>
+                            <label for="queryModel.finishtime" class="col-4 col-form-label">结束时间</label>
                             <div class="col-8">
-                                <input class="form-control" type="date" id="queryModel.endtime" [(ngModel)]="queryModel.endtime" name="queryModel.endtime">
+                                <input class="form-control" type="date" id="queryModel.finishtime" [(ngModel)]="queryModel.finishtime" name="queryModel.finishtime">
                             </div>
                         </div>
                     </div>
@@ -109,6 +97,9 @@
                     </div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary" (click)="blankGrid()">清空</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="exportGrid()">导出</button>
                     </div>
                 </div>
             </div>

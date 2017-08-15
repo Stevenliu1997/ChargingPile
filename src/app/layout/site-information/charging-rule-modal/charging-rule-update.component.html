@@ -5,17 +5,17 @@
     </button>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
             <label for="rulename-text-input" class="col-2 col-form-label">规则名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.rulename' id="rulename-text-input" name="editModel.rulename" class="form-control">
+                <input [(ngModel)] = 'editModel.rulename' id="rulename-text-input" name="editModel.rulename" class="form-control" validationMsg required>
             </div>
         </div>
         <div class="form-group row">
             <label for="ruletype-select-input" class="col-2 col-form-label">类别</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control">
+                <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control" validationMsg>
                     <option value="Default">请选择</option>
                     <option value="正常">正常</option>
                     <option value="锁定">锁定</option>
@@ -54,5 +54,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
-    <button type="button" class="btn btn-primary" (click)="confirm()">确认</button>
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">确认</button>
 </div>

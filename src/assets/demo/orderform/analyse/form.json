@@ -1,0 +1,34 @@
+{
+    "code": "00",
+    "message": "this is an error!!!",
+    "pageData": [
+        {
+            "time": "2017-01-01",
+            "objectname": "站点1",
+            "analyseData": [111]
+        },
+        {
+            "time": "2017-02-01",
+            "objectname": "站点2",
+            "analyseData": [444]
+        },
+        {
+            "time": "2017-03-01",
+            "objectname": "站点3",
+            "analyseData": [555]
+        },
+        {
+            "time": "2017-04-01",
+            "objectname": "站点4",
+            "analyseData": [777]
+        },
+        {
+            "time": "2017-05-01",
+            "objectname": "站点5",
+            "analyseData": [888]
+        }
+    ],
+    "currentPage": 1,
+    "totalPage": 2,
+    "totalElements": 1
+}

@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">上传</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form name="submitForm" #submitForm="ngForm">
+        <div class="form-group row" >
+            <input type="file" ng2FileSelect [uploader]="uploader">
+        </div>
+        <div class="form-group row" >
+            <label for="uploadModel.name" class="col-2 col-form-label">附件名称</label>
+            <div class="col-10">
+                <input disabled [(ngModel)]='uploader?.queue[uploader?.queue?.length-1]?.file.name' id="uploadModel.name" name="uploadModel.name" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row" >
+            <label for="uploadModel.location" class="col-2 col-form-label">附件路径</label>
+            <div class="col-10">
+                <input disabled [(ngModel)]='uploadModel.location' id="uploadModel.location" name="uploadModel.location" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row" >
+            <label for="uploadModel.desc" class="col-2 col-form-label">附件描述</label>
+            <div class="col-10">
+                <textarea [(ngModel)]='uploadModel.desc' id="uploadModel.desc" name="uploadModel.desc" type="text" class="form-control">
+                </textarea>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm(uploader?.queue[uploader?.queue?.length-1])">上传</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">关闭</button>
+
+</div>
+
