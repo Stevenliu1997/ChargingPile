@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
-//import { CHART_DIRECTIVES } from 'ng2-charts/ng2-charts';
+
 
 @Component({
     selector: 'app-tables',
@@ -18,6 +18,7 @@ export class SiteDataComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.refreshChart();
     }
 
     timesChart: any = [{data: []}];
@@ -56,10 +57,10 @@ export class SiteDataComponent implements OnInit {
     }
 
     formData(tempResult:any){
-        this.timesChart[0].data = tempResult.data[0].analyseData;
-        this.userChart[0].data = tempResult.data[1].analyseData;
-        this.amountChart[0].data = tempResult.data[2].analyseData;
-        this.errorChart[0].data = tempResult.data[3].analyseData;
+        this.timesChart[0].data = tempResult.data[0].analysisData;
+        this.userChart[0].data = tempResult.data[1].analysisData;
+        this.amountChart[0].data = tempResult.data[2].analysisData;
+        this.errorChart[0].data = tempResult.data[3].analysisData;
 
         this.timesChartLabels = tempResult.data[0].time;
         this.userChartLabels = tempResult.data[1].time;
@@ -84,32 +85,47 @@ export class SiteDataComponent implements OnInit {
         this.queryModel = {};
     };
 
+    exporttimesGrid(){
+        let options = this.queryModel;
 
-    downloadCanvas1(event){
-        var anchor = event.target;
-        let  canvas = document.getElementById('chart1') as HTMLCanvasElement;
-        anchor.href = canvas.toDataURL();
-        anchor.download = "chargetimes.png";
-    };
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelTimes?"+params.toString();
+        window.open(URL);
+    }
 
-    downloadCanvas2(event){
-        var anchor = event.target;
-        let  canvas = document.getElementById('chart2') as HTMLCanvasElement;
-        anchor.href = canvas.toDataURL();
-        anchor.download = "chargeamount.png";
-    };
+    exportamountGrid(){
+        let options = this.queryModel;
 
-    downloadCanvas3(event){
-        var anchor = event.target;
-        let canvas = document.getElementById('chart3') as HTMLCanvasElement;
-        anchor.href = canvas.toDataURL();
-        anchor.download = "users.png";
-    };
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelAmount?"+params.toString();
+        window.open(URL);
+    }
 
-    downloadCanvas4(event){
-        var anchor = event.target;
-        let  canvas = document.getElementById('chart4') as HTMLCanvasElement
-        anchor.href = canvas.toDataURL();
-        anchor.download = "errors.png";
+    exporterrorGrid(){
+        let options = this.queryModel;
+
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelErrornumber?"+params.toString();
+        window.open(URL);
+    }
+
+    exportuserGrid(){
+        let options = this.queryModel;
+
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelUsernumber?"+params.toString();
+        window.open(URL);
     }
 }

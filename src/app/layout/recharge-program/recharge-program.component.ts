@@ -5,6 +5,7 @@ import {RechargeProgramAddComponent} from './recharge-program-add.component';
 import {RechargeProgramEditComponent} from './recharge-program-edit.component';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {Uploader} from "../../shared/components/widget/uploader/uploader.service";
 
 @Component({
     selector: 'app-form',
@@ -62,6 +63,10 @@ export class RechargeProgramComponent implements OnInit {
                     }
                 },
                 action: function (item) {
+                    this.uploader.openUploadModal({url: 'upload'});
+
+                    if(1)
+                    return;
                     //TODO item.uploaded指有上传文件
                     if(item.uploaded){
                         const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
@@ -105,7 +110,7 @@ export class RechargeProgramComponent implements OnInit {
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient, private uploader: Uploader) {
     }
 
 
