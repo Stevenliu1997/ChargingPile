@@ -4,6 +4,7 @@ import {DatagridComponent} from '../../shared/components/widget/datagrid/datagri
 import {NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import {ToastsManager} from 'ng2-toastr';
 import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {promise} from "selenium-webdriver";
 
 @Component({
     selector: 'app-order-analysis',
@@ -12,6 +13,7 @@ import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomH
     animations: [routerTransition()]
 })
 export class OrderAnalysisComponent implements OnInit {
+
     @ViewChild('orderCount')
     private orderCountComponent: DatagridComponent;
     @ViewChild('chargingCount')
@@ -19,160 +21,126 @@ export class OrderAnalysisComponent implements OnInit {
     @ViewChild('moneyCount')
     private moneyCountComponent: DatagridComponent;
 
+    //tabs id
+    tabsConfig: any;
+
+    //站点信息
+    sites: Array<any>;
+    //查询条件对象
     queryModel: any = {};
-    /*图标查询数据*/
-    chartObj: any = {
-        findType: '1',
-        timeType: '1',
-        starttime: '',
-        endtime: ''
-    };
-    /*存储曲线数组*/
-    lineArray: any = [{data: [], label: ''}];
-    /*横坐标*/
-    lineLabelArray: Array<any> = [];
-    /*options*/
-    public lineChartOptions: any = {
-        responsive: true
-    };
-    /*colors*/
-    public lineChartColors: Array<any> = [
-        { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        },
-        { // dark grey
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
-        },
-        { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        }
-    ];
-    public lineChartLegend: boolean = true;
-    public lineChartType: string = 'line';
+    //datagrid配置
+    datagridConfigs: any = {};
 
-    orderCConfig: object = {
-        key: 'orderid',
-        url: 'orderform/analyse/form',
-        column: [
-            {name: '日期', key: 'time'},
-            {name: '名称', key: 'objectname'},
-            {name: '订单数量', key: 'analyseData'}
-        ],
-        params: function () {
-            return this.queryModel;
-        }.bind(this),
-    };
+    constructor(private customHttpClient: CustomHttpClient){}
 
-    chargingCConfig: object = {
-        key: 'chargingid',
-        url: 'ChargingCount/Find',
-        column: [
-            {name: '日期', key: 'chargingdata'},
-            {name: '名称', key: 'chargingname'},
-            {name: '充电量', key: 'chargingnumber'}
-        ],
-        params: function () {
-            return this.queryModel;
-        }.bind(this),
-    };
-    moneyCConfig: object = {
-        key: 'moneyid',
-        url: 'MoneyCount/Find',
-        column: [
-            {name: '日期', key: 'moneydate'},
-            {name: '名称', key: 'moneyname'},
-            {name: '总价格', key: 'totalprice'},
-            {name: '总电费', key: 'totalelectricity'},
-            {name: '总服务', key: 'totalservice'}
-        ],
-        params: function () {
-            return this.queryModel;
-        }.bind(this),
-    };
-    constructor(
-        private customHttpClient: CustomHttpClient,
-        public toastr: ToastsManager,
-        vcr: ViewContainerRef
-    ) {
-        this.toastr.setRootViewContainerRef(vcr);
-    }
-    confirm() {
-
-    }
-    ngOnInit() {
-        this.find();
-    }
-    beforeChange($event: NgbTabChangeEvent) {
-        if ($event.activeId === 'orderstatistics') {
-            this.chartObj.findType = '1';
-        } else if ($event.activeId === 'chargestatistics') {
-            this.chartObj.findType = '2';
-        } else if ($event.activeId === 'moneystatistics') {
-            this.chartObj.findType = '3';
-        }
-    }
-    refreshGridOrderC() {
-        this.orderCountComponent.refreshGrid();
-    }
-    refreshGridChargingC() {
-        this.chargingCountComponent.refreshGrid();
-    }
-    refreshGridMoneyC() {
-        this.moneyCountComponent.refreshGrid();
-    }
-
-    orderclear(): void {
-    }
-    chargingclear(): void {
-    }
-    moneyclear(): void {
-    }
-
-    year() {
-        this.chartObj.timeType = '1';
-        this.find();
-    }
-    month() {
-        this.chartObj.timeType = '2';
-        this.find();
-    }
-    day() {
-        this.chartObj.timeType = '3';
-        this.find();
-    }
-    find() {
-        this.customHttpClient.post('orderform/analyse/group', this.chartObj).subscribe(result => {
-            if (result.code === '00') {
-                for (let i = 0; i < result.data.length; i++) {
-                    let tempObj: any = {};
-                    tempObj.data = result.data[i].analyseData;
-                    tempObj.label = result.data[i].objectname;
-                    this.lineArray[i] = tempObj;
+    ngOnInit(): void {
+        this.tabsConfig = [
+            {
+                key: 'orderCount',
+                findType: "1",
+                gridConfig:{
+                    column: [
+                        {name: '日期', key: 'time'},
+                        {name: '名称', key: 'sitename'},
+                        {name: '订单数量', key: 'analyseData'}
+                    ]
                 }
-                this.lineLabelArray = result.time;
+            },
+            {
+                key: 'chargingCount',
+                findType: "2",
+                gridConfig:{
+                    column: [
+                        {name: '日期', key: 'time'},
+                        {name: '名称', key: 'sitename'},
+                        {name: '充电量', key: 'analyseData'}
+                    ],
+                    params: {findType: "2"}
+                }
+            },
+            {
+                key: 'moneyCount',
+                findType: "3",
+                gridConfig:{
+                    column: [
+                        {name: '日期', key: 'time'},
+                        {name: '名称', key: 'sitename'},
+                        {name: '总价格', html: function (data) {
+                            return data.analyseData[0];
+                        }},
+                        {name: '总电费', function (data) {
+                            return data.analyseData[1];
+                        }},
+                        {name: '总服务费', function (data) {
+                            return data.analyseData[2];
+                        }}
+                    ]
+                }
             }
-        });
-    }
-    public chartClicked(e: any): void {
-        console.log(e);
+        ];
+
+        //查询站点
+        this.querySites().then(result => {
+            this.sites = result;
+        })
+        //初始化查询对象
+        this.initQueryModel();
+        this.initDatagridConfig();
     }
 
-    public chartHovered(e: any): void {
-        console.log(e);
+    /**
+     * 查询站点
+     * @returns {Promise<T>}
+     */
+    querySites(): Promise<any>{
+        return new Promise((resolve, reject) => {
+            this.customHttpClient.post('Site/Manage/Find', {siteid: -1, pageNumber:1, pageSize: 999999}).subscribe(result => {
+                if(result.code === '00')
+                    resolve(result.pageData);
+            })
+        })
     }
+
+    /**
+     * 初始化查询数据
+     */
+    initQueryModel(){
+        for(let i in this.tabsConfig){
+            //默认为选择日
+            this.queryModel[this.tabsConfig[i].key] = '1';
+        }
+    }
+
+    //初始化datagrid
+    initDatagridConfig(){
+        for(let i in this.tabsConfig){
+            let tabConfig = this.tabsConfig[i];
+            let config = {
+                url: 'orderForm/analysis/form',//现在三个tab都用一个url
+                column: tabConfig.gridConfig.column,
+                params: () => {
+                    return Object.assign({}, this.queryModel[tabConfig.key], {findType: tabConfig.findType})
+                },
+            };
+            this.datagridConfigs[tabConfig.key] = config;
+        }
+    }
+
+    /**
+     * 刷新表格
+     * @param key
+     */
+    refreshGrid(key: string){
+        this[`${key}Component`].refreshGrid();
+    }
+
+    refreshChart(key: string){
+        this.customHttpClient.post('')
+    }
+
+    beforeChange(event: any){
+
+    }
+
+
 }
