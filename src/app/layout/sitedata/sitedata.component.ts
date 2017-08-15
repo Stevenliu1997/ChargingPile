@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
-//import { CHART_DIRECTIVES } from 'ng2-charts/ng2-charts';
+
 
 @Component({
     selector: 'app-tables',
@@ -85,14 +85,47 @@ export class SiteDataComponent implements OnInit {
         this.queryModel = {};
     };
 
-    exportGrid(){
+    exporttimesGrid(){
         let options = this.queryModel;
 
         let params = new URLSearchParams();
         for(let key in options){
             params.set(key, options[key])
         }
-        let URL = "ReserveForm/Export?"+params.toString();
+        let URL = "DataAnalysis/GetExcelTimes?"+params.toString();
+        window.open(URL);
+    }
+
+    exportamountGrid(){
+        let options = this.queryModel;
+
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelAmount?"+params.toString();
+        window.open(URL);
+    }
+
+    exporterrorGrid(){
+        let options = this.queryModel;
+
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelErrornumber?"+params.toString();
+        window.open(URL);
+    }
+
+    exportuserGrid(){
+        let options = this.queryModel;
+
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "DataAnalysis/GetExcelUsernumber?"+params.toString();
         window.open(URL);
     }
 }
