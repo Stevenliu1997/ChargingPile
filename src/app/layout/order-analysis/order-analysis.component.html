@@ -5,7 +5,7 @@
 
         <div class="modal-body">
             <ngb-tabset [destroyOnHide]="false" (tabChange)="beforeChange($event)">
-                <ngb-tab title="订单量统计" id="siteManagement">
+                <ngb-tab title="订单量统计" id="orderstatistics">
                     <ng-template ngbTabContent>
                         <div class="query-section row breadcrumb mx-xl-0">
                             <div class="col-9">
@@ -25,7 +25,7 @@
                                         <div class="row">
                                             <label for="orderstartdate-date-input" class="col-4 col-form-label">时间段</label>
                                             <div class="col-8">
-                                                <input class="form-control" type="date" id="orderstartdate-date-input" [(ngModel)]="queryModel.orderstartdate" name="queryModel.orderstartdate">
+                                                <input class="form-control" type="date" id="orderstartdate-date-input" [(ngModel)]="chartObj.starttime" name="chartObj.starttime">
                                             </div>
                                         </div>
                                     </div>
@@ -33,26 +33,30 @@
                                         <div class="row">
                                             <label for="orderenddate-date-input" class="col-4 col-form-label">至</label>
                                             <div class="col-8">
-                                                <input class="form-control" type="date" id="orderenddate-date-input" [(ngModel)]="queryModel.orderenddate" name="queryModel.orderenddate">
+                                                <input class="form-control" type="date" id="orderenddate-date-input" [(ngModel)]="chartObj.endtime" name="chartObj.endtime">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <div class="row">
-                                            <label for="xxx-checkbox-input" class="col-4 col-form-label">充电站</label>
-                                            <div class="col-8">
-                                                <div id="xxx-checkbox-input">
-                                                    <label class="checkbox-inline">
-                                                        站点1<input type="checkbox" [(ngModel)]="queryModel.site1" class="form-control">
+                                            <label for="xxx-checkbox-input" class="col-2 col-form-label">充电站</label>
+                                            <div class="col-10" id="xxx-checkbox-input">
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="chartObj.site1" [(ngModel)]="chartObj.site1" value="site1"> 站点1
                                                     </label>
-                                                    <label class="checkbox-inline">
-                                                        站点2<input type="checkbox" [(ngModel)]="queryModel.site2" class="form-control">
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="chartObj.site2" [(ngModel)]="chartObj.site2" value="site2"> 站点2
                                                     </label>
-                                                    <label class="checkbox-inline">
-                                                        站点3<input type="checkbox" [(ngModel)]="queryModel.site3" class="form-control">
+                                                </div>
+                                                <div class="form-check form-check-inline ">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="chartObj.site3" [(ngModel)]="chartObj.site3" value="site3" > 站点3
                                                     </label>
                                                 </div>
                                             </div>
@@ -60,46 +64,60 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                        <button type="submit" class="btn btn-primary" (click)="refreshGridOrderC()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="orderclear()">清空</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="query-section row breadcrumb mx-xl-0">
+                            <div class="col-9">
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <button class="btn btn-primary" (click)="year()">年</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <button class="btn btn-primary" (click)="month()">月</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <button class="btn btn-primary" (click)="day()">日</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
 
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div style="display: block;">
-                                    <canvas baseChart width="200" height="200"
-                                            [datasets]="lineChartData"
-                                            [labels]="lineChartLabels"
+                                    <canvas baseChart width="300" height="300"
+                                            [datasets]="lineArray"
+                                            [labels]="lineLabelArray"
                                             [options]="lineChartOptions"
                                             [colors]="lineChartColors"
                                             [legend]="lineChartLegend"
                                             [chartType]="lineChartType"
                                             (chartHover)="chartHovered($event)"
-                                            (chartClick)="chartClicked($event)"></canvas>
+                                            (chartClick)="chartClicked($event)"
+                                         ></canvas>
                                 </div>
                             </div>
-                            <div class="col-md-6" style="margin-bottom: 10px">
-                                <table class="table table-responsive table-condensed">
-                                    <tr>
-                                        <th *ngFor="let label of lineChartLabels">{{label}}</th>
-                                    </tr>
-                                    <tr *ngFor="let d of lineChartData">
-                                        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
-                                    </tr>
-                                </table>
-                                <button (click)="randomize()">CLICK</button>
-                            </div>
                         </div>
+
 
 
                         <div class="mt-2">
@@ -107,7 +125,7 @@
                         </div>
                     </ng-template>
                 </ngb-tab>
-                <ngb-tab title="充电量统计" id="chargingRule">
+                <ngb-tab title="充电量统计" id="chargestatistics">
                     <ng-template ngbTabContent>
                         <div class="query-section row breadcrumb mx-xl-0">
                             <div class="col-9">
@@ -142,19 +160,23 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <div class="row">
-                                            <label for="yyy-checkbox-input" class="col-4 col-form-label">充电站</label>
-                                            <div class="col-8">
-                                                <div id="yyy-checkbox-input">
-                                                    <label class="checkbox-inline">
-                                                        站点1<input type="checkbox" [(ngModel)]="queryModel.site1" class="form-control">
+                                            <label for="yyy-checkbox-input" class="col-2 col-form-label">充电站</label>
+                                            <div class="col-10" id="yyy-checkbox-input">
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="queryModel.site1" [(ngModel)]="queryModel.site1" value="queryModel.site1"> 站点1
                                                     </label>
-                                                    <label class="checkbox-inline">
-                                                        站点2<input type="checkbox" [(ngModel)]="queryModel.site2" class="form-control">
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="queryModel.site2" [(ngModel)]="queryModel.site2" value="queryModel.site2"> 站点2
                                                     </label>
-                                                    <label class="checkbox-inline">
-                                                        站点3<input type="checkbox" [(ngModel)]="queryModel.site3" class="form-control">
+                                                </div>
+                                                <div class="form-check form-check-inline ">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="queryModel.site3" [(ngModel)]="queryModel.site3" value="queryModel.site3" > 站点3
                                                     </label>
                                                 </div>
                                             </div>
@@ -166,10 +188,10 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                        <button type="submit" class="btn btn-primary" (click)="refreshGridChargingC()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="chargingclear()">清空</button>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +202,7 @@
                         </div>
                     </ng-template>
                 </ngb-tab>
-                <ngb-tab title="收支统计" id="articleManagement">
+                <ngb-tab title="收支统计" id="moneystatistics">
                     <ng-template ngbTabContent>
                         <div class="query-section row breadcrumb mx-xl-0">
                             <div class="col-9">
@@ -215,19 +237,23 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <div class="row">
-                                            <label for="zzz-checkbox-input" class="col-4 col-form-label">充电站</label>
-                                            <div class="col-8">
-                                                <div id="zzz-checkbox-input">
-                                                    <label class="checkbox-inline">
-                                                        站点1<input type="checkbox" [(ngModel)]="queryModel.site1" class="form-control">
+                                            <label for="zzz-checkbox-input" class="col-2 col-form-label">充电站</label>
+                                            <div class="col-10" id="zzz-checkbox-input">
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="queryModel.site1" [(ngModel)]="queryModel.site1" value="queryModel.site1"> 站点1
                                                     </label>
-                                                    <label class="checkbox-inline">
-                                                        站点2<input type="checkbox" [(ngModel)]="queryModel.site2" class="form-control">
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="queryModel.site2" [(ngModel)]="queryModel.site2" value="queryModel.site2"> 站点2
                                                     </label>
-                                                    <label class="checkbox-inline">
-                                                        站点3<input type="checkbox" [(ngModel)]="queryModel.site3" class="form-control">
+                                                </div>
+                                                <div class="form-check form-check-inline ">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" id="queryModel.site3" [(ngModel)]="queryModel.site3" value="queryModel.site3"> 站点3
                                                     </label>
                                                 </div>
                                             </div>
@@ -239,10 +265,10 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                                        <button type="submit" class="btn btn-primary" (click)="refreshGridMoneyC()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="moneyclear()">清空</button>
                                     </div>
                                 </div>
                             </div>
