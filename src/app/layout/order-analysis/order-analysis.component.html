@@ -3,283 +3,259 @@
 
     <div content="main-content container">
 
-        <div class="modal-body">
-            <ngb-tabset [destroyOnHide]="false" (tabChange)="beforeChange($event)">
-                <ngb-tab title="订单量统计" id="orderstatistics">
-                    <ng-template ngbTabContent>
-                        <div class="query-section row breadcrumb mx-xl-0">
-                            <div class="col-9">
-                                <div class="row mb-3">
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label class="col-4 col-form-label">对比方式</label>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary" disabled>运营商对比</button>
-                                            </div>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary">充电站对比</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label for="orderstartdate-date-input" class="col-4 col-form-label">时间段</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="date" id="orderstartdate-date-input" [(ngModel)]="chartObj.starttime" name="chartObj.starttime">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label for="orderenddate-date-input" class="col-4 col-form-label">至</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="date" id="orderenddate-date-input" [(ngModel)]="chartObj.endtime" name="chartObj.endtime">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <label for="xxx-checkbox-input" class="col-2 col-form-label">充电站</label>
-                                            <div class="col-10" id="xxx-checkbox-input">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="chartObj.site1" [(ngModel)]="chartObj.site1" value="site1"> 站点1
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="chartObj.site2" [(ngModel)]="chartObj.site2" value="site2"> 站点2
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline ">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="chartObj.site3" [(ngModel)]="chartObj.site3" value="site3" > 站点3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGridOrderC()">查询</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="orderclear()">清空</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="query-section row breadcrumb mx-xl-0">
-                            <div class="col-9">
-                                <div class="row mb-3">
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <button class="btn btn-primary" (click)="year()">年</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <button class="btn btn-primary" (click)="month()">月</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <button class="btn btn-primary" (click)="day()">日</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div style="display: block;">
-                                    <canvas baseChart width="300" height="300"
-                                            [datasets]="lineArray"
-                                            [labels]="lineLabelArray"
-                                            [options]="lineChartOptions"
-                                            [colors]="lineChartColors"
-                                            [legend]="lineChartLegend"
-                                            [chartType]="lineChartType"
-                                            (chartHover)="chartHovered($event)"
-                                            (chartClick)="chartClicked($event)"
-                                         ></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="mt-2">
-                            <app-datagrid #orderCount [config]="orderCConfig"></app-datagrid>
-                        </div>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="充电量统计" id="chargestatistics">
-                    <ng-template ngbTabContent>
-                        <div class="query-section row breadcrumb mx-xl-0">
-                            <div class="col-9">
-                                <div class="row mb-3">
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label class="col-4 col-form-label">对比方式</label>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary" disabled>运营商对比</button>
-                                            </div>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary">充电站对比</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label for="chargingstartdate-date-input" class="col-4 col-form-label">时间段</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="date" id="chargingstartdate-date-input" [(ngModel)]="queryModel.chargingstartdate" name="queryModel.chargingstartdate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label for="chargingenddate-date-input" class="col-4 col-form-label">至</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="date" id="chargingenddate-date-input" [(ngModel)]="queryModel.chargingenddate" name="queryModel.chargingenddate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <label for="yyy-checkbox-input" class="col-2 col-form-label">充电站</label>
-                                            <div class="col-10" id="yyy-checkbox-input">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="queryModel.site1" [(ngModel)]="queryModel.site1" value="queryModel.site1"> 站点1
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="queryModel.site2" [(ngModel)]="queryModel.site2" value="queryModel.site2"> 站点2
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline ">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="queryModel.site3" [(ngModel)]="queryModel.site3" value="queryModel.site3" > 站点3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+        <ngb-tabset [destroyOnHide]="false" (tabChange)="beforeChange($event)">
+            <ngb-tab title="订单量统计" id="orderstatistics">
+                <ng-template ngbTabContent>
+                    <div class="query-section row breadcrumb mx-xl-0">
+                        <div class="col-6">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.orderCount.starttime" name="queryModel.orderCount.starttime">
+                                        <button type="button" class="btn btn-primary">至</button>
+                                        <input class="form-control" type="date" [(ngModel)]="queryModel.orderCount.endtime" name="queryModel.orderCount.endtime">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-3">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGridChargingC()">查询</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="chargingclear()">清空</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-2">
-                            <app-datagrid #chargingCount [config]="chargingCConfig"></app-datagrid>
-                        </div>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="收支统计" id="moneystatistics">
-                    <ng-template ngbTabContent>
-                        <div class="query-section row breadcrumb mx-xl-0">
-                            <div class="col-9">
-                                <div class="row mb-3">
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label class="col-4 col-form-label">对比方式</label>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary" disabled>运营商对比</button>
-                                            </div>
-                                            <div class="col-4">
-                                                <button class="btn btn-primary">充电站对比</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label for="moneystartdate-date-input" class="col-4 col-form-label">时间段</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="date" id="moneystartdate-date-input" [(ngModel)]="queryModel.moneystartdate" name="queryModel.moneystartdate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="row">
-                                            <label for="moneyenddate-date-input" class="col-4 col-form-label">至</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="date" id="moneyenddate-date-input" [(ngModel)]="queryModel.moneyenddate" name="queryModel.moneyenddate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <label for="zzz-checkbox-input" class="col-2 col-form-label">充电站</label>
-                                            <div class="col-10" id="zzz-checkbox-input">
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="queryModel.site1" [(ngModel)]="queryModel.site1" value="queryModel.site1"> 站点1
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="queryModel.site2" [(ngModel)]="queryModel.site2" value="queryModel.site2"> 站点2
-                                                    </label>
-                                                </div>
-                                                <div class="form-check form-check-inline ">
-                                                    <label class="form-check-label">
-                                                        <input class="form-check-input" type="checkbox" id="queryModel.site3" [(ngModel)]="queryModel.site3" value="queryModel.site3"> 站点3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="refreshGridMoneyC()">查询</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="moneyclear()">清空</button>
+                            <div class="row">
+                                <label for="xxx-checkbox-input" class="col-2 col-form-label">充电站</label>
+                                <div class="col-10">
+                                    <div class="form-check form-check-inline" *ngFor="let site of sites">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteid" [(ngModel)]="queryModel.orderCount.checkedSite[site.siteid]" [value]="true"> {{site.name}}
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="mt-2">
-                            <app-datagrid #moneyCount [config]="moneyCConfig"></app-datagrid>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary" (click)="refreshGrid('orderCount')">查询</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary" (click)="clearQueryModel('orderCount')">清空</button>
+                                </div>
+                            </div>
                         </div>
-                    </ng-template>
-                </ngb-tab>
-            </ngb-tabset>
-        </div>
+                    </div>
+
+                    <div class="query-section row breadcrumb mx-xl-0">
+                        <div class="col-9">
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.orderCount.timeType = 1;refreshChart('orderCount')">年</button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.orderCount.timeType = 2;refreshChart('orderCount')">月</button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.orderCount.timeType = 3;refreshChart('orderCount')">日</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row" *ngIf="chartConfig.orderCount.datasets">
+                        <div class="col-md-6">
+                            <div style="display: block;">
+                                <canvas baseChart width="300" height="300"
+                                        [datasets]="chartConfig.orderCount.datasets"
+                                        [labels]="chartConfig.orderCount.labels"
+                                        [options]="chartConfig.orderCount.options"
+                                        [colors]="chartConfig.orderCount.colors"
+                                        [legend]="true"
+                                        [chartType]="'line'"
+                                ></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mt-2">
+                        <app-datagrid #orderCount [config]="datagridConfigs.orderCount"></app-datagrid>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="充电量统计" id="chargestatistics">
+                <ng-template ngbTabContent>
+                    <div class="query-section row breadcrumb mx-xl-0">
+                        <div class="col-6">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.chargingCount.starttime" name="queryModel.chargingCount.starttime">
+                                        <button type="button" class="btn btn-primary">至</button>
+                                        <input class="form-control" type="date" [(ngModel)]="queryModel.chargingCount.endtime" name="queryModel.chargingCount.endtime">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-2 col-form-label">充电站</label>
+                                <div class="col-10">
+                                    <div class="form-check form-check-inline" *ngFor="let site of sites">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteid" [(ngModel)]="queryModel.chargingCount.checkedSite[site.siteid]" [value]="true"> {{site.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary" (click)="refreshGrid('chargingCount')">查询</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary" (click)="clearQueryModel('chargingCount')">清空</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="query-section row breadcrumb mx-xl-0">
+                        <div class="col-9">
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.chargingCount.timeType = 1;refreshChart('chargingCount')">年</button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.chargingCount.timeType = 2;refreshChart('chargingCount')">月</button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.chargingCount.timeType = 3;refreshChart('chargingCount')">日</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row" *ngIf="chartConfig.chargingCount.datasets">
+                        <div class="col-md-6">
+                            <div style="display: block;">
+                                <canvas baseChart width="300" height="300"
+                                        [datasets]="chartConfig.chargingCount.datasets"
+                                        [labels]="chartConfig.chargingCount.labels"
+                                        [options]="chartConfig.chargingCount.options"
+                                        [colors]="chartConfig.chargingCount.colors"
+                                        [legend]="true"
+                                        [chartType]="'line'"
+                                ></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mt-2">
+                        <app-datagrid #chargingCount [config]="datagridConfigs.chargingCount"></app-datagrid>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="收支统计" id="moneystatistics">
+                <ng-template ngbTabContent>
+                    <div class="query-section row breadcrumb mx-xl-0">
+                        <div class="col-6">
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.moneyCount.starttime" name="queryModel.moneyCount.starttime">
+                                        <button type="button" class="btn btn-primary">至</button>
+                                        <input class="form-control" type="date" [(ngModel)]="queryModel.moneyCount.endtime" name="queryModel.moneyCount.endtime">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label class="col-2 col-form-label">充电站</label>
+                                <div class="col-10">
+                                    <div class="form-check form-check-inline" *ngFor="let site of sites">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteid" [(ngModel)]="queryModel.moneyCount.checkedSite[site.siteid]" [value]="true"> {{site.name}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary" (click)="refreshGrid('moneyCount')">查询</button>
+                                </div>
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary" (click)="clearQueryModel('moneyCount')">清空</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="query-section row breadcrumb mx-xl-0">
+                        <div class="col-9">
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.moneyCount.timeType = 1;refreshChart('moneyCount')">年</button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.moneyCount.timeType = 2;refreshChart('moneyCount')">月</button>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <button class="btn btn-primary" (click)="queryModel.moneyCount.timeType = 3;refreshChart('moneyCount')">日</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row" *ngIf="chartConfig.moneyCount.datasets">
+                        <div class="col-md-6">
+                            <div style="display: block;">
+                                <canvas baseChart width="300" height="300"
+                                        [datasets]="chartConfig.moneyCount.datasets"
+                                        [labels]="chartConfig.moneyCount.labels"
+                                        [options]="chartConfig.moneyCount.options"
+                                        [colors]="chartConfig.moneyCount.colors"
+                                        [legend]="true"
+                                        [chartType]="'line'"
+                                ></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mt-2">
+                        <app-datagrid #moneyCount [config]="datagridConfigs.moneyCount"></app-datagrid>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
     </div>
 </div>
