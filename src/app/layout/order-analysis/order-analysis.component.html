@@ -11,19 +11,19 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.orderCount.starttime" name="chartObj.starttime">
+                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.orderCount.starttime" name="queryModel.orderCount.starttime">
                                         <button type="button" class="btn btn-primary">至</button>
-                                        <input class="form-control" type="date" [(ngModel)]="queryModel.orderCount.endtime" name="chartObj.endtime">
+                                        <input class="form-control" type="date" [(ngModel)]="queryModel.orderCount.endtime" name="queryModel.orderCount.endtime">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <label for="xxx-checkbox-input" class="col-2 col-form-label">充电站</label>
-                                <div class="col-10" id="xxx-checkbox-input">
+                                <div class="col-10">
                                     <div class="form-check form-check-inline" *ngFor="let site of sites">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteId" [(ngModel)]="site.checked" [value]="true"> 站点1
+                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteid" [(ngModel)]="queryModel.orderCount.checkedSite[site.siteid]" [value]="true"> {{site.name}}
                                         </label>
                                     </div>
                                 </div>
@@ -32,10 +32,10 @@
                         <div class="col-3">
                             <div class="row">
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary" (click)="refreshGridOrderC()">查询</button>
+                                    <button type="submit" class="btn btn-primary" (click)="refreshGrid('orderCount')">查询</button>
                                 </div>
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary" (click)="orderclear()">清空</button>
+                                    <button type="submit" class="btn btn-primary" (click)="clearQueryModel('orderCount')">清空</button>
                                 </div>
                             </div>
                         </div>
@@ -46,17 +46,17 @@
                             <div class="row mb-3">
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">年</button>
+                                        <button class="btn btn-primary" (click)="queryModel.orderCount.timeType = 1;refreshChart('orderCount')">年</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">月</button>
+                                        <button class="btn btn-primary" (click)="queryModel.orderCount.timeType = 2;refreshChart('orderCount')">月</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">日</button>
+                                        <button class="btn btn-primary" (click)="queryModel.orderCount.timeType = 3;refreshChart('orderCount')">日</button>
                                     </div>
                                 </div>
                             </div>
@@ -66,22 +66,20 @@
 
 
 
-                    <!--<div class="row">-->
-                        <!--<div class="col-md-6">-->
-                            <!--<div style="display: block;">-->
-                                <!--<canvas baseChart width="300" height="300"-->
-                                        <!--[datasets]="lineArray"-->
-                                        <!--[labels]="lineLabelArray"-->
-                                        <!--[options]="lineChartOptions"-->
-                                        <!--[colors]="lineChartColors"-->
-                                        <!--[legend]="lineChartLegend"-->
-                                        <!--[chartType]="lineChartType"-->
-                                        <!--(chartHover)="chartHovered($event)"-->
-                                        <!--(chartClick)="chartClicked($event)"-->
-                                <!--&gt;</canvas>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                    <div class="row" *ngIf="chartConfig.orderCount.datasets">
+                        <div class="col-md-6">
+                            <div style="display: block;">
+                                <canvas baseChart width="300" height="300"
+                                        [datasets]="chartConfig.orderCount.datasets"
+                                        [labels]="chartConfig.orderCount.labels"
+                                        [options]="chartConfig.orderCount.options"
+                                        [colors]="chartConfig.orderCount.colors"
+                                        [legend]="true"
+                                        [chartType]="'line'"
+                                ></canvas>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -97,19 +95,19 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.orderCount.starttime" name="chartObj.starttime">
+                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.chargingCount.starttime" name="queryModel.chargingCount.starttime">
                                         <button type="button" class="btn btn-primary">至</button>
-                                        <input class="form-control" type="date" [(ngModel)]="queryModel.orderCount.endtime" name="chartObj.endtime">
+                                        <input class="form-control" type="date" [(ngModel)]="queryModel.chargingCount.endtime" name="queryModel.chargingCount.endtime">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <label for="xxx-checkbox-input" class="col-2 col-form-label">充电站</label>
-                                <div class="col-10" id="xxx-checkbox-input">
+                                <label class="col-2 col-form-label">充电站</label>
+                                <div class="col-10">
                                     <div class="form-check form-check-inline" *ngFor="let site of sites">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteId" [(ngModel)]="site.checked" [value]="true"> 站点1
+                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteid" [(ngModel)]="queryModel.chargingCount.checkedSite[site.siteid]" [value]="true"> {{site.name}}
                                         </label>
                                     </div>
                                 </div>
@@ -118,10 +116,10 @@
                         <div class="col-3">
                             <div class="row">
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary" (click)="refreshGridOrderC()">查询</button>
+                                    <button type="submit" class="btn btn-primary" (click)="refreshGrid('chargingCount')">查询</button>
                                 </div>
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary" (click)="orderclear()">清空</button>
+                                    <button type="submit" class="btn btn-primary" (click)="clearQueryModel('chargingCount')">清空</button>
                                 </div>
                             </div>
                         </div>
@@ -132,17 +130,17 @@
                             <div class="row mb-3">
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">年</button>
+                                        <button class="btn btn-primary" (click)="queryModel.chargingCount.timeType = 1;refreshChart('chargingCount')">年</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">月</button>
+                                        <button class="btn btn-primary" (click)="queryModel.chargingCount.timeType = 2;refreshChart('chargingCount')">月</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">日</button>
+                                        <button class="btn btn-primary" (click)="queryModel.chargingCount.timeType = 3;refreshChart('chargingCount')">日</button>
                                     </div>
                                 </div>
                             </div>
@@ -152,27 +150,25 @@
 
 
 
-                    <!--<div class="row">-->
-                    <!--<div class="col-md-6">-->
-                    <!--<div style="display: block;">-->
-                    <!--<canvas baseChart width="300" height="300"-->
-                    <!--[datasets]="lineArray"-->
-                    <!--[labels]="lineLabelArray"-->
-                    <!--[options]="lineChartOptions"-->
-                    <!--[colors]="lineChartColors"-->
-                    <!--[legend]="lineChartLegend"-->
-                    <!--[chartType]="lineChartType"-->
-                    <!--(chartHover)="chartHovered($event)"-->
-                    <!--(chartClick)="chartClicked($event)"-->
-                    <!--&gt;</canvas>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
+                    <div class="row" *ngIf="chartConfig.chargingCount.datasets">
+                        <div class="col-md-6">
+                            <div style="display: block;">
+                                <canvas baseChart width="300" height="300"
+                                        [datasets]="chartConfig.chargingCount.datasets"
+                                        [labels]="chartConfig.chargingCount.labels"
+                                        [options]="chartConfig.chargingCount.options"
+                                        [colors]="chartConfig.chargingCount.colors"
+                                        [legend]="true"
+                                        [chartType]="'line'"
+                                ></canvas>
+                            </div>
+                        </div>
+                    </div>
 
 
 
                     <div class="mt-2">
-                        <app-datagrid #orderCount [config]="datagridConfigs.orderCount"></app-datagrid>
+                        <app-datagrid #chargingCount [config]="datagridConfigs.chargingCount"></app-datagrid>
                     </div>
                 </ng-template>
             </ngb-tab>
@@ -183,19 +179,19 @@
                             <div class="row mb-3">
                                 <div class="col-6">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.orderCount.starttime" name="chartObj.starttime">
+                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.moneyCount.starttime" name="queryModel.moneyCount.starttime">
                                         <button type="button" class="btn btn-primary">至</button>
-                                        <input class="form-control" type="date" [(ngModel)]="queryModel.orderCount.endtime" name="chartObj.endtime">
+                                        <input class="form-control" type="date" [(ngModel)]="queryModel.moneyCount.endtime" name="queryModel.moneyCount.endtime">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <label for="xxx-checkbox-input" class="col-2 col-form-label">充电站</label>
-                                <div class="col-10" id="xxx-checkbox-input">
+                                <label class="col-2 col-form-label">充电站</label>
+                                <div class="col-10">
                                     <div class="form-check form-check-inline" *ngFor="let site of sites">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteId" [(ngModel)]="site.checked" [value]="true"> 站点1
+                                            <input class="form-check-input" type="checkbox" [attr.id]="site.siteid" [(ngModel)]="queryModel.moneyCount.checkedSite[site.siteid]" [value]="true"> {{site.name}}
                                         </label>
                                     </div>
                                 </div>
@@ -204,10 +200,10 @@
                         <div class="col-3">
                             <div class="row">
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary" (click)="refreshGridOrderC()">查询</button>
+                                    <button type="submit" class="btn btn-primary" (click)="refreshGrid('moneyCount')">查询</button>
                                 </div>
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-primary" (click)="orderclear()">清空</button>
+                                    <button type="submit" class="btn btn-primary" (click)="clearQueryModel('moneyCount')">清空</button>
                                 </div>
                             </div>
                         </div>
@@ -218,17 +214,17 @@
                             <div class="row mb-3">
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">年</button>
+                                        <button class="btn btn-primary" (click)="queryModel.moneyCount.timeType = 1;refreshChart('moneyCount')">年</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">月</button>
+                                        <button class="btn btn-primary" (click)="queryModel.moneyCount.timeType = 2;refreshChart('moneyCount')">月</button>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <div class="row">
-                                        <button class="btn btn-primary" (click)="refreshChart()">日</button>
+                                        <button class="btn btn-primary" (click)="queryModel.moneyCount.timeType = 3;refreshChart('moneyCount')">日</button>
                                     </div>
                                 </div>
                             </div>
@@ -238,27 +234,25 @@
 
 
 
-                    <!--<div class="row">-->
-                    <!--<div class="col-md-6">-->
-                    <!--<div style="display: block;">-->
-                    <!--<canvas baseChart width="300" height="300"-->
-                    <!--[datasets]="lineArray"-->
-                    <!--[labels]="lineLabelArray"-->
-                    <!--[options]="lineChartOptions"-->
-                    <!--[colors]="lineChartColors"-->
-                    <!--[legend]="lineChartLegend"-->
-                    <!--[chartType]="lineChartType"-->
-                    <!--(chartHover)="chartHovered($event)"-->
-                    <!--(chartClick)="chartClicked($event)"-->
-                    <!--&gt;</canvas>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
+                    <div class="row" *ngIf="chartConfig.moneyCount.datasets">
+                        <div class="col-md-6">
+                            <div style="display: block;">
+                                <canvas baseChart width="300" height="300"
+                                        [datasets]="chartConfig.moneyCount.datasets"
+                                        [labels]="chartConfig.moneyCount.labels"
+                                        [options]="chartConfig.moneyCount.options"
+                                        [colors]="chartConfig.moneyCount.colors"
+                                        [legend]="true"
+                                        [chartType]="'line'"
+                                ></canvas>
+                            </div>
+                        </div>
+                    </div>
 
 
 
                     <div class="mt-2">
-                        <app-datagrid #orderCount [config]="datagridConfigs.orderCount"></app-datagrid>
+                        <app-datagrid #moneyCount [config]="datagridConfigs.moneyCount"></app-datagrid>
                     </div>
                 </ng-template>
             </ngb-tab>
