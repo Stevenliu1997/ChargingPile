@@ -1,0 +1,30 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'实时监控'" [icon]="'fa-table'"></app-page-header>
+    <div content="main-content container">
+        <div class="row">
+            <div class="col-9">
+                <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" (onClicked)="clickmap($event)" ></baidu-map>
+            </div>
+            <div class="col-3">
+                <div class="blueborder">
+                    <div>今日在线总数</div>
+                    <div style="color: #00b3ee;">0</div>
+                    <div>昨日在线总数</div>
+                    <div>0</div>
+                </div>
+                <div class="greenborder">
+                    <div>今日在线总数</div>
+                    <div style="color: #5cb85c" >0</div>
+                    <div>昨日在线总数</div>
+                    <div>0</div>
+                </div>
+                <div class="redborder">
+                    <div>今日在线总数</div>
+                    <div style="color: #d9534f" >0</div>
+                    <div>昨日在线总数</div>
+                    <div>0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
