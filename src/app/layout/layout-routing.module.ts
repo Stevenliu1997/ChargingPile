@@ -22,6 +22,8 @@ const routes: Routes = [
             { path: 'site-information', loadChildren: './site-information/site-information.module#SiteInformationModule'},
             /*站点分析*/
             { path: 'order-analysis', loadChildren: './order-analysis/order-analysis.module#OrderAnalysisModule'},
+            /*电桩监控*/
+            { path: 'pile-monitor', loadChildren: './pile-monitor/pile-monitor.module#PileMonitorModule'},
             //充电桩硬件设备库
             { path: 'recharge-equipment', loadChildren: './recharge-equipment/recharge-equipment.module#RechargeEquipmentModule' },
             /*操作记录*/
