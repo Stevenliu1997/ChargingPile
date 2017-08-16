@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 import {routerTransition} from '../../router.animations';
+import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'map-presentation',
@@ -12,7 +13,6 @@ export class RealTimeMonitoringComponent implements OnInit {
     //地图
     opts: any;
     offlineOpts: OfflineOptions;
-
     ngOnInit() {
         this.opts = {
             center: {
