@@ -78,8 +78,9 @@ export class RealTimeMonitoringComponent implements OnInit {
     public barChartLegend:boolean = true;
 
     public barChartData:any[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-        {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+        {data: [65, 59, 80, 81, 56, 55, 40], label: '今日在线桩数'},
+        {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
+        {data: [20,30],label:'今日故障桩数' }
     ];
 
     // events

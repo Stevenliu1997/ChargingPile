@@ -6,10 +6,10 @@
                 <ng-template ngbTabContent>
                     <div class="query-section  breadcrumb mx-xl-0">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-9">
                                 <div>
-                                    <div style="display: block">
-                                        <canvas baseChart
+                                    <div style="display: block;">
+                                        <canvas baseChart  style="width: 100%; height: 610px"
                                                 [datasets]="barChartData"
                                                 [labels]="barChartLabels"
                                                 [options]="barChartOptions"
@@ -18,7 +18,27 @@
                                                 (chartHover)="chartHovered($event)"
                                                 (chartClick)="chartClicked($event)"></canvas>
                                     </div>
-                                    <button (click)="randomize()">Update</button>
+                                    <!--<button (click)="randomize()">Update</button>-->
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="blueborder">
+                                    <div>今日在线总数</div>
+                                    <div style="color: #00b3ee;">0</div>
+                                    <div>昨日在线总数</div>
+                                    <div>0</div>
+                                </div>
+                                <div class="greenborder">
+                                    <div>今日在线总数</div>
+                                    <div style="color: #5cb85c" >0</div>
+                                    <div>昨日在线总数</div>
+                                    <div>0</div>
+                                </div>
+                                <div class="redborder">
+                                    <div>今日在线总数</div>
+                                    <div style="color: #d9534f" >0</div>
+                                    <div>昨日在线总数</div>
+                                    <div>0</div>
                                 </div>
                             </div>
                         </div>
