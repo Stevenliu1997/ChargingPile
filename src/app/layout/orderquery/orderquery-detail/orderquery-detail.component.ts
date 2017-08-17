@@ -13,7 +13,7 @@ export class OrderQueryDetailComponent implements OnInit {
     ngOnInit(): void {
         this.activeRoute.paramMap
             .switchMap((params: ParamMap) =>
-                this.customHttpClient.post('OrderFormDetails/Find',{id: params.get('id')}))
+                this.customHttpClient.post('OrderFormDetails/Find',{orderid :params.get('id')}))
             .subscribe(result => {
                 if(result.code === '00'){
                     this.displayData = result.data;
