@@ -35,20 +35,20 @@ export class SiteInformationComponent implements OnInit {
         url: 'Site/Manage/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'name'},
+            {name: '站点名称', key: 'sitename'},
             {name: '省市', key: 'provincecity'},
             {name: '站点状态', key: 'state'}
         ],
         params: function () {
             const tempquery = {
                 siteid: 0,
-                name: '',
+                sitename: '',
                 state: '',
                 provincecity: '',
                 district: '',
             };
             tempquery.siteid = this.queryModel.siteid;
-            tempquery.name = this.queryModel.name;
+            tempquery.sitename = this.queryModel.sitename;
             tempquery.state = this.queryModel.state;
             tempquery.district = this.queryModel.district;
             if (!tempquery.siteid) {
@@ -122,14 +122,20 @@ export class SiteInformationComponent implements OnInit {
         params: function () {
             const tempquery = {
                 rulename: '',
-                usersate: '',
+                usersate: false,
                 version: '',
                 ruletype: ''
             };
             tempquery.rulename = this.queryModel.rulename;
-            tempquery.usersate = this.queryModel.usersate;
             tempquery.version = this.queryModel.version;
             tempquery.ruletype = this.queryModel.ruletype;
+            if (this.queryModel.usersate === 'true') {
+                tempquery.usersate = true;
+            } else if (this.queryModel.usersate === 'false') {
+                tempquery.usersate = false;
+            } else {
+                tempquery.usersate = false;
+            }
             return tempquery;
         }.bind(this),
         topActions: [
@@ -223,13 +229,19 @@ export class SiteInformationComponent implements OnInit {
             const tempquery = {
                 firsttitle: '',
                 secondtitle: '',
-                isdisplay: '',
+                isdisplay: true,
                 articletype: ''
             };
             tempquery.firsttitle = this.queryModel.firsttitle;
             tempquery.secondtitle = this.queryModel.secondtitle;
-            tempquery.isdisplay = this.queryModel.isdisplay;
             tempquery.articletype = this.queryModel.articletype;
+            if (this.queryModel.isdisplay === 'true') {
+                tempquery.isdisplay = true;
+            } else if (this.queryModel.isdisplay === 'false') {
+                tempquery.isdisplay = false;
+            } else {
+                tempquery.isdisplay = true;
+            }
             return tempquery;
         }.bind(this),
         topActions: [
@@ -299,7 +311,6 @@ export class SiteInformationComponent implements OnInit {
         this.chargingclear();
         this.articleclear();
         this.customHttpClient.get('Operator/Get').subscribe(result => {
-            console.log(result.code);
             if (result.code === '00') {
                 this.Operator = result.data;
             }

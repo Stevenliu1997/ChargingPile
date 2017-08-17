@@ -32,6 +32,20 @@ export class SiteManagementAddComponent {
         tempResult.provincecity = `${tempResult.province || ''}${tempResult.city || ''}`;
         tempResult.province = undefined;
         tempResult.city = undefined;
+        if (tempResult.isopen === 'true') {
+            tempResult.isopen = true;
+        } else if (tempResult.isopen === 'false') {
+            tempResult.isopen = false;
+        } else {
+            tempResult.isopen = true;
+        }
+        if (tempResult.isscanning === 'true') {
+            tempResult.isscanning = true;
+        } else if (tempResult.isscanning === 'false') {
+            tempResult.isscanning = false;
+        } else {
+            tempResult.isscanning = true;
+        }
         this.customHttpClient.post('Site/Manage/Add', tempResult).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

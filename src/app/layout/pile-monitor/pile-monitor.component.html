@@ -41,6 +41,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="sitename-select-input" class="col-4 col-form-label">站点名称</label>
+                            <div class="col-8">
+                                <select id="sitename-select-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename" class="form-control">
+                                    <option value="Default">请选择</option>
+                                    <option value="qq">qq</option>
+                                    <option value="ww">ww</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-3">
