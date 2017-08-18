@@ -42,7 +42,15 @@ export class PileMonitorComponent implements OnInit {
                 return `<a href="www.baidu.com">查看</a>`;
             }},
             {name: '预约状态', key: 'orderstatus'},
-            {name: '是否在线', key: 'isonline'},
+            {name: '是否在线', key: 'isonline', html: function (item) {
+                if (item.isonline === true) {
+                    return `<i class="fa fa-link" aria-hidden="true" (click)="this.test()"></i>`;
+                } else if (item.isonline === false) {
+                    return `<i class="fa fa-chain-broken" aria-hidden="true" (click)="this.test()")></i>`;
+                } else {
+                    return `<i class="fa fa-chain-broken" aria-hidden="true" (click)="this.test()"></i>`;
+                }
+            }},
             {name: '输出电压', key: 'v'},
             {name: '输出电流', key: 'i'},
             {name: '输出功率', key: 'p'},
@@ -66,6 +74,9 @@ export class PileMonitorComponent implements OnInit {
         private httpClient: CustomHttpClient,
     ) {}
 
+    test() {
+        alert('ww');
+    }
     ngOnInit() {
         this.pageParams = {
             pageNumber: 1,
