@@ -145,7 +145,7 @@ export class OrderAnalysisComponent implements OnInit {
                 column: tabConfig.gridConfig.column,
                 params: () => {
                     /*TODO 站点选择*/
-                    let tempObj: any = Object.assign({}, this.queryModel[tabConfig.key]);
+                    let tempObj: any = Object.assign({}, Object.assign({}, this.queryModel[tabConfig.key]), {objectname: []});
                     tempObj.objectname.splice(0, tempObj.objectname.length);
                     for (let i = 0; i < this.queryModel[tabConfig.key].objectname.length; i++) {
                         if (this.queryModel[tabConfig.key].objectname[i] === true) {
@@ -195,7 +195,7 @@ export class OrderAnalysisComponent implements OnInit {
     }
 
     refreshChart(key: string) {
-        let tempObj: any = Object.assign({}, this.queryModel[key]);
+        let tempObj: any = Object.assign({}, Object.assign({}, this.queryModel[key]), {objectname: []});
         tempObj.objectname.splice(0, tempObj.objectname.length);
         for (let i = 0; i < this.queryModel[key].objectname.length; i++) {
             if (this.queryModel[key].objectname[i] === true) {
