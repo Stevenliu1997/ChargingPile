@@ -69,18 +69,37 @@ export class RealTimeMonitoringComponent implements OnInit {
 
 
     //柱状图
+    timesChart: any = [{data: []}];
+    userChart: any = [{data: []}];
+    amountChart: any = [{data: []}];
+    errorChart: any = [{data: []}];
+
+
     public barChartOptions:any = {
         scaleShowVerticalLines: false,
         responsive: true
     };
-    public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    public barChartLabels:string[] = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00','21:00'];
     public barChartType:string = 'bar';
     public barChartLegend:boolean = true;
 
+    public barChartColors:Array<any> = [
+        {
+            backgroundColor: '#00b3ee'
+        },
+        {
+            backgroundColor: '#5cb85c'
+        },
+        {
+            backgroundColor: '#d9534f'
+        }
+    ];
+
+
     public barChartData:any[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40], label: '今日在线桩数'},
+        {data: [65, 59, 80, 81, 56, 55, 40, 30], label: '今日在线桩数'},
         {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
-        {data: [20,30],label:'今日故障桩数' }
+        {data: [20, 30],label:'今日故障桩数' }
     ];
 
     // events
@@ -92,7 +111,7 @@ export class RealTimeMonitoringComponent implements OnInit {
         console.log(e);
     }
 
-    public randomize():void {
+    /*public randomize():void {
         // Only Change 3 values
         let data = [
             Math.round(Math.random() * 100),
@@ -105,11 +124,11 @@ export class RealTimeMonitoringComponent implements OnInit {
         let clone = JSON.parse(JSON.stringify(this.barChartData));
         clone[0].data = data;
         this.barChartData = clone;
-        /**
+        /!**
          * (My guess), for Angular to recognize the change in the dataset
          * it has to change the dataset variable directly,
          * so one way around it, is to clone the data, change it and then
          * assign it;
-         */
-    }
+         *!/
+    }*/
 }

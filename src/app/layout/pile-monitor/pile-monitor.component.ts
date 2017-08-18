@@ -37,7 +37,7 @@ export class PileMonitorComponent implements OnInit {
                 name: '添加',
                 allowEmpty: true,
                 action: function (ids) {
-                    const modalRef = this.ngbModal.open(CarBrandEditComponent);
+                    const modalRef = this.ngbModal.open();
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.refreshGrid();

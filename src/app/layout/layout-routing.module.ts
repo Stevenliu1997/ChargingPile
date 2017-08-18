@@ -45,7 +45,8 @@ const routes: Routes = [
             {path: 'IC-card-check',loadChildren: './IC-card-check/IC-card-check.module#ICCardCheckModule'},
             {path: 'IC-card-manage',loadChildren: './IC-card-manage/IC-card-manage.module#ICCardManageModule'},
             {path: 'sitedata', loadChildren: './sitedata/sitedata.module#SiteDataModule' },
-            {path: 'real-time-monitoring', loadChildren: './real-time-monitoring/real-time-monitoring.module#RealTimeMonitoringModule' }
+            {path: 'real-time-monitoring', loadChildren: './real-time-monitoring/real-time-monitoring.module#RealTimeMonitoringModule' },
+            {path: 'factory-settings', loadChildren: './factory-settings/factory-settings.module#FactorySettingsModule' }
         ]
     }
 ];

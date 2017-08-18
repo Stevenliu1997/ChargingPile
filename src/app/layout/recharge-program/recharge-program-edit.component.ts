@@ -19,7 +19,7 @@ export class RechargeProgramEditComponent {
 
     constructor(public activeModal: NgbActiveModal,private customHttpClient: CustomHttpClient) {}
     confirm() {
-        if(this.actionTitle === '更新')
+        if(this.actionTitle == '更新')
             this.updateProgram(this.editModel);
         else
             this.uploadProgram(this.editModel);
