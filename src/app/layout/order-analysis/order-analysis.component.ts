@@ -42,7 +42,7 @@ export class OrderAnalysisComponent implements OnInit {
                 gridConfig: {
                     column: [
                         {name: '日期', key: 'time'},
-                        {name: '名称', key: 'sitename'},
+                        {name: '名称', key: 'objectname'},
                         {name: '订单数量', key: 'analyseData'}
                     ]
                 }
@@ -53,7 +53,7 @@ export class OrderAnalysisComponent implements OnInit {
                 gridConfig: {
                     column: [
                         {name: '日期', key: 'time'},
-                        {name: '名称', key: 'sitename'},
+                        {name: '名称', key: 'objectname'},
                         {name: '充电量', key: 'analyseData'}
                     ],
                     params: {findType: '2'}
@@ -65,14 +65,14 @@ export class OrderAnalysisComponent implements OnInit {
                 gridConfig: {
                     column: [
                         {name: '日期', key: 'time'},
-                        {name: '名称', key: 'sitename'},
-                        {name: '总价格', html: function (data) {
+                        {name: '名称', key: 'objectname'},
+                        {name: '总价格', key: 'totalprice', html: function (data) {
                             return data.analyseData[0];
                         }},
-                        {name: '总电费', function (data) {
+                        {name: '总电费', key: 'totalpower', html: function (data) {
                             return data.analyseData[1];
                         }},
-                        {name: '总服务费', function (data) {
+                        {name: '总服务费', key: 'totalservice', html: function (data) {
                             return data.analyseData[2];
                         }}
                     ]
