@@ -6,19 +6,110 @@
                 <ng-template ngbTabContent>
                     <div class="query-section  breadcrumb mx-xl-0">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-9">
                                 <div>
-                                    <div style="display: block">
-                                        <canvas baseChart
+                                    <div class="text-center">24小时实时监控</div>
+                                    <div style="display: block;">
+                                        <canvas baseChart  style="width: 100%; height: 610px"
                                                 [datasets]="barChartData"
                                                 [labels]="barChartLabels"
                                                 [options]="barChartOptions"
-                                                [legend]="barChartLegend"
+                                                [legend]="ChartLegend"
                                                 [chartType]="barChartType"
+                                                [colors]="barChartColors"
                                                 (chartHover)="chartHovered($event)"
                                                 (chartClick)="chartClicked($event)"></canvas>
                                     </div>
-                                    <button (click)="randomize()">Update</button>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="blueborder">
+                                    <div>今日在线总数</div>
+                                    <div style="color: #00b3ee;">0</div>
+                                    <div>昨日在线总数</div>
+                                    <div>0</div>
+                                </div>
+                                <div class="greenborder">
+                                    <div>今日在线总数</div>
+                                    <div style="color: #5cb85c" >0</div>
+                                    <div>昨日在线总数</div>
+                                    <div>0</div>
+                                </div>
+                                <div class="redborder">
+                                    <div>今日在线总数</div>
+                                    <div style="color: #d9534f" >0</div>
+                                    <div>昨日在线总数</div>
+                                    <div>0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="query-section  breadcrumb mx-xl-0">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div>
+                                        <div>今日充电次数（次）</div>
+                                        <div style="display: block;">
+                                            <canvas baseChart  style="width: 100%;"
+                                                    [datasets]="timesChart"
+                                                    [labels]="barChartLabels"
+                                                    [options]="barChartOptions"
+                                                    [legend]="barChartLegend"
+                                                    [chartType]="barChartType"
+                                                    [colors]="timesChartColor"
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 offset-1">
+                                    <div>
+                                        <div>今日充电量（Kw/h）</div>
+                                        <div style="display: block;">
+                                            <canvas baseChart  style="width: 100%;"
+                                                    [datasets]="amountChart"
+                                                    [labels]="barChartLabels"
+                                                    [options]="barChartOptions"
+                                                    [legend]="barChartLegend"
+                                                    [chartType]="barChartType"
+                                                    [colors]="amountChartColors"
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div>
+                                        <div>今日用户数（位）</div>
+                                        <div style="display: block;">
+                                            <canvas baseChart  style="width: 100%;"
+                                                    [datasets]="userChart"
+                                                    [labels]="barChartLabels"
+                                                    [options]="barChartOptions"
+                                                    [legend]="barChartLegend"
+                                                    [chartType]="barChartType"
+                                                    [colors]="userChartColors"
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 offset-1">
+                                    <div>
+                                        <div>今日减少排碳量（吨）</div>
+                                        <div style="display: block;">
+                                            <canvas baseChart  style="width: 100%;"
+                                                    [datasets]="reduceChart"
+                                                    [labels]="barChartLabels"
+                                                    [options]="barChartOptions"
+                                                    [legend]="barChartLegend"
+                                                    [chartType]="barChartType"
+                                                    [colors]="reduceChartColors"
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)"></canvas>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
