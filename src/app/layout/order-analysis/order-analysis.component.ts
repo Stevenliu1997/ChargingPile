@@ -96,9 +96,9 @@ export class OrderAnalysisComponent implements OnInit {
      */
     querySites(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.customHttpClient.post('OrderAnalysis/Sites', {siteid: -1, pageNumber: 1, pageSize: 999999}).subscribe(result => {
+            this.customHttpClient.get('orderform/analysis/getsitenames').subscribe(result => {
                 if (result.code === '00') {
-                    resolve(result.pageData);
+                    resolve(result.data);
                 }
             })
         })
@@ -149,7 +149,7 @@ export class OrderAnalysisComponent implements OnInit {
                     tempObj.objectname.splice(0, tempObj.objectname.length);
                     for (let i = 0; i < this.queryModel[tabConfig.key].objectname.length; i++) {
                         if (this.queryModel[tabConfig.key].objectname[i] === true) {
-                            tempObj.objectname.push(this.sites[i].name);
+                            tempObj.objectname.push(this.sites[i]);
                         }
                     }
                     return tempObj;
@@ -199,7 +199,7 @@ export class OrderAnalysisComponent implements OnInit {
         tempObj.objectname.splice(0, tempObj.objectname.length);
         for (let i = 0; i < this.queryModel[key].objectname.length; i++) {
             if (this.queryModel[key].objectname[i] === true) {
-                tempObj.objectname.push(this.sites[i].name);
+                tempObj.objectname.push(this.sites[i]);
             }
         }
         this.customHttpClient.post(this.chartUrl, tempObj).subscribe(result => {

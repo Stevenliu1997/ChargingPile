@@ -121,23 +121,32 @@ export class SiteInformationComponent implements OnInit {
             {name: '创建时间', key: 'createtime'}
         ],
         params: function () {
-            const tempquery = {
+            const tempquery1 = {
+                rulename: '',
+                usersate: '',
+                version: '',
+                ruletype: ''
+            };
+            const tempquery2 = {
                 rulename: '',
                 usersate: false,
                 version: '',
                 ruletype: ''
             };
-            tempquery.rulename = this.queryModel.rulename;
-            tempquery.version = this.queryModel.version;
-            tempquery.ruletype = this.queryModel.ruletype;
+            tempquery1.rulename = this.queryModel.rulename;
+            tempquery1.version = this.queryModel.version;
+            tempquery1.ruletype = this.queryModel.ruletype;
+            tempquery2.rulename = this.queryModel.rulename;
+            tempquery2.version = this.queryModel.version;
+            tempquery2.ruletype = this.queryModel.ruletype;
             if (this.queryModel.usersate === 'true') {
-                tempquery.usersate = true;
+                tempquery2.usersate = true;
+                return tempquery2;
             } else if (this.queryModel.usersate === 'false') {
-                tempquery.usersate = false;
-            } else {
-                tempquery.usersate = false;
+                tempquery2.usersate = false;
+                return tempquery2;
             }
-            return tempquery;
+            return tempquery1;
         }.bind(this),
         topActions: [
             {
@@ -227,23 +236,32 @@ export class SiteInformationComponent implements OnInit {
             {name: '最后修改时间', key: 'lastupdatetime'}
         ],
         params: function () {
-            const tempquery = {
+            const tempquery1 = {
+                firsttitle: '',
+                secondtitle: '',
+                isdisplay: '',
+                articletype: ''
+            };
+            const tempquery2 = {
                 firsttitle: '',
                 secondtitle: '',
                 isdisplay: true,
                 articletype: ''
             };
-            tempquery.firsttitle = this.queryModel.firsttitle;
-            tempquery.secondtitle = this.queryModel.secondtitle;
-            tempquery.articletype = this.queryModel.articletype;
+            tempquery1.firsttitle = this.queryModel.firsttitle;
+            tempquery1.secondtitle = this.queryModel.secondtitle;
+            tempquery1.articletype = this.queryModel.articletype;
+            tempquery2.firsttitle = this.queryModel.firsttitle;
+            tempquery2.secondtitle = this.queryModel.secondtitle;
+            tempquery2.articletype = this.queryModel.articletype;
             if (this.queryModel.isdisplay === 'true') {
-                tempquery.isdisplay = true;
+                tempquery2.isdisplay = true;
+                return tempquery2;
             } else if (this.queryModel.isdisplay === 'false') {
-                tempquery.isdisplay = false;
-            } else {
-                tempquery.isdisplay = true;
+                tempquery2.isdisplay = false;
+                return tempquery2;
             }
-            return tempquery;
+            return tempquery1;
         }.bind(this),
         topActions: [
             {
@@ -308,9 +326,7 @@ export class SiteInformationComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.siteclear();
-        this.chargingclear();
-        this.articleclear();
+        this.clear();
         this.customHttpClient.get('Operator/Get').subscribe(result => {
             if (result.code === '00') {
                 this.Operator = result.data;
@@ -319,14 +335,11 @@ export class SiteInformationComponent implements OnInit {
     }
     beforeChange($event: NgbTabChangeEvent) {
         if ($event.activeId === 'siteManagement') {
-            this.chargingclear();
-            this.articleclear();
+            this.clear();
         } else if ($event.activeId === 'chargingRule') {
-            this.siteclear();
-            this.articleclear();
+            this.clear();
         } else if ($event.activeId === 'articleManagement') {
-            this.siteclear();
-            this.chargingclear();
+            this.clear();
         }
     }
     refreshGridSiteM() {
@@ -339,24 +352,20 @@ export class SiteInformationComponent implements OnInit {
         this.articleComponent.refreshGrid();
     }
 
-    siteclear(): void {
+    clear(): void {
         this.queryModel.siteid = '';
-        this.queryModel.name = '';
-        this.queryModel.province = 'Default';
-        this.queryModel.city = 'Default';
-        this.queryModel.state = 'Default';
-        this.queryModel.district = 'Default';
-    }
-    chargingclear(): void {
+        this.queryModel.sitename = '';
+        this.queryModel.state = '';
+        this.queryModel.province = '';
+        this.queryModel.city = '';
+        this.queryModel.district = '';
         this.queryModel.rulename = '';
         this.queryModel.version = '';
-        this.queryModel.ruletype = 'Default';
-        this.queryModel.usersate = 'Default';
-    }
-    articleclear(): void {
-        this.queryModel.firsttitle = 'Default';
+        this.queryModel.ruletype = '';
+        this.queryModel.usersate = '';
+        this.queryModel.firsttitle = '';
         this.queryModel.secondtitle = '';
-        this.queryModel.isdisplay = 'Default';
-        this.queryModel.articletype = 'Default';
+        this.queryModel.isdisplay = '';
+        this.queryModel.articletype = '';
     }
 }

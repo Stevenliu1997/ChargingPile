@@ -91,7 +91,7 @@
                                             <label for="state-text-input" class="col-4 col-form-label">站点状态</label>
                                             <div class="col-8">
                                                 <select id="state-text-input" [(ngModel)]="queryModel.state" name="queryModel.state" class="form-control">
-                                                    <option value="Default">请选择</option>
+                                                    <option value="">请选择</option>
                                                     <option value="Normal">正常</option>
                                                     <option value="locked">锁定</option>
                                                 </select>
@@ -106,7 +106,7 @@
                                             <label for="province-select-input" class="col-4 col-form-label">省</label>
                                             <div class="col-8">
                                                 <select id="province-select-input" [(ngModel)]="queryModel.province" name="queryModel.province" class="form-control">
-                                                    <option value="Default">请选择</option>
+                                                    <option value="">请选择</option>
                                                     <option value="w">w</option>
                                                     <option value="e">e</option>
                                                 </select>
@@ -118,7 +118,7 @@
                                             <label for="city-select-input" class="col-4 col-form-label">市</label>
                                             <div class="col-8">
                                                 <select id="city-select-input" [(ngModel)]="queryModel.city" name="queryModel.city" class="form-control">
-                                                    <option value="Default">请选择</option>
+                                                    <option value="">请选择</option>
                                                     <option value="t">t</option>
                                                     <option value="j">j</option>
                                                 </select>
@@ -130,7 +130,7 @@
                                             <label for="district-select-input" class="col-4 col-form-label">区</label>
                                             <div class="col-8">
                                                 <select id="district-select-input" [(ngModel)]="queryModel.district" name="queryModel.district" class="form-control">
-                                                    <option value="Default">请选择</option>
+                                                    <option value="">请选择</option>
                                                     <option value="tt">tt</option>
                                                     <option value="rr">rr</option>
                                                 </select>
@@ -146,7 +146,7 @@
                                         <button type="submit" class="btn btn-primary" (click)="refreshGridSiteM()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="siteclear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                         <button type="submit" class="btn btn-primary" (click)="refreshGridCharging()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="chargingclear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +284,7 @@
                                         <button type="submit" class="btn btn-primary" (click)="refreshGridArticle()">查询</button>
                                     </div>
                                     <div class="col-4">
-                                        <button type="submit" class="btn btn-primary" (click)="articleclear()">清空</button>
+                                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
                                     </div>
                                 </div>
                             </div>
