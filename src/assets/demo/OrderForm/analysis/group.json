@@ -3,17 +3,17 @@
     "message": "this is an error!!!",
     "data": [
         {
-            "sitename":"站点1",
+            "objectname":"站点1",
             "analyseData":[50,100,25,99],
             "time":["2017-1","2017-2","2017-3","2017-4"]
         },
         {
-            "sitename":"站点2",
+            "objectname":"站点2",
             "analyseData":[80,50,150,99],
             "time":["2017-1","2017-2","2017-3","2017-4"]
         },
         {
-            "sitename":"站点3",
+            "objectname":"站点3",
             "analyseData":[60,77,3,99],
             "time":["2017-1","2017-2","2017-3","2017-4"]
         }

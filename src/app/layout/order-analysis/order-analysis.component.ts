@@ -220,7 +220,7 @@ export class OrderAnalysisComponent implements OnInit {
                 currentItem.analyseData.map(item => {
                     return item[0];
                 }) : currentItem.analyseData;
-            keyObj.datasets.push({data: dataTemp, label: currentItem.sitename});
+            keyObj.datasets.push({data: dataTemp, label: currentItem.objectname});
             keyObj.labels = currentItem.time;
             /*TODO 随机一个站点生成颜色，现在全是一种*/
             keyObj.colors.push({ // grey

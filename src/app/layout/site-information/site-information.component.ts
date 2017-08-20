@@ -35,20 +35,20 @@ export class SiteInformationComponent implements OnInit {
         url: 'Site/Manage/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'name'},
+            {name: '站点名称', key: 'sitename'},
             {name: '省市', key: 'provincecity'},
             {name: '站点状态', key: 'state'}
         ],
         params: function () {
             const tempquery = {
                 siteid: 0,
-                name: '',
+                sitename: '',
                 state: '',
                 provincecity: '',
                 district: '',
             };
             tempquery.siteid = parseInt(this.queryModel.siteid, 10);
-            tempquery.name = this.queryModel.name;
+            tempquery.sitename = this.queryModel.sitename;
             tempquery.state = this.queryModel.state;
             tempquery.district = this.queryModel.district;
             if (!tempquery.siteid) {
