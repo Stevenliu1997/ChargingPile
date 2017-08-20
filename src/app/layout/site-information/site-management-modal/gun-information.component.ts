@@ -18,8 +18,8 @@ export class GunInformationComponent implements OnInit {
         private customHttpClient: CustomHttpClient,
     ) {}
     ngOnInit() {
-        const tempquery = {
-            pileid: ''
+        let tempquery: any = {
+            pileid: 0
         };
         tempquery.pileid = this.editModel.pileid;
         this.customHttpClient.post('ChargeGun/Find', tempquery).subscribe(result => {

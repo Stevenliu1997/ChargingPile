@@ -22,7 +22,7 @@ export class ChargingRuleInformationComponent {
         ],
         params: function () {
             const tempquery = {
-                ruleid: ''
+                ruleid: 0
             };
             tempquery.ruleid = this.editModel.ruleid;
             return tempquery;

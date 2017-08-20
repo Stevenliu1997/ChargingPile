@@ -86,8 +86,8 @@ export class SiteEssentialInformationComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(GunInformationComponent);
                     modalRef.componentInstance.actionTitle = '充电枪';
-                    modalRef.componentInstance.editModel.pileid = this.queryModel.pileid;
                     modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.componentInstance.editModel.pileid = parseInt(item.pileid, 10);
                     modalRef.result.then(result => {
                         },
                         error => {
@@ -101,6 +101,7 @@ export class SiteEssentialInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(EditDeviceComponent);
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.componentInstance.editModel.pileid = parseInt(item.pileid, 10);
                     modalRef.result.then(result => {
                         this.refreshGrid();
                         },
@@ -143,7 +144,7 @@ export class SiteEssentialInformationComponent implements OnInit {
         this.datagridComponent.refreshGrid();
     }
     confirmChange() {
-        const tempquery = Object.assign({}, this.editModel);
+        const tempquery = Object.assign({}, Object.assign({}, this.editModel), {siteid: 0});
         tempquery.provincecity = `${this.editModel.province || ''}${this.editModel.city || ''}`;
         tempquery.province = undefined;
         tempquery.city = undefined;
@@ -161,6 +162,7 @@ export class SiteEssentialInformationComponent implements OnInit {
         } else {
             tempquery.isscanning = true;
         }
+        tempquery.siteid = parseInt(this.editModel.siteid, 10);
         this.customHttpClient.post('Site/Manage/Update', tempquery).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
