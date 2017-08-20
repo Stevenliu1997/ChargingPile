@@ -3,24 +3,24 @@
     "message":"ppap",
     "data":[
         {
-            "datatype":1,
+            "datatype":"cishu",
             "analysisData":[1,108,3,45,5],
             "time":["1","2","2017","4","5"]
         },
         {
-            "datatype":1,
-            "analysisData":[1,2,3,4,5],
-            "time":["1","2","3","4","5"]
+            "datatype":"yonghu",
+            "analysisData":[1,11,3,4,5],
+            "time":["1","11","3","4","5"]
         },
         {
-            "datatype":1,
-            "analysisData":[1,2,3,4,5],
-            "time":["1","2","3","4","5"]
+            "datatype":"chongd",
+            "analysisData":[1,2,9,4,5],
+            "time":["1","2","9","4","5"]
         },
         {
-            "datatype":1,
-            "analysisData":[1,2,3,4,5],
-            "time":["1","2","3","4","5"]
+            "datatype":"guzhang",
+            "analysisData":[7,2,3,4,5],
+            "time":["7","2","3","4","5"]
         }
     ]
 }

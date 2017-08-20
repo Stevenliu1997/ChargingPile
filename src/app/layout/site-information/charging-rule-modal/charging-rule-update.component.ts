@@ -32,6 +32,13 @@ export class ChargingRuleUpdateComponent {
     update() {
         const tempObj = this.editModel;
         tempObj.createtime = undefined;
+        if (tempObj.usersate === 'true') {
+            tempObj.usersate = true;
+        } else if (tempObj.usersate === 'false') {
+            tempObj.usersate = false;
+        } else {
+            tempObj.usersate = true;
+        }
         this.customHttpClient.post('ChargingRule/Update', tempObj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

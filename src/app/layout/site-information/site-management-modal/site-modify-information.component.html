@@ -16,7 +16,7 @@
             <label for="state-select-input" class="col-2 col-form-label">站点状态</label>
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.state' id="state-select-input" name="editModel.state" class="form-control">
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="normal">正常</option>
                     <option value="locked">锁定</option>
                 </select>
@@ -26,7 +26,7 @@
             <label for="isopen-text-input" class="col-2 col-form-label">是否对外开放</label>
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.isopen' id="isopen-text-input" name="editModel.isopen" class="form-control">
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="yes">是</option>
                     <option value="no">否</option>
                 </select>
@@ -41,12 +41,12 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">省市</label>
             <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4">
-                <option value="Default">请选择</option>
+                <option value="">请选择</option>
                 <option>ll</option>
                 <option>mm</option>
             </select>
             <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4">
-                <option value="Default">请选择</option>
+                <option value="">请选择</option>
                 <option>hh</option>
                 <option>ii</option>
             </select>

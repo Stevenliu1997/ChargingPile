@@ -35,14 +35,48 @@ export class SiteDataComponent implements OnInit {
         responsive: true,
         maintainAspectRatio: false
     };
-    public lineChartColors:Array<any> = [
-        { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
+    public timesChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(48,159,177,0.2)',
             borderColor: 'rgba(148,159,177,1)',
             pointBackgroundColor: 'rgba(148,159,177,1)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+            pointsize:'small',
+        }
+    ];
+    public userChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(48,59,177,0.2)',
+            borderColor: 'rgba(148,159,177,1)',
+            pointBackgroundColor: 'rgba(148,159,177,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+            pointsize:'small',
+        }
+    ];
+    public amountChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(48,59,77,0.2)',
+            borderColor: 'rgba(148,159,177,1)',
+            pointBackgroundColor: 'rgba(148,159,177,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+            pointsize:'small',
+        }
+    ];
+    public errorChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(148,59,77,0.2)',
+            borderColor: 'rgba(148,159,177,1)',
+            pointBackgroundColor: 'rgba(148,159,177,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+            pointsize:'small',
         }
     ];
     public lineChartLegend:boolean = true;
@@ -67,10 +101,10 @@ export class SiteDataComponent implements OnInit {
         this.amountChartLabels = tempResult.data[2].time;
         this.errorChartLabels = tempResult.data[3].time;
 
-        this.timesChart[0].label = '充电次数';
-        this.userChart[0].label = '用户数';
-        this.amountChart[0].label = '充电量';
-        this.errorChart[0].label = '故障数';
+        this.timesChart[0].label = tempResult.data[0].datatype;
+        this.userChart[0].label = tempResult.data[1].datatype;
+        this.amountChart[0].label = tempResult.data[2].datatype;
+        this.errorChart[0].label = tempResult.data[3].datatype;
     };
 
     refreshChart(){

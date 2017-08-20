@@ -62,7 +62,6 @@ export class OrderQueryComponent implements OnInit {
 
     exportGrid(){
         let options = this.queryModel;
-
         let params = new URLSearchParams();
         for(let key in options){
             params.set(key, options[key])

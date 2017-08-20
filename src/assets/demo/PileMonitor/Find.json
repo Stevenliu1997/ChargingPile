@@ -1,0 +1,45 @@
+{
+    "pageData": [
+        {
+            "sitename": "站点1名称",
+            "model": "大型",
+            "name": "电子科技大学",
+            "settime": "2017-01-02",
+            "gunid": "1125",
+            "type": "直流",
+            "orderstatus": "已预约",
+            "isonline": "是",
+            "v": "220V",
+            "i": "12A",
+            "p": "2000W",
+            "power": "250",
+            "has": "是",
+            "number": "2015220503008",
+            "statusa": "正常",
+            "car": "已停车"
+        },
+        {
+            "sitename": "站点2名称",
+            "model": "中型",
+            "name": "四川大学",
+            "settime": "2017-02-03",
+            "gunid": "2215",
+            "type": "交流",
+            "orderstatus": "未预约",
+            "isonline": "否",
+            "v": "240V",
+            "i": "30A",
+            "p": "1200W",
+            "power": "2500",
+            "has": "否",
+            "number": "2015220503009",
+            "statusa": "锁定",
+            "car": "未停车"
+        }
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "totalElements": 1,
+    "message": "this is an error!!!",
+    "code": "00"
+}

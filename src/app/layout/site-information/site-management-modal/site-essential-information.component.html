@@ -21,7 +21,7 @@
                         <label for="state-select-input" class="col-6 col-form-label">站点状态</label>
                         <div class="col-6">
                             <select [(ngModel)] = 'editModel.state' id="state-select-input" name="editModel.state" class="form-control" validationMsg required>
-                                <option value="Default">请选择</option>
+                                <option value="">请选择</option>
                                 <option value="正常">正常</option>
                                 <option value="锁定">锁定</option>
                             </select>
@@ -33,7 +33,7 @@
                         <label for="isopen-select-input" class="col-6 col-form-label">是否对外开放</label>
                         <div class="col-6">
                             <select [(ngModel)] = 'editModel.isopen' id="isopen-select-input" name="editModel.isopen" class="form-control" validationMsg required>
-                                <option value="Default">请选择</option>
+                                <option value="">请选择</option>
                                 <option value="true">是</option>
                                 <option value="false">否</option>
                             </select>
@@ -120,12 +120,12 @@
                     <div class="row">
                         <label class="col-4 col-form-label">省市</label>
                         <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4">
-                            <option value="Default">请选择</option>
+                            <option value="">请选择</option>
                             <option value="ll">ll</option>
                             <option value="mm">mm</option>
                         </select>
                         <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4">
-                            <option value="Default">请选择</option>
+                            <option value="">请选择</option>
                             <option value="hh">hh</option>
                             <option value="ii">ii</option>
                         </select>
@@ -135,7 +135,7 @@
                     <div class="row">
                         <label class="col-4 col-form-label">区</label>
                         <select [(ngModel)] = 'editModel.district' id="district-select-input" name="editModel.district" class="form-control col-4">
-                            <option value="Default">请选择</option>
+                            <option value="">请选择</option>
                             <option value="ww">ww</option>
                             <option value="tt">tt</option>
                         </select>

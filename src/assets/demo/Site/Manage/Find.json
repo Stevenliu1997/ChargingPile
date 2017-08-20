@@ -2,7 +2,7 @@
     "pageData": [
         {
             "siteid": "001",
-            "name": "中国石油",
+            "sitename": "中国石油",
             "provincecity": "四川省成都市",
             "district": "成华区",
             "position": "yyyy",
@@ -19,7 +19,7 @@
         },
         {
             "siteid": "002",
-            "name": "中国石化",
+            "sitename": "中国石化",
             "provincecity": "四川省成都市",
             "district": "成华区",
             "position": "xxxx",

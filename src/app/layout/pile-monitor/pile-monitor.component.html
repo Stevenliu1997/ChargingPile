@@ -1,0 +1,167 @@
+<div [@routerTransition] content="main-section">
+    <app-page-header [heading]="'电桩监控'" [icon]="'fa-table'"></app-page-header>
+    <div content="main-content container">
+        <div class="query-section row breadcrumb mx-xl-0">
+            <div class="col-9">
+                <div class="row mb-3">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="province-select-input" class="col-4 col-form-label">省</label>
+                            <div class="col-8">
+                                <select id="province-select-input" [(ngModel)]="queryModel.province" name="queryModel.province" class="form-control">
+                                    <option value="Default">请选择</option>
+                                    <option value="aa">aa</option>
+                                    <option value="bb">bb</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="city-select-input" class="col-4 col-form-label">市</label>
+                            <div class="col-8">
+                                <select id="city-select-input" [(ngModel)]="queryModel.city" name="queryModel.city" class="form-control">
+                                    <option value="Default">请选择</option>
+                                    <option value="cc">cc</option>
+                                    <option value="dd">dd</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="district-select-input" class="col-4 col-form-label">区</label>
+                            <div class="col-8">
+                                <select id="district-select-input" [(ngModel)]="queryModel.district" name="queryModel.district" class="form-control">
+                                    <option value="Default">请选择</option>
+                                    <option value="ee">ee</option>
+                                    <option value="ff">ff</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <label for="sitename-select-input" class="col-4 col-form-label">站点名称</label>
+                            <div class="col-8">
+                                <select id="sitename-select-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename" class="form-control">
+                                    <option value="Default">请选择</option>
+                                    <option value="qq">qq</option>
+                                    <option value="ww">ww</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div>
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th colspan="2">站点</th>
+                    <th colspan="4">电桩</th>
+                    <th colspan="11">充电接口</th>
+                    <th colspan="4">车位检测仪</th>
+                </tr>
+                <tr>
+                    <th>序号</th>
+                    <th *ngFor="let col of config.column" >
+                        {{col.name}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of fetchedData;let $index = index">
+                    <td>{{$index+1}}</td>
+                    <td *ngFor="let col of config.column" (click)="colAction(col, data)">
+                        <span *ngIf="!col.html">{{data[col.key]}}</span>
+                        <span *ngIf="col.html" [innerHtml]="col.html(data)"></span>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="d-flex flex-row-reverse">
+                <nav aria-label="Page navigation example" class="">
+                    <ul class="pagination">
+                        <li class="page-item" (click)="turnPage(pageParams.pageNumber-1)" [attr.disabled]="pageParams.pageNumber<=1">
+                            <a class="page-link"  aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item" [class.active]="page == pageParams.pageNumber" *ngFor="let page of pageArr" (click)="turnPage(page)"><a class="page-link" >{{page}}</a></li>
+                        <li class="page-item" (click)="turnPage(pageParams.pageNumber+1)" [attr.disabled]="pageParams.pageNumber>=page.totalPages">
+                            <a class="page-link"  aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>

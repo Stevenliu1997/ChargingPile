@@ -35,20 +35,20 @@ export class SiteInformationComponent implements OnInit {
         url: 'Site/Manage/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'name'},
+            {name: '站点名称', key: 'sitename'},
             {name: '省市', key: 'provincecity'},
             {name: '站点状态', key: 'state'}
         ],
         params: function () {
             const tempquery = {
                 siteid: 0,
-                name: '',
+                sitename: '',
                 state: '',
                 provincecity: '',
                 district: '',
             };
             tempquery.siteid = this.queryModel.siteid;
-            tempquery.name = this.queryModel.name;
+            tempquery.sitename = this.queryModel.sitename;
             tempquery.state = this.queryModel.state;
             tempquery.district = this.queryModel.district;
             if (!tempquery.siteid) {
@@ -110,6 +110,7 @@ export class SiteInformationComponent implements OnInit {
     /*计费规则管理*/
     chargingRConfig: object = {
         url: 'ChargingRule/Find',
+        key: 'data',
         column: [
             {name: '计费规则名称', key: 'rulename'},
             {name: '版本号', key: 'version'},
@@ -120,17 +121,32 @@ export class SiteInformationComponent implements OnInit {
             {name: '创建时间', key: 'createtime'}
         ],
         params: function () {
-            const tempquery = {
+            const tempquery1 = {
                 rulename: '',
                 usersate: '',
                 version: '',
                 ruletype: ''
             };
-            tempquery.rulename = this.queryModel.rulename;
-            tempquery.usersate = this.queryModel.usersate;
-            tempquery.version = this.queryModel.version;
-            tempquery.ruletype = this.queryModel.ruletype;
-            return tempquery;
+            const tempquery2 = {
+                rulename: '',
+                usersate: false,
+                version: '',
+                ruletype: ''
+            };
+            tempquery1.rulename = this.queryModel.rulename;
+            tempquery1.version = this.queryModel.version;
+            tempquery1.ruletype = this.queryModel.ruletype;
+            tempquery2.rulename = this.queryModel.rulename;
+            tempquery2.version = this.queryModel.version;
+            tempquery2.ruletype = this.queryModel.ruletype;
+            if (this.queryModel.usersate === 'true') {
+                tempquery2.usersate = true;
+                return tempquery2;
+            } else if (this.queryModel.usersate === 'false') {
+                tempquery2.usersate = false;
+                return tempquery2;
+            }
+            return tempquery1;
         }.bind(this),
         topActions: [
             {
@@ -220,17 +236,32 @@ export class SiteInformationComponent implements OnInit {
             {name: '最后修改时间', key: 'lastupdatetime'}
         ],
         params: function () {
-            const tempquery = {
+            const tempquery1 = {
                 firsttitle: '',
                 secondtitle: '',
                 isdisplay: '',
                 articletype: ''
             };
-            tempquery.firsttitle = this.queryModel.firsttitle;
-            tempquery.secondtitle = this.queryModel.secondtitle;
-            tempquery.isdisplay = this.queryModel.isdisplay;
-            tempquery.articletype = this.queryModel.articletype;
-            return tempquery;
+            const tempquery2 = {
+                firsttitle: '',
+                secondtitle: '',
+                isdisplay: true,
+                articletype: ''
+            };
+            tempquery1.firsttitle = this.queryModel.firsttitle;
+            tempquery1.secondtitle = this.queryModel.secondtitle;
+            tempquery1.articletype = this.queryModel.articletype;
+            tempquery2.firsttitle = this.queryModel.firsttitle;
+            tempquery2.secondtitle = this.queryModel.secondtitle;
+            tempquery2.articletype = this.queryModel.articletype;
+            if (this.queryModel.isdisplay === 'true') {
+                tempquery2.isdisplay = true;
+                return tempquery2;
+            } else if (this.queryModel.isdisplay === 'false') {
+                tempquery2.isdisplay = false;
+                return tempquery2;
+            }
+            return tempquery1;
         }.bind(this),
         topActions: [
             {
@@ -295,11 +326,8 @@ export class SiteInformationComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.siteclear();
-        this.chargingclear();
-        this.articleclear();
+        this.clear();
         this.customHttpClient.get('Operator/Get').subscribe(result => {
-            console.log(result.code);
             if (result.code === '00') {
                 this.Operator = result.data;
             }
@@ -307,14 +335,11 @@ export class SiteInformationComponent implements OnInit {
     }
     beforeChange($event: NgbTabChangeEvent) {
         if ($event.activeId === 'siteManagement') {
-            this.chargingclear();
-            this.articleclear();
+            this.clear();
         } else if ($event.activeId === 'chargingRule') {
-            this.siteclear();
-            this.articleclear();
+            this.clear();
         } else if ($event.activeId === 'articleManagement') {
-            this.siteclear();
-            this.chargingclear();
+            this.clear();
         }
     }
     refreshGridSiteM() {
@@ -327,24 +352,20 @@ export class SiteInformationComponent implements OnInit {
         this.articleComponent.refreshGrid();
     }
 
-    siteclear(): void {
+    clear(): void {
         this.queryModel.siteid = '';
-        this.queryModel.name = '';
-        this.queryModel.province = 'Default';
-        this.queryModel.city = 'Default';
-        this.queryModel.state = 'Default';
-        this.queryModel.district = 'Default';
-    }
-    chargingclear(): void {
+        this.queryModel.sitename = '';
+        this.queryModel.state = '';
+        this.queryModel.province = '';
+        this.queryModel.city = '';
+        this.queryModel.district = '';
         this.queryModel.rulename = '';
         this.queryModel.version = '';
-        this.queryModel.ruletype = 'Default';
-        this.queryModel.usersate = 'Default';
-    }
-    articleclear(): void {
-        this.queryModel.firsttitle = 'Default';
+        this.queryModel.ruletype = '';
+        this.queryModel.usersate = '';
+        this.queryModel.firsttitle = '';
         this.queryModel.secondtitle = '';
-        this.queryModel.isdisplay = 'Default';
-        this.queryModel.articletype = 'Default';
+        this.queryModel.isdisplay = '';
+        this.queryModel.articletype = '';
     }
 }

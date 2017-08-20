@@ -10,7 +10,7 @@
             <label for="firsttitle-select-input" class="col-2 col-form-label">一级标题</label>
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.firsttitle' id="firsttitle-select-input" name="editModel.firsttitle" class="form-control">
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="充电站帮助">充电站帮助</option>
                     <option value="官方联系方式">官方联系方式</option>
                 </select>
@@ -26,7 +26,7 @@
             <label for="articletype-select-input" class="col-2 col-form-label">所属分类</label>
             <div class="col-10">
                 <select  [(ngModel)]="editModel.articletype" name="editModel.articletype" id="articletype-select-input" class="form-control">
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="about">关于</option>
                     <option value="help">帮助</option>
                 </select>
@@ -36,7 +36,7 @@
             <label for="isdisplay-select-input" class="col-2 col-form-label">是否显示</label>
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.isdisplay' id="isdisplay-select-input" name="editModel.isdisplay" class="form-control">
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="true">显示</option>
                     <option value="false">不显示</option>
                 </select>
