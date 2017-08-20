@@ -49,7 +49,7 @@ export class DockoperatorComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         result.operatorid = -1;
-                        this.addOperator(result);
+                        this.refreshGrid();
                     },
                     error => {})
                 }.bind(this)
@@ -74,7 +74,7 @@ export class DockoperatorComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                        this.updateOperator(result);
+                        this.refreshGrid();
                     },
                     error => {
                     })
