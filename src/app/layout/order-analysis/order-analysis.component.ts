@@ -202,6 +202,9 @@ export class OrderAnalysisComponent implements OnInit {
                 tempObj.objectname.push(this.sites[i]);
             }
         }
+        let keyObj = this.chartConfig[key];
+        keyObj.datasets = [];
+        keyObj.colors = [];
         this.customHttpClient.post(this.chartUrl, tempObj).subscribe(result => {
             if (result.code === '00') {
                 this.buildChartData(result.data, key);
