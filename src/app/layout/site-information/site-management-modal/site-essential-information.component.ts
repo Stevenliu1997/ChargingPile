@@ -147,6 +147,20 @@ export class SiteEssentialInformationComponent implements OnInit {
         tempquery.provincecity = `${this.editModel.province || ''}${this.editModel.city || ''}`;
         tempquery.province = undefined;
         tempquery.city = undefined;
+        if (tempquery.isopen === 'true') {
+            tempquery.isopen = true;
+        } else if (tempquery.isopen === 'false') {
+            tempquery.isopen = false;
+        } else {
+            tempquery.isopen = true;
+        }
+        if (tempquery.isscanning === 'true') {
+            tempquery.isscanning = true;
+        } else if (tempquery.isscanning === 'false') {
+            tempquery.isscanning = false;
+        } else {
+            tempquery.isscanning = true;
+        }
         this.customHttpClient.post('Site/Manage/Update', tempquery).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

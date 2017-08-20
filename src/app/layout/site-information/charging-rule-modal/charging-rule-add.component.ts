@@ -39,6 +39,13 @@ export class ChargingRuleAddComponent {
         const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
             + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         tempResult.createtime = time;
+        if (tempResult.usersate === 'true') {
+            tempResult.usersate = true;
+        } else if (tempResult.usersate === 'false') {
+            tempResult.usersate = false;
+        } else {
+            tempResult.usersate = false;
+        }
         this.customHttpClient.post('ChargingRule/Add', tempResult).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

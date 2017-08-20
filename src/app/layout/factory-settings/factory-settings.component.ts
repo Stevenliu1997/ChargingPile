@@ -15,27 +15,29 @@ export class FactorySettingsComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {};
+    queryModel: any = {
+
+    };
     // datagrid 配置
     config: object = {
         key: '',
         url: '',    //和后端交互URL
         column: [
-            {name: '程序ID', key: 'programid'},
-            {name: '程序版本号', key: 'version'},
-            {name: '程序名称', key: 'programname'},
-            {name: '程序名称', key: 'programname'},
-            {name: '程序名称', key: 'programname'},
-            {name: '程序名称', key: 'programname'},
-            {name: '程序名称', key: 'programname'},
-            {name: '程序名称', key: 'programname'},
-            {name: '程序名称', key: 'programname'}
+            {name: '枪ID', key: 'programid'},
+            {name: '桩ID', key: 'version'},
+            {name: '地锁', key: 'programname'},
+            {name: '是否带枪', key: 'programname'},
+            {name: '设备名称', key: 'programname'},
+            {name: 'MAC地址', key: 'programname'},
+            {name: '固件版本', key: 'programname'},
+            {name: '状态', key: 'programname'},
+            {name: '二维码', key: 'programname'}
         ],
         // 与后端交互，queryModel.name
         params: function () {
             return this.queryModel;
         }.bind(this),
-        topActions: [
+/*        topActions: [
             {
                 type: 'add',
                 name: '添加',
@@ -48,13 +50,13 @@ export class FactorySettingsComponent implements OnInit {
                     },error =>{})
                 }.bind(this)
             }
-        ],
+        ],*/
         rowActions: [
              {
                  type: 'edit',
                  action: function (item) {
                      const modalRef = this.ngbModal.open(FactorySettingsEditComponent);
-                    modalRef.componentInstance.actionTitle = '更新';
+                    modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                          this.updateProgram(result);

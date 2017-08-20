@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{actionTitle}}程序</h4>
+    <h4 class="modal-title">{{actionTitle}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -7,15 +7,53 @@
 <div class="modal-body">
     <form  name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
-            <label class="col-2 col-form-label" for="programname">程序名称</label>
+            <label class="col-2 col-form-label" for="programname">桩ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required maxlength="50" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="version">枪ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control" id="version" validationMsg required maxlength="10" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="programname">地锁</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required maxlength="50">
+                    <option value="">请选择</option>
+                    <option value="有">有</option>
+                    <option value="无">无</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="programname">是否带枪</label>
+            <div class="col-10">
+                <select [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required maxlength="50">
+                    <option value="">请选择</option>
+                    <option value="是">是</option>
+                    <option value="否">否</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="programname">设备名称</label>
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label" for="version">版本号</label>
+            <label class="col-2 col-form-label" for="programname">MAC地址</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.version' name="editModel.version" class="form-control" id="version" validationMsg required maxlength="10">
+                <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required maxlength="50">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="programname">固件版本</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.programname' name="editModel.programname" class="form-control" id="programname" validationMsg required maxlength="50">
             </div>
         </div>
     </form>

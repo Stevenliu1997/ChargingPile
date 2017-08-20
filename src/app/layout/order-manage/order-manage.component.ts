@@ -23,7 +23,7 @@ export class OrderManageComponent implements OnInit {
     queryModel: any = {};
     // datagrid 配置
     config: object = {
-        url: 'ReserveForm /Find',
+        url: 'ReserveForm/Find',
         column: [
             {name: '预订单ID', key: 'reseverid'},
             {name: '创建时间', key: 'createTime'},

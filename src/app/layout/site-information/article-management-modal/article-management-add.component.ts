@@ -36,6 +36,13 @@ export class ArticleManagementAddComponent {
         tempquery.lastupdateuser = '';
         tempquery.lastupdatetime = '';
         tempquery.operatorid = this.Operator.operatorid;
+        if (tempquery.isdisplay === 'true') {
+            tempquery.isdisplay = true;
+        } else if (tempquery.isdisplay === 'false') {
+            tempquery.isdiaplay = false;
+        } else {
+            tempquery.display = true;
+        }
         this.customHttpClient.post('ArticleManage/Add', tempquery).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

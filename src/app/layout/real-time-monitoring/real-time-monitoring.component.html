@@ -14,7 +14,7 @@
                                                 [datasets]="barChartData"
                                                 [labels]="barChartLabels"
                                                 [options]="barChartOptions"
-                                                [legend]="barChartLegend"
+                                                [legend]="ChartLegend"
                                                 [chartType]="barChartType"
                                                 [colors]="barChartColors"
                                                 (chartHover)="chartHovered($event)"
@@ -50,12 +50,12 @@
                                         <div>今日充电次数（次）</div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
-                                                    [datasets]="barChartData"
+                                                    [datasets]="timesChart"
                                                     [labels]="barChartLabels"
                                                     [options]="barChartOptions"
                                                     [legend]="barChartLegend"
                                                     [chartType]="barChartType"
-                                                    [colors]="barChartColors"
+                                                    [colors]="timesChartColor"
                                                     (chartHover)="chartHovered($event)"
                                                     (chartClick)="chartClicked($event)"></canvas>
                                         </div>
@@ -66,12 +66,12 @@
                                         <div>今日充电量（Kw/h）</div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
-                                                    [datasets]="barChartData"
+                                                    [datasets]="amountChart"
                                                     [labels]="barChartLabels"
                                                     [options]="barChartOptions"
                                                     [legend]="barChartLegend"
                                                     [chartType]="barChartType"
-                                                    [colors]="barChartColors"
+                                                    [colors]="amountChartColors"
                                                     (chartHover)="chartHovered($event)"
                                                     (chartClick)="chartClicked($event)"></canvas>
                                         </div>
@@ -84,12 +84,12 @@
                                         <div>今日用户数（位）</div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
-                                                    [datasets]="barChartData"
+                                                    [datasets]="userChart"
                                                     [labels]="barChartLabels"
                                                     [options]="barChartOptions"
                                                     [legend]="barChartLegend"
                                                     [chartType]="barChartType"
-                                                    [colors]="barChartColors"
+                                                    [colors]="userChartColors"
                                                     (chartHover)="chartHovered($event)"
                                                     (chartClick)="chartClicked($event)"></canvas>
                                         </div>
@@ -100,12 +100,12 @@
                                         <div>今日减少排碳量（吨）</div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
-                                                    [datasets]="barChartData"
+                                                    [datasets]="reduceChart"
                                                     [labels]="barChartLabels"
                                                     [options]="barChartOptions"
                                                     [legend]="barChartLegend"
                                                     [chartType]="barChartType"
-                                                    [colors]="barChartColors"
+                                                    [colors]="reduceChartColors"
                                                     (chartHover)="chartHovered($event)"
                                                     (chartClick)="chartClicked($event)"></canvas>
                                         </div>
