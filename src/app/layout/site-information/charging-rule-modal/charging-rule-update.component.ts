@@ -30,7 +30,7 @@ export class ChargingRuleUpdateComponent {
         this.update();
     }
     update() {
-        const tempObj = this.editModel;
+        let tempObj = this.editModel;
         tempObj.createtime = undefined;
         if (tempObj.usersate === 'true') {
             tempObj.usersate = true;

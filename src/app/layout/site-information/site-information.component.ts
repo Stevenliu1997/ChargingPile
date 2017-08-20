@@ -47,7 +47,7 @@ export class SiteInformationComponent implements OnInit {
                 provincecity: '',
                 district: '',
             };
-            tempquery.siteid = this.queryModel.siteid;
+            tempquery.siteid = parseInt(this.queryModel.siteid, 10);
             tempquery.sitename = this.queryModel.sitename;
             tempquery.state = this.queryModel.state;
             tempquery.district = this.queryModel.district;
@@ -88,8 +88,8 @@ export class SiteInformationComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(SiteEssentialInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '查看站点信息';
+                    modalRef.componentInstance.queryModel.siteid = parseInt(item.siteid, 10);
                     modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.componentInstance.queryModel.siteid = item.siteid;
                     modalRef.result.then(result => {
                         this.refreshGridSiteM();
                     }, error => {})
@@ -110,6 +110,7 @@ export class SiteInformationComponent implements OnInit {
     /*计费规则管理*/
     chargingRConfig: object = {
         url: 'ChargingRule/Find',
+        key: 'data',
         column: [
             {name: '计费规则名称', key: 'rulename'},
             {name: '版本号', key: 'version'},
@@ -120,23 +121,32 @@ export class SiteInformationComponent implements OnInit {
             {name: '创建时间', key: 'createtime'}
         ],
         params: function () {
-            const tempquery = {
+            const tempquery1 = {
+                rulename: '',
+                usersate: '',
+                version: '',
+                ruletype: ''
+            };
+            const tempquery2 = {
                 rulename: '',
                 usersate: false,
                 version: '',
                 ruletype: ''
             };
-            tempquery.rulename = this.queryModel.rulename;
-            tempquery.version = this.queryModel.version;
-            tempquery.ruletype = this.queryModel.ruletype;
+            tempquery1.rulename = this.queryModel.rulename;
+            tempquery1.version = this.queryModel.version;
+            tempquery1.ruletype = this.queryModel.ruletype;
+            tempquery2.rulename = this.queryModel.rulename;
+            tempquery2.version = this.queryModel.version;
+            tempquery2.ruletype = this.queryModel.ruletype;
             if (this.queryModel.usersate === 'true') {
-                tempquery.usersate = true;
+                tempquery2.usersate = true;
+                return tempquery2;
             } else if (this.queryModel.usersate === 'false') {
-                tempquery.usersate = false;
-            } else {
-                tempquery.usersate = false;
+                tempquery2.usersate = false;
+                return tempquery2;
             }
-            return tempquery;
+            return tempquery1;
         }.bind(this),
         topActions: [
             {
@@ -172,6 +182,7 @@ export class SiteInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(ChargingRuleInformationComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '查看详细信息';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.componentInstance.editModel.ruleid = parseInt(item.ruleid, 10);
                     modalRef.result.then(result => {
                     }, error => {})
                 }.bind(this)
@@ -195,6 +206,7 @@ export class SiteInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(ChargingRuleEditComponent, {size: 'lg'});
                     modalRef.componentInstance.actionTitle = '编辑细则';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
+                    modalRef.componentInstance.editModel.ruleid = parseInt(item.ruleid, 10);
                     modalRef.result.then(result => {
                         this.refreshGridCharging();
                     }, error => {})
@@ -226,23 +238,32 @@ export class SiteInformationComponent implements OnInit {
             {name: '最后修改时间', key: 'lastupdatetime'}
         ],
         params: function () {
-            const tempquery = {
+            const tempquery1 = {
+                firsttitle: '',
+                secondtitle: '',
+                isdisplay: '',
+                articletype: ''
+            };
+            const tempquery2 = {
                 firsttitle: '',
                 secondtitle: '',
                 isdisplay: true,
                 articletype: ''
             };
-            tempquery.firsttitle = this.queryModel.firsttitle;
-            tempquery.secondtitle = this.queryModel.secondtitle;
-            tempquery.articletype = this.queryModel.articletype;
+            tempquery1.firsttitle = this.queryModel.firsttitle;
+            tempquery1.secondtitle = this.queryModel.secondtitle;
+            tempquery1.articletype = this.queryModel.articletype;
+            tempquery2.firsttitle = this.queryModel.firsttitle;
+            tempquery2.secondtitle = this.queryModel.secondtitle;
+            tempquery2.articletype = this.queryModel.articletype;
             if (this.queryModel.isdisplay === 'true') {
-                tempquery.isdisplay = true;
+                tempquery2.isdisplay = true;
+                return tempquery2;
             } else if (this.queryModel.isdisplay === 'false') {
-                tempquery.isdisplay = false;
-            } else {
-                tempquery.isdisplay = true;
+                tempquery2.isdisplay = false;
+                return tempquery2;
             }
-            return tempquery;
+            return tempquery1;
         }.bind(this),
         topActions: [
             {
@@ -307,9 +328,7 @@ export class SiteInformationComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.siteclear();
-        this.chargingclear();
-        this.articleclear();
+        this.clear();
         this.customHttpClient.get('Operator/Get').subscribe(result => {
             if (result.code === '00') {
                 this.Operator = result.data;
@@ -318,14 +337,11 @@ export class SiteInformationComponent implements OnInit {
     }
     beforeChange($event: NgbTabChangeEvent) {
         if ($event.activeId === 'siteManagement') {
-            this.chargingclear();
-            this.articleclear();
+            this.clear();
         } else if ($event.activeId === 'chargingRule') {
-            this.siteclear();
-            this.articleclear();
+            this.clear();
         } else if ($event.activeId === 'articleManagement') {
-            this.siteclear();
-            this.chargingclear();
+            this.clear();
         }
     }
     refreshGridSiteM() {
@@ -338,24 +354,20 @@ export class SiteInformationComponent implements OnInit {
         this.articleComponent.refreshGrid();
     }
 
-    siteclear(): void {
+    clear(): void {
         this.queryModel.siteid = '';
         this.queryModel.name = '';
-        this.queryModel.province = 'Default';
-        this.queryModel.city = 'Default';
-        this.queryModel.state = 'Default';
-        this.queryModel.district = 'Default';
-    }
-    chargingclear(): void {
+        this.queryModel.state = '';
+        this.queryModel.province = '';
+        this.queryModel.city = '';
+        this.queryModel.district = '';
         this.queryModel.rulename = '';
         this.queryModel.version = '';
-        this.queryModel.ruletype = 'Default';
-        this.queryModel.usersate = 'Default';
-    }
-    articleclear(): void {
-        this.queryModel.firsttitle = 'Default';
+        this.queryModel.ruletype = '';
+        this.queryModel.usersate = '';
+        this.queryModel.firsttitle = '';
         this.queryModel.secondtitle = '';
-        this.queryModel.isdisplay = 'Default';
-        this.queryModel.articletype = 'Default';
+        this.queryModel.isdisplay = '';
+        this.queryModel.articletype = '';
     }
 }

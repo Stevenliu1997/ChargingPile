@@ -16,7 +16,7 @@
             <label for="ruletype-select-input" class="col-2 col-form-label">类别</label>
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.ruletype' id="ruletype-select-input" name="editModel.ruletype" class="form-control" validationMsg>
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="正常">正常</option>
                     <option value="锁定">锁定</option>
                 </select>
@@ -32,7 +32,7 @@
             <label for="usersate-select-input" class="col-2 col-form-label">使用标志</label>
             <div class="col-10">
                 <select [(ngModel)] = 'editModel.usersate' id="usersate-select-input" name="editModel.usersate" class="form-control">
-                    <option value="Default">请选择</option>
+                    <option value="">请选择</option>
                     <option value="true">正常</option>
                     <option value="false">锁定</option>
                 </select>

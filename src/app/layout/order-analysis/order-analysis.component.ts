@@ -42,7 +42,7 @@ export class OrderAnalysisComponent implements OnInit {
                 gridConfig: {
                     column: [
                         {name: '日期', key: 'time'},
-                        {name: '名称', key: 'sitename'},
+                        {name: '名称', key: 'objectname'},
                         {name: '订单数量', key: 'analyseData'}
                     ]
                 }
@@ -53,7 +53,7 @@ export class OrderAnalysisComponent implements OnInit {
                 gridConfig: {
                     column: [
                         {name: '日期', key: 'time'},
-                        {name: '名称', key: 'sitename'},
+                        {name: '名称', key: 'objectname'},
                         {name: '充电量', key: 'analyseData'}
                     ],
                     params: {findType: '2'}
@@ -65,14 +65,14 @@ export class OrderAnalysisComponent implements OnInit {
                 gridConfig: {
                     column: [
                         {name: '日期', key: 'time'},
-                        {name: '名称', key: 'sitename'},
-                        {name: '总价格', html: function (data) {
+                        {name: '名称', key: 'objectname'},
+                        {name: '总价格', key: 'totalprice', html: function (data) {
                             return data.analyseData[0];
                         }},
-                        {name: '总电费', function (data) {
+                        {name: '总电费', key: 'totalpower', html: function (data) {
                             return data.analyseData[1];
                         }},
-                        {name: '总服务费', function (data) {
+                        {name: '总服务费', key: 'totalservice', html: function (data) {
                             return data.analyseData[2];
                         }}
                     ]
@@ -96,9 +96,9 @@ export class OrderAnalysisComponent implements OnInit {
      */
     querySites(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.customHttpClient.post('Site/Manage/Find', {siteid: -1, pageNumber: 1, pageSize: 999999}).subscribe(result => {
+            this.customHttpClient.get('orderform/analysis/getsitenames').subscribe(result => {
                 if (result.code === '00') {
-                    resolve(result.pageData);
+                    resolve(result.data);
                 }
             })
         })
@@ -115,10 +115,25 @@ export class OrderAnalysisComponent implements OnInit {
     }
 
     initQueryModelSingle(key: string) {
-        this.queryModel[key] = {
-            timeType: 1,
-            checkedSite: []
-        };
+        if (key === 'orderCount') {
+            this.queryModel[key] = {
+                timeType: 1,
+                objectname: [],
+                findType: 1
+            };
+        } else if (key === 'chargingCount') {
+            this.queryModel[key] = {
+                timeType: 1,
+                objectname: [],
+                findType: 2
+            };
+        } else if (key === 'moneyCount') {
+            this.queryModel[key] = {
+                timeType: 1,
+                objectname: [],
+                findType: 3
+            };
+        }
     }
 
     /*初始化datagrid*/
@@ -130,7 +145,14 @@ export class OrderAnalysisComponent implements OnInit {
                 column: tabConfig.gridConfig.column,
                 params: () => {
                     /*TODO 站点选择*/
-                    return Object.assign({}, this.queryModel[tabConfig.key], {findType: tabConfig.findType})
+                    let tempObj: any = Object.assign({}, Object.assign({}, this.queryModel[tabConfig.key]), {objectname: []});
+                    tempObj.objectname.splice(0, tempObj.objectname.length);
+                    for (let i = 0; i < this.queryModel[tabConfig.key].objectname.length; i++) {
+                        if (this.queryModel[tabConfig.key].objectname[i] === true) {
+                            tempObj.objectname.push(this.sites[i]);
+                        }
+                    }
+                    return tempObj;
                 },
             };
             this.datagridConfigs[tabConfig.key] = config;
@@ -156,7 +178,7 @@ export class OrderAnalysisComponent implements OnInit {
     refreshGrid(key: string) {
         this[`${key}Component`].refreshGrid();
         /*点击查询，也要重新刷新图表*/
-        this.refreshChart(key)
+        this.refreshChart(key);
     }
 
     /**
@@ -173,7 +195,17 @@ export class OrderAnalysisComponent implements OnInit {
     }
 
     refreshChart(key: string) {
-        this.customHttpClient.post(this.chartUrl, this.queryModel[key]).subscribe(result => {
+        let tempObj: any = Object.assign({}, Object.assign({}, this.queryModel[key]), {objectname: []});
+        tempObj.objectname.splice(0, tempObj.objectname.length);
+        for (let i = 0; i < this.queryModel[key].objectname.length; i++) {
+            if (this.queryModel[key].objectname[i] === true) {
+                tempObj.objectname.push(this.sites[i]);
+            }
+        }
+        let keyObj = this.chartConfig[key];
+        keyObj.datasets = null;
+        keyObj.colors = [];
+        this.customHttpClient.post(this.chartUrl, tempObj).subscribe(result => {
             if (result.code === '00') {
                 this.buildChartData(result.data, key);
             }
@@ -191,7 +223,7 @@ export class OrderAnalysisComponent implements OnInit {
                 currentItem.analyseData.map(item => {
                     return item[0];
                 }) : currentItem.analyseData;
-            keyObj.datasets.push({data: dataTemp, label: currentItem.sitename});
+            keyObj.datasets.push({data: dataTemp, label: currentItem.objectname});
             keyObj.labels = currentItem.time;
             /*TODO 随机一个站点生成颜色，现在全是一种*/
             keyObj.colors.push({ // grey
