@@ -36,7 +36,7 @@ export class LoginService {
         return new Promise(function (resolve, reject) {
             this.httpClient.get('Userinformation').subscribe(result => {
                 if(result.code === '00'){
-                    this.userInfo = result.data;
+                    this.userInfo = result.data || {};
                     resolve(result.data)
                 }
             }, error => {
