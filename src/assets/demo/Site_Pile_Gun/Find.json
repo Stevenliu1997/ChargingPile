@@ -6,8 +6,8 @@
             "pilename": "电子科技大学",
             "installationtime": "2017-01-02",
             "gunid": "1125",
-            "guntype": "直流",
-            "reservestate": "已预约",
+            "guntype": true,
+            "reservestate": true,
             "isonline": true,
             "v": "220V",
             "i": "12A",
@@ -15,8 +15,8 @@
             "gunchargeamount": "250",
             "has": "是",
             "number": "2015220503008",
-            "state": "正常",
-            "parking": "已停车"
+            "state": true,
+            "parking": true
         },
         {
             "sitename": "站点2名称",
@@ -24,8 +24,8 @@
             "pilename": "电子科技大学",
             "installationtime": "2017-01-02",
             "gunid": "1135",
-            "guntype": "交流",
-            "reservestate": "未预约",
+            "guntype": false,
+            "reservestate": false,
             "isonline": false,
             "v": "220V",
             "i": "12A",
@@ -33,8 +33,8 @@
             "gunchargeamount": "250",
             "has": "是",
             "number": "2015220503009",
-            "state": "不正常",
-            "parking": "未停车"
+            "state": false,
+            "parking": false
         }
     ],
     "currentPage": 1,

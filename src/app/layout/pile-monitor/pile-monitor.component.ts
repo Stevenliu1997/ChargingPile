@@ -16,52 +16,36 @@ export class PileMonitorComponent implements OnInit {
     pageArr: any = [];
     key: string;
     fetchedData: any = [];
-    private rowIcons: object = {'delete' : 'fa-trash-o',
-        'edit': 'fa-pencil-square-o',
-        'detail': 'fa-file-o',
-        'upload': 'fa-upload'
-    };
-
     config: any = {
         key: '',
         url: 'Site_Pile_Gun/Find',
         column: [
             {name: '站点名', key: 'sitename'},
-            {name: '厂家', key: 'factory', html: function(item) {
-                return `<a href="www.baidu.com">查看</a>`;
+            {name: '厂家', isModal: true, action: function(item) {
+                /*打开对应模态框*/
             }},
             {name: '型号', key: 'piletype'},
             {name: '名称', key: 'pilename'},
             {name: '安装时间', key: 'installationtime'},
             {name: '枪头ID', key: 'gunid'},
-            {name: '类型', key: 'guntype'},
-            {name: '告警', key: 'alarm', html: function(item) {
-                return `<a href="www.baidu.com">查看</a>`;
+            {name: '类型', key: 'guntype', isIcon: true},
+            {name: '告警', isModal: true, action: function(item) {
+                /*打开对应模态框*/
             }},
-            {name: '交易记录', key: 'record', html: function(item) {
-                return `<a href="www.baidu.com">查看</a>`;
+            {name: '交易记录', isModal: true, action: function(item) {
+                /*打开对应模态框*/
             }},
-            {name: '预约状态', key: 'reservestate'},
-            {name: '是否在线', key: 'isonline', html: function (item) {
-                if (item.isonline === true) {
-                    return `<i class="fa fa-link" aria-hidden="true" (click)="function(){alert('w');}"></i>`;
-                } else if (item.isonline === false) {
-                    return `<i class="fa fa-chain-broken" aria-hidden="true" (click)="function(){alert('w');}")></i>`;
-                } else {
-                    return `<i class="fa fa-chain-broken" aria-hidden="true" (click)="function(){alert('w');}"></i>`;
-                }
-            }},
+            {name: '预约状态', key: 'reservestate', isIcon: true},
+            {name: '是否在线', key: 'isonline', isIcon: true},
             {name: '输出电压', key: 'v'},
             {name: '输出电流', key: 'i'},
             {name: '输出功率', key: 'p'},
             {name: '累计电量', key: 'gunchargeamount'},
-            {name: '状态', key: 'gunstate', html: function(item) {
-                return `<i class="fa mr-2" [ngClass]="getIcon(rowAct, data)" aria-hidden="true" (click)="rowAction(rowAct, data)"></i>`
-            }},
+            {name: '状态', key: 'gunstate'},
             {name: '有无', key: 'has'},
             {name: '编号', key: 'number'},
-            {name: '状态', key: 'state'},
-            {name: '停车状态', key: 'parking'}
+            {name: '状态', key: 'state', isIcon: true},
+            {name: '停车状态', key: 'parking', isIcon: true}
         ],
         pageSize: 20,
         pageSizes: [20, 50, 100],
@@ -97,7 +81,7 @@ export class PileMonitorComponent implements OnInit {
     public loadData(ur: string, params?: object, pageParams?: any): void{
         this.httpClient.post(this.config.url, Object.assign({}, params, Object.assign({}, this.pageParams, pageParams)))
             .subscribe((result: any) => {
-            if(result.code === '00') {
+            if (result.code === '00') {
                 this.fetchedData = result.pageData || [];
                 this.page.totalPages = result.totalPages;
                 this.page.totalElements = result.totalElements;
@@ -114,23 +98,35 @@ export class PileMonitorComponent implements OnInit {
     }
     initPageArray(total: number) {
         this.pageArr = [];
-        for(let i=1;i<=total;i++){
+        for (let i = 1; i <= total; i++) {
             this.pageArr.push(i);
         }
     }
-    /**
-     * 每一小列事件
-     * @param col
-     * @param data
-     */
+
+    /*打开模态框的行内点击事件*/
     colAction(col: any, data: object) {
-        if(col.action){
+        if (col.action) {
             col.action(data);
         }
     }
-    getIcon(col:any, data: object){
-        return col.type ?
-            this.rowIcons[col.type] :
-            (col.icon ? col.icon(data) : '');
+    /*行内小图标*/
+    getIcon(col: any, data: object) {
+        if (data[col.key] === true) {
+            switch (col.key) {
+                case 'guntype': return ;
+                case 'reservestate': return ;
+                case 'isonline': return 'fa-link';
+                case 'state': return ;
+                case 'parking': return ;
+            }
+        } else if (data[col.key] === false) {
+            switch (col.key) {
+                case 'guntype': return ;
+                case 'reservestate': return ;
+                case 'isonline': return 'fa-chain-broken';
+                case 'state': return ;
+                case 'parking': return ;
+            }
+        }
     }
 }
