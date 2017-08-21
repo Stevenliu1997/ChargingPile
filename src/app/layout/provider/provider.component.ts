@@ -54,6 +54,7 @@ export class ProviderComponent implements OnInit {
                         let tempResult = Object.assign({}, result);
                         tempResult.factoryid = -1;
                         this.addProvider(tempResult);
+                        this.refreshGrid();
                     },
                     error => {})
                 }.bind(this)

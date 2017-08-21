@@ -1,9 +1,9 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
-import {NgForm} from "@angular/forms";
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {NgForm} from '@angular/forms';
 @Component({
-    selector: 'dockoperator-edit',
+    selector: 'app-dockoperator-edit',
     templateUrl: './dockoperator-edit.component.html'
 })
 export class DockoperatorEditComponent {
@@ -19,27 +19,28 @@ export class DockoperatorEditComponent {
 
     confirm() {
 
-        if(this.editForm.form.invalid){
+        if(this.editForm.form.invalid) {
             return;
         }
-        if(this.actionTitle === '添加'){
+        if(this.actionTitle === '添加') {
             this.addOperator(this.editModel);
         }else {
             this.updateOperator(this.editModel);
         }
     }
 
-    updateOperator(operator: object){
+    updateOperator(operator: object) {
         this.customHttpClient.post('Operator/Update', operator).subscribe(result => {
-            if(result.code == '00'){
+            if (result.code == '00') {
                 this.activeModal.close();
             }
         })
     }
 
-    addOperator(operator: object){
-        this.customHttpClient.post('Operator/Add', operator).subscribe(result => {
-            if(result.code == '00'){
+    addOperator(operator: object) {
+        let tempObj = Object.assign({}, operator, {operatorid: -1});
+        this.customHttpClient.post('Operator/Add', tempObj).subscribe(result => {
+            if (result.code == '00') {
                 this.activeModal.close();
             }
         })

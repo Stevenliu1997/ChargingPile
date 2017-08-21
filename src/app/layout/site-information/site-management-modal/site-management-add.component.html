@@ -7,9 +7,9 @@
 <div class="modal-body">
     <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
-            <label for="name-text-input" class="col-2 col-form-label">站点名称</label>
+            <label for="sitename-text-input" class="col-2 col-form-label">站点名称</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.name' id="name-text-input" name="editModel.name" class="form-control" validationMsg required maxlength="50">
+                <input [(ngModel)] = 'editModel.sitename' id="sitename-text-input" name="editModel.sitename" class="form-control" validationMsg required maxlength="50">
             </div>
         </div>
         <div class="form-group row">

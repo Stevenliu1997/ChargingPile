@@ -24,7 +24,7 @@ export class SiteManagementComponent implements OnInit {
         url: 'Site/Find',
         column: [
             {name: '站点ID', key: 'siteid'},
-            {name: '站点名称', key: 'name'},
+            {name: '站点名称', key: 'sitename'},
             {name: '站点所在省', key: 'province'},
             {name: '站点所在市', key: 'city'},
             {name: '站点状态', key: 'state'},
@@ -126,7 +126,7 @@ export class SiteManagementComponent implements OnInit {
 
     clear(): void {
         this.queryModel.siteid = '';
-        this.queryModel.name = '';
+        this.queryModel.sitename = '';
         this.queryModel.province = '';
         this.queryModel.city = '';
         this.queryModel.state = '';
