@@ -1,9 +1,8 @@
-
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'site-information',
+    selector: 'app-site-information',
     templateUrl: './site-information.component.html'
 })
 export class SiteInformationComponent {

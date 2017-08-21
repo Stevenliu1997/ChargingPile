@@ -1,9 +1,9 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
-import {NgForm} from "@angular/forms";
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {NgForm} from '@angular/forms';
 @Component({
-    selector: 'provider-edit',
+    selector: 'app-provider-edit',
     templateUrl: './provider-edit.component.html'
 })
 export class ProviderEditComponent {
@@ -22,27 +22,27 @@ export class ProviderEditComponent {
 
     confirm() {
 
-        if(this.editForm.form.invalid){
+        if(this.editForm.form.invalid) {
             return;
         }
-        if(this.actionTitle === '添加'){
+        if(this.actionTitle === '添加') {
             this.addProvider(this.editModel);
         }else {
             this.updateProvider(this.editModel);
         }
     }
 
-    updateProvider(provider: object){
+    updateProvider(provider: object) {
         this.customHttpClient.post('Factory/Update', provider).subscribe(result => {
-            if(result.code == '00'){
+            if (result.code == '00') {
                 this.activeModal.close();
             }
         })
     }
 
-    addProvider(provider: object){
+    addProvider(provider: object) {
         this.customHttpClient.post('Factory/Add', provider).subscribe(result => {
-            if(result.code == '00'){
+            if (result.code == '00') {
                 this.activeModal.close();
             }
         })

@@ -1,9 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
-import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {ProviderEditComponent} from "./provider-edit.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
+import {ProviderEditComponent} from './provider-edit.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProviderRecordComponent} from './provider-record.component';
 
 @Component({
@@ -18,8 +17,7 @@ export class ProviderComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
 
-    //查询对象
-    address: any = {};
+    /*查询对象*/
     queryModel: any = {};
 
     // datagrid 配置
@@ -29,17 +27,16 @@ export class ProviderComponent implements OnInit {
         column: [
             {name: '厂商ID', key: 'factoryid'},
             {name: '厂商名称', key: 'name'},
-            {name: '厂商省市', key: 'provincecity'},
+            {name: '厂商所在省', key: 'province'},
+            {name: '厂商所在市', key: 'city'},
             {name: '厂商详细地址', key: 'position'},
 
             {name: '联系人姓名', key: 'contactor'},
             {name: '联系人电话', key: 'phone'}
         ],
         params: function () {
-            this.queryModel.provincecity =
-                `${this.address.province || ''}${this.address.province && this.address.city ? '&':''}${this.address.city || ''}`;
-            let queryModel = Object.assign({},this.queryModel);
-            if (!queryModel.factoryid){
+            let queryModel = Object.assign({}, this.queryModel);
+            if (!queryModel.factoryid) {
                 queryModel.factoryid = -1;
             }
             return queryModel;
@@ -54,14 +51,8 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
 
                     modalRef.result.then(result => {
-
-                        let tempResult  =Object.assign({},result);
+                        let tempResult = Object.assign({}, result);
                         tempResult.factoryid = -1;
-                        tempResult.provincecity =
-                            `${tempResult.province || ''}${tempResult.province && tempResult.city ? '&':''}${tempResult.city || ''}`;
-                        tempResult.province = undefined;
-                        tempResult.city = undefined;
-
                         this.addProvider(tempResult);
                     },
                     error => {})
@@ -74,7 +65,7 @@ export class ProviderComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Factory/Delete'
+                    url: 'Factory/Delete'
                 }
             }
         ],
@@ -85,7 +76,7 @@ export class ProviderComponent implements OnInit {
                 action: function (item) {
                 }.bind(this),
                 autoConfig: {
-                    url:'Factory/Delete'
+                    url: 'Factory/Delete'
                 }
             },
             {
@@ -94,14 +85,9 @@ export class ProviderComponent implements OnInit {
                 action: function (item) {
                     const modalRef = this.ngbModal.open(ProviderEditComponent);
                     modalRef.componentInstance.actionTitle = '编辑';
-                    modalRef.componentInstance.editModel = Object.assign({},item);
+                    modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-
-                            let tempResult  =Object.assign({},result);
-                            tempResult.provincecity = `${tempResult.province || ''}&${tempResult.city || ''}`;
-                            tempResult.province = undefined;
-                            tempResult.city = undefined;
-
+                            let tempResult = Object.assign({}, result);
                             this.updateProvider(tempResult);
                     },
                     error => {
@@ -119,17 +105,17 @@ export class ProviderComponent implements OnInit {
         ]
     };
 
-    constructor(private ngbModal: NgbModal, private customHttpClient: CustomHttpClient) {
+    constructor(private ngbModal: NgbModal) {
     }
 
     ngOnInit() {
     }
 
-    refreshGrid(){
+    refreshGrid() {
         this.datagridComponent.refreshGrid();
     }
 
-    initquery(){
+    initquery() {
         this.queryModel = {};
 
     }

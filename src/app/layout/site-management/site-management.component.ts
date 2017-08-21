@@ -18,7 +18,6 @@ export class SiteManagementComponent implements OnInit {
     private datagridComponent: DatagridComponent;
 
     queryModel: any = {};
-    address: any = {};
 
     config: object = {
         key: 'siteid',
@@ -26,7 +25,8 @@ export class SiteManagementComponent implements OnInit {
         column: [
             {name: '站点ID', key: 'siteid'},
             {name: '站点名称', key: 'name'},
-            {name: '站点省市', key: 'provincecity'},
+            {name: '站点所在省', key: 'province'},
+            {name: '站点所在市', key: 'city'},
             {name: '站点状态', key: 'state'},
             {name: '收费是否合理', key: 'isreasonable'},
         ],
@@ -35,9 +35,6 @@ export class SiteManagementComponent implements OnInit {
             if (!tempquery.siteid) {
                 tempquery.siteid = -1;
             }
-            tempquery.provincecity = `${this.queryModel.province || ''}${this.queryModel.city || ''}`;
-            tempquery.province = undefined;
-            tempquery.city = undefined;
             return tempquery;
         }.bind(this),
         topActions: [
@@ -120,6 +117,7 @@ export class SiteManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.clear();
     }
 
     refreshGrid() {
@@ -129,8 +127,8 @@ export class SiteManagementComponent implements OnInit {
     clear(): void {
         this.queryModel.siteid = '';
         this.queryModel.name = '';
-        this.queryModel.province = 'Default';
-        this.queryModel.city = 'Default';
-        this.queryModel.state = 'Default';
+        this.queryModel.province = '';
+        this.queryModel.city = '';
+        this.queryModel.state = '';
     }
 }

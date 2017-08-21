@@ -29,9 +29,6 @@ export class SiteManagementAddComponent {
     }
     add(obj: any) {
         const tempResult = Object.assign({}, obj);
-        tempResult.provincecity = `${tempResult.province || ''}${tempResult.city || ''}`;
-        tempResult.province = undefined;
-        tempResult.city = undefined;
         if (tempResult.isopen === 'true') {
             tempResult.isopen = true;
         } else if (tempResult.isopen === 'false') {
