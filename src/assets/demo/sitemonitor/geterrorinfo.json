@@ -1,0 +1,26 @@
+{
+    "pageData": [
+        {
+            "pileid": "008",
+            "gunid": "007",
+            "errorcode": "error",
+            "state": "未处理",
+            "level": "1",
+            "starttime": "2017-08-20",
+            "endtime": "2017-08-21"
+        },
+        {
+            "pileid": "800",
+            "gunid": "700",
+            "errorcode": "error!!!",
+            "state": "已处理",
+            "level": "1",
+            "starttime": "2017-05-01",
+            "endtime": "2017-06-01"
+        }
+    ],
+    "currentPage": 1,
+    "totalPage": 2,
+    "totalElements": 1,
+    "code": "00"
+}

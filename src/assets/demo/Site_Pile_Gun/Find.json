@@ -5,7 +5,7 @@
             "piletype": "大型",
             "pilename": "电子科技大学",
             "installationtime": "2017-01-02",
-            "gunid": "1125",
+            "gunid": 1125,
             "guntype": true,
             "reservestate": true,
             "isonline": true,
@@ -16,14 +16,15 @@
             "has": "是",
             "number": "2015220503008",
             "state": true,
-            "parking": true
+            "parking": true,
+            "pileid": 250
         },
         {
             "sitename": "站点2名称",
             "piletype": "桩类型",
             "pilename": "电子科技大学",
             "installationtime": "2017-01-02",
-            "gunid": "1135",
+            "gunid": 1135,
             "guntype": false,
             "reservestate": false,
             "isonline": false,
@@ -34,7 +35,8 @@
             "has": "是",
             "number": "2015220503009",
             "state": false,
-            "parking": false
+            "parking": false,
+            "pileid": 350
         }
     ],
     "currentPage": 1,

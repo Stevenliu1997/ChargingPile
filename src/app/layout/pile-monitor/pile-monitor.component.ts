@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../../router.animations';
 import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {FactoryInformationComponent} from './ModalPage/factory-information.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AlertInformationComponent} from './ModalPage/alert-information.component';
+import {TransactionRecordComponent} from './ModalPage/transaction-record.component';
+import {StatusInformationComponent} from './ModalPage/status-information.component';
 
 @Component({
     selector: 'app-tables',
@@ -23,7 +28,12 @@ export class PileMonitorComponent implements OnInit {
             {name: '站点名', key: 'sitename'},
             {name: '厂家', isModal: true, action: function(item) {
                 /*打开对应模态框*/
-            }},
+                const modalRef = this.ngbModal.open(FactoryInformationComponent, {size: 'lg'});
+                modalRef.componentInstance.actionTitle = '查看厂商';
+                modalRef.result.then(result => {
+                    this.refreshGrid();
+                })
+            }.bind(this)},
             {name: '型号', key: 'piletype'},
             {name: '名称', key: 'pilename'},
             {name: '安装时间', key: 'installationtime'},
@@ -31,20 +41,39 @@ export class PileMonitorComponent implements OnInit {
             {name: '类型', key: 'guntype', isIcon: true},
             {name: '告警', isModal: true, action: function(item) {
                 /*打开对应模态框*/
-            }},
+                const modalRef = this.ngbModal.open(AlertInformationComponent, {size: 'lg'});
+                modalRef.componentInstance.actionTitle = '查看告警';
+                modalRef.componentInstance.editModel.pileid = item.pileid;
+                modalRef.componentInstance.editModel.gunid = item.gunid;
+                modalRef.result.then(result => {
+                    this.refreshGrid();
+                })
+            }.bind(this)},
             {name: '交易记录', isModal: true, action: function(item) {
                 /*打开对应模态框*/
-            }},
+                const modalRef = this.ngbModal.open(TransactionRecordComponent, {size: 'lg'});
+                modalRef.componentInstance.actionTitle = '查看交易记录';
+                modalRef.result.then(result => {
+                    this.refreshGrid();
+                })
+            }.bind(this)},
             {name: '预约状态', key: 'reservestate', isIcon: true},
             {name: '是否在线', key: 'isonline', isIcon: true},
             {name: '输出电压', key: 'v'},
             {name: '输出电流', key: 'i'},
             {name: '输出功率', key: 'p'},
             {name: '累计电量', key: 'gunchargeamount'},
-            {name: '状态', key: 'gunstate'},
+            {name: '状态', key: 'gunstate', isIcon: true, isModal: true, action: function (item) {
+                /*打开对应模态框*/
+                const modalRef = this.ngbModal.open(StatusInformationComponent, {size: 'lg'});
+                modalRef.componentInstance.actionTitle = '查看状态';
+                modalRef.result.then(result => {
+                    this.refreshGrid();
+                })
+            }.bind(this)},
             {name: '有无', key: 'has'},
             {name: '编号', key: 'number'},
-            {name: '状态', key: 'state', isIcon: true},
+            {name: '状态', key: 'state'},
             {name: '停车状态', key: 'parking', isIcon: true}
         ],
         pageSize: 20,
@@ -56,6 +85,7 @@ export class PileMonitorComponent implements OnInit {
 
     constructor(
         private httpClient: CustomHttpClient,
+        private ngbModal: NgbModal,
     ) {}
     ngOnInit() {
         this.clear();
@@ -117,7 +147,7 @@ export class PileMonitorComponent implements OnInit {
                 case 'reservestate': return ;
                 case 'isonline': return 'fa-link';
                 case 'state': return ;
-                case 'parking': return ;
+                case 'parking': return 'fa-car';
             }
         } else if (data[col.key] === false) {
             switch (col.key) {
@@ -125,7 +155,7 @@ export class PileMonitorComponent implements OnInit {
                 case 'reservestate': return ;
                 case 'isonline': return 'fa-chain-broken';
                 case 'state': return ;
-                case 'parking': return ;
+                case 'parking': return 'fa-car';
             }
         }
     }

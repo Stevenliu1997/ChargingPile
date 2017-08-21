@@ -100,8 +100,9 @@
                     <td>{{$index+1}}</td>
                     <td *ngFor="let col of config.column">
                         <span *ngIf="!col.isIcon&&!col.isModal">{{data[col.key]}}</span>
-                        <span *ngIf="col.isIcon" class="fa mr-2" [ngClass]="getIcon(col, data)" aria-hidden="true"></span>
-                        <span *ngIf="col.isModal" (click)="colAction(col, data)"></span>
+                        <span *ngIf="col.isIcon&&!col.isModal" class="fa mr-2" [ngClass]="getIcon(col, data)" aria-hidden="true"></span>
+                        <a *ngIf="!col.isIcon&&col.isModal" (click)="colAction(col, data)" href="javascript:void(0)">查看</a>
+                        <a *ngIf="col.isIcon&&col.isModal" class="fa mr-2" [ngClass]="getIcon(col, data)" aria-hidden="true" (click)="colAction(col, data)" href="javascript:void(0)"></a>
                     </td>
                 </tr>
 
