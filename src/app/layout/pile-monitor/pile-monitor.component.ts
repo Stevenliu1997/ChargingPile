@@ -108,7 +108,7 @@ export class PileMonitorComponent implements OnInit {
         this.queryModel.district = '';
         this.queryModel.sitename = '';
     }
-    public loadData(ur: string, params?: object, pageParams?: any): void{
+    public loadData(ur: string, params?: object, pageParams?: any): void {
         this.httpClient.post(this.config.url, Object.assign({}, params, Object.assign({}, this.pageParams, pageParams)))
             .subscribe((result: any) => {
             if (result.code === '00') {
