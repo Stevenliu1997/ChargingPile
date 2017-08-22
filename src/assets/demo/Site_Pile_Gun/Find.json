@@ -1,0 +1,49 @@
+{
+    "pageData": [
+        {
+            "sitename": "站点1名称",
+            "piletype": "大型",
+            "pilename": "电子科技大学",
+            "installationtime": "2017-01-02",
+            "gunid": 1125,
+            "guntype": true,
+            "reservestate": true,
+            "isonline": true,
+            "v": "220V",
+            "i": "12A",
+            "p": "2000W",
+            "gunchargeamount": "250",
+            "has": "是",
+            "number": "2015220503008",
+            "state": true,
+            "parking": true,
+            "pileid": 250,
+            "factoryid": 444
+        },
+        {
+            "sitename": "站点2名称",
+            "piletype": "桩类型",
+            "pilename": "电子科技大学",
+            "installationtime": "2017-01-02",
+            "gunid": 1135,
+            "guntype": false,
+            "reservestate": false,
+            "isonline": false,
+            "v": "220V",
+            "i": "12A",
+            "p": "2000W",
+            "gunchargeamount": "250",
+            "has": "是",
+            "number": "2015220503009",
+            "state": false,
+            "parking": false,
+            "pileid": 350,
+            "factoryid": 896
+        }
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "totalElements": 1,
+    "message": "this is an error!!!",
+    "code": "00"
+}

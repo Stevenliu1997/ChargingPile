@@ -1,0 +1,11 @@
+{
+    "Data": {
+        "name": "厂商名",
+        "position": "厂商地址",
+        "contactor": "联系人",
+        "phone": "电话",
+        "updatetime": "更新时间"
+    },
+    "code": "00",
+    "message": "this is an error!!!"
+}
