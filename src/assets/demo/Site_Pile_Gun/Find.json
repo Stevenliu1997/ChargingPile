@@ -17,7 +17,8 @@
             "number": "2015220503008",
             "state": true,
             "parking": true,
-            "pileid": 250
+            "pileid": 250,
+            "factoryid": 444
         },
         {
             "sitename": "站点2名称",
@@ -36,7 +37,8 @@
             "number": "2015220503009",
             "state": false,
             "parking": false,
-            "pileid": 350
+            "pileid": 350,
+            "factoryid": 896
         }
     ],
     "currentPage": 1,

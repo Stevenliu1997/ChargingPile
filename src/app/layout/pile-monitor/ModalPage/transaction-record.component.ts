@@ -13,23 +13,25 @@ export class TransactionRecordComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    request: any = {};
 
     config: object = {
-        key: 'none',
-        url: 'none/none',
+        key: 'gunid',
+        url: 'Pile/Monitor/Find/TradeRecord',
         column: [
-            {name: '订单号', key: 'none'},
-            {name: '订单状态', key: 'none'},
-            {name: '充电时间段', key: 'none'},
-            {name: '充电时长', key: 'none'},
-            {name: '总电量', key: 'none'},
-            {name: '总价格', key: 'none'},
-            {name: '支付方式', key: 'none'},
-            {name: '用户', key: 'none'},
-            {name: '枪ID', key: 'none'}
+            {name: '订单号', key: 'ordered'},
+            {name: '订单状态', key: 'orderstate'},
+            {name: '充电开始时间', key: 'startchargetime'},
+            {name: '充电结束时间', key: 'endchargetime'},
+            {name: '充电时长', key: 'chargetime'},
+            {name: '总电量', key: 'chargeamount'},
+            {name: '总价格', key: 'payment'},
+            {name: '支付方式', key: 'paytype'},
+            {name: '用户', key: 'payer'},
+            {name: '枪ID', key: 'gunid'}
         ],
         params: function () {
+            return this.request;
         }.bind(this),
     }
 
@@ -40,7 +42,7 @@ export class TransactionRecordComponent {
     constructor(public activeModal: NgbActiveModal) {}
 
     confirm() {
-        this.activeModal.close(this.editModel);
+        this.activeModal.close();
     }
 
 }

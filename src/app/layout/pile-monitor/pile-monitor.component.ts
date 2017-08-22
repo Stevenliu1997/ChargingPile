@@ -28,8 +28,9 @@ export class PileMonitorComponent implements OnInit {
             {name: '站点名', key: 'sitename'},
             {name: '厂家', isModal: true, action: function(item) {
                 /*打开对应模态框*/
-                const modalRef = this.ngbModal.open(FactoryInformationComponent, {size: 'lg'});
+                const modalRef = this.ngbModal.open(FactoryInformationComponent);
                 modalRef.componentInstance.actionTitle = '查看厂商';
+                modalRef.componentInstance.request.factoryid = item.factoryid;
                 modalRef.result.then(result => {
                     this.refreshGrid();
                 })
@@ -53,6 +54,7 @@ export class PileMonitorComponent implements OnInit {
                 /*打开对应模态框*/
                 const modalRef = this.ngbModal.open(TransactionRecordComponent, {size: 'lg'});
                 modalRef.componentInstance.actionTitle = '查看交易记录';
+                modalRef.componentInstance.request.gunid = item.gunid;
                 modalRef.result.then(result => {
                     this.refreshGrid();
                 })

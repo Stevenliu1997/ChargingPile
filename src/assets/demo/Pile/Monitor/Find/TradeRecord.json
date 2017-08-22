@@ -1,0 +1,33 @@
+{
+    "pageData": [
+        {
+            "ordered": "2015220503008",
+            "orderstate": "付款完成",
+            "startchargetime": "2017-01-01 12:00:00",
+            "endchargetime": "2017-01-01 14:00:00",
+            "chargetime": "2小时",
+            "chargeamount": "100",
+            "payment": "19.8",
+            "paytype": "支付宝",
+            "payer": "魏磊",
+            "gunid": 556
+        },
+        {
+            "ordered": "2015220503019",
+            "orderstate": "未付款",
+            "startchargetime": "2017-01-01 00:00:00",
+            "endchargetime": "2017-05-01 00:00:00",
+            "chargetime": "4个月",
+            "chargeamount": "100W",
+            "payment": "150W",
+            "paytype": "肉偿",
+            "payer": "冯俊钧",
+            "gunid": 250
+        }
+    ],
+    "currentPage": 1,
+    "totalPages": 2,
+    "totalElements": 1,
+    "message": "this is an error!!!",
+    "code": "00"
+}
