@@ -145,9 +145,6 @@ export class SiteEssentialInformationComponent implements OnInit {
     }
     confirmChange() {
         const tempquery = Object.assign({}, Object.assign({}, this.editModel), {siteid: 0});
-        tempquery.provincecity = `${this.editModel.province || ''}${this.editModel.city || ''}`;
-        tempquery.province = undefined;
-        tempquery.city = undefined;
         if (tempquery.isopen === 'true') {
             tempquery.isopen = true;
         } else if (tempquery.isopen === 'false') {

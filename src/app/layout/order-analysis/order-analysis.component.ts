@@ -226,16 +226,32 @@ export class OrderAnalysisComponent implements OnInit {
             keyObj.datasets.push({data: dataTemp, label: currentItem.objectname});
             keyObj.labels = currentItem.time;
             /*TODO 随机一个站点生成颜色，现在全是一种*/
-            keyObj.colors.push({ // grey
-                backgroundColor: 'rgba(148,159,177,0.2)',
-                borderColor: 'rgba(148,159,177,1)',
-                pointBackgroundColor: 'rgba(148,159,177,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-            });
-
-
+            keyObj.colors.push(
+                { // grey
+                    backgroundColor: 'rgba(148,159,177,0.2)',
+                    borderColor: 'rgba(148,159,177,1)',
+                    pointBackgroundColor: 'rgba(148,159,177,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                },
+                { // dark grey
+                    backgroundColor: 'rgba(77,83,96,0.2)',
+                    borderColor: 'rgba(77,83,96,1)',
+                    pointBackgroundColor: 'rgba(77,83,96,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(77,83,96,1)'
+                },
+                { // grey
+                    backgroundColor: 'rgba(148,159,177,0.2)',
+                    borderColor: 'rgba(148,159,177,1)',
+                    pointBackgroundColor: 'rgba(148,159,177,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+                }
+            );
         }
     }
 

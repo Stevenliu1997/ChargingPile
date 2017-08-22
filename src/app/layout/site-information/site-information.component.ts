@@ -36,7 +36,8 @@ export class SiteInformationComponent implements OnInit {
         column: [
             {name: '站点ID', key: 'siteid'},
             {name: '站点名称', key: 'sitename'},
-            {name: '省市', key: 'provincecity'},
+            {name: '站点所在省', key: 'province'},
+            {name: '站点所在市', key: 'city'},
             {name: '站点状态', key: 'state'}
         ],
         params: function () {
@@ -44,17 +45,19 @@ export class SiteInformationComponent implements OnInit {
                 siteid: 0,
                 sitename: '',
                 state: '',
-                provincecity: '',
+                province: '',
+                city: '',
                 district: '',
             };
             tempquery.siteid = parseInt(this.queryModel.siteid, 10);
             tempquery.sitename = this.queryModel.sitename;
             tempquery.state = this.queryModel.state;
+            tempquery.province = this.queryModel.province;
+            tempquery.city = this.queryModel.city;
             tempquery.district = this.queryModel.district;
             if (!tempquery.siteid) {
                 tempquery.siteid = -1;
             }
-            tempquery.provincecity = `${this.queryModel.province || ''}${this.queryModel.city || ''}`;
             return tempquery;
         }.bind(this),
         topActions: [

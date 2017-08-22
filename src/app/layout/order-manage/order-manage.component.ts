@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
-import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {URLSearchParams} from '@angular/http'
 
 
@@ -25,15 +24,15 @@ export class OrderManageComponent implements OnInit {
     config: object = {
         url: 'ReserveForm/Find',
         column: [
-            {name: '预订单ID', key: 'reseverid'},
-            {name: '创建时间', key: 'createTime'},
+            {name: '预订单ID', key: 'reserveid'},
+            {name: '创建时间', key: 'createtime'},
             {name: '创建人', key: 'user'},
             {name: '使用时间', key: 'usetime'},
             {name: '联系方式', key: 'phone'},
             {name: '站点', key: 'pileid'},
             {name: '充电桩', key: 'siteid'},
             {name: '充电枪', key: 'gunid'},
-            {name: '充电状态', key: 'reseverstate'},
+            {name: '充电状态', key: 'reservestate'},
             {name: '取消原因', key: 'reason'}
         ],
         params: function () {
@@ -41,31 +40,31 @@ export class OrderManageComponent implements OnInit {
         }.bind(this),
     };
 
-    constructor( private customHttpClient: CustomHttpClient) {
+    constructor( ) {
     }
 
     ngOnInit() {
     }
 
-    refreshGrid(){
+    refreshGrid() {
         this.datagridComponent.refreshGrid();
     }
 
-    blankinit(){
-        this.queryModel.rechargename='';
-        this.queryModel.ordernumber='';
-        this.queryModel.stime='';
-        this.queryModel.etime='';
+    blankinit() {
+        this.queryModel.rechargename = '';
+        this.queryModel.ordernumber = '';
+        this.queryModel.startTime = '';
+        this.queryModel.endTime = '';
     }
 
-    exportGrid(){
+    exportGrid() {
         let options = this.queryModel;
 
         let params = new URLSearchParams();
-        for(let key in options){
+        for (let key in options) {
             params.set(key, options[key])
         }
-        let URL = "ReserveForm/Export?"+params.toString();
+        let URL = 'ReserveForm/Export?' + params.toString();
         window.open(URL);
     }
 }

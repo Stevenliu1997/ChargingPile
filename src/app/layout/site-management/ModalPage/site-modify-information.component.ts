@@ -35,9 +35,6 @@ export class SiteModifyInformationComponent {
     add(obj: any) {
         const tempResult = Object.assign({}, obj);
         tempResult.siteid = -1;
-        tempResult.provincecity = `${tempResult.province || ''}${tempResult.city || ''}`;
-        tempResult.province = undefined;
-        tempResult.city = undefined;
         const date = new Date();
         const time = date.getFullYear() + '-' + (date.getMonth() - 1) + '-' + date.getDate() + ' '
             + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
@@ -51,9 +48,6 @@ export class SiteModifyInformationComponent {
     update(obj: any) {
         const tempResult = Object.assign({}, obj);
         tempResult.siteid = -1;
-        tempResult.provincecity = `${tempResult.province || ''}${tempResult.city || ''}`;
-        tempResult.province = undefined;
-        tempResult.city = undefined;
         this.customHttpClient.post('Site/Update', tempResult).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);

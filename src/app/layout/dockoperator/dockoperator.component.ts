@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {routerTransition} from '../../router.animations';
-import {DatagridComponent} from "../../shared/components/widget/datagrid/datagrid.component";
-import {DockoperatorEditComponent} from "./dockoperator-edit.component";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
+import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
+import {DockoperatorEditComponent} from './dockoperator-edit.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
 
 @Component({
     selector: 'app-tables',
@@ -30,11 +30,11 @@ export class DockoperatorComponent implements OnInit {
             {name: '联系人', key: 'contactor'},
             {name: '手机号', key: 'phone'},
             {name: '锁定状态', key: 'state'},
-            {name: '备注信息', key :'remark'}
+            {name: '备注信息', key : 'remark'}
         ],
         params: function () {
-            let queryModel = Object.assign({},this.queryModel);
-            if (!queryModel.operatorid){
+            let queryModel = Object.assign({}, this.queryModel);
+            if (!queryModel.operatorid) {
                 queryModel.operatorid = -1;
             }
             return queryModel;
@@ -48,7 +48,6 @@ export class DockoperatorComponent implements OnInit {
                     const modalRef = this.ngbModal.open(DockoperatorEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
-                        result.operatorid = -1;
                         this.refreshGrid();
                     },
                     error => {})
@@ -61,7 +60,7 @@ export class DockoperatorComponent implements OnInit {
                     console.log(ids);
                 }.bind(this),
                 autoConfig: {
-                    url:'Operator/Delete'
+                    url: 'Operator/Delete'
                 }
             }
         ],
@@ -89,11 +88,11 @@ export class DockoperatorComponent implements OnInit {
     ngOnInit() {
     }
 
-    refreshGrid(){
+    refreshGrid() {
         this.datagridComponent.refreshGrid();
     }
 
-    blankGrid(){
+    blankGrid() {
         this.queryModel = {};
     }
 }

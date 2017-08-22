@@ -7,6 +7,12 @@
 <div class="modal-body">
     <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
+            <label for="pileid-text-input" class="col-2 col-form-label">设备ID</label>
+            <div class="col-10">
+                <input [(ngModel)] = 'editModel.pileid' id="pileid-text-input" name="editModel.pileid" class="form-control" validationMsg required maxlength="50">
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="pilename-text-input" class="col-2 col-form-label">设备名称</label>
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.pilename' id="pilename-text-input" name="editModel.pilename" class="form-control" validationMsg required maxlength="50">
@@ -47,9 +53,13 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="interfacetype-text-input" class="col-2 col-form-label">接口类型</label>
+            <label for="interfacetype-select-input" class="col-2 col-form-label">接口类型</label>
             <div class="col-10">
-                <input [(ngModel)] = 'editModel.interfacetype' id="interfacetype-text-input" name="editModel.interfacetype" class="form-control" validationMsg required maxlength="50">
+                <select [(ngModel)] = 'editModel.interfacetype' id="interfacetype-select-input" name="editModel.interfacetype" class="form-control" validationMsg required>
+                    <option value="">请选择</option>
+                    <option value="type1">type1</option>
+                    <option value="type2">type2</option>
+                </select>
             </div>
         </div>
         <div class="form-group row">

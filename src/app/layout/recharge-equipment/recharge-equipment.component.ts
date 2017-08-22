@@ -113,7 +113,7 @@ export class RechargeEquipmentComponent implements OnInit {
     ngOnInit() {
     }
 
-    refreshGrid(){
+    refreshGrid() {
         this.datagridComponent.refreshGrid();
     }
 
