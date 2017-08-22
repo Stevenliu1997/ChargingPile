@@ -1,8 +1,6 @@
 <div [@routerTransition] content="main-section">
     <app-page-header [heading]="'订单分析'" [icon]="'fa-table'"></app-page-header>
-
     <div content="main-content container">
-
         <ngb-tabset [destroyOnHide]="false" (tabChange)="beforeChange($event)">
             <ngb-tab title="订单量统计" id="orderstatistics">
                 <ng-template ngbTabContent>
@@ -17,7 +15,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <label class="col-2 col-form-label">充电站</label>
                                 <div class="col-10">
@@ -40,7 +37,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="query-section row breadcrumb mx-xl-0">
                         <div class="col-9">
                             <div class="row mb-3">
@@ -62,10 +58,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="row" *ngIf="chartConfig.orderCount.datasets">
                         <div class="col-md-6">
                             <div style="display: block;">
@@ -80,9 +72,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="mt-2">
                         <app-datagrid #orderCount [config]="datagridConfigs.orderCount"></app-datagrid>
                     </div>
@@ -101,7 +90,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <label class="col-2 col-form-label">充电站</label>
                                 <div class="col-10">
@@ -124,7 +112,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="query-section row breadcrumb mx-xl-0">
                         <div class="col-9">
                             <div class="row mb-3">
@@ -146,10 +133,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="row" *ngIf="chartConfig.chargingCount.datasets">
                         <div class="col-md-6">
                             <div style="display: block;">
@@ -164,9 +147,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="mt-2">
                         <app-datagrid #chargingCount [config]="datagridConfigs.chargingCount"></app-datagrid>
                     </div>
@@ -185,7 +165,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <label class="col-2 col-form-label">充电站</label>
                                 <div class="col-10">
@@ -208,7 +187,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="query-section row breadcrumb mx-xl-0">
                         <div class="col-9">
                             <div class="row mb-3">
@@ -230,10 +208,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="row" *ngIf="chartConfig.moneyCount.datasets">
                         <div class="col-md-6">
                             <div style="display: block;">
@@ -248,9 +222,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="mt-2">
                         <app-datagrid #moneyCount [config]="datagridConfigs.moneyCount"></app-datagrid>
                     </div>
