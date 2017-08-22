@@ -24,12 +24,11 @@ export class FactorySettingsEditComponent {
         if(this.editForm.form.invalid){
             return;
         }
-        this.addProgram(this.editModel);
+        this.update(this.editModel);
     }
 
-    addProgram(program: any){
-        program.programid=-1;
-        this.customHttpClient.post('Program/Add', program).subscribe(result => {
+    update(factoryset: any){
+        this.customHttpClient.post('factoryset/update', factoryset).subscribe(result => {
             if(result.code == '00')
                 this.activeModal.close();
         })

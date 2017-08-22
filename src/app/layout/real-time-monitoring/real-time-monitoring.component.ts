@@ -10,26 +10,49 @@ import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
     animations: [routerTransition()]
 })
 export class RealTimeMonitoringComponent implements OnInit {
+    chartsModel: any = {
+    };
     //地图
     opts: any;
     offlineOpts: OfflineOptions;
     ngOnInit() {
         this.opts = {
             center: {
-                longitude: 121.506191,     //经度
-                latitude: 31.245554        //纬度
+                longitude: 100.506191,
+                latitude: 30.245554,       //纬度
             },
-            zoom: 1,   //变焦
+            zoom: 6,   //变焦
             markers: [
                 { //标记
+                    longitude: 100.506191,
+                    latitude: 30.245554,
+                    title: 'Where',
+                    content: 'Put description here',
+                    enableDragging: false
+                },
+                { //标记
                     longitude: 121.506191,
-                    latitude: 31.245554,
+                    latitude: 32.245554,
+                    title: 'Where',
+                    content: 'Put description here',
+                    enableDragging: false
+                },
+                {
+                    longitude: 122.506191,
+                    latitude: 34.245554,
                     title: 'Where',
                     content: 'Put description here',
                     enableDragging: false
                 },
                 {
                     longitude: 123.506191,
+                    latitude: 34.245554,
+                    title: 'Where',
+                    content: 'Put description here',
+                    enableDragging: false
+                },
+                {
+                    longitude: 124.506191,
                     latitude: 34.245554,
                     title: 'Where',
                     content: 'Put description here',
@@ -49,15 +72,14 @@ export class RealTimeMonitoringComponent implements OnInit {
                 type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE
             }
         };
+
+
         this.offlineOpts = {//重试间隔
             retryInterval: 5000,
             txt: 'NO-NETWORK'
         };
         //图表
-        this.timesChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.amountChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.userChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.reduceChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
+        this.formdata();
     }
 
     loadMap(map: any) {
@@ -74,6 +96,7 @@ export class RealTimeMonitoringComponent implements OnInit {
 
 
     //柱状图
+    public barChartData:any[] = [{data: [],label: ''} ];
     timesChart: any = [{data: []}];  //充电次数
     amountChart: any = [{data: []}];//充电量
     userChart: any = [{data: []}];//用户数
@@ -121,13 +144,17 @@ export class RealTimeMonitoringComponent implements OnInit {
         }
     ];
 
-
-    public barChartData:any[] = [
-        {data: [65, 59, 80, 81, 56, 55, 40, 30], label: '今日在线桩数'},
-        {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
-        {data: [20, 30],label:'今日故障桩数' }
-    ];
-
+    formdata(){
+        this.barChartData = [
+            {data: [65, 59, 80, 81, 56, 55, 40, 30], label: '今日在线桩数'},
+            {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
+            {data: [20, 30],label:'今日故障桩数' }
+        ];
+        this.timesChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
+        this.amountChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
+        this.userChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
+        this.reduceChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
+    }
 
     // events
     public chartClicked(e:any):void {
@@ -158,4 +185,5 @@ export class RealTimeMonitoringComponent implements OnInit {
          * assign it;
          *!/
     }*/
+
 }

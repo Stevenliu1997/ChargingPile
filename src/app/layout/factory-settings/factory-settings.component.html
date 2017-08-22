@@ -7,17 +7,17 @@
                 <div class="row ">
                     <div class="col-5">
                         <div class="row form-group">
-                            <label for="" class="col-4 col-form-label">充电站</label>
+                            <label for="sitename" class="col-4 col-form-label">充电站</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="" [(ngModel)]="queryModel.pileid" name="queryModel.pileid" maxlength="50">
+                                <input class="form-control" type="text" id="sitename" [(ngModel)]="queryModel.sitename" name="queryModel.sitename" maxlength="50">
                             </div>
                         </div>
                     </div>
                     <div class="col-5">
                         <div class="row">
-                            <label for="pilename" class="col-4 col-form-label">MAC地址</label>
+                            <label for="mac" class="col-4 col-form-label">MAC地址</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" id="pilename" [(ngModel)]="queryModel.pilename" name="queryModel.pilename" maxlength="50">
+                                <input class="form-control" type="text" id="mac" [(ngModel)]="queryModel.mac" name="queryModel.mac">
                             </div>
                         </div>
                     </div>
@@ -26,9 +26,9 @@
                 <div class="row form-group">
                     <div class="col-5">
                         <div class="row">
-                            <label for="factoryid" class="col-4 col-form-label">桩ID</label>
+                            <label for="pileid" class="col-4 col-form-label">桩ID</label>
                             <div class="col-8">
-                                <input class="form-control" type="number" id="factoryid" [(ngModel)]="queryModel.factoryid" name="queryModel.factoryid" max="2147483647">
+                                <input class="form-control" type="text" id="pileid" [(ngModel)]="queryModel.pileid" name="queryModel.pileid" maxlength="50">
                             </div>
                         </div>
                     </div>
@@ -38,9 +38,9 @@
                             <div class="col-8">
                                 <select class="form-control" id="state" [(ngModel)]="queryModel.state" name="queryModel.state">
                                     <option value=''>请选择</option>
-                                    <option value="调试中">调试中</option>
-                                    <option value="故障">故障</option>
-                                    <option value="正常运行">正常运行</option>
+                                    <option value="1">调试中</option>
+                                    <option value="2">故障</option>
+                                    <option value="3">正常运行</option>
                                 </select>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         <button type="submit" class="btn btn-primary" (click)="refreshGrid()">查询</button>
                     </div>
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary" (click)="export()">导出</button>
+                        <button type="submit" class="btn btn-primary" (click)="exportGrid()">导出</button>
                     </div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary" (click)="clear()">清空</button>

@@ -1,0 +1,20 @@
+{
+    "code": "00",
+    "pageData": [
+        {
+            "pileid ": "1",
+            "gunid": "2",
+            "haslock": true,
+            " hasgun": true,
+            "pilename":"3",
+            "mac": "4",
+            "version": "固件版本",
+            "state": "状态",
+            "qrcode": "二维码路径"
+        }
+    ],
+    "currentPage": "2",
+    "totalPages": "3",
+    "totalElements": "4",
+    "message":"1"
+}

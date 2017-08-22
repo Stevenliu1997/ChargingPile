@@ -16,41 +16,28 @@ export class FactorySettingsComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     //查询对象
     queryModel: any = {
-
+        state: ''
     };
     // datagrid 配置
     config: object = {
-        key: '',
-        url: '',    //和后端交互URL
+        key: ['pileid','gunid'],
+        url: 'factoryset/find',    //和后端交互URL
         column: [
-            {name: '枪ID', key: 'programid'},
-            {name: '桩ID', key: 'version'},
-            {name: '地锁', key: 'programname'},
-            {name: '是否带枪', key: 'programname'},
-            {name: '设备名称', key: 'programname'},
-            {name: 'MAC地址', key: 'programname'},
-            {name: '固件版本', key: 'programname'},
-            {name: '状态', key: 'programname'},
-            {name: '二维码', key: 'programname'}
+            {name: '枪ID', key: 'gunid'},
+            {name: '桩ID', key: 'pileid'},
+            {name: '地锁', key: '"haslock'},
+            {name: '是否带枪', key: 'hasgun'},
+            {name: '设备名称', key: 'pilename'},
+            {name: 'MAC地址', key: 'mac'},
+            {name: '固件版本', key: 'version'},
+            {name: '状态', key: 'state'},
+            {name: '二维码', key: 'qrcode'}
         ],
         // 与后端交互，queryModel.name
         params: function () {
             return this.queryModel;
         }.bind(this),
-/*        topActions: [
-            {
-                type: 'add',
-                name: '添加',
-                allowEmpty: true,
-                action: function (ids) {
-                    const modalRef = this.ngbModal.open(FactorySettingsEditComponent);
-                    modalRef.componentInstance.actionTitle = '添加';
-                    modalRef.result.then(result => {
-                        this.refreshGrid();
-                    },error =>{})
-                }.bind(this)
-            }
-        ],*/
+
         rowActions: [
              {
                  type: 'edit',
@@ -59,7 +46,7 @@ export class FactorySettingsComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '修改';
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
-                         this.updateProgram(result);
+                         this.refreshGrid();
                      },error => {})
                  }.bind(this)
              },
@@ -70,7 +57,7 @@ export class FactorySettingsComponent implements OnInit {
                     console.log(item);
                 }.bind(this),
                 autoConfig: {
-                    url:'Program/Delete'
+                    url:'factoryset/delete'
                 }
             }
         ]
@@ -90,5 +77,15 @@ export class FactorySettingsComponent implements OnInit {
 
     clear(){
         this.queryModel={};
+        this.queryModel.state='';
+    }
+    exportGrid(){
+        let options = this.queryModel;
+        let params = new URLSearchParams();
+        for(let key in options){
+            params.set(key, options[key])
+        }
+        let URL = "factoryset/getexcel?"+params.toString();
+        window.open(URL);
     }
 }

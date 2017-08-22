@@ -1,0 +1,52 @@
+{
+    "code":"00",
+    "message":"ok",
+    "numdata":{
+        "todayonlinenumbers":12,
+        "yesterdayonlinenumbers":10,
+        "todayusetimes":20,
+        "yesterdayusetimes":21,
+        "todayerrornum":21,
+        "yesterdayerrornum":12,
+        "todayusernumbers":10,
+        "yesterdayusernumbers":10,
+        "todayamount":100,
+        "yesterdayamount":110,
+        "todaychargetimes":121,
+        "yesterdaychargetimes":123
+    },
+
+    "chartdata":[
+        {
+            "datatype":"今日充电次数",
+            "data":[1,2,3],
+            "time":["0:00","3:00","6:00"]
+        },
+
+        {
+            "datatype":"今日充电量",
+            "data":[1,2,3],
+            "time":["0:00","3:00","6:00"]
+        },
+        {
+            "datatype":"今日用户数",
+            "data":[1,2,3],
+            "time":["0:00","3:00","6:00"]
+        },
+        {
+            "datatype":"今日在线桩数",
+            "data":[1,2,3],
+            "time":["0:00","3:00","6:00"]
+        },
+        {
+            "datatype":"今日使用桩数",
+            "data":[1,2,3],
+            "time":["0:00","3:00","6:00"]
+        },
+        {
+            "datatype":"今日故障桩数",
+            "data":[1,2,3],
+            "time":["0:00","3:00","6:00"]
+        }
+    ]
+}

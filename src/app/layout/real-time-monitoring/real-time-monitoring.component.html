@@ -4,7 +4,7 @@
         <ngb-tabset [destroyOnHide]="false">
             <ngb-tab title="动态数据" id="date">
                 <ng-template ngbTabContent>
-                    <div class="query-section  breadcrumb mx-xl-0">
+                    <div class="query-section breadcrumb mx-xl-0">
                         <div class="row">
                             <div class="col-9">
                                 <div>
@@ -25,21 +25,21 @@
                             <div class="col-3">
                                 <div class="blueborder">
                                     <div>今日在线总数</div>
-                                    <div style="color: #00b3ee;">0</div>
+                                    <div style="color: #00b3ee;">{{chartsModel.todayonlinenumbers}}</div>
                                     <div>昨日在线总数</div>
-                                    <div>0</div>
+                                    <div>{{chartsModel.yesterdayonlinenumbers}}</div>
                                 </div>
                                 <div class="greenborder">
-                                    <div>今日在线总数</div>
-                                    <div style="color: #5cb85c" >0</div>
-                                    <div>昨日在线总数</div>
-                                    <div>0</div>
+                                    <div>今日使用总数</div>
+                                    <div style="color: #5cb85c" >{{chartsModel.todayusetimes}}</div>
+                                    <div>昨日使用总数</div>
+                                    <div>{{chartsModel.yesterdayusetimes}}</div>
                                 </div>
                                 <div class="redborder">
-                                    <div>今日在线总数</div>
-                                    <div style="color: #d9534f" >0</div>
-                                    <div>昨日在线总数</div>
-                                    <div>0</div>
+                                    <div>今日故障总数</div>
+                                    <div style="color: #d9534f" >{{chartsModel.todayerrornum}}</div>
+                                    <div>昨日故障总数</div>
+                                    <div>{{chartsModel.yesterdayerrornum}}</div>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,13 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div>
-                                        <div>今日充电次数（次）</div>
+                                        <div class="row">
+                                            <div class="col-8">今日充电次数（次）</div>
+                                            <div col-4>
+                                                <div>今日:{{chartsModel.todaychargetimes}}</div>
+                                                <div>昨日:{{chartsModel.todaychargetimes}}</div>
+                                            </div>
+                                        </div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="timesChart"
@@ -63,7 +69,13 @@
                                 </div>
                                 <div class="col-4 offset-1">
                                     <div>
-                                        <div>今日充电量（Kw/h）</div>
+                                        <div class="row">
+                                            <div class="col-8">今日充电量（Kw/h）</div>
+                                            <div col-4>
+                                                <div>今日:{{chartsModel.todayamount}}</div>
+                                                <div>昨日:{{chartsModel.yesterdayamount}}</div>
+                                            </div>
+                                        </div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="amountChart"
@@ -81,7 +93,14 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div>
-                                        <div>今日用户数（位）</div>
+                                        <div class="row">
+                                            <div class="col-8">今日用户数（位）</div>
+                                            <div col-4>
+                                                <div>今日:{{chartsModel.todayusernumbers}}</div>
+                                                <div>昨日:{{chartsModel.yesterdayusernumbers}}</div>
+                                            </div>
+                                        </div>
+
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="userChart"
@@ -97,7 +116,13 @@
                                 </div>
                                 <div class="col-4 offset-1">
                                     <div>
-                                        <div>今日减少排碳量（吨）</div>
+                                        <div class="row">
+                                            <div class="col-8">今日减少排碳量（吨））</div>
+                                            <div col-4>
+                                                <div>今日:0</div>
+                                                <div>昨日:0</div>
+                                            </div>
+                                        </div>
                                         <div style="display: block;">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="reduceChart"
@@ -121,26 +146,33 @@
                     <div class="query-section  breadcrumb mx-xl-0">
                         <div class="row">
                             <div class="col-9">
-                                <baidu-map ak="put your ak here" [options]="opts" [offline]="offlineOpts" (onMapLoaded)="loadMap($event)" (onMarkerClicked)="clickMarker($event)" (onClicked)="clickmap($event)" ></baidu-map>
+                                <baidu-map id="allmap"
+                                           ak="put your ak here"
+                                           [options]="opts"
+                                           [offline]="offlineOpts"
+                                           (onMapLoaded)="loadMap($event)"
+                                           (onMarkerClicked)="clickMarker($event)"
+                                           (onClicked)="clickmap($event)" >
+                                </baidu-map>
                             </div>
                             <div class="col-3">
                                 <div class="blueborder">
                                     <div>今日在线总数</div>
-                                    <div style="color: #00b3ee;">0</div>
+                                    <div style="color: #00b3ee;">{{chartsModel.todayonlinenumbers}}</div>
                                     <div>昨日在线总数</div>
-                                    <div>0</div>
+                                    <div>{{chartsModel.yesterdayonlinenumbers}}</div>
                                 </div>
                                 <div class="greenborder">
-                                    <div>今日在线总数</div>
-                                    <div style="color: #5cb85c" >0</div>
-                                    <div>昨日在线总数</div>
-                                    <div>0</div>
+                                    <div>今日使用总数</div>
+                                    <div style="color: #5cb85c" >{{chartsModel.todayusetimes}}</div>
+                                    <div>昨日使用总数</div>
+                                    <div>{{chartsModel.yesterdayusetimes}}</div>
                                 </div>
                                 <div class="redborder">
-                                    <div>今日在线总数</div>
-                                    <div style="color: #d9534f" >0</div>
-                                    <div>昨日在线总数</div>
-                                    <div>0</div>
+                                    <div>今日故障总数</div>
+                                    <div style="color: #d9534f" >{{chartsModel.todayerrornum}}</div>
+                                    <div>昨日故障总数</div>
+                                    <div>{{chartsModel.yesterdayerrornum}}</div>
                                 </div>
                             </div>
                         </div>
