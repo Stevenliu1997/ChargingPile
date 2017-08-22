@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 import {routerTransition} from '../../router.animations';
+import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -145,6 +146,7 @@ export class RealTimeMonitoringComponent implements OnInit {
     ];
 
     formdata(){
+        var ws = new $WebSocket("url");
         this.barChartData = [
             {data: [65, 59, 80, 81, 56, 55, 40, 30], label: '今日在线桩数'},
             {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
