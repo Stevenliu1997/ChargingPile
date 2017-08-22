@@ -34,8 +34,8 @@
                             <div class="col-8">
                                 <select id="district-select-input" [(ngModel)]="queryModel.district" name="queryModel.district" class="form-control">
                                     <option value="">请选择</option>
-                                    <option value="成华">成华</option>
-                                    <option value="莲池">莲池</option>
+                                    <option value="成华" (click)="sitename()">成华</option>
+                                    <option value="莲池" (click)="sitename()">莲池</option>
                                 </select>
                             </div>
                         </div>
@@ -48,12 +48,9 @@
                             <label for="sitename-select-input" class="col-4 col-form-label">站点名称</label>
                             <div class="col-8">
                                 <select id="sitename-select-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename" class="form-control">
-                                    <option value="">请选择</option>
-                                    <option value="站点1">站点1</option>
-                                    <option value="站点2">站点2</option>
-                                    <option value="站点3">站点2</option>
-                                    <option value="站点4">站点2</option>
-                                    <option value="站点5">站点2</option>
+                                    <option *ngIf="SiteName.length <= 0" value="">请正确选择省市区</option>
+                                    <option *ngIf="SiteName.length > 0" value="">请选择</option>
+                                    <option *ngFor="let sitename of SiteName" value="sitename">{{sitename}}</option>
                                 </select>
                             </div>
                         </div>

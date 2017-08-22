@@ -14,6 +14,7 @@ import {StatusInformationComponent} from './ModalPage/status-information.compone
     animations: [routerTransition()]
 })
 export class PileMonitorComponent implements OnInit {
+    /*查询对象*/
     queryModel: any = {};
     url: string;
     pageParams: any = {};
@@ -21,6 +22,8 @@ export class PileMonitorComponent implements OnInit {
     pageArr: any = [];
     key: string;
     fetchedData: any = [];
+    /*查询到的站点名称数组*/
+    SiteName: any = [];
     config: any = {
         key: '',
         url: 'Site_Pile_Gun/Find',
@@ -160,5 +163,21 @@ export class PileMonitorComponent implements OnInit {
                 case 'parking': return 'fa-car';
             }
         }
+    }
+    /*发送查询站点名称的请求将站点名称显示在下拉菜单中*/
+    sitename() {
+        let tempObj = {
+            province: '',
+            city: '',
+            district: ''
+        }
+        tempObj.province = this.queryModel.province;
+        tempObj.city = this.queryModel.city;
+        tempObj.district = this.queryModel.district;
+        this.httpClient.post('SiteName/Find', tempObj).subscribe(result => {
+            if (result.code === '00') {
+                this.SiteName = result.data;
+            }
+        })
     }
 }
