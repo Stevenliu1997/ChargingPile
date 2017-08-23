@@ -17,7 +17,7 @@ export class OrderQueryDetailComponent implements OnInit {
             .subscribe(result => {
                 if(result.code === '00'){
                     this.displayData = result.data;
-                    this.displayData.create=this.displayData.createtime+" "+this.displayData.createdate;
+                    this.displayData.create=this.displayData.createdate+" "+this.displayData.createtime;
                 }
             });
     }
