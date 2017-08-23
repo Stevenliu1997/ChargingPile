@@ -149,7 +149,7 @@ export class OrderAnalysisComponent implements OnInit {
                     tempObj.objectname.splice(0, tempObj.objectname.length);
                     for (let i = 0; i < this.queryModel[tabConfig.key].objectname.length; i++) {
                         if (this.queryModel[tabConfig.key].objectname[i] === true) {
-                            tempObj.objectname.push(this.sites[i]);
+                            tempObj.objectname.push(this.sites[i].name);
                         }
                     }
                     return tempObj;
@@ -199,7 +199,7 @@ export class OrderAnalysisComponent implements OnInit {
         tempObj.objectname.splice(0, tempObj.objectname.length);
         for (let i = 0; i < this.queryModel[key].objectname.length; i++) {
             if (this.queryModel[key].objectname[i] === true) {
-                tempObj.objectname.push(this.sites[i]);
+                tempObj.objectname.push(this.sites[i].name);
             }
         }
         let keyObj = this.chartConfig[key];

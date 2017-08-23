@@ -49,7 +49,7 @@
                                 <select id="sitename-select-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename" class="form-control">
                                     <option *ngIf="SiteName.length <= 0" value="">请选择省市区</option>
                                     <option *ngIf="SiteName.length > 0" value="">请选择</option>
-                                    <option *ngFor="let sitename of SiteName" value="sitename">{{sitename}}</option>
+                                    <option *ngFor="let sitename of SiteName" value="{{sitename}}">{{sitename}}</option>
                                 </select>
                             </div>
                         </div>
