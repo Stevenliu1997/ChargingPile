@@ -46,8 +46,8 @@ export class SiteModifyInformationComponent {
         })
     }
     update(obj: any) {
-        const tempResult = Object.assign({}, obj);
-        tempResult.siteid = -1;
+        const tempResult = Object.assign({}, obj, {siteid: 0});
+        tempResult.siteid = parseInt(obj.siteid, 10);
         this.customHttpClient.post('Site/Update', tempResult).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close(this.editModel);
