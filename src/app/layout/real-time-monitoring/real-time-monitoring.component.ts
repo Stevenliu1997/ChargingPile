@@ -3,6 +3,7 @@ import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-b
 import {routerTransition} from '../../router.animations';
 import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import {send} from "q";
 
 @Component({
     selector: 'map-presentation',
@@ -146,8 +147,56 @@ export class RealTimeMonitoringComponent implements OnInit {
     ];
 
     formdata(){
-        var ws = new $WebSocket("url");
-        this.barChartData = [
+        console.log("123132");
+        let ws = new $WebSocket("realtimemonitor");
+        ws.onOpen("");
+/*        ws.onMessage(
+            (msg: any)=> {
+                console.log("123132");
+                if(msg.code == "00"){
+                    console.log("123132", msg.chartdata);
+                    this.timesChart[0].data = msg.chartdata[0].data;
+                    this.amountChart[0].data = msg.chartdata[1].data;
+                    this.userChart[0].data = msg.chartdata[2].data;
+                    this.barChartData[0].data = msg.chartdata[3].data;
+                    this.barChartData[1].data = msg.chartdata[4].data;
+                    this.barChartData[2].data = msg.chartdata[5].data;
+
+                    this.barChartData[0].label = msg.chartdata[3].datatype;
+                    this.barChartData[1].label = msg.chartdata[4].datatype;
+                    this.barChartData[2].label = msg.chartdata[5].datatype;
+                }
+            },
+            {autoApply: false}
+        );*/
+        ws.getDataStream().subscribe(
+            (msg)=> {
+                console.log("123132");
+                console.log("next", msg.data);
+                if(msg.code == "00"){
+                    console.log("123132", msg.chartdata);
+                    this.chartsModel = msg.numdata;
+                    this.timesChart[0].data = msg.chartdata[0].data;
+                    this.amountChart[0].data = msg.chartdata[1].data;
+                    this.userChart[0].data = msg.chartdata[2].data;
+                    this.barChartData[0].data = msg.chartdata[3].data;
+                    this.barChartData[1].data = msg.chartdata[4].data;
+                    this.barChartData[2].data = msg.chartdata[5].data;
+
+                    this.barChartData[0].label = msg.chartdata[3].datatype;
+                    this.barChartData[1].label = msg.chartdata[4].datatype;
+                    this.barChartData[2].label = msg.chartdata[5].datatype;
+                }
+            },
+            (msg)=> {
+                console.log("error", msg);
+            },
+            ()=> {
+                console.log("complete");
+            }
+        );
+
+/*        this.barChartData = [
             {data: [65, 59, 80, 81, 56, 55, 40, 30], label: '今日在线桩数'},
             {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
             {data: [20, 30],label:'今日故障桩数' }
@@ -155,7 +204,7 @@ export class RealTimeMonitoringComponent implements OnInit {
         this.timesChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
         this.amountChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
         this.userChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.reduceChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
+        this.reduceChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];*/
     }
 
     // events
