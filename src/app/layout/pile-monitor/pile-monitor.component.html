@@ -44,12 +44,12 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="row">
-                            <label for="sitename-select-input" class="col-4 col-form-label">站点名称</label>
+                            <label for="site-select-input" class="col-4 col-form-label">站点名称</label>
                             <div class="col-8">
-                                <select id="sitename-select-input" [(ngModel)]="queryModel.sitename" name="queryModel.sitename" class="form-control">
+                                <select id="site-select-input" [(ngModel)]="queryModel.siteid" name="queryModel.siteid" class="form-control">
                                     <option *ngIf="SiteName.length <= 0" value="">请选择省市区</option>
                                     <option *ngIf="SiteName.length > 0" value="">请选择</option>
-                                    <option *ngFor="let sitename of SiteName" value="sitename">{{sitename}}</option>
+                                    <option *ngFor="let sitename of SiteName" value="{{sitename.id}}">{{sitename.name}}</option>
                                 </select>
                             </div>
                         </div>

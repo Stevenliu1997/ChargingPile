@@ -84,7 +84,9 @@ export class PileMonitorComponent implements OnInit {
         pageSize: 20,
         pageSizes: [20, 50, 100],
         params: function () {
-            return this.queryModel;
+            let tempObj = Object.assign({}, this.queryModel, {siteid: 0});
+            tempObj.siteid = parseInt(this.queryModel.siteid, 10);
+            return tempObj;
         }.bind(this),
     };
 
@@ -111,7 +113,7 @@ export class PileMonitorComponent implements OnInit {
         this.queryModel.province = '';
         this.queryModel.city = '';
         this.queryModel.district = '';
-        this.queryModel.sitename = '';
+        this.queryModel.siteid = '';
     }
     public loadData(ur: string, params?: object, pageParams?: any): void {
         this.httpClient.post(this.config.url, Object.assign({}, params, Object.assign({}, this.pageParams, pageParams)))
