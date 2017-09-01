@@ -8,6 +8,7 @@ import {ConfirmConfirComponent} from "./confirm-service/confirm-confir.component
 import {ConfirmService} from "./confirm-service/confirm.service";
 import {CRUDService} from "./crud-service/crud.service";
 import {FormsModule} from "@angular/forms";
+import {CityService} from "./city-service/city-service";
 /**
  * Created by thundersoft on 2017/7/24.
  */
@@ -24,6 +25,7 @@ import {FormsModule} from "@angular/forms";
         CustomHttpClient,
         ConfirmService,
         CRUDService,
+        CityService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: CustomInterceptor,

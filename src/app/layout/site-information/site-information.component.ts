@@ -11,6 +11,7 @@ import {SiteEssentialInformationComponent} from './site-management-modal/site-es
 import {ChargingRuleEditComponent} from './charging-rule-modal/charging-rule-edit.component';
 import {ChargingRuleInformationComponent} from './charging-rule-modal/charging-rule-information.component';
 import {ChargingRuleUpdateComponent} from './charging-rule-modal/charging-rule-update.component';
+import {CityService} from "../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-site-information',
@@ -28,6 +29,9 @@ export class SiteInformationComponent implements OnInit {
 
     queryModel: any = {};
     Operator: any = {};
+
+    citys: any = [];
+    areas: any = [];
 
     /*站点管理*/
     siteMConfig: object = {
@@ -322,7 +326,8 @@ export class SiteInformationComponent implements OnInit {
         private ngbModal: NgbModal,
         private customHttpClient: CustomHttpClient,
         public toastr: ToastsManager,
-        vcr: ViewContainerRef
+        vcr: ViewContainerRef,
+        public cityService: CityService
     ) {
         this.toastr.setRootViewContainerRef(vcr);
     }
