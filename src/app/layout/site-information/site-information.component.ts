@@ -117,7 +117,7 @@ export class SiteInformationComponent implements OnInit {
     /*计费规则管理*/
     chargingRConfig: object = {
         url: 'ChargingRule/Find',
-        key: 'data',
+        key: 'ruleid',
         column: [
             {name: '计费规则名称', key: 'rulename'},
             {name: '版本号', key: 'version'},
