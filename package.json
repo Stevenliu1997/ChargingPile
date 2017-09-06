@@ -28,11 +28,13 @@
     "angular2-baidu-map": "^3.0.2",
     "angular2-websocket": "^0.9.3",
     "core-js": "^2.4.1",
+    "echarts": "^3.7.1",
     "echarts-ng2": "^1.4.1",
     "font-awesome": "^4.7.0",
     "ng2-charts": "^1.6.0",
     "ng2-file-upload": "^1.2.1",
     "ng2-toastr": "^4.1.2",
+    "ngx-echarts": "^1.2.4",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.4"
   },
