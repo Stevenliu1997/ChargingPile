@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../router.animations';
 import {HttpClient} from '@angular/common/http';
-
+import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 
 @Component({
     selector: 'realtime-monitor',
@@ -12,9 +12,12 @@ import {HttpClient} from '@angular/common/http';
 export class BigScreenComponent implements OnInit {
 
     chartOption: any;
+    dashboardOption: any;
     echartsIntance: any;
     //坐标
     geoCoord: any;
+    chartsModel: any = {
+    };
 
     constructor(private httpClient: HttpClient) {
     }
@@ -47,8 +50,99 @@ export class BigScreenComponent implements OnInit {
         };
         //初始化坐标
         this.initProvinceGeo();
+
+        //左侧
+
+        //右侧仪表盘
+        this.dashboardOption = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series: [
+                {
+                    name: '今日充电量',
+                    type: 'gauge',
+                    data: [{value: 60, name: 'Kwh'}]
+                }
+            ]
+        };
+
     }
 
+    //图表配置
+    timesChart: any = [{data: []}];  //充电次数
+    userChart: any = [{data: []}];//用户数
+    errorChart: any = [{data: []}];//故障数
+
+    public barChartOptions:any = {
+        scaleShowVerticalLines: false,
+        responsive: true
+    };
+    public barChartLabels:string[] = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00','21:00'];
+    public barChartType:string = 'bar';
+    public barChartLegend:boolean = false;
+
+    public timesChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(48,159,177,0.2)',
+        }
+    ];
+
+    public userChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(48,59,77,0.2)',
+        }
+    ];
+    public errorChartColors:Array<any> = [
+        {
+            backgroundColor: 'rgba(148,59,77,0.2)',
+        }
+    ];
+
+    formdata(){
+        console.log("123132");
+        let ws = new $WebSocket("realtimemonitor");
+        ws.getDataStream().subscribe(
+            (msg)=> {
+                console.log("123132");
+                console.log("next", msg.data);
+                if(msg.code == "00"){
+                    console.log("123132", msg.chartdata);
+                    this.chartsModel = msg.numdata;
+                    this.timesChart[0].data = msg.chartdata[0].data;
+                    this.userChart[0].data = msg.chartdata[2].data;
+                }
+            },
+            (msg)=> {
+                console.log("error", msg);
+            },
+            ()=> {
+                console.log("complete");
+            }
+        );
+    }
+
+    // events
+    public chartClicked(e:any):void {
+        console.log(e);
+    }
+
+    public chartHovered(e:any):void {
+        console.log(e);
+    }
+
+    //饼状图
+    public doughnutChartLabels:string[] = ['在线', '不在线'];
+    public doughnutChartData:number[] = [1350, 450];
+    public doughnutChartType:string = 'doughnut';
+
+    //地图事件
     onChartInit(ec) {
         this.echartsIntance = ec;
     }
@@ -114,6 +208,7 @@ export class BigScreenComponent implements OnInit {
             series: [
                 {
                     zoom: 0,
+                    center: [116.46, 39.92],
                     data: [
                         {name: '北京'}
                     ]
