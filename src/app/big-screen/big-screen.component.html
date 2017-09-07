@@ -1,0 +1,75 @@
+<div (click)="outerClick($event)" >
+    <div class="row big-screen">
+        <div class="col-2">
+            <div>
+                <div>今日充电次数</div>
+                <div style="display: block; height: 30vh">
+                    <canvas baseChart style="width: 100%;"
+                            [datasets]="timesChart"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            [colors]="timesChartColors"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+            <div>
+                <div>今日用户数</div>
+                <div style="display: block; height: 30vh">
+                    <canvas baseChart  style="width: 100%;"
+                            [datasets]="userChart"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            [colors]="userChartColors"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+            <div>
+                <div>今日故障数</div>
+                <div style="display: block; height: 30vh">
+                    <canvas baseChart style="width: 100%;"
+                            [datasets]="errorChart"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            [colors]="errorChartColors"
+                            (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="monitor-map" echarts [options]="chartOption" (chartInit)="onChartInit($event)" (chartClick)="onChartClick($event)">
+            </div>
+            <div>
+                <div style="color: #d9534f" class="col-4 offset-3">信息栏</div>
+                <div style="height: 50px; border: dashed 1px black"></div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="dashboard" echarts [options]="dashboardOption">
+            </div>
+            <div style="display: block;">
+                <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+            </div>
+            <div class="-align-center">
+                <div>空闲：直流：0 交流：0</div>
+                <div>使用：直流：0 交流：0</div>
+                <div>在建：直流：0 交流：0</div>
+                <div>外接：直流：0 交流：0</div>
+                <div>故障：直流：0 交流：0</div>
+            </div>
+        </div>
+    </div>
+</div>
