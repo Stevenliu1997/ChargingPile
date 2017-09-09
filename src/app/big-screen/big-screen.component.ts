@@ -162,6 +162,10 @@ export class BigScreenComponent implements OnInit {
         });
         console.log(e);
         e.event.event.stopImmediatePropagation();
+        this.httpClient.post('', e.name).subscribe(result => {
+            if(result == '00')
+                this.formdata();
+        })
     }
 
     initProvinceGeo() {
@@ -215,6 +219,9 @@ export class BigScreenComponent implements OnInit {
                 }
             ]
         });
+        this.httpClient.get('').subscribe(result => {
+            if(result == '00')
+                this.formdata();
+        })
     }
-
 }
