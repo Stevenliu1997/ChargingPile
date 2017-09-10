@@ -17,6 +17,7 @@ export class BigScreenComponent implements OnInit {
     //坐标
     geoCoord: any;
     chartsModel: any = {};
+    intervalId: any;
 
     constructor(private httpClient: HttpClient) {
     }
@@ -72,13 +73,7 @@ export class BigScreenComponent implements OnInit {
             ]
         };
 
-        setInterval(function () {
-            this.httpClient.post('').subscribe(result => {
-                if (result == '00')
-                    this.formdata();
-            })
-        }, 30000);
-
+        this.startInterval();
     }
 
     //图表配置
@@ -155,12 +150,7 @@ export class BigScreenComponent implements OnInit {
         console.log(e);
         e.event.event.stopImmediatePropagation();
 
-        setInterval(function () {
-            this.httpClient.post('', e.name).subscribe(result => {
-                if (result == '00')
-                    this.formdata();
-            })
-        }, 30000);
+        this.startInterval(e)
 
     }
 
@@ -223,4 +213,18 @@ export class BigScreenComponent implements OnInit {
         }, 30000);
 
     }
+
+    startInterval(e?: any) {
+        window.clearInterval(this.intervalId);
+
+        this.intervalId = setInterval(function () {
+            let params = e ? {name: e.name} : null;
+            this.httpClient.post('', params).subscribe(result => {
+                if (result == '00')
+                    this.formdata();
+
+            })
+        }, 30000);
+    }
+
 }
