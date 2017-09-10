@@ -16,8 +16,7 @@ export class BigScreenComponent implements OnInit {
     echartsIntance: any;
     //坐标
     geoCoord: any;
-    chartsModel: any = {
-    };
+    chartsModel: any = {};
 
     constructor(private httpClient: HttpClient) {
     }
@@ -55,7 +54,7 @@ export class BigScreenComponent implements OnInit {
 
         //右侧仪表盘
         this.dashboardOption = {
-            tooltip : {
+            tooltip: {
                 formatter: "{a} <br/>{b} : {c}%"
             },
             toolbox: {
@@ -73,6 +72,13 @@ export class BigScreenComponent implements OnInit {
             ]
         };
 
+        setInterval(function () {
+            this.httpClient.post('').subscribe(result => {
+                if (result == '00')
+                    this.formdata();
+            })
+        }, 30000);
+
     }
 
     //图表配置
@@ -80,67 +86,53 @@ export class BigScreenComponent implements OnInit {
     userChart: any = [{data: []}];//用户数
     errorChart: any = [{data: []}];//故障数
 
-    public barChartOptions:any = {
+    public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
     };
-    public barChartLabels:string[] = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00','21:00'];
-    public barChartType:string = 'bar';
-    public barChartLegend:boolean = false;
+    public barChartLabels: string[] = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
+    public barChartType: string = 'bar';
+    public barChartLegend: boolean = false;
 
-    public timesChartColors:Array<any> = [
+    public timesChartColors: Array<any> = [
         {
             backgroundColor: 'rgba(48,159,177,0.2)',
         }
     ];
 
-    public userChartColors:Array<any> = [
+    public userChartColors: Array<any> = [
         {
             backgroundColor: 'rgba(48,59,77,0.2)',
         }
     ];
-    public errorChartColors:Array<any> = [
+    public errorChartColors: Array<any> = [
         {
             backgroundColor: 'rgba(148,59,77,0.2)',
         }
     ];
 
-    formdata(){
-        console.log("123132");
-        let ws = new $WebSocket("realtimemonitor");
-        ws.getDataStream().subscribe(
-            (msg)=> {
-                console.log("123132");
-                console.log("next", msg.data);
-                if(msg.code == "00"){
-                    console.log("123132", msg.chartdata);
-                    this.chartsModel = msg.numdata;
-                    this.timesChart[0].data = msg.chartdata[0].data;
-                    this.userChart[0].data = msg.chartdata[2].data;
-                }
-            },
-            (msg)=> {
-                console.log("error", msg);
-            },
-            ()=> {
-                console.log("complete");
-            }
-        );
-    }
+/*    formdata() {
+        if (msg.code == "00") {
+            console.log("123132", msg.chartdata);
+            this.chartsModel = msg.numdata;
+            this.timesChart[0].data = msg.chartdata[0].data;
+            this.userChart[0].data = msg.chartdata[2].data;
+        }
+    }*/
 
     // events
-    public chartClicked(e:any):void {
+    public chartClicked(e: any): void {
         console.log(e);
     }
 
-    public chartHovered(e:any):void {
+    public chartHovered(e: any): void {
         console.log(e);
     }
 
     //饼状图
-    public doughnutChartLabels:string[] = ['在线', '不在线'];
-    public doughnutChartData:number[] = [1350, 450];
-    public doughnutChartType:string = 'doughnut';
+    public doughnutChartLabels: string[] = ['在线', '不在线'];
+    public doughnutChartData: number[] = [1350, 450];
+    public doughnutChartType: string = 'doughnut';
 
     //地图事件
     onChartInit(ec) {
@@ -153,7 +145,7 @@ export class BigScreenComponent implements OnInit {
             series: [{
                 center: geo,
                 zoom: 4,
-                data:[
+                data: [
                     {name: e.name, selected: true}
                 ],
                 animationDurationUpdate: 1000,
@@ -162,10 +154,14 @@ export class BigScreenComponent implements OnInit {
         });
         console.log(e);
         e.event.event.stopImmediatePropagation();
-        this.httpClient.post('', e.name).subscribe(result => {
-            if(result == '00')
-                this.formdata();
-        })
+
+        setInterval(function () {
+            this.httpClient.post('', e.name).subscribe(result => {
+                if (result == '00')
+                    this.formdata();
+            })
+        }, 30000);
+
     }
 
     initProvinceGeo() {
@@ -207,7 +203,7 @@ export class BigScreenComponent implements OnInit {
         };
     }
 
-    outerClick(e){
+    outerClick(e) {
         this.echartsIntance.setOption({
             series: [
                 {
@@ -219,9 +215,12 @@ export class BigScreenComponent implements OnInit {
                 }
             ]
         });
-        this.httpClient.get('').subscribe(result => {
-            if(result == '00')
-                this.formdata();
-        })
+        setInterval(function () {
+            this.httpClient.post('', e.name).subscribe(result => {
+                if (result == '00')
+                    this.formdata();
+            })
+        }, 30000);
+
     }
 }
