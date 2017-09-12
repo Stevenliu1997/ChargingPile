@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../router.animations';
-import {HttpClient} from '@angular/common/http';
+import {CustomHttpClient} from "../shared/services/custom-http-client/CustomHttpClient";
 import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 
 @Component({
@@ -19,7 +19,7 @@ export class BigScreenComponent implements OnInit {
     chartsModel: any = {};
     intervalId: any;
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private customHttpClient: CustomHttpClient) {
     }
 
     ngOnInit() {
@@ -85,7 +85,7 @@ export class BigScreenComponent implements OnInit {
         scaleShowVerticalLines: false,
         responsive: true
     };
-    public barChartLabels: string[] = ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'];
+    public barChartLabels: string[] = ['0', '2', '4', '6', '8', '10', '12', '14','16','18','20','22'];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = false;
 
@@ -106,15 +106,6 @@ export class BigScreenComponent implements OnInit {
         }
     ];
 
-/*    formdata() {
-        if (msg.code == "00") {
-            console.log("123132", msg.chartdata);
-            this.chartsModel = msg.numdata;
-            this.timesChart[0].data = msg.chartdata[0].data;
-            this.userChart[0].data = msg.chartdata[2].data;
-        }
-    }*/
-
     // events
     public chartClicked(e: any): void {
         console.log(e);
@@ -126,7 +117,7 @@ export class BigScreenComponent implements OnInit {
 
     //饼状图
     public doughnutChartLabels: string[] = ['在线', '不在线'];
-    public doughnutChartData: number[] = [1350, 450];
+    public doughnutChartData: number[] = [1350,50];
     public doughnutChartType: string = 'doughnut';
 
     //地图事件
@@ -150,7 +141,7 @@ export class BigScreenComponent implements OnInit {
         console.log(e);
         e.event.event.stopImmediatePropagation();
 
-        this.startInterval(e)
+        this.startInterval(e);
 
     }
 
@@ -205,25 +196,29 @@ export class BigScreenComponent implements OnInit {
                 }
             ]
         });
-        setInterval(function () {
-            this.httpClient.post('', e.name).subscribe(result => {
-                if (result == '00')
-                    this.formdata();
-            })
-        }, 30000);
+        this.startInterval();
 
+    }
+    formdata(e?: any) {
+        let params = e ? {name: e.name} : null;
+        this.customHttpClient.post('LargeMonitor', params).subscribe(result => {
+            if (result.code == '00')
+            {
+                this.chartsModel.todayamount=result.numdata.todayamount;
+                this.timesChart[0].data=result.chartdata[0].data;
+                this.userChart[0].data=result.chartdata[1].data;
+                this.errorChart[0].data=result.chartdata[2].data;
+                this.doughnutChartData[0]=result.numdata.todayonlinenumbers;
+            }
+        });
     }
 
     startInterval(e?: any) {
         window.clearInterval(this.intervalId);
+        this.formdata(e);
 
         this.intervalId = setInterval(function () {
-            let params = e ? {name: e.name} : null;
-            this.httpClient.post('', params).subscribe(result => {
-                if (result == '00')
-                    this.formdata();
-
-            })
+            this.formdata(e);
         }, 30000);
     }
 

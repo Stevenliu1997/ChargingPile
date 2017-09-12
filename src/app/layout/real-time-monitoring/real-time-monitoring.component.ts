@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 import {routerTransition} from '../../router.animations';
-import {$WebSocket} from 'angular2-websocket/angular2-websocket'
+import {$WebSocket} from 'angular2-websocket/angular2-websocket';
+import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+
 import {send} from "q";
 
 @Component({
@@ -15,40 +17,28 @@ export class RealTimeMonitoringComponent implements OnInit {
     chartsModel: any = {
     };
     //地图
+    intervalId: any;
     opts: any;
     offlineOpts: OfflineOptions;
     ngOnInit() {
+        this.startInterval();
+        this.customHttpClient.get('',).subscribe(result =>{
+           this.initMap(result);
+        });
+    }
+    constructor(private customHttpClient: CustomHttpClient) {
+    }
+    initMap(result: any){
         this.opts = {
             center: {
-                longitude: 100.506191,
-                latitude: 30.245554,       //纬度
+                longitude: 104.2115,
+                latitude: 28.4230,       //纬度
             },
             zoom: 6,   //变焦
             markers: [
-                { //标记
+                /*{ //标记
                     longitude: 100.506191,
                     latitude: 30.245554,
-                    title: 'Where',
-                    content: 'Put description here',
-                    enableDragging: false
-                },
-                { //标记
-                    longitude: 121.506191,
-                    latitude: 32.245554,
-                    title: 'Where',
-                    content: 'Put description here',
-                    enableDragging: false
-                },
-                {
-                    longitude: 122.506191,
-                    latitude: 34.245554,
-                    title: 'Where',
-                    content: 'Put description here',
-                    enableDragging: false
-                },
-                {
-                    longitude: 123.506191,
-                    latitude: 34.245554,
                     title: 'Where',
                     content: 'Put description here',
                     enableDragging: false
@@ -59,7 +49,7 @@ export class RealTimeMonitoringComponent implements OnInit {
                     title: 'Where',
                     content: 'Put description here',
                     enableDragging: false
-                }
+                }*/
             ],
             geolocationCtrl: {//地理定位控制
                 anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
@@ -80,8 +70,15 @@ export class RealTimeMonitoringComponent implements OnInit {
             retryInterval: 5000,
             txt: 'NO-NETWORK'
         };
-        //图表
-        this.formdata();
+
+        let n=result.length;
+        for(let i=0; i<n ; i++ ){
+            this.opts.markers[i].longitude = result.lng;
+            this.opts.markers[i].latitude = result.lat;
+            this.opts.markers[i].title = "站点信息";
+            this.opts.markers[i].content = result.sitename + result.pilename;
+            this.opts.markers[i].enableDragging = false;
+        }
     }
 
     loadMap(map: any) {
@@ -146,67 +143,6 @@ export class RealTimeMonitoringComponent implements OnInit {
         }
     ];
 
-    formdata(){
-        console.log("123132");
-        let ws = new $WebSocket("realtimemonitor");
-/*        ws.onOpen("");
-        ws.onMessage(
-            (msg: any)=> {
-                console.log("123132");
-                if(msg.code == "00"){
-                    console.log("123132", msg.chartdata);
-                    this.timesChart[0].data = msg.chartdata[0].data;
-                    this.amountChart[0].data = msg.chartdata[1].data;
-                    this.userChart[0].data = msg.chartdata[2].data;
-                    this.barChartData[0].data = msg.chartdata[3].data;
-                    this.barChartData[1].data = msg.chartdata[4].data;
-                    this.barChartData[2].data = msg.chartdata[5].data;
-
-                    this.barChartData[0].label = msg.chartdata[3].datatype;
-                    this.barChartData[1].label = msg.chartdata[4].datatype;
-                    this.barChartData[2].label = msg.chartdata[5].datatype;
-                }
-            },
-            {autoApply: false}
-        );*/
-        ws.getDataStream().subscribe(
-            (msg)=> {
-                console.log("123132");
-                console.log("next", msg.data);
-                if(msg.code == "00"){
-                    console.log("123132", msg.chartdata);
-                    this.chartsModel = msg.numdata;
-                    this.timesChart[0].data = msg.chartdata[0].data;
-                    this.amountChart[0].data = msg.chartdata[1].data;
-                    this.userChart[0].data = msg.chartdata[2].data;
-                    this.barChartData[0].data = msg.chartdata[3].data;
-                    this.barChartData[1].data = msg.chartdata[4].data;
-                    this.barChartData[2].data = msg.chartdata[5].data;
-
-                    this.barChartData[0].label = msg.chartdata[3].datatype;
-                    this.barChartData[1].label = msg.chartdata[4].datatype;
-                    this.barChartData[2].label = msg.chartdata[5].datatype;
-                }
-            },
-            (msg)=> {
-                console.log("error", msg);
-            },
-            ()=> {
-                console.log("complete");
-            }
-        );
-
-/*        this.barChartData = [
-            {data: [65, 59, 80, 81, 56, 55, 40, 30], label: '今日在线桩数'},
-            {data: [28, 48, 40, 19, 86, 27, 90], label: '今日使用桩数'},
-            {data: [20, 30],label:'今日故障桩数' }
-        ];
-        this.timesChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.amountChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.userChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];
-        this.reduceChart=[{data: [65, 59, 80, 81, 56, 55, 40, 30]}];*/
-    }
-
     // events
     public chartClicked(e:any):void {
         console.log(e);
@@ -216,4 +152,33 @@ export class RealTimeMonitoringComponent implements OnInit {
         console.log(e);
     }
 
+    formdata() {
+        this.customHttpClient.get('RealtimeMonitor').subscribe(result => {
+            if (result.code == '00')
+            {
+                this.chartsModel = result.numdata;
+                this.timesChart[0].data = result.chartdata[0].data;
+                this.amountChart[0].data = result.chartdata[1].data;
+                this.userChart[0].data = result.chartdata[2].data;
+                this.barChartData[0].data = result.chartdata[3].data;
+                this.barChartData[1].data = result.chartdata[4].data;
+                this.barChartData[2].data = result.chartdata[5].data;
+
+                this.barChartData[0].label = result.chartdata[3].datatype;
+                this.barChartData[1].label = result.chartdata[4].datatype;
+                this.barChartData[2].label = result.chartdata[5].datatype;
+            }
+        });
+
+
+    }
+
+    startInterval() {
+        window.clearInterval(this.intervalId);
+        this.formdata();
+
+        this.intervalId = setInterval(function () {
+            this.formdata();
+        }, 30000);
+    }
 }

@@ -47,13 +47,10 @@
         <div class="col-7">
             <div class="monitor-map" echarts [options]="chartOption" (chartInit)="onChartInit($event)" (chartClick)="onChartClick($event)">
             </div>
-            <div>
-                <div style="color: #d9534f" class="col-4 offset-3">信息栏</div>
-                <div style="height: 50px; border: dashed 1px black"></div>
-            </div>
         </div>
         <div class="col-3">
-            <div class="dashboard" echarts [options]="dashboardOption">
+            <div class="number">
+                <span style="font-size: 100px">{{chartsModel.todayamount}}</span>
             </div>
             <div style="display: block;">
                 <canvas baseChart
