@@ -21,10 +21,10 @@ export class RealTimeMonitoringComponent implements OnInit {
     opts: any;
     offlineOpts: OfflineOptions;
     ngOnInit() {
-        this.startInterval();
-        this.customHttpClient.get('',).subscribe(result =>{
-           this.initMap(result);
+        this.customHttpClient.get('map',).subscribe(result =>{
+            this.initMap(result);
         });
+        this.startInterval();
     }
     constructor(private customHttpClient: CustomHttpClient) {
     }
@@ -153,14 +153,14 @@ export class RealTimeMonitoringComponent implements OnInit {
     }
 
     formdata() {
-        this.customHttpClient.get('RealtimeMonitor').subscribe(result => {
+        this.customHttpClient.post('RealtimeMonitor').subscribe(result => {
             if (result.code == '00')
             {
                 this.chartsModel = result.numdata;
                 this.timesChart[0].data = result.chartdata[0].data;
                 this.amountChart[0].data = result.chartdata[1].data;
                 this.userChart[0].data = result.chartdata[2].data;
-                this.barChartData[0].data = result.chartdata[3].data;
+                this.barChartData[0].data = [0,1,2];
                 this.barChartData[1].data = result.chartdata[4].data;
                 this.barChartData[2].data = result.chartdata[5].data;
 

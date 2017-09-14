@@ -117,8 +117,9 @@ export class BigScreenComponent implements OnInit {
 
     //饼状图
     public doughnutChartLabels: string[] = ['在线', '不在线'];
-    public doughnutChartData: number[] = [1350,50];
+    public doughnutChartData: number[] =[];
     public doughnutChartType: string = 'doughnut';
+
 
     //地图事件
     onChartInit(ec) {
@@ -200,15 +201,27 @@ export class BigScreenComponent implements OnInit {
 
     }
     formdata(e?: any) {
-        let params = e ? {name: e.name} : null;
-        this.customHttpClient.post('LargeMonitor', params).subscribe(result => {
-            if (result.code == '00')
-            {
-                this.chartsModel.todayamount=result.numdata.todayamount;
-                this.timesChart[0].data=result.chartdata[0].data;
-                this.userChart[0].data=result.chartdata[1].data;
-                this.errorChart[0].data=result.chartdata[2].data;
-                this.doughnutChartData[0]=result.numdata.todayonlinenumbers;
+        let params = e ? {data: e.name} : null;
+        this.customHttpClient.post('LargeMonitor',params).subscribe(result => {
+            if (result.code == '00') {
+                this.chartsModel.todayamount = result.numdata.todayamount;
+                this.timesChart[0].data = result.chartdata[0].data;
+                console.log(result.chartdata[0].data);
+                console.log(this.timesChart[0].data);
+                this.userChart[0].data = result.chartdata[1].data;
+                this.errorChart[0].data = result.chartdata[2].data;
+                this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
+                this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
+                this.chartsModel.freeDC = result.ADdata[0].DCdata;
+                this.chartsModel.freeAC = result.ADdata[0].ACdata;
+                this.chartsModel.useDC = result.ADdata[1].DCdata;
+                this.chartsModel.useAC = result.ADdata[1].ACdata;
+                this.chartsModel.buildDC = result.ADdata[2].DCdata;
+                this.chartsModel.buildAC = result.ADdata[2].ACdata;
+                this.chartsModel.outDC = result.ADdata[3].DCdata;
+                this.chartsModel.outAC = result.ADdata[3].ACdata;
+                this.chartsModel.errorDC = result.ADdata[4].DCdata;
+                this.chartsModel.errorAC = result.ADdata[4].ACdata;
             }
         });
     }

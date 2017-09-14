@@ -61,11 +61,11 @@
                         (chartClick)="chartClicked($event)"></canvas>
             </div>
             <div class="-align-center">
-                <div>空闲：直流：0 交流：0</div>
-                <div>使用：直流：0 交流：0</div>
-                <div>在建：直流：0 交流：0</div>
-                <div>外接：直流：0 交流：0</div>
-                <div>故障：直流：0 交流：0</div>
+                <div>空闲：直流：{{chartsModel.freeDC}} 交流：{{chartsModel.freeAC}}</div>
+                <div>使用：直流：{{chartsModel.useDC}} 交流：{{chartsModel.useAC}}</div>
+                <div>在建：直流：{{chartsModel.buildDC}} 交流：{{chartsModel.buildAC}}</div>
+                <div>外接：直流：{{chartsModel.outDC}} 交流：{{chartsModel.outAC}}</div>
+                <div>故障：直流：{{chartsModel.errorDC}} 交流：{{chartsModel.errorAC}}</div>
             </div>
         </div>
     </div>
