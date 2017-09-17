@@ -201,11 +201,18 @@ export class BigScreenComponent implements OnInit {
 
     }
     formdata(e?: any) {
+
+
         let params = e ? {data: e.name} : null;
         this.customHttpClient.post('LargeMonitor',params).subscribe(result => {
             if (result.code == '00') {
                 this.chartsModel.todayamount = result.numdata.todayamount;
-                this.timesChart[0].data = result.chartdata[0].data;
+
+                this.timesChart[0].data = null;
+                window.setTimeout(() => {
+                    this.timesChart[0].data = result.chartdata[0].data;
+                });
+
                 console.log(result.chartdata[0].data);
                 console.log(this.timesChart[0].data);
                 this.userChart[0].data = result.chartdata[1].data;
@@ -232,7 +239,7 @@ export class BigScreenComponent implements OnInit {
 
         this.intervalId = setInterval(function () {
             this.formdata(e);
-        }, 30000);
+        }.bind(this), 3000);
     }
 
 }
