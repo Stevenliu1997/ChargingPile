@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {routerTransition} from '../router.animations';
 import {CustomHttpClient} from "../shared/services/custom-http-client/CustomHttpClient";
 import {$WebSocket} from 'angular2-websocket/angular2-websocket'
-import {log} from "util";
 
 @Component({
     selector: 'realtime-monitor',
@@ -13,6 +12,7 @@ import {log} from "util";
 export class BigScreenComponent implements OnInit {
 
     chartOption: any;
+    dashboardOption: any;
     echartsIntance: any;
     //坐标
     geoCoord: any;
@@ -23,8 +23,6 @@ export class BigScreenComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.formdata();
-
         this.chartOption = {
             tooltip: {
                 trigger: 'item',
@@ -55,9 +53,27 @@ export class BigScreenComponent implements OnInit {
 
         //左侧
 
+        //右侧仪表盘
+        this.dashboardOption = {
+            tooltip: {
+                formatter: "{a} <br/>{b} : {c}%"
+            },
+            toolbox: {
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series: [
+                {
+                    name: '今日充电量',
+                    type: 'gauge',
+                    data: [{value: 60, name: 'Kwh'}]
+                }
+            ]
+        };
 
-        /*this.startInterval();*/
-
+        this.startInterval();
     }
 
     //图表配置
@@ -126,7 +142,7 @@ export class BigScreenComponent implements OnInit {
         console.log(e);
         e.event.event.stopImmediatePropagation();
 
-        /*this.startInterval(e);*/
+        this.startInterval(e);
 
     }
 
@@ -181,22 +197,26 @@ export class BigScreenComponent implements OnInit {
                 }
             ]
         });
-        /*this.startInterval();*/
+        this.startInterval();
 
     }
     formdata(e?: any) {
+
+
         let params = e ? {data: e.name} : null;
         this.customHttpClient.post('LargeMonitor',params).subscribe(result => {
             if (result.code == '00') {
                 this.chartsModel.todayamount = result.numdata.todayamount;
-                this.timesChart[0].data = result.chartdata[0].data;
+
+                this.timesChart[0].data = null;
+                window.setTimeout(() => {
+                    this.timesChart[0].data = result.chartdata[0].data;
+                });
 
                 console.log(result.chartdata[0].data);
                 console.log(this.timesChart[0].data);
-
                 this.userChart[0].data = result.chartdata[1].data;
                 this.errorChart[0].data = result.chartdata[2].data;
-
                 this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
                 this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
                 this.chartsModel.freeDC = result.ADdata[0].DCdata;
@@ -213,15 +233,13 @@ export class BigScreenComponent implements OnInit {
         });
     }
 
-/*    startInterval(e?: any) {
+    startInterval(e?: any) {
         window.clearInterval(this.intervalId);
         this.formdata(e);
-        console.log(this.timesChart[0].data);
-        this.timesChart[0].data=[1,2,3];
-        console.log(this.timesChart[0].data+"1");
-/!*        this.intervalId = setInterval(function () {
+
+        this.intervalId = setInterval(function () {
             this.formdata(e);
-        }, 30000);*!/
-    }*/
+        }.bind(this), 3000);
+    }
 
 }
