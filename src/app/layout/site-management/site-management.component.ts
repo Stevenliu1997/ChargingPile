@@ -21,7 +21,7 @@ export class SiteManagementComponent implements OnInit {
 
     queryModel: any = {};
     citys: any = [];
-
+    areas:  any = [];
 
     config: object = {
         key: 'siteid',

@@ -40,13 +40,6 @@ export class RealTimeMonitoringComponent implements OnInit {
                     title: 'Where',
                     content: 'Put description here',
                     enableDragging: false
-                },
-                {
-                    longitude: 124.506191,
-                    latitude: 34.245554,
-                    title: 'Where',
-                    content: 'Put description here',
-                    enableDragging: false
                 }*/
             ],
             geolocationCtrl: {//地理定位控制
@@ -155,16 +148,33 @@ export class RealTimeMonitoringComponent implements OnInit {
             if (result.code == '00')
             {
                 this.chartsModel = result.numdata;
-                this.timesChart[0].data = result.chartdata[0].data;
-                this.amountChart[0].data = result.chartdata[1].data;
-                this.userChart[0].data = result.chartdata[2].data;
-                this.barChartData[0].data = [0,1,2];
-                this.barChartData[1].data = result.chartdata[4].data;
-                this.barChartData[2].data = result.chartdata[5].data;
 
-                this.barChartData[0].label = result.chartdata[3].datatype;
-                this.barChartData[1].label = result.chartdata[4].datatype;
-                this.barChartData[2].label = result.chartdata[5].datatype;
+                this.timesChart[0].data = null;
+                window.setTimeout(() => {
+                    this.timesChart[0].data = result.chartdata[0].data;
+                });
+
+                this.amountChart[0].data = null;
+                window.setTimeout(() => {
+                    this.amountChart[0].data = result.chartdata[1].data;
+                });
+
+                this.userChart[0].data = null;
+                window.setTimeout(() => {
+                    this.userChart[0].data = result.chartdata[2].data;
+                });
+
+                this.barChartData[0].data = null;
+                this.barChartData[1].data = null;
+                this.barChartData[2].data = null;
+                window.setTimeout(() => {
+                    this.barChartData[0].data = result.chartdata[3].data;
+                    this.barChartData[1].data = result.chartdata[4].data;
+                    this.barChartData[2].data = result.chartdata[5].data;
+                    this.barChartData[0].label = result.chartdata[3].datatype;
+                    this.barChartData[1].label = result.chartdata[4].datatype;
+                    this.barChartData[2].label = result.chartdata[5].datatype;
+                });
             }
         });
 
@@ -177,6 +187,6 @@ export class RealTimeMonitoringComponent implements OnInit {
 
         this.intervalId = setInterval(function () {
             this.formdata();
-        }, 30000);
+        }.bind(this), 100000);
     }
 }

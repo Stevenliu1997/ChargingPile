@@ -12,7 +12,6 @@ import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 export class BigScreenComponent implements OnInit {
 
     chartOption: any;
-    dashboardOption: any;
     echartsIntance: any;
     //坐标
     geoCoord: any;
@@ -52,27 +51,6 @@ export class BigScreenComponent implements OnInit {
         this.initProvinceGeo();
 
         //左侧
-
-        //右侧仪表盘
-        this.dashboardOption = {
-            tooltip: {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            series: [
-                {
-                    name: '今日充电量',
-                    type: 'gauge',
-                    data: [{value: 60, name: 'Kwh'}]
-                }
-            ]
-        };
-
         this.startInterval();
     }
 
@@ -201,9 +179,7 @@ export class BigScreenComponent implements OnInit {
 
     }
     formdata(e?: any) {
-
-
-        let params = e ? {data: e.name} : null;
+        let params = e ? {data: e.name} : {data: "全国"};
         this.customHttpClient.post('LargeMonitor',params).subscribe(result => {
             if (result.code == '00') {
                 this.chartsModel.todayamount = result.numdata.todayamount;
@@ -213,22 +189,28 @@ export class BigScreenComponent implements OnInit {
                     this.timesChart[0].data = result.chartdata[0].data;
                 });
 
-                console.log(result.chartdata[0].data);
-                console.log(this.timesChart[0].data);
-                this.userChart[0].data = result.chartdata[1].data;
-                this.errorChart[0].data = result.chartdata[2].data;
+                this.userChart[0].data = null;
+                window.setTimeout(() => {
+                    this.userChart[0].data = result.chartdata[1].data;
+                });
+
+                this.errorChart[0].data = null;
+                window.setTimeout(() => {
+                    this.errorChart[0].data = result.chartdata[2].data;
+                });
+
                 this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
                 this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
-                this.chartsModel.freeDC = result.ADdata[0].DCdata;
-                this.chartsModel.freeAC = result.ADdata[0].ACdata;
-                this.chartsModel.useDC = result.ADdata[1].DCdata;
-                this.chartsModel.useAC = result.ADdata[1].ACdata;
-                this.chartsModel.buildDC = result.ADdata[2].DCdata;
-                this.chartsModel.buildAC = result.ADdata[2].ACdata;
-                this.chartsModel.outDC = result.ADdata[3].DCdata;
-                this.chartsModel.outAC = result.ADdata[3].ACdata;
-                this.chartsModel.errorDC = result.ADdata[4].DCdata;
-                this.chartsModel.errorAC = result.ADdata[4].ACdata;
+                this.chartsModel.freeDC = result.ADdata[0].dcdata;
+                this.chartsModel.freeAC = result.ADdata[0].acdata;
+                this.chartsModel.useDC = result.ADdata[1].dcdata;
+                this.chartsModel.useAC = result.ADdata[1].acdata;
+                this.chartsModel.buildDC = result.ADdata[2].dcdata;
+                this.chartsModel.buildAC = result.ADdata[2].acdata;
+                this.chartsModel.outDC = result.ADdata[3].dcdata;
+                this.chartsModel.outAC = result.ADdata[3].acdata;
+                this.chartsModel.errorDC = result.ADdata[4].dcdata;
+                this.chartsModel.errorAC = result.ADdata[4].acdata;
             }
         });
     }

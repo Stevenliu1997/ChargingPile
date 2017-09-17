@@ -21,6 +21,7 @@ export class ProviderComponent implements OnInit {
     /*查询对象*/
     queryModel: any = {};
     citys: any = [];
+    areas:  any = [];
 
     // datagrid 配置
     config: object = {
