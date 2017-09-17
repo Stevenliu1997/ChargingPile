@@ -6,6 +6,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AlertInformationComponent} from './ModalPage/alert-information.component';
 import {TransactionRecordComponent} from './ModalPage/transaction-record.component';
 import {StatusInformationComponent} from './ModalPage/status-information.component';
+import {CityService} from "../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-tables',
@@ -24,6 +25,10 @@ export class PileMonitorComponent implements OnInit {
     fetchedData: any = [];
     /*查询到的站点名称数组*/
     SiteName: any = [];
+
+    citys: any = [];
+    areas: any = [];
+
     config: any = {
         key: '',
         url: 'Site_Pile_Gun/Find',
@@ -91,6 +96,7 @@ export class PileMonitorComponent implements OnInit {
     constructor(
         private httpClient: CustomHttpClient,
         private ngbModal: NgbModal,
+        public cityService: CityService
     ) {}
     ngOnInit() {
         this.clear();

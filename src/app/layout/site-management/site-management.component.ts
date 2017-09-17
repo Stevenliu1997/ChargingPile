@@ -6,6 +6,8 @@ import {SiteModifyInformationComponent} from './ModalPage/site-modify-informatio
 import {SiteDataComponent} from './ModalPage/site-data.component';
 import {SiteInformationComponent} from './ModalPage/site-information.component';
 import {ToastsManager} from 'ng2-toastr';
+import {CityService} from "../../shared/services/city-service/city-service";
+
 
 @Component({
     selector: 'app-site-management',
@@ -18,6 +20,8 @@ export class SiteManagementComponent implements OnInit {
     private datagridComponent: DatagridComponent;
 
     queryModel: any = {};
+    citys: any = [];
+
 
     config: object = {
         key: 'siteid',
@@ -111,7 +115,9 @@ export class SiteManagementComponent implements OnInit {
     constructor(
         private ngbModal: NgbModal,
         public toastr: ToastsManager,
-        vcr: ViewContainerRef
+        vcr: ViewContainerRef,
+        public cityService: CityService
+
     ) {
         this.toastr.setRootViewContainerRef(vcr);
     }

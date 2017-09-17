@@ -95,6 +95,7 @@ export class SiteDataComponent implements OnInit {
         this.userChart[0].data = tempResult.data[1].analysisData;
         this.amountChart[0].data = tempResult.data[2].analysisData;
         this.errorChart[0].data = tempResult.data[3].analysisData;
+        console.log(this.errorChart[0].data);
 
         this.timesChartLabels = tempResult.data[0].time;
         this.userChartLabels = tempResult.data[1].time;

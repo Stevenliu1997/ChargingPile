@@ -4,6 +4,7 @@ import {DatagridComponent} from '../../shared/components/widget/datagrid/datagri
 import {ProviderEditComponent} from './provider-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ProviderRecordComponent} from './provider-record.component';
+import {CityService} from "../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-tables',
@@ -19,6 +20,7 @@ export class ProviderComponent implements OnInit {
 
     /*查询对象*/
     queryModel: any = {};
+    citys: any = [];
 
     // datagrid 配置
     config: object = {
@@ -106,7 +108,8 @@ export class ProviderComponent implements OnInit {
         ]
     };
 
-    constructor(private ngbModal: NgbModal) {
+    constructor(private ngbModal: NgbModal,
+                public cityService: CityService) {
     }
 
     ngOnInit() {

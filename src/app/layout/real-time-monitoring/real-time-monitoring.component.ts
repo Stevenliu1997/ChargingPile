@@ -5,8 +5,6 @@ import {$WebSocket} from 'angular2-websocket/angular2-websocket';
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
-import {send} from "q";
-
 @Component({
     selector: 'map-presentation',
     templateUrl: './real-time-monitoring.component.html',

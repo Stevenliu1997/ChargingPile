@@ -19,7 +19,7 @@
                 <div>今日用户数</div>
                 <div style="display: block; height: 30vh">
                     <canvas baseChart  style="width: 100%;"
-                            [datasets]="userChart"
+                            [data]="userChart"
                             [labels]="barChartLabels"
                             [options]="barChartOptions"
                             [legend]="barChartLegend"
@@ -33,7 +33,7 @@
                 <div>今日故障数</div>
                 <div style="display: block; height: 30vh">
                     <canvas baseChart style="width: 100%;"
-                            [datasets]="errorChart"
+                            [data]="errorChart"
                             [labels]="barChartLabels"
                             [options]="barChartOptions"
                             [legend]="barChartLegend"
