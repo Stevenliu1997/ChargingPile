@@ -64,6 +64,7 @@ export class RealTimeMonitoringComponent implements OnInit {
 
         let n=result.length;
         for(let i=0; i<n ; i++ ){
+            this.opts.markers[i] = {};
             this.opts.markers[i].longitude = result.lng;
             this.opts.markers[i].latitude = result.lat;
             this.opts.markers[i].title = "站点信息";
@@ -86,7 +87,7 @@ export class RealTimeMonitoringComponent implements OnInit {
 
 
     //柱状图
-    public barChartData:any[] = [{data: [],label: ''} ];
+    public barChartData:any[] = [{data: [],label: ''},{data: [],label: ''},{data: [],label: ''} ];
     timesChart: any = [{data: []}];  //充电次数
     amountChart: any = [{data: []}];//充电量
     userChart: any = [{data: []}];//用户数
