@@ -187,6 +187,6 @@ export class RealTimeMonitoringComponent implements OnInit {
 
         this.intervalId = setInterval(function () {
             this.formdata();
-        }.bind(this), 100000);
+        }.bind(this), 30000);
     }
 }

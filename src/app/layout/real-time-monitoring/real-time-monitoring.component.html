@@ -146,9 +146,8 @@
                     <div class="query-section mx-xl-0">
                         <div class="row">
                             <div class="col-9">
-                                <baidu-map id="allmap"
-                                           ak="put your ak here"
-                                           [options]="opts"
+                                <baidu-map
+                                            [options]="opts"
                                            [offline]="offlineOpts"
                                            (onMapLoaded)="loadMap($event)"
                                            (onMarkerClicked)="clickMarker($event)"

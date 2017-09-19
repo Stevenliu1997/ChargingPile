@@ -221,7 +221,7 @@ export class BigScreenComponent implements OnInit {
 
         this.intervalId = setInterval(function () {
             this.formdata(e);
-        }.bind(this), 3000);
+        }.bind(this), 30000);
     }
 
 }
