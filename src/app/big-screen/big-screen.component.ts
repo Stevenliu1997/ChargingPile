@@ -201,16 +201,16 @@ export class BigScreenComponent implements OnInit {
 
                 this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
                 this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
-                this.chartsModel.freeDC = result.ADdata[0].dcdata;
-                this.chartsModel.freeAC = result.ADdata[0].acdata;
-                this.chartsModel.useDC = result.ADdata[1].dcdata;
-                this.chartsModel.useAC = result.ADdata[1].acdata;
-                this.chartsModel.buildDC = result.ADdata[2].dcdata;
-                this.chartsModel.buildAC = result.ADdata[2].acdata;
-                this.chartsModel.outDC = result.ADdata[3].dcdata;
-                this.chartsModel.outAC = result.ADdata[3].acdata;
-                this.chartsModel.errorDC = result.ADdata[4].dcdata;
-                this.chartsModel.errorAC = result.ADdata[4].acdata;
+                this.chartsModel.freeDC = result.addata[0].dcdata;
+                this.chartsModel.freeAC = result.addata[0].acdata;
+                this.chartsModel.useDC = result.addata[1].dcdata;
+                this.chartsModel.useAC = result.addata[1].acdata;
+                this.chartsModel.buildDC = result.addata[2].dcdata;
+                this.chartsModel.buildAC = result.addata[2].acdata;
+                this.chartsModel.outDC = result.addata[3].dcdata;
+                this.chartsModel.outAC = result.addata[3].acdata;
+                this.chartsModel.errorDC = result.addata[4].dcdata;
+                this.chartsModel.errorAC = result.addata[4].acdata;
             }
         });
     }
