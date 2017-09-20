@@ -49,10 +49,12 @@
             </div>
         </div>
         <div class="col-3">
+            <div>今日充电量</div>
             <div class="number">
                 <span style="font-size: 100px">{{chartsModel.todayamount}}</span>
             </div>
-            <div style="display: block;">
+            <div>今日在线桩数</div>
+            <div style="display: block; margin-bottom: 5vh" *ngIf="doughnutChartData[0]">
                 <canvas baseChart
                         [data]="doughnutChartData"
                         [labels]="doughnutChartLabels"
@@ -60,7 +62,7 @@
                         (chartHover)="chartHovered($event)"
                         (chartClick)="chartClicked($event)"></canvas>
             </div>
-            <div class="-align-center">
+            <div class="align-center">
                 <div>空闲：直流：{{chartsModel.freeDC}} 交流：{{chartsModel.freeAC}}</div>
                 <div>使用：直流：{{chartsModel.useDC}} 交流：{{chartsModel.useAC}}</div>
                 <div>在建：直流：{{chartsModel.buildDC}} 交流：{{chartsModel.buildAC}}</div>

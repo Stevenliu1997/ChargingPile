@@ -15,7 +15,7 @@ export class BigScreenComponent implements OnInit {
     echartsIntance: any;
     //坐标
     geoCoord: any;
-    chartsModel: any = {};
+    chartsModel: any ={};
     intervalId: any;
 
     constructor(private customHttpClient: CustomHttpClient) {
