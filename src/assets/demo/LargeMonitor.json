@@ -2,8 +2,8 @@
     "code": "00",
     "message":"ok",
     "numdata":{
-        "todayonlinenumbers": 3,
-        "todayofflinenumbers": 2,
+        "todayonlinenumbers": 0,
+        "todayofflinenumbers": 3,
         "todayamount":2321
     },
     "chartdata":[

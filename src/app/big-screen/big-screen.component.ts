@@ -192,6 +192,8 @@ export class BigScreenComponent implements OnInit {
                 this.userChart[0].data = null;
                 window.setTimeout(() => {
                     this.userChart[0].data = result.chartdata[1].data;
+                    console.log(this.userChart[0].data);
+                    console.log(result.chartdata[1].data);
                 });
 
                 this.errorChart[0].data = null;

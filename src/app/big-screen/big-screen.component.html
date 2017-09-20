@@ -54,7 +54,7 @@
                 <span style="font-size: 100px">{{chartsModel.todayamount}}</span>
             </div>
             <div>今日在线桩数</div>
-            <div style="display: block; margin-bottom: 5vh" *ngIf="doughnutChartData[0]">
+            <div style="display: block; margin-bottom: 5vh" *ngIf="doughnutChartData[0] || doughnutChartData[1]">
                 <canvas baseChart
                         [data]="doughnutChartData"
                         [labels]="doughnutChartLabels"

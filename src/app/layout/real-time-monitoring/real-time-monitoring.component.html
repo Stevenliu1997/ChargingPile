@@ -9,7 +9,7 @@
                             <div class="col-9">
                                 <div>
                                     <div class="text-center">24小时实时监控</div>
-                                    <div style="display: block;" *ngIf="barChartData[0].data">
+                                    <div style="display: block;" *ngIf="barChartData[0].data || barChartData[1].data || barChartData[2].data">
                                         <canvas baseChart  style="width: 100%; height: 610px"
                                                 [datasets]="barChartData"
                                                 [labels]="barChartLabels"
