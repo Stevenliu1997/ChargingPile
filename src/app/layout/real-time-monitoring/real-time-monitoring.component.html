@@ -9,7 +9,7 @@
                             <div class="col-9">
                                 <div>
                                     <div class="text-center">24小时实时监控</div>
-                                    <div style="display: block;">
+                                    <div style="display: block;" *ngIf="barChartData[0].data || barChartData[1].data || barChartData[2].data">
                                         <canvas baseChart  style="width: 100%; height: 610px"
                                                 [datasets]="barChartData"
                                                 [labels]="barChartLabels"
@@ -54,7 +54,7 @@
                                                 <div>昨日:{{chartsModel.todaychargetimes}}</div>
                                             </div>
                                         </div>
-                                        <div style="display: block;">
+                                        <div style="display: block;" *ngIf="timesChart[0].data">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="timesChart"
                                                     [labels]="barChartLabels"
@@ -76,7 +76,7 @@
                                                 <div>昨日:{{chartsModel.yesterdayamount}}</div>
                                             </div>
                                         </div>
-                                        <div style="display: block;">
+                                        <div style="display: block;" *ngIf="amountChart[0].data">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="amountChart"
                                                     [labels]="barChartLabels"
@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
 
-                                        <div style="display: block;">
+                                        <div style="display: block;" *ngIf="userChart[0].data">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="userChart"
                                                     [labels]="barChartLabels"
@@ -123,7 +123,7 @@
                                                 <div>昨日:0</div>
                                             </div>
                                         </div>
-                                        <div style="display: block;">
+                                        <div style="display: block;" *ngIf="reduceChart[0].data">
                                             <canvas baseChart  style="width: 100%;"
                                                     [datasets]="reduceChart"
                                                     [labels]="barChartLabels"
@@ -146,9 +146,8 @@
                     <div class="query-section mx-xl-0">
                         <div class="row">
                             <div class="col-9">
-                                <baidu-map id="allmap"
-                                           ak="put your ak here"
-                                           [options]="opts"
+                                <baidu-map
+                                            [options]="opts"
                                            [offline]="offlineOpts"
                                            (onMapLoaded)="loadMap($event)"
                                            (onMarkerClicked)="clickMarker($event)"

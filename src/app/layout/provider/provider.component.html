@@ -55,10 +55,9 @@
                         <div class="row">
                             <label for="province" class="col-4 col-form-label">省</label>
                             <div class="col-8">
-                                <select class="form-control" id="province" [(ngModel)]="queryModel.province" name="queryModel.province">
+                                <select class="form-control" id="province" [(ngModel)]="queryModel.province" name="queryModel.province" (ngModelChange)="citys = cityService.getCity(queryModel.province);queryModel.city='';areas=[];queryModel.district=''">
                                     <option value="">请选择</option>
-                                    <option value="四川">四川</option>
-                                    <option value="湖南">湖南</option>
+                                    <option [ngValue]="item.name" *ngFor="let item of cityService.getProvince()">{{item.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -69,8 +68,7 @@
                             <div class="col-8">
                                 <select class="form-control" id="city" [(ngModel)]="queryModel.city" name="queryModel.city">
                                     <option value="">请选择</option>
-                                    <option value="成都">成都</option>
-                                    <option value="北京">北京</option>
+                                    <option [value]="item.name" *ngFor="let item of citys">{{item.name}}</option>
                                 </select>
                             </div>
                         </div>
