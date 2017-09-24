@@ -1,0 +1,50 @@
+{
+    "code": "00",
+    "message":"ok",
+    "numdata":{
+        "todayonlinenumbers": 3,
+        "todayofflinenumbers": 3,
+        "todayamount":2321
+    },
+    "chartdata":[
+        {
+            "datatype":"今日充电次数",
+            "data":[3,2,1]
+        },
+        {
+            "datatype":"今日用户数",
+            "data":[1,2,3]
+        },
+        {
+            "datatype":"今日故障桩数",
+            "data":[1,2,3]
+        }
+    ],
+    "addata":[
+        {
+            "datatype": "空闲",
+            "dcdata":1,
+            "acdata":2
+        },
+        {
+            "datatype":"使用",
+            "dcdata":90,
+            "acdata":11
+        },
+        {
+            "datatype":"在建",
+            "dcdata":8,
+            "acdata":7
+        },
+        {
+            "datatype":"外接",
+            "dcdata":3,
+            "acdata":4
+        },
+        {
+            "datatype":"故障",
+            "dcdata":3,
+            "acdata":5
+        }
+    ]
+}

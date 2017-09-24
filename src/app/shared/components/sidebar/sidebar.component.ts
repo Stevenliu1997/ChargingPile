@@ -59,8 +59,8 @@ export class SidebarComponent implements OnInit{
             ]},
             {name: '运营商管理', children: [
                 {name: '站点管理', routerLink: '/site-information'},
-                {name: 'IC卡数据管理', routerLink: '/IC-card-manage'},
-                {name: 'IC卡审核', routerLink: '/IC-card-check'},
+/*                {name: 'IC卡数据管理', routerLink: '/IC-card-manage'},
+                {name: 'IC卡审核', routerLink: '/IC-card-check'},*/
                 {name: '预约管理', routerLink: '/order-manage'},
                 {name: '订单查询', routerLink: '/orderquery'},
                 {name: '站点数据分析', routerLink: '/sitedata'},

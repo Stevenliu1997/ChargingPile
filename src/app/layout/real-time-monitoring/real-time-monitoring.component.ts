@@ -61,9 +61,7 @@ export class RealTimeMonitoringComponent implements OnInit {
             retryInterval: 5000,
             txt: 'NO-NETWORK'
         };
-
-        let n=result.length;
-        for(let i=0; i<n ; i++ ){
+        for(let i=0; i<result.length ; i++ ){
             this.opts.markers[i] = {};
             this.opts.markers[i].longitude = result.lng;
             this.opts.markers[i].latitude = result.lat;
