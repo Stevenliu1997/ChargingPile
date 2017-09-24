@@ -24,12 +24,21 @@ export class UploaderModalComponent  implements OnInit{
     }
 
     confirm(que: FileItem){
-        console.log(que);
+        let formData = {
+            desc: this.uploadModel.desc,
+        };
+        if(this.uploadConfig.params){
+            Object.assign(formData, this.uploadConfig.params());
+        }
         if(que){
             this.lastUploadItem = que;
-            que.formData = {
-                desc: this.uploadModel.desc
+            this.lastUploadItem.onBuildForm = form => {
+                for (let i in formData){
+                    if(formData[i])
+                        form.append(i, formData[i]);
+                }
             };
+
             que.upload();
         }
     }
