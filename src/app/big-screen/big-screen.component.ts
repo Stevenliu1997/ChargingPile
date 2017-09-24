@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {routerTransition} from '../router.animations';
 import {CustomHttpClient} from "../shared/services/custom-http-client/CustomHttpClient";
 import {$WebSocket} from 'angular2-websocket/angular2-websocket'
@@ -11,6 +11,7 @@ import {$WebSocket} from 'angular2-websocket/angular2-websocket'
 })
 export class BigScreenComponent implements OnInit {
 
+    innerClick: boolean = false;
     chartOption: any;
     echartsIntance: any;
     //坐标
@@ -18,7 +19,7 @@ export class BigScreenComponent implements OnInit {
     chartsModel: any ={};
     intervalId: any;
 
-    constructor(private customHttpClient: CustomHttpClient) {
+    constructor(private customHttpClient: CustomHttpClient, private chRef: ChangeDetectorRef) {
     }
 
     ngOnInit() {
@@ -118,7 +119,8 @@ export class BigScreenComponent implements OnInit {
             }]
         });
         console.log(e);
-        e.event.event.stopImmediatePropagation();
+        this.innerClick = true;
+        // e.event.event.stopImmediatePropagation();
 
         this.startInterval(e);
 
@@ -164,6 +166,10 @@ export class BigScreenComponent implements OnInit {
     }
 
     outerClick(e) {
+        if(this.innerClick){
+            this.innerClick = false;
+            return;
+        }
         this.echartsIntance.setOption({
             series: [
                 {
@@ -180,80 +186,40 @@ export class BigScreenComponent implements OnInit {
     }
     formdata(e?: any) {
         let params = e ? {data: e.name} : {data: "全国"};
-        if(params.data=="全国") {
-            this.customHttpClient.post('LargeMonitor', params).subscribe(result => {
-                console.log(result);
-                if (result.code == '00') {
-                    this.chartsModel.todayamount = result.numdata.todayamount;
 
-                    this.timesChart[0].data = null;
-                    window.setTimeout(() => {
-                        this.timesChart[0].data = result.chartdata[0].data;
-                        console.log(this.userChart[0].data);
-                    }, 500);
+        // let url = this.clickCount++%2 == 0 ? 'LargeMonitor' : 'LargeMonitor1';
+        let url = e ? 'LargeMonitor' : 'LargeMonitor1';
 
-                    this.userChart[0].data = null;
-                    window.setTimeout(() => {
-                        this.userChart[0].data = result.chartdata[1].data;
-                    }, 500);
+        this.timesChart[0].data = null;
+        this.userChart[0].data = null;
+        this.errorChart[0].data = null;
+        this.customHttpClient.post(url, params).subscribe(result => {
+            console.log(result);
+            if (result.code == '00') {
+                this.chartsModel.todayamount = result.numdata.todayamount;
 
-                    this.errorChart[0].data = null;
-                    window.setTimeout(() => {
-                        this.errorChart[0].data = result.chartdata[2].data;
-                    }, 500);
+                this.timesChart[0].data = result.chartdata[0].data;
+                this.userChart[0].data = result.chartdata[1].data;
+                this.errorChart[0].data = result.chartdata[2].data;
 
-                    this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
-                    this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
-                    this.chartsModel.freeDC = result.addata[0].dcdata;
-                    this.chartsModel.freeAC = result.addata[0].acdata;
-                    this.chartsModel.useDC = result.addata[1].dcdata;
-                    this.chartsModel.useAC = result.addata[1].acdata;
-                    this.chartsModel.buildDC = result.addata[2].dcdata;
-                    this.chartsModel.buildAC = result.addata[2].acdata;
-                    this.chartsModel.outDC = result.addata[3].dcdata;
-                    this.chartsModel.outAC = result.addata[3].acdata;
-                    this.chartsModel.errorDC = result.addata[4].dcdata;
-                    this.chartsModel.errorAC = result.addata[4].acdata;
-                }
-            });
-        }
-        else{
-            this.customHttpClient.post('LargeMonitor1',params).subscribe(result => {
-                console.log(result);
-                if (result.code == '00') {
-                    this.chartsModel.todayamount = result.numdata.todayamount;
+                this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
+                this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
+                this.chartsModel.freeDC = result.addata[0].dcdata;
+                this.chartsModel.freeAC = result.addata[0].acdata;
+                this.chartsModel.useDC = result.addata[1].dcdata;
+                this.chartsModel.useAC = result.addata[1].acdata;
+                this.chartsModel.buildDC = result.addata[2].dcdata;
+                this.chartsModel.buildAC = result.addata[2].acdata;
+                this.chartsModel.outDC = result.addata[3].dcdata;
+                this.chartsModel.outAC = result.addata[3].acdata;
+                this.chartsModel.errorDC = result.addata[4].dcdata;
+                this.chartsModel.errorAC = result.addata[4].acdata;
 
-                    this.timesChart[0].data = null;
-                    window.setTimeout(() => {
-                        this.timesChart[0].data = result.chartdata[0].data;
-                        console.log(this.userChart[0].data);
-                    },500);
+                //force update view
+                this.chRef.detectChanges()
+            }
+        });
 
-                    this.userChart[0].data = null;
-                    window.setTimeout(() => {
-                        this.userChart[0].data = result.chartdata[1].data;
-                    },500);
-
-                    this.errorChart[0].data = null;
-                    window.setTimeout(() => {
-                        this.errorChart[0].data = result.chartdata[2].data;
-                    },500);
-
-                    this.doughnutChartData[0] = result.numdata.todayonlinenumbers;
-                    this.doughnutChartData[1] = result.numdata.todayofflinenumbers;
-                    this.chartsModel.freeDC = result.addata[0].dcdata;
-                    this.chartsModel.freeAC = result.addata[0].acdata;
-                    this.chartsModel.useDC = result.addata[1].dcdata;
-                    this.chartsModel.useAC = result.addata[1].acdata;
-                    this.chartsModel.buildDC = result.addata[2].dcdata;
-                    this.chartsModel.buildAC = result.addata[2].acdata;
-                    this.chartsModel.outDC = result.addata[3].dcdata;
-                    this.chartsModel.outAC = result.addata[3].acdata;
-                    this.chartsModel.errorDC = result.addata[4].dcdata;
-                    this.chartsModel.errorAC = result.addata[4].acdata;
-                }
-            });
-        }
 
     }
 
