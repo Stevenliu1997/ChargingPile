@@ -2,6 +2,7 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 import {NgForm} from '@angular/forms';
+import {CityService} from "../../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-site-modify-information',
@@ -17,9 +18,13 @@ export class SiteModifyInformationComponent {
     @ViewChild('submitForm')
     editForm: NgForm;
 
+    citys: any = [];
+    areas:  any = [];
+
     constructor(
         public activeModal: NgbActiveModal,
-        private customHttpClient: CustomHttpClient
+        private customHttpClient: CustomHttpClient,
+        public cityService: CityService
     ) {}
 
     confirm() {

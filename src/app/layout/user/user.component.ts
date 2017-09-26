@@ -18,7 +18,9 @@ export class UserComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {};
+    queryModel: any = {
+        lockstate: ""
+    };
     // datagrid 配置
     config: object = {
         key: 'account',
@@ -70,13 +72,12 @@ export class UserComponent implements OnInit {
                     modalRef.componentInstance.editModel = Object.assign({},item);
                     modalRef.result.then(result => {
                         this.refreshGrid();
-                    },
-                    error => {})
+                    }, error => {})
                 }.bind(this)
             },
             {
                 type: 'detail',
-                name: 'xiangqing',
+                name: '详情',
                 action: function (item) {
                     const modalRef = this.ngbModal.open(UserRecordComponent, {size: "lg"});
                     modalRef.componentInstance.account = item.account;
@@ -96,5 +97,6 @@ export class UserComponent implements OnInit {
 
     blankGrid(){
         this.queryModel = {};
+        this.queryModel.lockstate = "";
     }
 }
