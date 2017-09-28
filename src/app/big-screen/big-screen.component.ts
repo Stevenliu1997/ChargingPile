@@ -1,7 +1,7 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, OnDestroy} from '@angular/core';
 import {routerTransition} from '../router.animations';
 import {CustomHttpClient} from "../shared/services/custom-http-client/CustomHttpClient";
-import {$WebSocket} from 'angular2-websocket/angular2-websocket'
+import {CityService} from "../shared/services/city-service/city-service";
 
 @Component({
     selector: 'realtime-monitor',
@@ -9,17 +9,20 @@ import {$WebSocket} from 'angular2-websocket/angular2-websocket'
     styleUrls: ['./big-screen.component.scss'],
     animations: [routerTransition()]
 })
-export class BigScreenComponent implements OnInit {
+export class BigScreenComponent implements OnInit,OnDestroy {
 
     innerClick: boolean = false;
     chartOption: any;
     echartsIntance: any;
+    province: any;
     //坐标
     geoCoord: any;
     chartsModel: any ={};
     intervalId: any;
 
-    constructor(private customHttpClient: CustomHttpClient, private chRef: ChangeDetectorRef) {
+    constructor(private customHttpClient: CustomHttpClient,
+                private chRef: ChangeDetectorRef,
+                public cityService: CityService) {
     }
 
     ngOnInit() {
@@ -186,14 +189,19 @@ export class BigScreenComponent implements OnInit {
     }
     formdata(e?: any) {
         let params = e ? {data: e.name} : {data: "全国"};
-
-        // let url = this.clickCount++%2 == 0 ? 'LargeMonitor' : 'LargeMonitor1';
-        let url = e ? 'LargeMonitor' : 'LargeMonitor1';
-
+        this.province=this.cityService.getProvince();
+        if (params.data != "全国"){
+            for(let i=0; i<this.province.length; i++){
+                if(this.province[i].name.indexOf(e.name) == 0){
+                    params.data= this.province[i].name;
+                    break;
+                }
+            }
+        }
         this.timesChart[0].data = null;
         this.userChart[0].data = null;
         this.errorChart[0].data = null;
-        this.customHttpClient.post(url, params).subscribe(result => {
+        this.customHttpClient.post('LargeMonitor', params).subscribe(result => {
             console.log(result);
             if (result.code == '00') {
                 this.chartsModel.todayamount = result.numdata.todayamount;
@@ -230,6 +238,9 @@ export class BigScreenComponent implements OnInit {
         this.intervalId = setInterval(function () {
             this.formdata(e);
         }.bind(this), 30000);
+    }
+    ngOnDestroy() {
+        window.clearInterval(this.intervalId);
     }
 
 }

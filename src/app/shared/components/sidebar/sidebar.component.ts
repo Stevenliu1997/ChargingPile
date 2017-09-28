@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit{
                 {name: '操作记录', routerLink: '/operation-record'}
             ]},
             {name: '基础数据管理', children: [
-                {name: '出厂设置', routerLink: '/factory-settings'},
+/*                {name: '出厂设置', routerLink: '/factory-settings'},*/
                 {name: '系统设置', routerLink: '/system-setting'},
                 {name: '充电桩程序库', routerLink: '/recharge-program'},
                 {name: '充电桩硬件设备库', routerLink: '/recharge-equipment'},

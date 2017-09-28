@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 import {routerTransition} from '../../router.animations';
-import {$WebSocket} from 'angular2-websocket/angular2-websocket';
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 
@@ -24,7 +23,7 @@ export class RealTimeMonitoringComponent implements OnInit {
         });
         this.startInterval();
     }
-    constructor(private customHttpClient: CustomHttpClient) {
+    constructor(private customHttpClient: CustomHttpClient,private chRef: ChangeDetectorRef) {
     }
     initMap(result: any){
         this.opts = {
@@ -176,7 +175,7 @@ export class RealTimeMonitoringComponent implements OnInit {
                 });
             }
         });
-
+        this.chRef.detectChanges();
 
     }
 

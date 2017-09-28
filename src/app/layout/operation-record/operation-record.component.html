@@ -4,87 +4,6 @@
     <div content="main-content container">
         <div class="modal-body">
             <ngb-tabset [destroyOnHide]="false" (tabChange)="change($event)">
-                <ngb-tab title="用户充电桩记录表" id="rechargeLog" >
-                    <ng-template ngbTabContent >
-                        <div class="query-section row breadcrumb mx-xl-0">
-                            <div class="row form-group">
-                                <div class="col-5">
-                                    <div class="row">
-                                        <label for="operatepile1" class="col-5 col-form-label">操作充电桩</label>
-                                        <div class="col-7">
-                                            <input class="form-control" type="text" id="operatepile1" [(ngModel)]="queryModel.operatepile" name="queryModel.operatepile">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-5">
-                                    <div class="row">
-                                        <label for="type2" class="col-4 col-form-label">操作类型</label>
-                                        <div class="col-8">
-                                            <input class="form-control" type="text" id="type2" [(ngModel)]="queryModel.type" name="queryModel.type">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-10 row form-group">
-                                <div class="col-8">
-                                    <div class="row">
-                                        <label for="operateMinTime2" class="col-2 col-form-label">时间</label>
-                                        <div class="col-4">
-                                            <input class="form-control" type="date" id="operateMinTime2" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime">
-                                        </div>
-                                        <span>—</span>
-                                        <div class="col-4">
-                                            <input class="form-control" type="date" id="operateMaxTime2" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <button type="submit" class="btn btn-primary" (click)="refreshrechargeLog()">查询</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-2">
-                            <app-datagrid #rechargeLog [config]="rechargeLogConfig"></app-datagrid>
-                        </div>
-                    </ng-template>
-                </ngb-tab>
-                <ngb-tab title="登入登出记录表" id="loginOutLog">
-                    <ng-template ngbTabContent>
-                        <div class="query-section row breadcrumb mx-xl-0">
-                            <div class="row form-group">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <label for="type1" class="col-4 col-form-label">操作类型</label>
-                                        <div class="col-8">
-                                            <input class="form-control" type="text" id="type1" [(ngModel)]="queryModel.type" name="queryModel.type">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-10 row form-group">
-                                <div class="col-8">
-                                    <div class="row">
-                                        <label for="operateMinTime1" class="col-2 col-form-label">时间</label>
-                                        <div class="col-4">
-                                            <input class="form-control" type="date" id="operateMinTime1" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime" validationMsg required>
-                                        </div>
-                                        <span>—</span>
-                                        <div class="col-4">
-                                            <input class="form-control" type="date" id="operateMaxTime1" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime" validationMsg required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <button type="submit" class="btn btn-primary" (click)="refreshloginOutLog()">查询</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-2">
-                            <app-datagrid #loginOutLog [config]="loginOutLogConfig"></app-datagrid>
-                        </div>
-
-                    </ng-template>
-                </ngb-tab>
                 <ngb-tab title="用户站点操作记录表" id="siteLog">
                     <ng-template ngbTabContent >
                         <div class="query-section row breadcrumb mx-xl-0">
@@ -129,6 +48,88 @@
                         </div>
                     </ng-template>
                 </ngb-tab>
+                <ngb-tab title="登入登出记录表" id="loginOutLog">
+                    <ng-template ngbTabContent>
+                        <div class="query-section row breadcrumb mx-xl-0">
+                            <div class="row form-group">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label for="type1" class="col-4 col-form-label">操作类型</label>
+                                        <div class="col-8">
+                                            <input class="form-control" type="text" id="type1" [(ngModel)]="queryModel.type" name="queryModel.type">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-10 row form-group">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <label for="operateMinTime1" class="col-2 col-form-label">时间</label>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMinTime1" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime" validationMsg required>
+                                        </div>
+                                        <span>—</span>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMaxTime1" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime" validationMsg required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-primary" (click)="refreshloginOutLog()">查询</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <app-datagrid #loginOutLog [config]="loginOutLogConfig"></app-datagrid>
+                        </div>
+
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab title="用户充电桩记录表" id="rechargeLog" >
+                    <ng-template ngbTabContent >
+                        <div class="query-section row breadcrumb mx-xl-0">
+                            <div class="row form-group">
+                                <div class="col-5">
+                                    <div class="row">
+                                        <label for="operatepile1" class="col-5 col-form-label">操作充电桩</label>
+                                        <div class="col-7">
+                                            <input class="form-control" type="text" id="operatepile1" [(ngModel)]="queryModel.operatepile" name="queryModel.operatepile">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <label for="type2" class="col-4 col-form-label">操作类型</label>
+                                        <div class="col-8">
+                                            <input class="form-control" type="text" id="type2" [(ngModel)]="queryModel.type" name="queryModel.type">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-10 row form-group">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <label for="operateMinTime2" class="col-2 col-form-label">时间</label>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMinTime2" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime">
+                                        </div>
+                                        <span>—</span>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMaxTime2" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-primary" (click)="refreshrechargeLog()">查询</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <app-datagrid #rechargeLog [config]="rechargeLogConfig"></app-datagrid>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+
             </ngb-tabset>
         </div>
     </div>

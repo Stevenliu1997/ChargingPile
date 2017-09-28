@@ -27,7 +27,7 @@ export class OrderQueryComponent implements OnInit {
             {name: '订单状态', key: 'orderstate'},
             {name: '充电时长', key: 'chargetime'},
             {name: '总电量', key: 'chargeamount'},
-            {name: '完成时间', key: 'endchargetime'},
+            {name: '完成时间', key: 'finishtime'},
             {name: '支付方式', key: 'paytype'},
             {name: '用户', key: 'payer'}
         ],
