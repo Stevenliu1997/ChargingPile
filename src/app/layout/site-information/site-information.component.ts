@@ -283,7 +283,7 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.Operator = Object.assign({}, this.Operator);
                     modalRef.result.then(result => {
                         this.refreshGridArticle();
-                    })
+                    },error => {})
                 }.bind(this)
             },
             {

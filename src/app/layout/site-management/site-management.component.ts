@@ -51,7 +51,7 @@ export class SiteManagementComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '新建站点';
                     modalRef.result.then(result => {
                         this.refreshGrid();
-                    })
+                    },error=>{})
                 }.bind(this)
             },
             {

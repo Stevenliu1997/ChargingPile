@@ -39,16 +39,15 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label">省市</label>
-            <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4">
+            <label class="col-2 col-form-label">省</label>
+            <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4" (ngModelChange)="citys = cityService.getCity(editModel.province);editModel.city='';areas=[];editModel.district=''" >
                 <option value="">请选择</option>
-                <option value="四川">四川</option>
-                <option value="河北">河北</option>
+                <option [ngValue]="item.name" *ngFor="let item of cityService.getProvince()">{{item.name}}</option>
             </select>
-            <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4">
+            <label class="col-2 col-form-label">市</label>
+            <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4" [(ngModel)]="editModel.city" name="editModel.city" >
                 <option value="">请选择</option>
-                <option value="成都">成都</option>
-                <option value="保定">保定</option>
+                <option [value]="item.name" *ngFor="let item of citys">{{item.name}}</option>
             </select>
         </div>
         <div class="form-group row">

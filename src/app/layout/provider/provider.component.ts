@@ -19,7 +19,10 @@ export class ProviderComponent implements OnInit {
     private datagridComponent: DatagridComponent;
 
     /*查询对象*/
-    queryModel: any = {};
+    queryModel: any = {
+        province: "",
+        city: ""
+    };
     citys: any = [];
     areas:  any = [];
 
@@ -52,11 +55,7 @@ export class ProviderComponent implements OnInit {
                 action: function (ids) {
                     const modalRef = this.ngbModal.open(ProviderEditComponent);
                     modalRef.componentInstance.actionTitle = '添加';
-
                     modalRef.result.then(result => {
-                        let tempResult = Object.assign({}, result);
-                        tempResult.factoryid = -1;
-                        this.addProvider(tempResult);
                         this.refreshGrid();
                     },
                     error => {})
@@ -91,8 +90,9 @@ export class ProviderComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '编辑';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
-                            let tempResult = Object.assign({}, result);
-                            this.updateProvider(tempResult);
+/*                            let tempResult = Object.assign({}, result);
+                            this.updateProvider(tempResult);*/
+                            this.refreshGrid();
                     },
                     error => {
                     })
@@ -122,7 +122,8 @@ export class ProviderComponent implements OnInit {
 
     initquery() {
         this.queryModel = {};
-
+        this.queryModel.province ="";
+        this.queryModel.city = "";
     }
 
 }

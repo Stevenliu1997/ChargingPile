@@ -145,7 +145,7 @@
                 <ng-template ngbTabContent>
                     <div class="query-section mx-xl-0">
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-9" *ngIf="opts">
                                 <baidu-map
                                             [options]="opts"
                                            [offline]="offlineOpts"

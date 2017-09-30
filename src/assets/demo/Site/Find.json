@@ -14,7 +14,7 @@
             "pilenumber": "12",
             "seatnumber": "9",
             "operatorInformation_operatorid": "rrrrr",
-            "isscanning": "否",
+            "isscanning": true,
             "account": "weiwei",
             "create": "2017.2.2",
             "ruleid": "444"
@@ -35,7 +35,7 @@
             "pilenumber": "6",
             "seatnumber": "6",
             "operatorInformation_operatorid": "111",
-            "isscanning": "否",
+            "isscanning": false,
             "account": "weiwei",
             "create": "2017.2.2",
             "ruleid": "444"

@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {CityService} from "../../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-site-information',
@@ -12,7 +13,10 @@ export class SiteInformationComponent {
     @Input()
     editModel: any = {};
 
-    constructor(public activeModal: NgbActiveModal) {}
+    citys: any = [];
+    areas:  any = [];
+
+    constructor(public activeModal: NgbActiveModal,public cityService: CityService) {}
 
     confirm() {
         this.activeModal.close(this.editModel);

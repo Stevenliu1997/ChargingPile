@@ -21,20 +21,18 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">省</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.province' name="editModel.province" class="form-control" validationMsg required>
+                <select [(ngModel)] = 'editModel.province' name="editModel.province" class="form-control"  (ngModelChange)="citys = cityService.getCity(editModel.province);editModel.city='';areas=[];editModel.district=''" validationMsg required>
                     <option value="">请选择</option>
-                    <option value="四川">四川</option>
-                    <option value="湖南">湖南</option>
+                    <option [ngValue]="item.name" *ngFor="let item of cityService.getProvince()">{{item.name}}</option>
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-2 col-form-label">市</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.city' name="editModel.city" class="form-control" validationMsg required>
+                <select [(ngModel)] = 'editModel.city' name="editModel.city" class="form-control"  validationMsg required>
                     <option value="">请选择</option>
-                    <option value="成都">成都</option>
-                    <option value="湖南">郑州</option>
+                    <option [value]="item.name" *ngFor="let item of citys">{{item.name}}</option>
                 </select>
             </div>
         </div>
