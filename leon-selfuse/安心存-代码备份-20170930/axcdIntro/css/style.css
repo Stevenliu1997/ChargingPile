@@ -181,6 +181,10 @@ td {
     text-align: center;
 }
 
+.indent-2 {
+    text-indent: 20px;
+}
+
 .flex-container {
     display: flex;
     width: 100%;
