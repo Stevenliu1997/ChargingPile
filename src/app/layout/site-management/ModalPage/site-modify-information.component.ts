@@ -13,13 +13,20 @@ export class SiteModifyInformationComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        state: "",
+        isopen: "",
+        province: "",
+        city: ""
+    };
 
     @ViewChild('submitForm')
     editForm: NgForm;
 
     citys: any = [];
     areas:  any = [];
+
+    type: boolean;
 
     constructor(
         public activeModal: NgbActiveModal,

@@ -11,7 +11,9 @@ export class DockoperatorEditComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        state: ""
+    };
     @ViewChild('submitForm')
     editForm: NgForm;
 
@@ -44,6 +46,8 @@ export class DockoperatorEditComponent {
                 this.activeModal.close();
             }
         })
-    }
+    }l
+
+
 
 }

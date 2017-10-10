@@ -43,7 +43,7 @@ export class CarBrandComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.refreshGrid();
-                    })
+                    },error=>{})
                 }.bind(this)
             },
             {
