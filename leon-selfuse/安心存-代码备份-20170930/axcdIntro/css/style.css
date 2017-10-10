@@ -1,0 +1,231 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #f1f2f3;
+}
+.info-head {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    color: #FFFFFF;
+    background-color: #F96C41;
+}
+
+.info-title {
+    line-height: 25px;
+    font-size: 18px;
+    padding-top: 14px;
+    padding-bottom: 9px;
+}
+
+.info-rate {
+    line-height: 50px;
+    font-size: 36px;
+    padding-bottom: 5px;
+}
+
+.info-hint {
+    line-height: 17px;
+    font-size: 12px;
+    padding-bottom: 30px;
+}
+
+.info-detail {
+    display: flex;
+    background-color: rgba(30,30,30,0.2);
+    width: 100%;
+    flex-basis: 100%;
+    text-align: center;
+    height: 55px;
+    align-items: center;
+}
+
+.info-detail > div {
+    flex: 1;
+    position: relative;
+}
+
+.info-detail > div:not(:last-child)::before{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    right: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1));
+}
+
+.info-detail > div > div:first-child {
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 2px;
+}
+
+.info-detail > div > div:last-child {
+    font-size: 12px;
+    line-height: 17px;
+    opacity: 0.8;
+}
+
+.introduction {
+    margin-bottom: 6px;
+    background-color: white;
+}
+
+.introduction .intro-title {
+    padding: 12px 0 11px 15px;
+    line-height: 22px;
+    font-size: 16px;
+    border-bottom: 1px solid #E4E4E4;
+    color: #343434;
+}
+
+.introduction .intro-img {
+    padding: 12px 0px 29px 0px;
+}
+
+.introduction .intro-img img{
+    width: 100vw;
+}
+
+.text-black {
+    color: #343434;
+}
+
+.introduction .intro-content {
+    padding: 12px 19px 29px 15px;
+    color: #676767;
+    font-size: 14px;
+}
+
+.mb-10x {
+    margin-bottom: 10px;
+}
+
+.mb-5x {
+    margin-bottom: 5px;
+}
+
+/**
+ * table
+ */
+table {
+    border: 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+}
+
+table thead{
+    background-color:  #FFCDBD;
+}
+
+table tr:not(:last-child) td,
+table thead tr td{
+    border-bottom: 1px solid;
+}
+
+table tbody tr td:not(:last-child) {
+    border-right: 1px solid;
+}
+
+table tr .max-rowspan {
+    border-bottom: none !important;
+}
+
+
+table,
+tr,
+td {
+    border-spacing: 0;
+    border-color: #D8D8D8 !important;
+    color: #343434;
+}
+
+
+
+.intro-content td {
+    padding: 10px;
+    max-width: 31vw
+}
+
+
+.intro-content td:last-child {
+    text-align: left;
+}
+
+.panda {
+    color: #F96C41;
+}
+
+
+
+/**
+ * F
+ */
+
+.pad-content {
+    padding: 20px 15px;
+    background-color: white;
+}
+
+.text-14px {
+    font-size: 14px;
+}
+
+.text-12px {
+    font-size: 12px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.indent-2 {
+    text-indent: 20px;
+}
+
+.flex-container {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.flex-container .flex-item-3 {
+    flex: 0 0 25%;
+}
+
+.flex-container .flex-item {
+    flex: 1;
+}
+
+.flex-container .flex-item,
+.flex-container .flex-item-3 {
+    width: 100%;
+}
+
+.flex-container .circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    border: 2px solid #F96C41;
+}
+.flex-container .line {
+    height: 0;
+    border-top: 2px solid #F96C41;
+    position: relative;
+    top: 9px;
+}
+
+.grey-content {
+    background: #F5F5F5;
+    color: #999999;
+    padding: 10px;
+}
+
+
+
