@@ -129,12 +129,16 @@ table tbody tr td:not(:last-child) {
     border-right: 1px solid;
 }
 
+table tr .max-rowspan {
+    border-bottom: none !important;
+}
+
 
 table,
 tr,
 td {
     border-spacing: 0;
-    border-color: #D8D8D8;
+    border-color: #D8D8D8 !important;
     color: #343434;
 }
 
