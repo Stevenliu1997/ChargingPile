@@ -74,7 +74,7 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.actionTitle = '添加';
                     modalRef.result.then(result => {
                         this.refreshGridSiteM();
-                    })
+                    },error=>{})
                 }.bind(this)
             },
             {
@@ -124,7 +124,7 @@ export class SiteInformationComponent implements OnInit {
             {name: '规则开始日', key: 'starttime'},
             {name: '规则结束日', key: 'endtime'},
             {name: '规则类别', key: 'ruletype'},
-            {name: '使用标志', key: 'usersate'},
+            {name: '使用标志', key: 'userstate'},
             {name: '创建时间', key: 'createtime'}
         ],
         params: function () {
@@ -167,7 +167,7 @@ export class SiteInformationComponent implements OnInit {
                     modalRef.componentInstance.editModel.operatorid = this.Operator.operatorid;
                     modalRef.result.then(result => {
                         this.refreshGridCharging();
-                    })
+                    },error=>{})
                 }.bind(this)
             },
             {
@@ -364,7 +364,7 @@ export class SiteInformationComponent implements OnInit {
 
     clear(): void {
         this.queryModel.siteid = '';
-        this.queryModel.name = '';
+        this.queryModel.sitename = '';
         this.queryModel.state = '';
         this.queryModel.province = '';
         this.queryModel.city = '';

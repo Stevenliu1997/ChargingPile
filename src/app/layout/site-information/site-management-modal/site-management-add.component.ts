@@ -2,6 +2,7 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 import {NgForm} from '@angular/forms';
+import {CityService} from "../../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-site-management-add',
@@ -12,14 +13,23 @@ export class SiteManagementAddComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        state: "",
+        isopen: "",
+        province: "",
+        city: "",
+        district: ""
+    };
+    citys: any = [];
+    areas: any = [];
 
     @ViewChild('submitForm')
     editForm: NgForm;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private customHttpClient: CustomHttpClient
+        private customHttpClient: CustomHttpClient,
+        public cityService: CityService
     ) {}
     confirm() {
         if (this.editForm.form.invalid) {
