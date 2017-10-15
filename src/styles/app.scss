@@ -4,3 +4,7 @@
 @import "utils";
 @import "rtl";
 @import "responsive";
+
+.query-section .col-form-label {
+    text-align: right;
+}
