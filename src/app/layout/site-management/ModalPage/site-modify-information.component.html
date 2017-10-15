@@ -78,12 +78,12 @@
             <label class="col-2 col-form-label">是否支持扫描充电</label>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1"  (change)="type = editModel.isscanning" [checked]="type == editModel.isscanning">是
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" [(ngModel)]="editModel.isscanning" [value]="true">是
                 </label>
             </div>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2"  (change)="type = editModel.isscanning" [checked]="type == editModel.isscanning">否
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" [(ngModel)]="editModel.isscanning" [value]="false">否
                 </label>
             </div>
         </div>

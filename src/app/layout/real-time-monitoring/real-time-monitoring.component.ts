@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-baidu-map';
 import {routerTransition} from '../../router.animations';
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
@@ -10,7 +10,11 @@ import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./real-time-monitoring.component.scss'],
     animations: [routerTransition()]
 })
-export class RealTimeMonitoringComponent implements OnInit {
+export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
+    ngOnDestroy(): void {
+        window.clearInterval(this.intervalId);
+    }
+
     chartsModel: any = {
     };
     //地图
@@ -172,10 +176,10 @@ export class RealTimeMonitoringComponent implements OnInit {
                     this.barChartData[0].label = result.chartdata[3].datatype;
                     this.barChartData[1].label = result.chartdata[4].datatype;
                     this.barChartData[2].label = result.chartdata[5].datatype;
+                    this.chRef.detectChanges();
                 });
             }
         });
-        this.chRef.detectChanges();
 
     }
 
