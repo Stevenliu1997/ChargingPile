@@ -1,4 +1,4 @@
-$topnav-background-color: #222;
+$topnav-background-color: #23282e;
 .topnav {
     border-radius: 0;
     background-color: $topnav-background-color;
@@ -69,4 +69,6 @@ $topnav-background-color: #222;
 }
 .header .navbar {
     background: $topnav-background-color !important;
+    margin-left: 232px;
+    height: 50px;
 }

@@ -1,31 +1,31 @@
 <div class="nav-side-menu">
-    <div class="brand">Brand Logo</div>
+    <div class="brand">智慧充电桩管理</div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
     <div class="menu-list">
 
         <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="#">
-                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
-            </li>
+            <span *ngFor="let menu of sideMenu">
+                <li *ngIf="!(menu.children && menu.children.length > 0)" routerLink="{{menu.routerLink}}" >
+                    <a href="#">
+                        <i class="fa fa-dashboard fa-lg"></i> {{menu.name}}
+                    </a>
+                </li>
 
-            <li  data-toggle="collapse" data-target="#products" class="collapsed active" (click)="isCollapsed = !isCollapsed">
-                <a><i class="fa fa-gift fa-lg"></i> UI Elements {{isCollapsed}}<span class="arrow"></span></a>
-            </li>
-            <ul class="sub-menu collapse" id="products" [ngbCollapse]="isCollapsed">
-                <li class="active"><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Tabs & Accordions</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
-            </ul>
+                <li *ngIf="menu.children && menu.children.length > 0"  data-toggle="collapse" class="collapsed" (click)="menu.isExpand = !menu.isExpand">
+                    <a><i class="fa fa-gift fa-lg"></i> {{menu.name}}<span class="arrow"></span></a>
+                </li>
+                <ul *ngIf="menu.children && menu.children.length > 0" class="sub-menu collapse" id="products" [ngbCollapse]="!menu.isExpand">
+                    <li routerLinkActive="active" routerLink="{{subMenu.routerLink}}" *ngFor="let subMenu of menu.children"><a >{{subMenu.name}}</a></li>
+                </ul>
+            </span>
+            <!--<li>-->
+                <!--<a href="#">-->
+                    <!--<i class="fa fa-dashboard fa-lg"></i> Dashboard-->
+                <!--</a>-->
+            <!--</li>-->
+
+
 
 
             <!--<li data-toggle="collapse" data-target="#service" class="collapsed">-->

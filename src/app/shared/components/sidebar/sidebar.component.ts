@@ -9,8 +9,8 @@ import {
 
 @Component({
     selector: 'app-sidebar',
-    templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss'],
+    templateUrl: './sidebar.component.new.html',
+    styleUrls: ['./sidebar.component.new.scss'],
     animations: [
         trigger('menuCollapse', [
             state('collapse', style({
