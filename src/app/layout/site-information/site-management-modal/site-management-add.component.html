@@ -50,7 +50,7 @@
         <div class="form-group row">
             <label for="city-select-input" class="col-2 col-form-label">市</label>
             <div class="col-10">
-                <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4" (ngModelChange)="areas = cityService.getArea(editModel.city);queryModel.district=''">
+                <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4" (ngModelChange)="areas = cityService.getArea(editModel.city);editModel.district=''">
                     <option value="">请选择</option>
                     <option [value]="item.name" *ngFor="let item of citys">{{item.name}}</option>
                 </select>
