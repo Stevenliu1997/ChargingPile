@@ -12,7 +12,7 @@
                     </a>
                 </li>
 
-                <li *ngIf="menu.children && menu.children.length > 0"  data-toggle="collapse" class="collapsed" (click)="menu.isExpand = !menu.isExpand">
+                <li *ngIf="menu.children && menu.children.length > 0"  data-toggle="collapse" class="collapsed" (click)="menu.isExpand = !menu.isExpand" class="sidebar-parent-menu">
                     <a><i class="fa fa-gift fa-lg"></i> {{menu.name}}<span class="arrow"></span></a>
                 </li>
                 <ul *ngIf="menu.children && menu.children.length > 0" class="sub-menu collapse" id="products" [ngbCollapse]="!menu.isExpand">

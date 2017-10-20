@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
 <section class="main-container">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
     <div style="text-align: center;color: #777;margin-top:5px">智慧充电桩 © 2017 </div>
 </section>

@@ -16,4 +16,21 @@ export class LayoutComponent implements OnInit {
         }
     }
 
+    onActivate(event) {
+        window.setTimeout(() => {
+            let nodes = document.body.querySelectorAll('.sidebar-parent-menu');
+            for(let i=0;i<nodes.length;i++){
+                let n = nodes[i];
+                // n.classList.remove('active');
+                if(n.parentElement.querySelectorAll('.sub-menu .active').length > 0){
+                    n.classList.add('active');
+                }else {
+                    n.classList.remove('active')
+                }
+            }
+        })
+
+    }
+
+
 }
