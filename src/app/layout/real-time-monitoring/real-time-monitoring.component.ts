@@ -3,6 +3,7 @@ import { OfflineOptions, ControlAnchor, NavigationControlType } from 'angular2-b
 import {routerTransition} from '../../router.animations';
 import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomHttpClient";
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import {stringDistance} from "codelyzer/util/utils";
 
 @Component({
     selector: 'map-presentation',
@@ -20,16 +21,18 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
     //地图
     intervalId: any;
     opts: any;
+    contents:any;
     offlineOpts: OfflineOptions;
     ngOnInit() {
         this.customHttpClient.get('map',).subscribe(result =>{
+            console.log(1);
             this.initMap(result);
         });
         this.startInterval();
     }
     constructor(private customHttpClient: CustomHttpClient,private chRef: ChangeDetectorRef) {
     }
-    initMap(result: any){
+/*    initMap(result: any){
         this.opts = {
             center: {
                 longitude: 104.2115,
@@ -37,13 +40,13 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
             },
             zoom: 6,   //变焦
             markers: [
-                /*{ //标记
+                /!*{ //标记
                     longitude: 100.506191,
                     latitude: 30.245554,
                     title: 'Where',
                     content: 'Put description here',
                     enableDragging: false
-                }*/
+                }*!/
             ],
             geolocationCtrl: {//地理定位控制
                 anchor: ControlAnchor.BMAP_ANCHOR_BOTTOM_RIGHT
@@ -66,11 +69,28 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         };
         for(let i=0; i<result.length ; i++ ){
             this.opts.markers[i] = {};
-            this.opts.markers[i].longitude = result.lng;
-            this.opts.markers[i].latitude = result.lat;
+            this.opts.markers[i].longitude = result.data.lng;
+            this.opts.markers[i].latitude = result.data.lat;
             this.opts.markers[i].title = "站点信息";
             this.opts.markers[i].content = result.sitename + result.pilename;
             this.opts.markers[i].enableDragging = false;
+        }
+    }*/
+    initMap(result: any){
+        this.opts={
+            markers:[
+            ],
+            infoWindowOffset:{
+                "x": 0,
+                "y": -30
+            }
+        };
+        this.contents = [];
+        for(let i=0; i<result.data.length ; i++ ){
+            this.opts.markers[i] = [];
+            this.opts.markers[i][0] = result.data[i].lng;
+            this.opts.markers[i][1] = result.data[i].lat;
+            this.contents[i]=result.data[i].sitename + result.data[i].pilename;
         }
     }
 

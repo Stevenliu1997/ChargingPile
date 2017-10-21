@@ -1,10 +1,21 @@
-[
-    {
-        "lng": null,
-        "lat": null,
-        "id": "1111",
-        "sietename": "电子科技大学充电站",
-        "pilename": "11"
-    }
-]
+{
+    "data":[
+        {
+            "lng": 110.95,
+            "lat": 36.27,
+            "id": "1111",
+            "sitename": "电子科技大学充电站",
+            "pilename": "11"
+        },
+        {
+            "lng": 108.95,
+            "lat": 34.27,
+            "id": "1111",
+            "sitename": "电子科技大学充电站",
+            "pilename": "11"
+        }
+    ],
+    "code": "00",
+    "message":"1"
+}
 

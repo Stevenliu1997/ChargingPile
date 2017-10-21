@@ -1,4 +1,6 @@
 export const environment = {
-  production: true
+  production: false,
+    developMode: 'demo',
+    host: './assets/demo/'
 };
 
