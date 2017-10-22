@@ -14,7 +14,7 @@
             "pilenumber": "12",
             "seatnumber": "9",
             "isreasonable": "不合理",
-            "isscanning": "是",
+            "isscanning": false,
             "createtime": "2017-01-01 12:12:31",
             "ruleid": "1256"
         },
@@ -32,7 +32,7 @@
             "pilenumber": "3",
             "seatnumber": "5",
             "isreasonable": "不合理",
-            "isscanning": "否",
+            "isscanning": true,
             "createtime": "2016-09-03 04:34:56",
             "ruleid": "5698"
         }

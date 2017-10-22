@@ -17,7 +17,9 @@ export class OrderQueryComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     //查询对象
-    queryModel: any = {};
+    queryModel: any = {
+        orderstate:""
+    };
     // datagrid 配置
     config: object = {
         url: 'OrderForm/Find',
@@ -57,6 +59,7 @@ export class OrderQueryComponent implements OnInit {
 
     blankGrid(){
         this.queryModel = {};
+        this.queryModel.orderstate=""
 
     }
 

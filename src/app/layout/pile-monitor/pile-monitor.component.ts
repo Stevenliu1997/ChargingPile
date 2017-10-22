@@ -41,7 +41,7 @@ export class PileMonitorComponent implements OnInit {
                 modalRef.componentInstance.request.factoryid = item.factoryid;
                 modalRef.result.then(result => {
                     this.refreshGrid();
-                })
+                },error=>{})
             }.bind(this)},
             {name: '型号', key: 'piletype'},
             {name: '名称', key: 'pilename'},
@@ -56,7 +56,7 @@ export class PileMonitorComponent implements OnInit {
                 modalRef.componentInstance.editModel.gunid = item.gunid;
                 modalRef.result.then(result => {
                     this.refreshGrid();
-                })
+                },error=>{})
             }.bind(this)},
             {name: '交易记录', isModal: true, action: function(item) {
                 /*打开对应模态框*/
@@ -65,7 +65,7 @@ export class PileMonitorComponent implements OnInit {
                 modalRef.componentInstance.request.gunid = item.gunid;
                 modalRef.result.then(result => {
                     this.refreshGrid();
-                })
+                },error=>{})
             }.bind(this)},
             {name: '预约状态', key: 'reservestate', isIcon: true},
             {name: '是否在线', key: 'isonline', isIcon: true},
@@ -79,7 +79,7 @@ export class PileMonitorComponent implements OnInit {
                 modalRef.componentInstance.actionTitle = '查看状态';
                 modalRef.result.then(result => {
                     this.refreshGrid();
-                })
+                },error=>{})
             }.bind(this)},
             {name: '有无', key: 'has'},
             {name: '编号', key: 'number'},

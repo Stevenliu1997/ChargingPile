@@ -40,17 +40,15 @@
         </div>
         <div class="form-group row">
             <label for="province-select-input" class="col-2 col-form-label">省</label>
-            <div class="col-10">
-                <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control col-4" (ngModelChange)="citys = cityService.getCity(editModel.province);editModel.city='';areas=[];editModel.district=''">
+            <div class="col-4">
+                <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control " (ngModelChange)="citys = cityService.getCity(editModel.province);editModel.city='';areas=[];editModel.district=''">
                     <option value="">请选择</option>
                     <option [ngValue]="item.name" *ngFor="let item of cityService.getProvince()">{{item.name}}</option>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
             <label for="city-select-input" class="col-2 col-form-label">市</label>
-            <div class="col-10">
-                <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control col-4" (ngModelChange)="areas = cityService.getArea(editModel.city);editModel.district=''">
+            <div class="col-4">
+                <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control" (ngModelChange)="areas = cityService.getArea(editModel.city);editModel.district=''">
                     <option value="">请选择</option>
                     <option [value]="item.name" *ngFor="let item of citys">{{item.name}}</option>
                 </select>
@@ -93,12 +91,12 @@
             <label class="col-2 col-form-label">是否支持扫描充电</label>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" value="true" [(ngModel)] = 'editModel.isscanning'>是
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input1" value="true" [(ngModel)] = 'editModel.isscanning' [value]="true" value="true">是
                 </label>
             </div>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="false" [(ngModel)] = 'editModel.isscanning'>否
+                    <input class="form-check-input" type="radio" name="editModel.isscanning" id="isscanning-text-input2" value="false" [(ngModel)] = 'editModel.isscanning' [value]="false" value="false">否
                 </label>
             </div>
         </div>

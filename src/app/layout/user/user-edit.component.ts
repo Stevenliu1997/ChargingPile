@@ -15,7 +15,10 @@ export class UserEditComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        rolename:"",
+        lockstate:""
+    };
 
     @ViewChild('submitForm')
     editForm: NgForm;

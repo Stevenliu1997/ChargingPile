@@ -18,7 +18,7 @@ export class DockoperatorComponent implements OnInit {
     private datagridComponent: DatagridComponent;
     //查询对象
     queryModel: any = {
-
+        state:""
     };
     // datagrid 配置
     config: object = {
@@ -94,5 +94,6 @@ export class DockoperatorComponent implements OnInit {
 
     blankGrid() {
         this.queryModel = {};
+        this.queryModel.state=""
     }
 }
