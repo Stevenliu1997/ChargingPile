@@ -6,8 +6,8 @@
             <ngb-tabset [destroyOnHide]="false" (tabChange)="change($event)">
                 <ngb-tab title="用户站点操作记录表" id="siteLog">
                     <ng-template ngbTabContent >
-                        <div class="query-section  breadcrumb mx-xl-0">
-                            <div class="row form-group col-8">
+                        <div class="query-section row breadcrumb mx-xl-0">
+                            <div class="row form-group">
                                 <div class="col-5">
                                     <div class="row">
                                         <label for="operatesite" class="col-4 col-form-label">操作站点</label>
@@ -25,13 +25,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row form-group">
-                                <div class="col-10 row">
-                                    <div class="col-1 col-form-label">时间</div>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <input class="form-control" type="date"  [(ngModel)]="queryModel.operateMinTime" name="operateMinTime">
-                                        <button type="button" class="btn btn-primary">至</button>
-                                        <input class="form-control" type="date" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
+                            <div class="col-10 row form-group">
+                                <div class="col-8">
+                                    <div class="row">
+                                        <label for="operateMinTime" class="col-2 col-form-label">查询开始时间</label>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMinTime" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime">
+                                        </div>
+                                        <label for="operateMaxTime" class="col-2 col-form-label">查询截止时间</label>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMaxTime" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -60,11 +64,13 @@
                             <div class="col-10 row form-group">
                                 <div class="col-8">
                                     <div class="row">
-                                        <div class="col-1 col-form-label">时间</div>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <input class="form-control" type="date"  [(ngModel)]="queryModel.operateMinTime" name="operateMinTime">
-                                            <button type="button" class="btn btn-primary">至</button>
-                                            <input class="form-control" type="date" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
+                                        <label for="operateMinTime1" class="col-2 col-form-label">时间</label>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMinTime1" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime" validationMsg required>
+                                        </div>
+                                        <span>—</span>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMaxTime1" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime" validationMsg required>
                                         </div>
                                     </div>
                                 </div>
@@ -103,11 +109,13 @@
                             <div class="col-10 row form-group">
                                 <div class="col-8">
                                     <div class="row">
-                                        <div class="col-1 col-form-label">时间</div>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <input class="form-control" type="date"  [(ngModel)]="queryModel.operateMinTime" name="operateMinTime">
-                                            <button type="button" class="btn btn-primary">至</button>
-                                            <input class="form-control" type="date" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
+                                        <label for="operateMinTime2" class="col-2 col-form-label">时间</label>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMinTime2" [(ngModel)]="queryModel.operateMinTime" name="queryModel.operateMinTime">
+                                        </div>
+                                        <span>—</span>
+                                        <div class="col-4">
+                                            <input class="form-control" type="date" id="operateMaxTime2" [(ngModel)]="queryModel.operateMaxTime" name="queryModel.operateMaxTime">
                                         </div>
                                     </div>
                                 </div>

@@ -7,27 +7,9 @@
 <div class="modal-body">
     <form name="submitForm" #submitForm="ngForm">
         <div class="form-group row">
-            <label class="col-2 col-form-label" for="account">用户ID</label>
-            <div class="col-10">
-                <input [(ngModel)] = 'editModel.account' name="editModel.account" type="text" class="form-control" id="account">
-            </div>
-        </div>
-        <div class="form-group row">
             <label class="col-2 col-form-label" for="name">用户名</label>
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.name' name="editModel.name" type="text" class="form-control" id="name">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="rolename">角色名</label>
-            <div class="col-10">
-                <input [(ngModel)] = 'editModel.rolename' name="editModel.rolename" type="text" class="form-control" id="rolename">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label" for="operatorInformation_operatorid">运营商ID</label>
-            <div class="col-10">
-                <input [(ngModel)] = 'editModel.operatorInformation_operatorid' name="editModel.operatorInformation_operatorid" type="text" class="form-control" id="operatorInformation_operatorid">
             </div>
         </div>
         <div class="form-group row">
@@ -53,8 +35,8 @@
             <div class="col-10">
                 <input [(ngModel)] = 'editModel.email' name="editModel.email" type="text" class="form-control" id="email">
             </div>
-</div>
-</form>
+        </div>
+    </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">确认</button>
