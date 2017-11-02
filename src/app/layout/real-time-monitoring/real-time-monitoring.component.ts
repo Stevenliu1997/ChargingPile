@@ -5,6 +5,8 @@ import {CustomHttpClient} from "../../shared/services/custom-http-client/CustomH
 import {NgbModal, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import {stringDistance} from "codelyzer/util/utils";
 
+declare var AMap: any;
+
 @Component({
     selector: 'map-presentation',
     templateUrl: './real-time-monitoring.component.html',
@@ -27,8 +29,10 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         this.customHttpClient.get('map',).subscribe(result =>{
             console.log(1);
             this.initMap(result);
+            this.generateMap(this.opts.markers);
         });
         this.startInterval();
+
     }
     constructor(private customHttpClient: CustomHttpClient,private chRef: ChangeDetectorRef) {
     }
@@ -210,5 +214,31 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         this.intervalId = setInterval(function () {
             this.formdata();
         }.bind(this), 30000);
+    }
+
+    mapReady(map: any){
+        console.log(map);
+    }
+
+    generateMap(markersParam: Array<any>){
+        let markers = [];
+        let map = new AMap.Map("container", {
+            resizeEnable: true,
+            center:[105,34],
+            zoom: 4
+        });
+        for(let i=0;i<markersParam.length;i+=1){
+            markers.push(new AMap.Marker({
+                position:markersParam[i],
+                // content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
+                offset: new AMap.Pixel(-15,-15)
+            }))
+        }
+        new AMap.MarkerClusterer(map, markers,{gridSize:80});
+        //加载比例尺
+        map.plugin(["AMap.Scale"], function () {
+            let scale = new AMap.Scale();
+            map.addControl(scale);
+        });
     }
 }
