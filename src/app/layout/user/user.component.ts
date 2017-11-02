@@ -33,7 +33,9 @@ export class UserComponent implements OnInit {
             {name: '手机号', key: 'phone'},
             {name: 'QQ', key: 'qq'},
             {name: '微信', key: 'weixin'},
-            {name: '锁定状态', key: 'lockstate'}
+            {name: '锁定状态', key: 'lockstate',html: function (item) {
+                return `<span>${item.lockstate == true ? '正常' : '锁定'}</span>`
+            }}
         ],
         params: function () {
             return this.queryModel;

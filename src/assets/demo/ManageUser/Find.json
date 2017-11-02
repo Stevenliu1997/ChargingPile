@@ -5,13 +5,15 @@
             "account": "4",
             "name": "超级管理员",
             "rolename": "超级管理员",
-            "phone": "系统管理员"
+            "phone": "系统管理员",
+            "lockstate": false
         },
         {
             "account": "8",
             "name": "guest",
             "email": "平台一般用户",
-            "weixin": "qqq"
+            "weixin": "qqq",
+            "lockstate": true
         }
     ],
     "currentPage": 1,
