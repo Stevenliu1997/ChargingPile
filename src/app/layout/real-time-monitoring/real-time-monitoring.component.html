@@ -145,22 +145,25 @@
                 <ng-template ngbTabContent>
                     <div class="query-section mx-xl-0">
                         <div class="row">
-                            <div class="col-9" *ngIf="opts">
-<!--                                <baidu-map
-                                            [options]="opts"
-                                           [offline]="offlineOpts"
-                                           (onMapLoaded)="loadMap($event)"
-                                           (onMarkerClicked)="clickMarker($event)"
-                                           (onClicked)="clickmap($event)" >
-                                </baidu-map>-->
-                                <ngx-amap class="demo-map" [resizeEnable]="true" [center]="[108.95, 34.27]" [zoom]="5">
-                                    <amap-tool-bar></amap-tool-bar>
-                                    <amap-marker [position]="marker" *ngFor="let marker of opts.markers;let i=index;"   [draggable]=false >
-                                        <amap-info-window  [offset]="opts.infoWindowOffset" >
-                                            {{this.contents[i]}}
-                                        </amap-info-window>
-                                    </amap-marker>
-                                </ngx-amap>
+                            <!--<div class="col-9" *ngIf="opts">-->
+<!--&lt;!&ndash;                                <baidu-map-->
+                                            <!--[options]="opts"-->
+                                           <!--[offline]="offlineOpts"-->
+                                           <!--(onMapLoaded)="loadMap($event)"-->
+                                           <!--(onMarkerClicked)="clickMarker($event)"-->
+                                           <!--(onClicked)="clickmap($event)" >-->
+                                <!--</baidu-map>&ndash;&gt;-->
+                                <!--<ngx-amap class="demo-map" [resizeEnable]="true" [center]="[108.95, 34.27]" [zoom]="5" (mapReady)="mapReady($event)">-->
+                                    <!--<amap-tool-bar></amap-tool-bar>-->
+                                    <!--<amap-marker [position]="marker" *ngFor="let marker of opts.markers;let i=index;"   [draggable]=false >-->
+                                        <!--<amap-info-window  [offset]="opts.infoWindowOffset" >-->
+                                            <!--{{this.contents[i]}}-->
+                                        <!--</amap-info-window>-->
+                                    <!--</amap-marker>-->
+                                <!--</ngx-amap>-->
+                            <!--</div>-->
+                            <div class="col-9">
+                                <div id="container"></div>
                             </div>
 
                             <div class="col-3">

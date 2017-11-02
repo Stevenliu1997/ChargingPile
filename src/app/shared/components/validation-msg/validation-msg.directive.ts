@@ -1,11 +1,27 @@
 /**
  * Created by thundersoft on 2017/8/3.
  */
-import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+import {Directive, ElementRef, Input, HostListener, OnInit} from '@angular/core';
 import {NgModel} from "@angular/forms";
 
 @Directive({ selector: '[validationMsg]' })
-export class ValidationMsgDirective{
+export class ValidationMsgDirective implements OnInit{
+    ngOnInit(): void {
+        let submitBtn = document.body.querySelector('.btn-submit') as HTMLElement;
+        // docment.getElementById()
+        if(!submitBtn){
+            return;
+        }
+        let validationFields = document.body.querySelectorAll(' [validationMsg]')
+        submitBtn.onclick = event => {
+            Array.from(validationFields).forEach(item => {
+                let event = new Event('keydown');
+                item.dispatchEvent(event);
+            })
+        }
+
+    }
+
     errorsMsg: any = {};
     isAddedError: boolean = false;
     activeErrorNode: any;
