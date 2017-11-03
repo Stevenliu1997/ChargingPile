@@ -17,6 +17,7 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
     ngOnDestroy(): void {
         window.clearInterval(this.intervalId);
     }
+    map: any;
 
     chartsModel: any = {
     };
@@ -221,24 +222,95 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
     }
 
     generateMap(markersParam: Array<any>){
+        let infoWindow = new AMap.InfoWindow({
+            isCustom: true,  //使用自定义窗体
+            // content: this.createInfoWindow(title, content.join("<br/>")),
+            offset: new AMap.Pixel(16, -45)
+        });
+
         let markers = [];
         let map = new AMap.Map("container", {
             resizeEnable: true,
             center:[105,34],
             zoom: 4
         });
+        this.map = map;
+        console.log(this.map);
         for(let i=0;i<markersParam.length;i+=1){
-            markers.push(new AMap.Marker({
+            let marker = new AMap.Marker({
                 position:markersParam[i],
                 // content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
                 offset: new AMap.Pixel(-15,-15)
-            }))
+            });
+            //鼠标点击marker弹出自定义的信息窗体
+            AMap.event.addListener(marker, 'click', () => {
+                infoWindow.setContent(this.createInfoWindow('充电桩信息', this.contents[i]));
+                infoWindow.open(map, marker.getPosition());
+            });
+            markers.push(marker);
         }
         new AMap.MarkerClusterer(map, markers,{gridSize:80});
-        //加载比例尺
-        map.plugin(["AMap.Scale"], function () {
+        //加载插件
+        map.plugin(["AMap.Scale", 'AMap.ToolBar'], () => {
+            //加载比例尺
             let scale = new AMap.Scale();
             map.addControl(scale);
+            //工具条
+            let toolbar = new AMap.ToolBar();
+            map.addControl(toolbar);
         });
+    }
+
+    createInfoWindow(textTitle, textContent): any {
+        let title = textTitle,
+            content = [];
+        content.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>"+textContent);
+        // content.push("电话：010-64733333");
+        // content.push("<a href='http://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
+        let joinContent = content.join("<br/>");
+
+        let info = document.createElement("div");
+        info.className = "info";
+
+        //可以通过下面的方式修改自定义窗体的宽高
+        //info.style.width = "400px";
+        // 定义顶部标题
+        var top = document.createElement("div");
+        var titleD = document.createElement("div");
+        var closeX = document.createElement("img");
+        top.className = "info-top";
+        titleD.innerHTML = title;
+        closeX.src = "http://webapi.amap.com/images/close2.gif";
+        closeX.onclick = () => {
+            this.closeInfoWindow();
+        };
+
+        top.appendChild(titleD);
+        top.appendChild(closeX);
+        info.appendChild(top);
+
+        // 定义中部内容
+        var middle = document.createElement("div");
+        middle.className = "info-middle";
+        middle.style.backgroundColor = 'white';
+        middle.innerHTML = joinContent;
+        info.appendChild(middle);
+
+        // 定义底部内容
+        var bottom = document.createElement("div");
+        bottom.className = "info-bottom";
+        bottom.style.position = 'relative';
+        bottom.style.top = '0px';
+        bottom.style.margin = '0 auto';
+        var sharp = document.createElement("img");
+        sharp.src = "http://webapi.amap.com/images/sharp.png";
+        bottom.appendChild(sharp);
+        info.appendChild(bottom);
+        return info;
+    }
+
+    //关闭信息窗体
+    closeInfoWindow() {
+        this.map.clearInfoWindow();
     }
 }
