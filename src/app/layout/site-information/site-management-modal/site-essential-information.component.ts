@@ -7,6 +7,7 @@ import {ChargingPileInformationComponent} from './charging-pile-information.comp
 import {ToastsManager} from 'ng2-toastr';
 import {GunInformationComponent} from './gun-information.component';
 import {NgForm} from '@angular/forms';
+import {CityService} from "../../../shared/services/city-service/city-service";
 
 @Component({
     selector: 'app-site-essential-information',
@@ -17,7 +18,14 @@ export class SiteEssentialInformationComponent implements OnInit {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        city: "" ,
+        province: "",
+        district: ""
+    };
+
+    citys: any = [];
+    areas: any = [];
 
     @ViewChild('submitForm')
     editForm: NgForm;
@@ -25,7 +33,7 @@ export class SiteEssentialInformationComponent implements OnInit {
     @ViewChild(DatagridComponent)
     private datagridComponent: DatagridComponent;
     @Input()
-    queryModel: any = {}
+    queryModel: any = {};
     config: object = {
         url: 'PileManage/Find',
         column: [
@@ -126,6 +134,7 @@ export class SiteEssentialInformationComponent implements OnInit {
         private ngbModal: NgbModal,
         private customHttpClient: CustomHttpClient,
         public toastr: ToastsManager,
+        public cityService: CityService,
         vcr: ViewContainerRef
     ) {
         this.toastr.setRootViewContainerRef(vcr);

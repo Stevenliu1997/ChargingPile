@@ -3,9 +3,9 @@
         {
             "siteid": "001",
             "sitename": "中国石油",
-            "province": "四川",
-            "city": "成都",
-            "district": "成华",
+            "province": "四川省",
+            "city": "成都市",
+            "district": "成华区",
             "position": "yyyy",
             "state": "正常",
             "isopen": "是",

@@ -3,7 +3,6 @@ import {routerTransition} from '../../router.animations';
 import {DatagridComponent} from '../../shared/components/widget/datagrid/datagrid.component';
 import {URLSearchParams} from '@angular/http'
 
-
 @Component({
     selector: 'app-tables',
     templateUrl: './order-manage.component.html',
@@ -34,7 +33,6 @@ export class OrderManageComponent implements OnInit {
             {name: '充电枪', key: 'gunid'},
             {name: '充电状态', key: 'reservestate'},
             {name: '取消原因', key: 'reason',html: function (item) {
-                return `<span>${item.reason == 'null' ? '无' : this.queryModel.reason}</span>`
             }}
         ],
         params: function () {

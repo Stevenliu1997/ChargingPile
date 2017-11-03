@@ -105,10 +105,9 @@
                     <div class="row">
                         <label class="col-2 col-form-label">省</label>
                         <div class="col-10">
-                            <select [(ngModel)] = 'editModel.province' id="province-select-input" name="editModel.province" class="form-control">
+                            <select id="province-select-input"  [(ngModel)]="editModel.province" name="editModel.province" class="form-control" (ngModelChange)="citys = cityService.getCity(editModel.province);editModel.city='';areas=[];editModel.district=''" >
                                 <option value="">请选择</option>
-                                <option value="四川">四川</option>
-                                <option value="河北">河北</option>
+                                <option [ngValue]="item.name" *ngFor="let item of cityService.getProvince()">{{item.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -117,10 +116,9 @@
                     <div class="row">
                         <label class="col-2 col-form-label">市</label>
                         <div class="col-10">
-                            <select [(ngModel)] = 'editModel.city' id="city-select-input" name="editModel.city" class="form-control">
+                            <select id="city-select-input" [(ngModel)]="editModel.city" name="editModel.city" class="form-control" (ngModelChange)="areas = cityService.getArea(editModel.city);editModel.district=''">
                                 <option value="">请选择</option>
-                                <option value="成都">成都</option>
-                                <option value="保定">保定</option>
+                                <option [value]="item.name" *ngFor="let item of citys">{{item.name}}</option>
                             </select>
                         </div>
                     </div>
@@ -129,10 +127,9 @@
                     <div class="row">
                         <label class="col-2 col-form-label">区</label>
                         <div class="col-10">
-                            <select [(ngModel)] = 'editModel.district' id="district-select-input" name="editModel.district" class="form-control">
+                            <select id="district-select-input" [(ngModel)]="editModel.district" name="editModel.district" class="form-control">>
                                 <option value="">请选择</option>
-                                <option value="成华">成华</option>
-                                <option value="莲池">莲池</option>
+                                <option [ngValue]="item.name" *ngFor="let item of areas">{{item.name}}</option>
                             </select>
                         </div>
                     </div>
