@@ -55,7 +55,7 @@
                         <div class="row">
                             <label for="province" class="col-4 col-form-label">省</label>
                             <div class="col-8">
-                                <select class="form-control" id="province" [(ngModel)]="queryModel.province" name="queryModel.province" (ngModelChange)="citys = cityService.getCity(queryModel.province);queryModel.city='';areas=[];queryModel.district=''">
+                                <select class="form-control" id="province" [(ngModel)]="queryModel.province" name="queryModel.province" (ngModelChange)="citys = cityService.getCity(queryModel.province);queryModel.city='';areas=[];">
                                     <option value="">请选择</option>
                                     <option [ngValue]="item.name" *ngFor="let item of cityService.getProvince()">{{item.name}}</option>
                                 </select>

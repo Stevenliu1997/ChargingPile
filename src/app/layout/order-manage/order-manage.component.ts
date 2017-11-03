@@ -29,11 +29,13 @@ export class OrderManageComponent implements OnInit {
             {name: '创建人', key: 'user'},
             {name: '使用时间', key: 'usetime'},
             {name: '联系方式', key: 'phone'},
-            {name: '站点', key: 'pileid'},
-            {name: '充电桩', key: 'siteid'},
+            {name: '站点', key: 'siteid'},
+            {name: '充电桩', key: 'pileid'},
             {name: '充电枪', key: 'gunid'},
             {name: '充电状态', key: 'reservestate'},
-            {name: '取消原因', key: 'reason'}
+            {name: '取消原因', key: 'reason',html: function (item) {
+                return `<span>${item.reason == 'null' ? '无' : this.queryModel.reason}</span>`
+            }}
         ],
         params: function () {
             return this.queryModel;
@@ -51,8 +53,8 @@ export class OrderManageComponent implements OnInit {
     }
 
     blankinit() {
-        this.queryModel.rechargename = '';
-        this.queryModel.ordernumber = '';
+        this.queryModel.siteid = '';
+        this.queryModel.reserveid = '';
         this.queryModel.startTime = '';
         this.queryModel.endTime = '';
     }

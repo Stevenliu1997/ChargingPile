@@ -15,7 +15,10 @@ export class ChargingRuleAddComponent {
     @Input()
     actionTitle: string;
     @Input()
-    editModel: any = {};
+    editModel: any = {
+        userstate: "",
+        ruletype: ""
+    };
     @Input()
     operatorname: string;
 
