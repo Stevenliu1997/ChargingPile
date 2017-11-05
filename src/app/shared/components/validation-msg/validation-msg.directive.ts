@@ -12,7 +12,7 @@ export class ValidationMsgDirective implements OnInit{
         if(!submitBtn){
             return;
         }
-        let validationFields = document.body.querySelectorAll(' [validationMsg]')
+        let validationFields = document.body.querySelectorAll(' [validationMsg]');
         submitBtn.onclick = event => {
             Array.from(validationFields).forEach(item => {
                 let event = new Event('keydown');

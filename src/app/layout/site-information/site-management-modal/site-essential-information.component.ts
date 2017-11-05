@@ -95,7 +95,7 @@ export class SiteEssentialInformationComponent implements OnInit {
                     const modalRef = this.ngbModal.open(GunInformationComponent);
                     modalRef.componentInstance.actionTitle = '充电枪';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
-                    modalRef.componentInstance.editModel.pileid = parseInt(item.pileid, 10);
+                    modalRef.componentInstance.editModel.pileid = item.pileid;
                     modalRef.result.then(result => {
                         },
                         error => {
