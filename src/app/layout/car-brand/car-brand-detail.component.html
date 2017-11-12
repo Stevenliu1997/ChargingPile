@@ -17,9 +17,10 @@
         </div>
         <div class="form-group col-4">
             <!--<label for="editModel.image"></label>-->
-            <img  id="editModel.logpath" name="editModel.logpath" class="" [src]='editModel.logpath'>
+            <img style="width: 220px" id="editModel.logpath" name="editModel.logpath" class="" [src]='imgSrc'>
             <div class="text-center">
-                <button type="button" class="btn btn-primary" (click)="upload()">上传</button>
+                <!--<button type="button" class="btn btn-primary" (click)="upload()">上传</button>-->
+                <input type="file" ng2FileSelect [uploader]="uploader">
             </div>
         </div>
     </div>
