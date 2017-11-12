@@ -30,7 +30,7 @@
                         <div class="row">
                             <label for="district-select-input" class="col-4 col-form-label">区</label>
                             <div class="col-8">
-                                <select id="district-select-input" [(ngModel)]="queryModel.district" name="queryModel.district" class="form-control">
+                                <select id="district-select-input" [(ngModel)]="queryModel.district" name="queryModel.district" class="form-control" (ngModelChange)="sitename()">
                                     <option value="">请选择</option>
                                     <option [ngValue]="item.name" *ngFor="let item of areas">{{item.name}}</option>
                                 </select>
