@@ -12,20 +12,20 @@ import {ToastsManager} from "ng2-toastr";
 })
 export class CarBrandDetailComponent implements OnInit{
     ngOnInit(): void {
-        this.uploader = new FileUploader({url: '/Picture/Upload', autoUpload: false});
+        this.uploader = new FileUploader({url: 'Picture/Upload', autoUpload: false,allowedFileType:["image"]});
         this.uploader.onAfterAddingFile = (fileItem) => {
             this.imgSrc  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
             fileItem.onBuildForm = form => {
                 form.append('brandid', this.editModel.brandid)
             };
             fileItem.upload();
-        }
+        };
         this.uploader.onSuccessItem = (fileItem) => {
             this.toastr.success('上传成功');
-        }
+        };
         this.uploader.onErrorItem = (fileItem) => {
             this.toastr.error('上传失败');
-        }
+        };
         this.imgSrc = this.editModel.logpath;
     }
 
@@ -41,9 +41,9 @@ export class CarBrandDetailComponent implements OnInit{
 
     }
 
-    confirm() {
+/*    confirm() {
         this.activeModal.close();
-    }
+    }*/
 
     edit(){
         const modalRef = this.ngbModal.open(CarBrandIntroComponent);
@@ -51,12 +51,4 @@ export class CarBrandDetailComponent implements OnInit{
         modalRef.result.then(result => {
         }, error => {})
     }
-    upload(){
-    const modalRef = this.ngbModal.open(CarBrandDetailComponent,{size: "lg"});
-    modalRef.componentInstance.actionTitle = '车辆';
-    modalRef.componentInstance.editModel = Object.assign({});
-    modalRef.result.then(result => {
-    }, error => {})
-    }
-
 }
