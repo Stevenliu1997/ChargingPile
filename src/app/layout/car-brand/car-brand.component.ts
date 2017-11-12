@@ -74,7 +74,7 @@ export class CarBrandComponent implements OnInit {
                 type: 'detail',
                 name: '查看车辆详细信息',
                 action: function (item) {
-                    const modalRef = this.ngbModal.open(CarBrandDetailComponent);
+                    const modalRef = this.ngbModal.open(CarBrandDetailComponent,{size: "lg"});
                     modalRef.componentInstance.actionTitle = '车辆';
                     modalRef.componentInstance.editModel = Object.assign({}, item);
                     modalRef.result.then(result => {
