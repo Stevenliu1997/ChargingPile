@@ -140,6 +140,8 @@ export class SiteEssentialInformationComponent implements OnInit {
         this.toastr.setRootViewContainerRef(vcr);
     }
     ngOnInit() {
+        this.citys = this.cityService.getCity(this.editModel.province);
+        this.areas = this.cityService.getArea(this.editModel.city)
     }
 
     confirm() {
