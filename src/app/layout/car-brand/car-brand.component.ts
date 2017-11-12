@@ -5,6 +5,7 @@ import {CarBrandEditComponent} from './car-brand-edit.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CarBrandDetailComponent} from './car-brand-detail.component';
 import {ToastsManager} from 'ng2-toastr';
+import {Uploader} from "../../shared/components/widget/uploader/uploader.service";
 
 @Component({
     selector: 'app-tables',

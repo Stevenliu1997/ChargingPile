@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import {WidgetModule} from '../../shared/components/widget/widget.module';
 import {CarBrandEditComponent} from './car-brand-edit.component';
 import {CarBrandDetailComponent} from './car-brand-detail.component';
+import {CarBrandIntroComponent} from "./car-brand-detail-modal/car-brand-intro.component";
 
 @NgModule({
     imports: [
@@ -17,7 +18,12 @@ import {CarBrandDetailComponent} from './car-brand-detail.component';
         PageHeaderModule,
         WidgetModule
     ],
-    declarations: [CarBrandComponent, CarBrandEditComponent, CarBrandDetailComponent],
-    entryComponents: [CarBrandEditComponent, CarBrandDetailComponent]
+    declarations: [
+        CarBrandComponent,
+        CarBrandEditComponent,
+        CarBrandDetailComponent,
+        CarBrandIntroComponent
+    ],
+    entryComponents: [CarBrandEditComponent, CarBrandDetailComponent,CarBrandIntroComponent]
 })
 export class CarBrandModule { }

@@ -16,6 +16,11 @@ export class SiteInformationComponent {
     citys: any = [];
     areas:  any = [];
 
+    ngOnInit() {
+        this.citys = this.cityService.getCity(this.editModel.province);
+        this.areas = this.cityService.getArea(this.editModel.city)
+    }
+
     constructor(public activeModal: NgbActiveModal,public cityService: CityService) {}
 
     confirm() {

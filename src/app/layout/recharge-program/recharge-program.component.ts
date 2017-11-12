@@ -67,25 +67,6 @@ export class RechargeProgramComponent implements OnInit {
                         return {id: item.programid};
                     }});
 
-                    if(1)
-                    return;
-                    //TODO item.uploaded指有上传文件
-                    if(item.uploaded){
-                        const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
-                        modalRef.componentInstance.actionTitle = '更新';
-                        modalRef.componentInstance.editModel = Object.assign({},item);
-                        modalRef.result.then(result => {
-                            this.refreshGrid()
-                        },error => {})
-                    }else {
-                        const modalRef = this.ngbModal.open(RechargeProgramEditComponent);
-                        modalRef.componentInstance.actionTitle = '上传';
-                        modalRef.componentInstance.editModel = Object.assign({},item);
-                        modalRef.result.then(result => {
-                            this.refreshGrid();
-                        },error => {})
-                    }
-
                 }.bind(this)
             },
             // {

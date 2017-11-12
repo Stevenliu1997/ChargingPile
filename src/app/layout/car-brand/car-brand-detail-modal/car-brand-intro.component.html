@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">详细介绍</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="form-group row">
+        <div class="form-group row col-8">
+            <label for="editModel.details" class="col-4">品牌详细介绍</label>
+            <textarea [(ngModel)] = 'editModel.details' id="editModel.details" name="editModel.details" class="form-control col-8"></textarea>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Cross click')">关闭</button>
+    <button type="button" class="btn btn-primary btn-submit" (click)="confirm()">确认</button>
+</div>

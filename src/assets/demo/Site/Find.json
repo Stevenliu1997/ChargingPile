@@ -3,8 +3,8 @@
         {
             "siteid": "001",
             "sitename": "中国石油",
-            "province": "四川",
-            "city": "成都",
+            "province": "四川省",
+            "city": "成都市",
             "state": "正常",
             "isreasonable": "不合理",
             "state": "正常",
@@ -22,8 +22,8 @@
         {
             "siteid": "002",
             "sitename": "中国石化",
-            "province": "四川",
-            "city": "成都",
+            "province": "四川省",
+            "city": "成都市",
             "state": "锁定",
             "isreasonable": "很不合理",
             "state": "正常",

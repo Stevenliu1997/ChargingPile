@@ -1,13 +1,13 @@
 import {Component, Input, ViewChild} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {CustomHttpClient} from '../../shared/services/custom-http-client/CustomHttpClient';
+import {CustomHttpClient} from '../../../shared/services/custom-http-client/CustomHttpClient';
 import {NgForm} from '@angular/forms';
 
 @Component({
-    selector: 'app-car-brand-edit',
-    templateUrl: './car-brand-edit.component.html'
+    selector: 'app-car-brand-intro',
+    templateUrl: './car-brand-intro.component.html'
 })
-export class CarBrandEditComponent {
+export class CarBrandIntroComponent {
 
     @Input()
     actionTitle: string;
@@ -23,26 +23,14 @@ export class CarBrandEditComponent {
     ) {}
 
     confirm() {
-        if (this.editForm.form.invalid) {
+/*        if (this.editForm.form.invalid) {
             return;
-        }
-        if (this.actionTitle === '添加') {
-            this.editModel.brandid = -1;
-            this.add(this.editModel);
-        } else if (this.actionTitle === '编辑') {
-            this.update(this.editModel);
-        }
+        }*/
+        this.update(this.editModel);
     }
     update(obj: object) {
         console.log(obj);
         this.customHttpClient.post('CarBrand/Update', obj).subscribe(result => {
-            if (result.code === '00') {
-                this.activeModal.close();
-            }
-        })
-    }
-    add(obj: object) {
-        this.customHttpClient.post('CarBrand/Add', obj).subscribe(result => {
             if (result.code === '00') {
                 this.activeModal.close();
             }

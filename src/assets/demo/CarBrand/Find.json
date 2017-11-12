@@ -4,15 +4,15 @@
             "brandid": "2015220503001",
             "brandname": "奔驰",
             "cartyper": "玩具车",
-            "introduction": "hhh",
-            "image": "http://localhost:4200/assets/demo/CarBrand/BenzLogo.jpg"
+            "details": "hhh",
+            "logpath": "http://localhost:4200/assets/demo/CarBrand/noPhoto.png"
         },
         {
             "brandid": "2015220503002",
             "brandname": "宝马",
             "cartyper": "遥控车",
-            "introduction": "ddd",
-            "image": "http://localhost:4200/assets/demo/CarBrand/BMWLogo.jpg"
+            "details": "ddd",
+            "logpath": "http://localhost:4200/assets/images/noPhoto.eps"
         }
     ],
     "currentPage": 1,
