@@ -180,7 +180,6 @@ export class PileMonitorComponent implements OnInit {
         tempObj.province = this.queryModel.province;
         tempObj.city = this.queryModel.city;
         tempObj.district = this.queryModel.district;
-        console.log(1);
         if (tempObj.province&&tempObj.city&&tempObj.district)
         {
             this.httpClient.post('SiteName/Find', tempObj).subscribe(result => {
