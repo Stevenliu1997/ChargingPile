@@ -270,7 +270,7 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         let joinContent = content.join("<br/>");
 
         let info = document.createElement("div");
-        info.className = "info";
+        info.className = "map-window";
 
         //可以通过下面的方式修改自定义窗体的宽高
         //info.style.width = "400px";
