@@ -302,6 +302,7 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         bottom.style.position = 'relative';
         bottom.style.top = '0px';
         bottom.style.margin = '0 auto';
+        bottom.style["line-height"] = '0';
         var sharp = document.createElement("img");
         sharp.src = "http://webapi.amap.com/images/sharp.png";
         bottom.appendChild(sharp);
