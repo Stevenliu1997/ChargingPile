@@ -35,14 +35,14 @@
             <div class="d-flex flex-row-reverse">
                 <nav aria-label="Page navigation example" class="mr-3">
                     <ul class="pagination">
-                        <li class="page-item" (click)="turnPage(pageParams.pageNumber-1)" [attr.disabled]="pageParams.pageNumber<=1">
+                        <li class="page-item" (click)="turnPage(1)" [attr.disabled]="pageParams.pageNumber<=1">
                             <a class="page-link"  aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
-                        <li class="page-item" [class.active]="page == pageParams.pageNumber" *ngFor="let page of pageArr" (click)="turnPage(page)"><a class="page-link" >{{page}}</a></li>
-                        <li class="page-item" (click)="turnPage(pageParams.pageNumber+1)" [attr.disabled]="pageParams.pageNumber>=page.totalPages">
+                        <li class="page-item" [hidden]="!(pageIndex>(pageParams.pageNumber+3>page.totalPages ? page.totalPages-5 : pageParams.pageNumber-3) && pageIndex<(pageParams.pageNumber-3<1?6:pageParams.pageNumber+3))" [class.active]="pageIndex == pageParams.pageNumber" *ngFor="let pageIndex of pageArr" (click)="turnPage(pageIndex)"><a class="page-link" >{{pageIndex}}</a></li>
+                        <li class="page-item" (click)="turnPage(page.totalPages)" [attr.disabled]="pageParams.pageNumber>=page.totalPages">
                             <a class="page-link"  aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>

@@ -83,6 +83,9 @@ export class DatagridComponent implements OnInit {
                 this.page.totalPages = result.totalPages;
                 this.page.totalElements = result.totalElements;
                 this.pageParams.pageNumber = result.currentPage;
+
+                //测试时使用，模拟翻页
+                // this.pageParams.pageNumber = pageParams ? pageParams.pageNumber : this.pageParams.pageNumber;
                 this.initPageArray(this.page.totalPages);
 
                 //清除单选
