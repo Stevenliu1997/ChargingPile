@@ -7,9 +7,10 @@ import {NgModel} from "@angular/forms";
 @Directive({ selector: '[validationMsg]' })
 export class ValidationMsgDirective implements OnInit{
     ngOnInit(): void {
+        this.initErrorMsg();
         let submitBtn = document.body.querySelector('.btn-submit') as HTMLElement;
         // docment.getElementById()
-        if(!submitBtn){
+        if(!submitBtn || submitBtn.onclick){
             return;
         }
         let validationFields = document.body.querySelectorAll(' [validationMsg]');
@@ -27,6 +28,10 @@ export class ValidationMsgDirective implements OnInit{
     activeErrorNode: any;
 
     constructor(private el: ElementRef) {
+
+    }
+
+    initErrorMsg(){
         let attrs = this.el.nativeElement.attributes;
         //为空
         if(attrs.hasOwnProperty('required')){
@@ -52,8 +57,7 @@ export class ValidationMsgDirective implements OnInit{
                 ele.parentNode.parentNode.classList.add('has-danger');
                 if(ele.attributes.hasOwnProperty('minlength')){
                     this.activeErrorNode = this.errorsMsg.minlength;
-                }
-                if(ele.attributes.hasOwnProperty('required')){
+                } else if(ele.attributes.hasOwnProperty('required')){
                     this.activeErrorNode = this.errorsMsg.required;
                 }
                 ele.parentNode.appendChild(this.activeErrorNode);

@@ -270,7 +270,7 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         let joinContent = content.join("<br/>");
 
         let info = document.createElement("div");
-        info.className = "info";
+        info.className = "map-window";
 
         //可以通过下面的方式修改自定义窗体的宽高
         //info.style.width = "400px";
@@ -302,6 +302,7 @@ export class RealTimeMonitoringComponent implements OnInit,OnDestroy {
         bottom.style.position = 'relative';
         bottom.style.top = '0px';
         bottom.style.margin = '0 auto';
+        bottom.style["line-height"] = '0';
         var sharp = document.createElement("img");
         sharp.src = "http://webapi.amap.com/images/sharp.png";
         bottom.appendChild(sharp);
