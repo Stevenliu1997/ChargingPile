@@ -16,6 +16,7 @@ export class CarBrandDetailComponent implements OnInit{
         this.uploader.onAfterAddingFile = (fileItem) => {
             this.imgSrc  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
             fileItem.onBuildForm = form => {
+                form.append('brandid', this.editModel.brandid);
                 form.append('brandname', this.editModel.brandname)
             };
             fileItem.upload();
